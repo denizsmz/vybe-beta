@@ -1,0 +1,26 @@
+VYBE 6.0 – Quiz-Update
+
+BALL KNOWLEDGE & ALLGEMEINWISSEN
+- Nach dem Aufdecken erscheinen zwei große Bewertungsbuttons: Falsch (rot) und Richtig (grün).
+- Die nächste Frage ist erst nach einer Bewertung verfügbar.
+- Bereits bewertete Fragen können nachträglich von falsch auf richtig oder umgekehrt geändert werden.
+- Vorherige-Frage-Button ergänzt.
+- Reihenfolge, Kartenstatus und Bewertungen bleiben beim Vor- und Zurückgehen erhalten.
+- Live-Anzeige für richtige und falsche Antworten.
+- Automatischer Ergebnisbildschirm nach der letzten Frage.
+- Beim vorzeitigen Schließen wird die Statistik angezeigt, sobald mindestens eine Frage bewertet wurde.
+
+ERGEBNIS
+- Anzahl beantworteter Fragen
+- Richtige und falsche Antworten
+- Prozentquote
+- Leistungsabhängiger, spielbezogener Spruch
+- Beste lokale Quote
+- Insgesamt lokal beantwortete Fragen
+
+TECHNIK
+- Gemeinsame Bewertungslogik für beide Quizspiele.
+- Statistik wird lokal im Browser gespeichert.
+- Sichtbare Version: VYBE 6.0
+- Service-Worker-Cache: vybe-pwa-v8
+- JavaScript-Syntax geprüft.
