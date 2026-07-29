@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="theme-color" content="#17111f">
-<title>VYBE 6.0 – Quiz-Update</title>
+<title>VYBE 6.1 – Swipe-Update</title>
 <style>
 :root{
   --bg:#211b2d;
@@ -1475,7 +1475,7 @@ body.light-theme .knowledge-back .ball-source{color:#756b7b}
 
 
 /* =========================================================
-   VYBE 6.0 – Fragenbalance
+   VYBE 6.1 – Fragenbalance
    ========================================================= */
 .home-top-actions{display:flex;align-items:center;gap:8px}
 .favorite-header-button{
@@ -1620,7 +1620,7 @@ html,body{
 
 
 /* =========================================================
-   VYBE 6.0 – iPhone layout and flip-card fixes
+   VYBE 6.1 – iPhone layout and flip-card fixes
    ========================================================= */
 #home .compact-home-content{padding-top:18px !important}
 #home .compact-home-copy{padding-top:4px !important;margin-top:8px !important}
@@ -1693,7 +1693,7 @@ html,body{
 
 
 /* =========================================================
-   VYBE 6.0 – Quizwertung, Navigation und Ergebnisse
+   VYBE 6.1 – Quizwertung, Navigation und Ergebnisse
    ========================================================= */
 .quiz-live-row{
   display:flex;align-items:center;justify-content:space-between;
@@ -1802,6 +1802,77 @@ html,body{
   .quiz-rate-icon{width:31px;height:31px;font-size:20px}
   .quiz-result-title{font-size:28px}
   .quiz-percent-ring{width:116px;height:116px}
+}
+
+
+/* =========================================================
+   VYBE 6.1 – Swipe gestures and auto advance
+   ========================================================= */
+.ball-card-area{
+  position:relative;
+  touch-action:pan-y;
+  user-select:none;
+  -webkit-user-select:none;
+}
+.ball-flip{
+  will-change:transform;
+}
+.ball-card-area.swiping .ball-flip{
+  transition:none!important;
+}
+.ball-card-area.swipe-return .ball-flip{
+  transition:transform .22s cubic-bezier(.2,.8,.2,1)!important;
+}
+.ball-card-area.swipe-accept-left .ball-flip{
+  transition:transform .28s ease,opacity .28s ease!important;
+  transform:translateX(-125%) rotate(-13deg)!important;
+  opacity:0;
+}
+.ball-card-area.swipe-accept-right .ball-flip{
+  transition:transform .28s ease,opacity .28s ease!important;
+  transform:translateX(125%) rotate(13deg)!important;
+  opacity:0;
+}
+.quiz-swipe-indicator{
+  position:absolute;top:50%;transform:translateY(-50%);
+  z-index:8;pointer-events:none;opacity:0;
+  width:74px;height:74px;border-radius:50%;
+  display:grid;place-items:center;
+  color:#fff;font-size:42px;font-weight:1000;
+  box-shadow:0 14px 34px rgba(0,0,0,.24);
+  transition:opacity .1s linear,transform .1s linear;
+}
+.quiz-swipe-left{
+  left:18px;background:linear-gradient(145deg,#d83348,#ff6a72);
+}
+.quiz-swipe-right{
+  right:18px;background:linear-gradient(145deg,#15945d,#40d996);
+}
+.ball-card-area.swiping-left .quiz-swipe-left,
+.ball-card-area.swiping-right .quiz-swipe-right{
+  opacity:var(--swipe-strength,.35);
+}
+.ball-card-area.swiping-left .quiz-swipe-left{
+  transform:translateY(-50%) scale(calc(.84 + var(--swipe-strength,.35) * .18));
+}
+.ball-card-area.swiping-right .quiz-swipe-right{
+  transform:translateY(-50%) scale(calc(.84 + var(--swipe-strength,.35) * .18));
+}
+.quiz-rate-btn{
+  touch-action:manipulation;
+}
+.quiz-auto-note{
+  margin:-2px 0 8px;
+  text-align:center;
+  color:var(--muted);
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:.2px;
+}
+@media(max-width:380px){
+  .quiz-swipe-indicator{
+    width:64px;height:64px;font-size:36px;
+  }
 }
 
 </style>
@@ -2262,7 +2333,7 @@ html,body{
         <div class="row-icon">ℹ️</div>
         <div class="row-copy">
           <div class="row-title">Version</div>
-          <div class="row-sub">VYBE 6.0</div>
+          <div class="row-sub">VYBE 6.1</div>
         </div>
       </div>
     </div>
@@ -2504,6 +2575,7 @@ html,body{
       <span class="quiz-rate-icon">✓</span><span>RICHTIG</span>
     </button>
   </div>
+  <div id="knowledgeSwipeHint" class="quiz-auto-note" hidden>Oder wische nach links / rechts</div>
   <div class="quiz-navigation">
     <button id="knowledgePrevious" class="secondary quiz-nav-btn" type="button">‹ VORHERIGE</button>
     <button id="knowledgeNext" class="primary knowledge-primary quiz-nav-btn" type="button">NÄCHSTE ›</button>
@@ -2612,6 +2684,7 @@ html,body{
       <span class="quiz-rate-icon">✓</span><span>RICHTIG</span>
     </button>
   </div>
+  <div id="ballSwipeHint" class="quiz-auto-note" hidden>Oder wische nach links / rechts</div>
   <div class="quiz-navigation">
     <button id="ballPrevious" class="secondary quiz-nav-btn" type="button">‹ VORHERIGE</button>
     <button id="ballNext" class="primary quiz-nav-btn" type="button">NÄCHSTE ›</button>
@@ -3038,6 +3111,112 @@ function updateQuizStats(game,score){
   stats.totalCorrect+=score.correct;
   stats.totalWrong+=score.wrong;
   persistQuizStats();
+}
+let quizAdvanceLocked=false;
+function advanceQuizCard(game){
+  if(quizAdvanceLocked)return;
+  quizAdvanceLocked=true;
+  setTimeout(()=>{
+    if(game==="ball"){
+      if(ballIndex===ballDeck.length-1)finishBallRound();
+      else{ballIndex++;showBallCard()}
+    }else{
+      if(knowledgeIndex===knowledgeDeck.length-1)finishKnowledgeRound();
+      else{knowledgeIndex++;showKnowledgeCard()}
+    }
+    quizAdvanceLocked=false;
+  },330);
+}
+function resetSwipeArea(area,flip){
+  area.classList.remove(
+    "swiping","swiping-left","swiping-right",
+    "swipe-accept-left","swipe-accept-right"
+  );
+  area.classList.add("swipe-return");
+  area.style.removeProperty("--swipe-strength");
+  flip.style.removeProperty("transform");
+  flip.style.removeProperty("opacity");
+  setTimeout(()=>area.classList.remove("swipe-return"),240);
+}
+function animateAcceptedSwipe(area,direction){
+  area.classList.remove("swiping","swiping-left","swiping-right","swipe-return");
+  area.classList.add(direction==="wrong"?"swipe-accept-left":"swipe-accept-right");
+}
+function bindQuizSwipe({areaId,flipId,isRevealed,onRate}){
+  const area=document.getElementById(areaId);
+  const flip=document.getElementById(flipId);
+  let startX=0,startY=0,currentX=0,dragging=false,horizontal=false;
+  const threshold=72;
+
+  function begin(clientX,clientY){
+    if(!isRevealed()||quizAdvanceLocked)return;
+    startX=clientX;startY=clientY;currentX=0;
+    dragging=true;horizontal=false;
+    area.classList.add("swiping");
+  }
+  function move(clientX,clientY,event){
+    if(!dragging)return;
+    const dx=clientX-startX;
+    const dy=clientY-startY;
+    if(!horizontal){
+      if(Math.abs(dy)>Math.abs(dx)&&Math.abs(dy)>10){
+        dragging=false;
+        resetSwipeArea(area,flip);
+        return;
+      }
+      if(Math.abs(dx)>10)horizontal=true;
+    }
+    if(!horizontal)return;
+    if(event&&event.cancelable)event.preventDefault();
+    currentX=Math.max(-150,Math.min(150,dx));
+    const rotation=currentX/22;
+    const strength=Math.min(1,Math.abs(currentX)/threshold);
+    area.style.setProperty("--swipe-strength",String(Math.max(.2,strength)));
+    area.classList.toggle("swiping-left",currentX<0);
+    area.classList.toggle("swiping-right",currentX>0);
+    flip.style.transform=`translateX(${currentX}px) rotate(${rotation}deg)`;
+  }
+  function end(){
+    if(!dragging)return;
+    dragging=false;
+    if(horizontal&&Math.abs(currentX)>=threshold){
+      const result=currentX<0?"wrong":"correct";
+      animateAcceptedSwipe(area,result);
+      onRate(result,true);
+    }else{
+      resetSwipeArea(area,flip);
+    }
+  }
+
+  area.addEventListener("touchstart",event=>{
+    if(event.touches.length!==1)return;
+    begin(event.touches[0].clientX,event.touches[0].clientY);
+  },{passive:true});
+  area.addEventListener("touchmove",event=>{
+    if(event.touches.length!==1)return;
+    move(event.touches[0].clientX,event.touches[0].clientY,event);
+  },{passive:false});
+  area.addEventListener("touchend",end,{passive:true});
+  area.addEventListener("touchcancel",()=>{
+    dragging=false;resetSwipeArea(area,flip);
+  },{passive:true});
+
+  area.addEventListener("pointerdown",event=>{
+    if(event.pointerType==="touch")return;
+    begin(event.clientX,event.clientY);
+    try{area.setPointerCapture(event.pointerId)}catch(error){}
+  });
+  area.addEventListener("pointermove",event=>{
+    if(event.pointerType==="touch")return;
+    move(event.clientX,event.clientY,event);
+  });
+  area.addEventListener("pointerup",event=>{
+    if(event.pointerType==="touch")return;
+    end();
+  });
+  area.addEventListener("pointercancel",()=>{
+    dragging=false;resetSwipeArea(area,flip);
+  });
 }
 
 let menuGame="imp",resumeScreen="home";
@@ -3548,6 +3727,7 @@ function renderBallRating(){
   const rating=ballAnswers[ballIndex];
   const wrap=document.getElementById("ballRating");
   wrap.hidden=!ballRevealed;
+  document.getElementById("ballSwipeHint").hidden=!ballRevealed;
   const wrong=document.getElementById("ballWrong");
   const correct=document.getElementById("ballCorrect");
   wrong.classList.toggle("selected",rating==="wrong");
@@ -3583,7 +3763,13 @@ function showBallCard(){
   if(ballIndex>=ballDeck.length){finishBallRound();return}
   const card=ballDeck[ballIndex];
   ballRevealed=false;
-  document.getElementById("ballFlip").classList.remove("on");
+  const ballArea=document.getElementById("ballFlipArea");
+  const ballFlip=document.getElementById("ballFlip");
+  ballArea.classList.remove("swiping","swiping-left","swiping-right","swipe-return","swipe-accept-left","swipe-accept-right");
+  ballArea.style.removeProperty("--swipe-strength");
+  ballFlip.style.removeProperty("transform");
+  ballFlip.style.removeProperty("opacity");
+  ballFlip.classList.remove("on");
   const categoryEmojis={
     "Weltmeisterschaft & Nationalteams":"🌍","Europameisterschaft":"🇪🇺",
     "Champions League & Europapokal":"🏆","Vereinskarrieren":"🧭",
@@ -3609,20 +3795,22 @@ function showBallCard(){
   renderBallRating();
   go("ballCard");
 }
-function rateBall(result){
-  if(!ballRevealed)return;
-  const changed=ballAnswers[ballIndex]!==result;
+function rateBall(result,fromSwipe=false){
+  if(!ballRevealed||quizAdvanceLocked)return;
   ballAnswers[ballIndex]=result;
   renderBallRating();
   updateBallLiveScore();
   document.getElementById("ballNext").disabled=false;
-  if(changed){
-    triggerHaptic(result==="correct"?"success":"medium");
-    showQuizFlash(result);
+  triggerHaptic(result==="correct"?"success":"medium");
+  showQuizFlash(result);
+  if(!fromSwipe){
+    animateAcceptedSwipe(document.getElementById("ballFlipArea"),result);
   }
+  advanceQuizCard("ball");
 }
 document.getElementById("startBall").addEventListener("click",()=>{buzz();startBallRound()});
 document.getElementById("ballFlipArea").addEventListener("click",()=>{
+  if(quizAdvanceLocked)return;
   ballRevealed=!ballRevealed;
   buzz([15,35,20]);
   document.getElementById("ballFlip").classList.toggle("on",ballRevealed);
@@ -3641,6 +3829,12 @@ document.getElementById("ballNext").addEventListener("click",()=>{
   else{ballIndex++;showBallCard()}
 });
 document.getElementById("restartBall").addEventListener("click",()=>{buzz();startBallRound()});
+bindQuizSwipe({
+  areaId:"ballFlipArea",
+  flipId:"ballFlip",
+  isRevealed:()=>ballRevealed,
+  onRate:(result,fromSwipe)=>rateBall(result,fromSwipe)
+});
 
 
 
@@ -3689,6 +3883,7 @@ function renderKnowledgeRating(){
   const rating=knowledgeAnswers[knowledgeIndex];
   const wrap=document.getElementById("knowledgeRating");
   wrap.hidden=!knowledgeRevealed;
+  document.getElementById("knowledgeSwipeHint").hidden=!knowledgeRevealed;
   const wrong=document.getElementById("knowledgeWrong");
   const correct=document.getElementById("knowledgeCorrect");
   wrong.classList.toggle("selected",rating==="wrong");
@@ -3724,7 +3919,13 @@ function showKnowledgeCard(){
   if(knowledgeIndex>=knowledgeDeck.length){finishKnowledgeRound();return}
   const card=knowledgeDeck[knowledgeIndex];
   knowledgeRevealed=false;
-  document.getElementById("knowledgeFlip").classList.remove("on");
+  const knowledgeArea=document.getElementById("knowledgeFlipArea");
+  const knowledgeFlip=document.getElementById("knowledgeFlip");
+  knowledgeArea.classList.remove("swiping","swiping-left","swiping-right","swipe-return","swipe-accept-left","swipe-accept-right");
+  knowledgeArea.style.removeProperty("--swipe-strength");
+  knowledgeFlip.style.removeProperty("transform");
+  knowledgeFlip.style.removeProperty("opacity");
+  knowledgeFlip.classList.remove("on");
   const icons={"Muss jeder wissen":"🌱","Normal":"🧠","Fortgeschritten":"🎓"};
   document.getElementById("knowledgeFrontDifficulty").textContent=`${icons[card.level]||"🧠"} ${card.level}`;
   document.getElementById("knowledgeQuestion").textContent=card.q;
@@ -3740,17 +3941,18 @@ function showKnowledgeCard(){
   renderKnowledgeRating();
   go("knowledgeCard");
 }
-function rateKnowledge(result){
-  if(!knowledgeRevealed)return;
-  const changed=knowledgeAnswers[knowledgeIndex]!==result;
+function rateKnowledge(result,fromSwipe=false){
+  if(!knowledgeRevealed||quizAdvanceLocked)return;
   knowledgeAnswers[knowledgeIndex]=result;
   renderKnowledgeRating();
   updateKnowledgeLiveScore();
   document.getElementById("knowledgeNext").disabled=false;
-  if(changed){
-    triggerHaptic(result==="correct"?"success":"medium");
-    showQuizFlash(result);
+  triggerHaptic(result==="correct"?"success":"medium");
+  showQuizFlash(result);
+  if(!fromSwipe){
+    animateAcceptedSwipe(document.getElementById("knowledgeFlipArea"),result);
   }
+  advanceQuizCard("knowledge");
 }
 document.querySelectorAll("[data-knowledge-count]").forEach(button=>{
   button.addEventListener("click",()=>{
@@ -3761,6 +3963,7 @@ document.querySelectorAll("[data-knowledge-count]").forEach(button=>{
 });
 document.getElementById("startKnowledge").addEventListener("click",()=>{buzz();startKnowledgeRound()});
 document.getElementById("knowledgeFlipArea").addEventListener("click",()=>{
+  if(quizAdvanceLocked)return;
   knowledgeRevealed=!knowledgeRevealed;
   triggerHaptic(knowledgeRevealed?"medium":"light");
   document.getElementById("knowledgeFlip").classList.toggle("on",knowledgeRevealed);
@@ -3779,6 +3982,12 @@ document.getElementById("knowledgeNext").addEventListener("click",()=>{
   else{knowledgeIndex++;showKnowledgeCard()}
 });
 document.getElementById("restartKnowledge").addEventListener("click",()=>{buzz();startKnowledgeRound()});
+bindQuizSwipe({
+  areaId:"knowledgeFlipArea",
+  flipId:"knowledgeFlip",
+  isRevealed:()=>knowledgeRevealed,
+  onRate:(result,fromSwipe)=>rateKnowledge(result,fromSwipe)
+});
 
 /* =========================================================
    VYBE 5.6 GAME PACK
