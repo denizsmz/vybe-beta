@@ -8,7 +8,7 @@
 <meta name="format-detection" content="telephone=no">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="theme-color" content="#17111f">
-<title>VYBE 6.5 – Wer würde eher Hotfix</title>
+<title>VYBE 6.5.1.1 – Final Hotfix</title>
 <style>
 :root{
   --bg:#211b2d;
@@ -1478,7 +1478,7 @@ body.light-theme .knowledge-back .ball-source{color:#756b7b}
 
 
 /* =========================================================
-   VYBE 6.5 – Fragenbalance
+   VYBE 6.5.1 – Fragenbalance
    ========================================================= */
 .home-top-actions{display:flex;align-items:center;gap:8px}
 .favorite-header-button{
@@ -1623,7 +1623,7 @@ html,body{
 
 
 /* =========================================================
-   VYBE 6.5 – iPhone layout and flip-card fixes
+   VYBE 6.5.1 – iPhone layout and flip-card fixes
    ========================================================= */
 #home .compact-home-content{padding-top:18px !important}
 #home .compact-home-copy{padding-top:4px !important;margin-top:8px !important}
@@ -1696,7 +1696,7 @@ html,body{
 
 
 /* =========================================================
-   VYBE 6.5 – Quizwertung, Navigation und Ergebnisse
+   VYBE 6.5.1 – Quizwertung, Navigation und Ergebnisse
    ========================================================= */
 .quiz-live-row{
   display:flex;align-items:center;justify-content:space-between;
@@ -1809,7 +1809,7 @@ html,body{
 
 
 /* =========================================================
-   VYBE 6.5 – Swipe gestures and auto advance
+   VYBE 6.5.1 – Swipe gestures and auto advance
    ========================================================= */
 .ball-card-area{
   position:relative;
@@ -1880,7 +1880,7 @@ html,body{
 
 
 /* ==========================================================
-   VYBE 6.5 – iPhone Polish
+   VYBE 6.5.1 – iPhone Polish
    Adaptive sizing by usable viewport, safe areas and PWA mode.
    No model sniffing: this remains correct for present/future iPhones.
    ========================================================== */
@@ -2086,7 +2086,7 @@ html:not(.vybe-standalone) .app{
 
 
 /* ==========================================================
-   VYBE 6.5 – Critical Game Hotfix
+   VYBE 6.5.1 – Critical Game Hotfix
    ========================================================== */
 
 /* 6.3 used a generic transform on all card faces. That overrode the
@@ -2181,7 +2181,7 @@ html:not(.vybe-standalone) .app{
 }
 
 
-/* VYBE 6.5 – Wer würde eher selection hotfix */
+/* VYBE 6.5.1 – Wer würde eher selection hotfix */
 #wouldFlip .would-back{
   pointer-events:none;
 }
@@ -2202,6 +2202,79 @@ html:not(.vybe-standalone) .app{
 #wouldPlayerChoices .would-person.selected{
   outline:2px solid rgba(255,255,255,.9);
   outline-offset:-3px;
+}
+
+
+/* ==========================================================
+   VYBE 6.5.1 – final interaction hotfix
+   ========================================================== */
+#wouldFlip{
+  transform:none!important;
+  transform-style:flat!important;
+  transition:none!important;
+}
+#wouldFlip.on{
+  transform:none!important;
+}
+#wouldFlip .would-face{
+  transform:none!important;
+  backface-visibility:visible!important;
+  -webkit-backface-visibility:visible!important;
+  transition:opacity 220ms ease,visibility 220ms ease,scale 220ms ease!important;
+}
+#wouldQuestionFace{
+  opacity:1;
+  visibility:visible;
+  pointer-events:auto!important;
+  scale:1;
+  z-index:2;
+}
+#wouldChoiceFace{
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none!important;
+  scale:.985;
+  z-index:1;
+}
+#wouldFlip.on #wouldQuestionFace{
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none!important;
+  scale:.985;
+  z-index:1;
+}
+#wouldFlip.on #wouldChoiceFace{
+  opacity:1;
+  visibility:visible;
+  pointer-events:auto!important;
+  scale:1;
+  z-index:3;
+}
+#wouldPlayerChoices{
+  position:relative;
+  z-index:10;
+  pointer-events:auto!important;
+}
+#wouldPlayerChoices .would-person{
+  position:relative;
+  z-index:11;
+  pointer-events:auto!important;
+  touch-action:manipulation;
+  cursor:pointer;
+}
+#wouldPlayerChoices .would-person.selected{
+  outline:3px solid rgba(255,255,255,.95);
+  outline-offset:-4px;
+  filter:brightness(1.12);
+}
+#impResultList .result-head{
+  align-items:center;
+  gap:14px;
+}
+#impResultList .imp-result-word{
+  color:var(--pink);
+  text-align:right;
+  overflow-wrap:anywhere;
 }
 
 </style>
@@ -2662,7 +2735,7 @@ html:not(.vybe-standalone) .app{
         <div class="row-icon">ℹ️</div>
         <div class="row-copy">
           <div class="row-title">Version</div>
-          <div class="row-sub">VYBE 6.5</div>
+          <div class="row-sub">VYBE 6.5.1</div>
         </div>
       </div>
     </div>
@@ -2783,7 +2856,10 @@ html:not(.vybe-standalone) .app{
     <div style="padding:14px 0 2px;color:var(--pink);font-size:12px;font-weight:950;letter-spacing:1.1px">IMPOSTOR</div>
     <h1 style="margin:0 0 10px;font-size:36px">Erwischt. 🕵️</h1>
     <div id="impResultList" class="result-list"></div>
-    <div class="panel" style="padding:18px;text-align:center;margin-top:12px"><div style="color:var(--muted)">Der Begriff war</div><div id="impFinalWord" class="word" style="font-size:37px;color:var(--pink)"></div></div>
+    <div class="panel imp-final-panel" style="padding:18px;text-align:center;margin-top:12px">
+      <div style="color:var(--muted)">Der Impostor war</div>
+      <div id="impFinalImpostor" class="word" style="font-size:37px;color:var(--pink)"></div>
+    </div>
   </div>
   <div class="two"><button class="secondary" data-open="home">ZUR STARTSEITE</button><button id="restartImpostor" class="primary">NEUE RUNDE</button></div>
 </section>
@@ -2799,12 +2875,12 @@ html:not(.vybe-standalone) .app{
 
   <div class="would-card-area" id="wouldFlipArea">
     <div id="wouldFlip" class="would-flip">
-      <div class="would-face would-front">
+      <div id="wouldQuestionFace" class="would-face would-front">
         <div id="wouldCategoryLabel" class="would-category"></div>
         <div id="wouldQuestionEmoji" class="would-main-emoji">👉</div>
         <div id="wouldQuestionText" class="would-question-text"></div>
       </div>
-      <div class="would-face would-back">
+      <div id="wouldChoiceFace" class="would-face would-back">
         <div class="would-category">EURE ENTSCHEIDUNG</div>
         <div class="would-back-title">Auf wen trifft es am ehesten zu?</div>
         <div id="wouldPlayerChoices" class="would-player-choices"></div>
@@ -3593,7 +3669,7 @@ function itemFingerprint(item){
 }
 
 /*
-  VYBE 6.5 content rotation:
+  VYBE 6.5.1 content rotation:
   Each game stores when an item was ACTUALLY shown. Unseen content is always
   placed first. Already seen content is ordered from oldest to newest, with a
   secure random tie-breaker. This creates a persistent "use everything else
@@ -3952,9 +4028,40 @@ document.getElementById("impNextBtn").addEventListener("click",()=>{
   if(impIndex<impPlayers.length)prepareImpPass();else go("impDiscussion");
 });
 document.getElementById("showImpResult").addEventListener("click",()=>{
-  const list=document.getElementById("impResultList");list.innerHTML="";
-  impRoles.forEach((role,i)=>{if(role){const row=document.createElement("div");row.className="result-row";row.innerHTML=`<div class="result-head"><span>${impPlayers[i]}</span><span>IMPOSTOR</span></div><div class="bar"><i style="width:100%"></i></div>`;list.appendChild(row)}});
-  document.getElementById("impFinalWord").textContent=impItem.word;recordGameOnce("impostor",1);go("impResult");
+  const list=document.getElementById("impResultList");
+  list.innerHTML="";
+  const impostorNames=[];
+
+  impRoles.forEach((role,i)=>{
+    if(!role)return;
+    impostorNames.push(impPlayers[i]);
+
+    const row=document.createElement("div");
+    row.className="result-row";
+
+    const head=document.createElement("div");
+    head.className="result-head";
+
+    const name=document.createElement("span");
+    name.textContent=impPlayers[i];
+
+    const word=document.createElement("span");
+    word.className="imp-result-word";
+    word.textContent=impItem.word;
+
+    head.append(name,word);
+
+    const bar=document.createElement("div");
+    bar.className="bar";
+    bar.innerHTML='<i style="width:100%"></i>';
+
+    row.append(head,bar);
+    list.appendChild(row);
+  });
+
+  document.getElementById("impFinalImpostor").textContent=impostorNames.join(" & ");
+  recordGameOnce("impostor",1);
+  go("impResult");
 });
 document.getElementById("restartImpostor").addEventListener("click",()=>document.getElementById("startImpostor").click());
 
@@ -3996,31 +4103,7 @@ function showWouldQuestion(){
     button.type="button";
     button.className="would-person";
     button.textContent=name;
-
-    const blockCardGesture=event=>{
-      event.stopPropagation();
-    };
-    button.addEventListener("pointerdown",blockCardGesture);
-    button.addEventListener("pointerup",blockCardGesture);
-    button.addEventListener("touchstart",blockCardGesture,{passive:true});
-    button.addEventListener("touchend",blockCardGesture,{passive:true});
-
-    button.addEventListener("click",event=>{
-      event.preventDefault();
-      event.stopPropagation();
-      buzz();
-      choices.querySelectorAll(".would-person").forEach(x=>{
-        x.classList.remove("selected");
-        x.setAttribute("aria-pressed","false");
-      });
-      button.classList.add("selected");
-      button.setAttribute("aria-pressed","true");
-      wouldSelectedPerson=index;
-      const next=document.getElementById("wouldNextRoundBtn");
-      next.disabled=false;
-      next.style.opacity="1";
-      next.textContent=wouldRoundIndex===wouldQuestions.length-1?"AUSWÄHLEN & BEENDEN":"AUSWÄHLEN & WEITER";
-    });
+    button.dataset.playerIndex=String(index);
     button.setAttribute("aria-pressed","false");
     choices.appendChild(button);
   });
@@ -4032,8 +4115,7 @@ function showWouldQuestion(){
   go("wouldCard");
 }
 
-document.getElementById("wouldFlipArea").addEventListener("click",event=>{
-  if(event.target.closest("#wouldPlayerChoices, .would-person, #wouldNextRoundBtn"))return;
+document.getElementById("wouldQuestionFace").addEventListener("click",()=>{
   const flip=document.getElementById("wouldFlip");
   if(flip.classList.contains("on"))return;
   buzz([15,35,20]);
@@ -4041,10 +4123,31 @@ document.getElementById("wouldFlipArea").addEventListener("click",event=>{
   document.getElementById("wouldFlipArea").setAttribute("aria-expanded","true");
 });
 
-["pointerdown","pointerup","touchstart","touchend","click"].forEach(eventName=>{
-  document.getElementById("wouldPlayerChoices").addEventListener(eventName,event=>{
-    event.stopPropagation();
-  },eventName==="touchstart"||eventName==="touchend"?{passive:true}:false);
+document.getElementById("wouldPlayerChoices").addEventListener("click",event=>{
+  const button=event.target.closest(".would-person");
+  if(!button)return;
+
+  event.preventDefault();
+  event.stopPropagation();
+
+  const index=Number(button.dataset.playerIndex);
+  if(!Number.isInteger(index)||index<0||index>=wouldPlayers.length)return;
+
+  buzz();
+  document.querySelectorAll("#wouldPlayerChoices .would-person").forEach(item=>{
+    const selected=item===button;
+    item.classList.toggle("selected",selected);
+    item.setAttribute("aria-pressed",String(selected));
+  });
+
+  wouldSelectedPerson=index;
+
+  const next=document.getElementById("wouldNextRoundBtn");
+  next.disabled=false;
+  next.style.opacity="1";
+  next.textContent=wouldRoundIndex===wouldQuestions.length-1
+    ?"AUSWÄHLEN & BEENDEN"
+    :"AUSWÄHLEN & WEITER";
 });
 
 document.getElementById("wouldNextRoundBtn").addEventListener("click",()=>{
@@ -5151,7 +5254,7 @@ if ("serviceWorker" in navigator) {
 
 
 <script>
-/* VYBE 6.5 adaptive viewport and iPhone/PWA classification */
+/* VYBE 6.5.1 adaptive viewport and iPhone/PWA classification */
 (function(){
   const root=document.documentElement;
   const ua=navigator.userAgent||"";
