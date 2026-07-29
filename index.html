@@ -8,7 +8,7 @@
 <meta name="format-detection" content="telephone=no">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="theme-color" content="#17111f">
-<title>VYBE 6.4 – Critical Game Hotfix</title>
+<title>VYBE 6.5 – Wer würde eher Hotfix</title>
 <style>
 :root{
   --bg:#211b2d;
@@ -1478,7 +1478,7 @@ body.light-theme .knowledge-back .ball-source{color:#756b7b}
 
 
 /* =========================================================
-   VYBE 6.4 – Fragenbalance
+   VYBE 6.5 – Fragenbalance
    ========================================================= */
 .home-top-actions{display:flex;align-items:center;gap:8px}
 .favorite-header-button{
@@ -1623,7 +1623,7 @@ html,body{
 
 
 /* =========================================================
-   VYBE 6.4 – iPhone layout and flip-card fixes
+   VYBE 6.5 – iPhone layout and flip-card fixes
    ========================================================= */
 #home .compact-home-content{padding-top:18px !important}
 #home .compact-home-copy{padding-top:4px !important;margin-top:8px !important}
@@ -1696,7 +1696,7 @@ html,body{
 
 
 /* =========================================================
-   VYBE 6.4 – Quizwertung, Navigation und Ergebnisse
+   VYBE 6.5 – Quizwertung, Navigation und Ergebnisse
    ========================================================= */
 .quiz-live-row{
   display:flex;align-items:center;justify-content:space-between;
@@ -1809,7 +1809,7 @@ html,body{
 
 
 /* =========================================================
-   VYBE 6.4 – Swipe gestures and auto advance
+   VYBE 6.5 – Swipe gestures and auto advance
    ========================================================= */
 .ball-card-area{
   position:relative;
@@ -1880,7 +1880,7 @@ html,body{
 
 
 /* ==========================================================
-   VYBE 6.4 – iPhone Polish
+   VYBE 6.5 – iPhone Polish
    Adaptive sizing by usable viewport, safe areas and PWA mode.
    No model sniffing: this remains correct for present/future iPhones.
    ========================================================== */
@@ -2086,7 +2086,7 @@ html:not(.vybe-standalone) .app{
 
 
 /* ==========================================================
-   VYBE 6.4 – Critical Game Hotfix
+   VYBE 6.5 – Critical Game Hotfix
    ========================================================== */
 
 /* 6.3 used a generic transform on all card faces. That overrode the
@@ -2178,6 +2178,30 @@ html:not(.vybe-standalone) .app{
 }
 #truthPlay.truth-is-dare #truthSkip{
   border-color:rgba(255,103,112,.35);
+}
+
+
+/* VYBE 6.5 – Wer würde eher selection hotfix */
+#wouldFlip .would-back{
+  pointer-events:none;
+}
+#wouldFlip.on .would-front{
+  pointer-events:none;
+}
+#wouldFlip.on .would-back{
+  pointer-events:auto;
+}
+#wouldPlayerChoices,
+#wouldPlayerChoices .would-person{
+  position:relative;
+  z-index:6;
+  pointer-events:auto!important;
+  touch-action:manipulation;
+  -webkit-tap-highlight-color:transparent;
+}
+#wouldPlayerChoices .would-person.selected{
+  outline:2px solid rgba(255,255,255,.9);
+  outline-offset:-3px;
 }
 
 </style>
@@ -2638,7 +2662,7 @@ html:not(.vybe-standalone) .app{
         <div class="row-icon">ℹ️</div>
         <div class="row-copy">
           <div class="row-title">Version</div>
-          <div class="row-sub">VYBE 6.4</div>
+          <div class="row-sub">VYBE 6.5</div>
         </div>
       </div>
     </div>
@@ -3569,7 +3593,7 @@ function itemFingerprint(item){
 }
 
 /*
-  VYBE 6.4 content rotation:
+  VYBE 6.5 content rotation:
   Each game stores when an item was ACTUALLY shown. Unseen content is always
   placed first. Already seen content is ordered from oldest to newest, with a
   secure random tie-breaker. This creates a persistent "use everything else
@@ -3969,19 +3993,35 @@ function showWouldQuestion(){
   choices.innerHTML="";
   wouldPlayers.forEach((name,index)=>{
     const button=document.createElement("button");
+    button.type="button";
     button.className="would-person";
     button.textContent=name;
+
+    const blockCardGesture=event=>{
+      event.stopPropagation();
+    };
+    button.addEventListener("pointerdown",blockCardGesture);
+    button.addEventListener("pointerup",blockCardGesture);
+    button.addEventListener("touchstart",blockCardGesture,{passive:true});
+    button.addEventListener("touchend",blockCardGesture,{passive:true});
+
     button.addEventListener("click",event=>{
+      event.preventDefault();
       event.stopPropagation();
       buzz();
-      choices.querySelectorAll(".would-person").forEach(x=>x.classList.remove("selected"));
+      choices.querySelectorAll(".would-person").forEach(x=>{
+        x.classList.remove("selected");
+        x.setAttribute("aria-pressed","false");
+      });
       button.classList.add("selected");
+      button.setAttribute("aria-pressed","true");
       wouldSelectedPerson=index;
       const next=document.getElementById("wouldNextRoundBtn");
       next.disabled=false;
       next.style.opacity="1";
       next.textContent=wouldRoundIndex===wouldQuestions.length-1?"AUSWÄHLEN & BEENDEN":"AUSWÄHLEN & WEITER";
     });
+    button.setAttribute("aria-pressed","false");
     choices.appendChild(button);
   });
 
@@ -3993,12 +4033,18 @@ function showWouldQuestion(){
 }
 
 document.getElementById("wouldFlipArea").addEventListener("click",event=>{
-  if(event.target.closest(".would-person"))return;
-  buzz([15,35,20]);
+  if(event.target.closest("#wouldPlayerChoices, .would-person, #wouldNextRoundBtn"))return;
   const flip=document.getElementById("wouldFlip");
-  const open=!flip.classList.contains("on");
-  flip.classList.toggle("on",open);
-  document.getElementById("wouldFlipArea").setAttribute("aria-expanded",String(open));
+  if(flip.classList.contains("on"))return;
+  buzz([15,35,20]);
+  flip.classList.add("on");
+  document.getElementById("wouldFlipArea").setAttribute("aria-expanded","true");
+});
+
+["pointerdown","pointerup","touchstart","touchend","click"].forEach(eventName=>{
+  document.getElementById("wouldPlayerChoices").addEventListener(eventName,event=>{
+    event.stopPropagation();
+  },eventName==="touchstart"||eventName==="touchend"?{passive:true}:false);
 });
 
 document.getElementById("wouldNextRoundBtn").addEventListener("click",()=>{
@@ -5105,7 +5151,7 @@ if ("serviceWorker" in navigator) {
 
 
 <script>
-/* VYBE 6.4 adaptive viewport and iPhone/PWA classification */
+/* VYBE 6.5 adaptive viewport and iPhone/PWA classification */
 (function(){
   const root=document.documentElement;
   const ua=navigator.userAgent||"";
