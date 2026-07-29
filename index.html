@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="theme-color" content="#17111f">
-<title>VYBE 6.1 – Swipe-Update</title>
+<title>VYBE 6.2 – Intelligente Rotation</title>
 <style>
 :root{
   --bg:#211b2d;
@@ -1475,7 +1475,7 @@ body.light-theme .knowledge-back .ball-source{color:#756b7b}
 
 
 /* =========================================================
-   VYBE 6.1 – Fragenbalance
+   VYBE 6.2 – Fragenbalance
    ========================================================= */
 .home-top-actions{display:flex;align-items:center;gap:8px}
 .favorite-header-button{
@@ -1620,7 +1620,7 @@ html,body{
 
 
 /* =========================================================
-   VYBE 6.1 – iPhone layout and flip-card fixes
+   VYBE 6.2 – iPhone layout and flip-card fixes
    ========================================================= */
 #home .compact-home-content{padding-top:18px !important}
 #home .compact-home-copy{padding-top:4px !important;margin-top:8px !important}
@@ -1693,7 +1693,7 @@ html,body{
 
 
 /* =========================================================
-   VYBE 6.1 – Quizwertung, Navigation und Ergebnisse
+   VYBE 6.2 – Quizwertung, Navigation und Ergebnisse
    ========================================================= */
 .quiz-live-row{
   display:flex;align-items:center;justify-content:space-between;
@@ -1806,7 +1806,7 @@ html,body{
 
 
 /* =========================================================
-   VYBE 6.1 – Swipe gestures and auto advance
+   VYBE 6.2 – Swipe gestures and auto advance
    ========================================================= */
 .ball-card-area{
   position:relative;
@@ -2333,7 +2333,7 @@ html,body{
         <div class="row-icon">ℹ️</div>
         <div class="row-copy">
           <div class="row-title">Version</div>
-          <div class="row-sub">VYBE 6.1</div>
+          <div class="row-sub">VYBE 6.2</div>
         </div>
       </div>
     </div>
@@ -3054,9 +3054,9 @@ let wouldQuestions=[],wouldRoundIndex=0,wouldQuestion=null,wouldSelectedPerson=n
 let categoryType="imp",categoryReturn="impSetup";
 let ballDifficulties=new Set(["Easy","Baller","Elite Ballknowledge"]);
 let ballTypes=new Set([...new Set(ballQuestions.map(q=>q.type))]);
-let ballCount=10,ballDeck=[],ballIndex=0,ballRevealed=false,ballAnswers=[];
+let ballCount=10,ballDeck=[],ballIndex=0,ballRevealed=false,ballAnswers=[],ballSeenInRound=new Set();
 let knowledgeDifficulties=new Set(["Muss jeder wissen","Normal","Fortgeschritten"]);
-let knowledgeCount=15,knowledgeDeck=[],knowledgeIndex=0,knowledgeRevealed=false,knowledgeAnswers=[];
+let knowledgeCount=15,knowledgeDeck=[],knowledgeIndex=0,knowledgeRevealed=false,knowledgeAnswers=[],knowledgeSeenInRound=new Set();
 
 const QUIZ_STATS_KEY="vybe_quiz_stats_v1";
 const defaultQuizStats={
@@ -3238,13 +3238,14 @@ function go(id){
 function randomInt(max){
   if(max<=0)return 0;
   try{
-    const limit=Math.floor(0x100000000/max)*max;
-    const values=new Uint32Array(1);
-    do{crypto.getRandomValues(values)}while(values[0]>=limit);
-    return values[0]%max;
-  }catch(error){
-    return randomInt(max);
-  }
+    if(globalThis.crypto&&crypto.getRandomValues){
+      const limit=Math.floor(0x100000000/max)*max;
+      const values=new Uint32Array(1);
+      do{crypto.getRandomValues(values)}while(values[0]>=limit);
+      return values[0]%max;
+    }
+  }catch(error){}
+  return Math.floor(Math.random()*max);
 }
 function shuffle(a){
   for(let i=a.length-1;i>0;i--){
@@ -3255,32 +3256,83 @@ function shuffle(a){
 }
 function itemFingerprint(item){
   if(item===null||item===undefined)return "";
-  if(typeof item==="string")return item;
-  return item.q||item.text||item.prompt||item.word||item.character||
-    `${item.category||""}|${item.type||""}|${JSON.stringify(item)}`;
+  if(typeof item==="string")return item.trim();
+  return String(
+    item.q||item.text||item.prompt||item.word||item.character||
+    `${item.category||""}|${item.type||""}|${JSON.stringify(item)}`
+  ).trim();
+}
+
+/*
+  VYBE 6.2 content rotation:
+  Each game stores when an item was ACTUALLY shown. Unseen content is always
+  placed first. Already seen content is ordered from oldest to newest, with a
+  secure random tie-breaker. This creates a persistent "use everything else
+  first" queue without imposing a fixed cooldown.
+*/
+const CONTENT_HISTORY_KEY="vybe_content_history_v2";
+const CONTENT_HISTORY_LIMIT=6000;
+let contentHistory={};
+try{
+  const storedHistory=JSON.parse(localStorage.getItem(CONTENT_HISTORY_KEY)||"{}");
+  if(storedHistory&&typeof storedHistory==="object")contentHistory=storedHistory;
+}catch(error){contentHistory={}}
+
+function normalizeHistoryKey(historyKey){
+  return String(historyKey||"global").split(":")[0];
+}
+function gameHistory(historyKey){
+  const key=normalizeHistoryKey(historyKey);
+  if(!contentHistory[key]||typeof contentHistory[key]!=="object")contentHistory[key]={};
+  return contentHistory[key];
+}
+function persistContentHistory(){
+  try{
+    const entries=[];
+    Object.entries(contentHistory).forEach(([game,items])=>{
+      Object.entries(items||{}).forEach(([fingerprint,stamp])=>{
+        entries.push({game,fingerprint,stamp:Number(stamp)||0});
+      });
+    });
+    if(entries.length>CONTENT_HISTORY_LIMIT){
+      entries.sort((a,b)=>b.stamp-a.stamp);
+      const keep=entries.slice(0,CONTENT_HISTORY_LIMIT);
+      const compact={};
+      keep.forEach(entry=>{
+        if(!compact[entry.game])compact[entry.game]={};
+        compact[entry.game][entry.fingerprint]=entry.stamp;
+      });
+      contentHistory=compact;
+    }
+    localStorage.setItem(CONTENT_HISTORY_KEY,JSON.stringify(contentHistory));
+  }catch(error){}
+}
+function markContentUsed(historyKey,item){
+  const fingerprint=itemFingerprint(item);
+  if(!fingerprint)return;
+  gameHistory(historyKey)[fingerprint]=Date.now();
+  persistContentHistory();
 }
 function freshDeck(items,historyKey){
-  const deck=shuffle([...items]);
-  if(deck.length<2)return deck;
-
-  let recent=[];
-  try{recent=JSON.parse(localStorage.getItem(`vybeRecent:${historyKey}`)||"[]")}catch(error){}
-  const recentSet=new Set(recent);
-  const fresh=deck.filter(item=>!recentSet.has(itemFingerprint(item)));
-  const used=deck.filter(item=>recentSet.has(itemFingerprint(item)));
-  const result=[...fresh,...used];
-
-  const rememberCount=Math.min(
-    Math.max(12,Math.ceil(result.length*.20)),
-    Math.max(12,result.length-1),
-    80
-  );
-  const nextRecent=result.slice(0,rememberCount).map(itemFingerprint);
-  try{localStorage.setItem(`vybeRecent:${historyKey}`,JSON.stringify(nextRecent))}catch(error){}
-  return result;
+  const history=gameHistory(historyKey);
+  return items
+    .map(item=>({
+      item,
+      lastUsed:Number(history[itemFingerprint(item)]||0),
+      tie:randomInt(0x7fffffff)
+    }))
+    .sort((a,b)=>{
+      if(a.lastUsed===0&&b.lastUsed!==0)return -1;
+      if(a.lastUsed!==0&&b.lastUsed===0)return 1;
+      if(a.lastUsed!==b.lastUsed)return a.lastUsed-b.lastUsed;
+      return a.tie-b.tie;
+    })
+    .map(entry=>entry.item);
 }
 function pickFresh(items,historyKey){
-  return freshDeck(items,historyKey)[0];
+  const item=freshDeck(items,historyKey)[0];
+  if(item)markContentUsed(historyKey,item);
+  return item;
 }
 
 document.addEventListener("click",e=>{
@@ -3593,6 +3645,7 @@ function showWouldQuestion(){
     return;
   }
   wouldQuestion=wouldQuestions[wouldRoundIndex];
+  markContentUsed("would",wouldQuestion);
   wouldSelectedPerson=null;
 
   document.getElementById("wouldFlip").classList.remove("on");
@@ -3720,6 +3773,7 @@ function startBallRound(){
   if(ballCount!==999)ballDeck=ballDeck.slice(0,Math.min(ballCount,ballDeck.length));
   ballIndex=0;
   ballAnswers=Array(ballDeck.length).fill(null);
+  ballSeenInRound=new Set();
   resetGameGuard("ball");
   showBallCard();
 }
@@ -3762,6 +3816,10 @@ function finishBallRound(){
 function showBallCard(){
   if(ballIndex>=ballDeck.length){finishBallRound();return}
   const card=ballDeck[ballIndex];
+  if(!ballSeenInRound.has(ballIndex)){
+    markContentUsed("ball",card);
+    ballSeenInRound.add(ballIndex);
+  }
   ballRevealed=false;
   const ballArea=document.getElementById("ballFlipArea");
   const ballFlip=document.getElementById("ballFlip");
@@ -3876,6 +3934,7 @@ function startKnowledgeRound(){
   if(knowledgeCount!==999)knowledgeDeck=knowledgeDeck.slice(0,Math.min(knowledgeCount,knowledgeDeck.length));
   knowledgeIndex=0;
   knowledgeAnswers=Array(knowledgeDeck.length).fill(null);
+  knowledgeSeenInRound=new Set();
   resetGameGuard("knowledge");
   showKnowledgeCard();
 }
@@ -3918,6 +3977,10 @@ function finishKnowledgeRound(){
 function showKnowledgeCard(){
   if(knowledgeIndex>=knowledgeDeck.length){finishKnowledgeRound();return}
   const card=knowledgeDeck[knowledgeIndex];
+  if(!knowledgeSeenInRound.has(knowledgeIndex)){
+    markContentUsed("knowledge",card);
+    knowledgeSeenInRound.add(knowledgeIndex);
+  }
   knowledgeRevealed=false;
   const knowledgeArea=document.getElementById("knowledgeFlipArea");
   const knowledgeFlip=document.getElementById("knowledgeFlip");
@@ -4311,8 +4374,9 @@ function beginTabooRound(){
 }
 function showTabooCard(){
   if(!tabooDeck.length)return;
-  if(tabooIndex>0&&tabooIndex%tabooDeck.length===0)tabooDeck=shuffle(tabooDeck);
+  if(tabooIndex>0&&tabooIndex%tabooDeck.length===0)tabooDeck=freshDeck(tabooDeck,"taboo");
   const card=tabooDeck[tabooIndex%tabooDeck.length];
+  markContentUsed("taboo",card);
   document.getElementById("tabooCategoryBadge").textContent=`${card.emoji} ${card.category}`;
   document.getElementById("tabooWord").textContent=card.word;
   document.getElementById("tabooForbidden").innerHTML=card.forbidden.map(word=>`<span>${word}</span>`).join("");
@@ -4377,8 +4441,9 @@ function startTruthGame(){
   truthIndex=0;resetGameGuard("truth");showTruthCard();go("truthPlay");
 }
 function showTruthCard(){
-  if(truthIndex>0&&truthIndex%truthDeck.length===0)truthDeck=shuffle(truthDeck);
+  if(truthIndex>0&&truthIndex%truthDeck.length===0)truthDeck=freshDeck(truthDeck,"truth");
   truthCurrent=truthDeck[truthIndex%truthDeck.length];
+  markContentUsed("truth",truthCurrent);
   const player=truthPlayers[truthIndex%truthPlayers.length];
   document.getElementById("truthRoundLabel").textContent=truthRounds===0?`Runde ${truthIndex+1}`:`Runde ${truthIndex+1} / ${truthRounds}`;
   document.getElementById("truthPlayerBadge").textContent=player;
@@ -4395,13 +4460,8 @@ function nextTruth(countRound=true){
     }
   }else{
     const current=truthDeck[truthIndex%truthDeck.length];
-    let replacement=current;
-    let attempts=0;
-    while(replacement===current&&attempts<12){
-      replacement=truthDeck[randomInt(truthDeck.length)];
-      attempts++;
-    }
-    truthDeck[truthIndex%truthDeck.length]=replacement;
+    const alternatives=freshDeck(truthDeck.filter(item=>item!==current),"truth");
+    if(alternatives.length)truthDeck[truthIndex%truthDeck.length]=alternatives[0];
   }
   showTruthCard();
 }
@@ -4435,8 +4495,9 @@ function prepareWhoPass(){
   go("whoPass");
 }
 function revealWhoCard(){
-  if(whoCardIndex>0&&whoCardIndex%whoDeck.length===0)whoDeck=shuffle(whoDeck);
+  if(whoCardIndex>0&&whoCardIndex%whoDeck.length===0)whoDeck=freshDeck(whoDeck,"who");
   const card=whoDeck[whoCardIndex%whoDeck.length];
+  markContentUsed("who",card);
   document.getElementById("whoCategoryBadge").textContent=`${card.emoji} ${card.category}`;
   document.getElementById("whoCharacter").textContent=card.character;
   const playerRound=(whoCardIndex%whoRounds)+1;
