@@ -8,7 +8,7 @@
 <meta name="format-detection" content="telephone=no">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="theme-color" content="#17111f">
-<title>VYBE 6.3 – iPhone Polish</title>
+<title>VYBE 6.4 – Critical Game Hotfix</title>
 <style>
 :root{
   --bg:#211b2d;
@@ -1478,7 +1478,7 @@ body.light-theme .knowledge-back .ball-source{color:#756b7b}
 
 
 /* =========================================================
-   VYBE 6.3 – Fragenbalance
+   VYBE 6.4 – Fragenbalance
    ========================================================= */
 .home-top-actions{display:flex;align-items:center;gap:8px}
 .favorite-header-button{
@@ -1623,7 +1623,7 @@ html,body{
 
 
 /* =========================================================
-   VYBE 6.3 – iPhone layout and flip-card fixes
+   VYBE 6.4 – iPhone layout and flip-card fixes
    ========================================================= */
 #home .compact-home-content{padding-top:18px !important}
 #home .compact-home-copy{padding-top:4px !important;margin-top:8px !important}
@@ -1696,7 +1696,7 @@ html,body{
 
 
 /* =========================================================
-   VYBE 6.3 – Quizwertung, Navigation und Ergebnisse
+   VYBE 6.4 – Quizwertung, Navigation und Ergebnisse
    ========================================================= */
 .quiz-live-row{
   display:flex;align-items:center;justify-content:space-between;
@@ -1809,7 +1809,7 @@ html,body{
 
 
 /* =========================================================
-   VYBE 6.3 – Swipe gestures and auto advance
+   VYBE 6.4 – Swipe gestures and auto advance
    ========================================================= */
 .ball-card-area{
   position:relative;
@@ -1880,7 +1880,7 @@ html,body{
 
 
 /* ==========================================================
-   VYBE 6.3 – iPhone Polish
+   VYBE 6.4 – iPhone Polish
    Adaptive sizing by usable viewport, safe areas and PWA mode.
    No model sniffing: this remains correct for present/future iPhones.
    ========================================================== */
@@ -2082,6 +2082,102 @@ html:not(.vybe-standalone) .app{
     animation-iteration-count:1!important;
     transition-duration:.01ms!important;
   }
+}
+
+
+/* ==========================================================
+   VYBE 6.4 – Critical Game Hotfix
+   ========================================================== */
+
+/* 6.3 used a generic transform on all card faces. That overrode the
+   required back-face rotation in Impostor and Wer würde eher. */
+#wouldFlip .would-front{
+  transform:rotateY(0deg)!important;
+}
+#wouldFlip .would-back{
+  transform:rotateY(180deg)!important;
+}
+#wouldFlip{
+  transform-style:preserve-3d!important;
+}
+#wouldFlip .would-face{
+  backface-visibility:hidden!important;
+  -webkit-backface-visibility:hidden!important;
+}
+
+/* Impostor now deliberately uses a clean reveal instead of a 3-D flip.
+   This is safer while passing the phone around and cannot expose both
+   sides during an interrupted animation. */
+#impFlipArea #impFlip{
+  transform:none!important;
+  transform-style:flat!important;
+}
+#impFlipArea .front,
+#impFlipArea .backface{
+  inset:0;
+  transform:none!important;
+  transition:opacity 190ms ease,visibility 190ms ease,scale 190ms ease!important;
+}
+#impFlipArea .front{
+  opacity:1;
+  visibility:visible;
+  scale:1;
+  pointer-events:auto;
+}
+#impFlipArea .backface{
+  opacity:0;
+  visibility:hidden;
+  scale:.985;
+  pointer-events:none;
+}
+#impFlipArea.revealed .front{
+  opacity:0;
+  visibility:hidden;
+  scale:.985;
+  pointer-events:none;
+}
+#impFlipArea.revealed .backface{
+  opacity:1;
+  visibility:visible;
+  scale:1;
+  pointer-events:auto;
+}
+
+/* Wahrheit = blue, Pflicht = red. The complete current card follows
+   the selected type, not only the small badge. */
+#truthPlay.truth-is-truth .truth-play-card{
+  background:
+    radial-gradient(circle at 20% 10%,rgba(91,190,255,.32),transparent 34%),
+    linear-gradient(155deg,#174b8c,#102849 68%,#09192e);
+  box-shadow:inset 4px 0 0 #55b9ff,0 18px 38px rgba(4,18,39,.28);
+}
+#truthPlay.truth-is-dare .truth-play-card{
+  background:
+    radial-gradient(circle at 20% 10%,rgba(255,100,100,.28),transparent 34%),
+    linear-gradient(155deg,#9e2834,#571722 68%,#321017);
+  box-shadow:inset 4px 0 0 #ff5a66,0 18px 38px rgba(45,5,12,.3);
+}
+#truthPlay.truth-is-truth #truthTypeBadge{
+  background:rgba(62,165,255,.22);
+  border-color:rgba(105,193,255,.48);
+  color:#dff3ff;
+}
+#truthPlay.truth-is-dare #truthTypeBadge{
+  background:rgba(255,71,82,.22);
+  border-color:rgba(255,106,115,.48);
+  color:#ffe3e5;
+}
+#truthPlay.truth-is-truth #truthDone{
+  background:linear-gradient(145deg,#278ee8,#55b9ff);
+}
+#truthPlay.truth-is-dare #truthDone{
+  background:linear-gradient(145deg,#d62f43,#ff6570);
+}
+#truthPlay.truth-is-truth #truthSkip{
+  border-color:rgba(95,185,255,.35);
+}
+#truthPlay.truth-is-dare #truthSkip{
+  border-color:rgba(255,103,112,.35);
 }
 
 </style>
@@ -2389,7 +2485,7 @@ html:not(.vybe-standalone) .app{
   <div class="settings-scroll"><div class="panel">
     <button class="row" data-open="whoPlayers"><div class="row-icon">👥</div><div class="row-copy"><div class="row-title">Spieler</div><div class="row-sub">Namen und Spielerzahl</div></div><div id="whoPlayerValue" class="row-value">4</div><div class="chev">›</div></button>
     <button class="row" data-open-categories-new="who"><div class="row-icon">🏷️</div><div class="row-copy"><div class="row-title">Kategorien</div><div class="row-sub">Mehrfachauswahl möglich</div></div><div id="whoCategoryValue" class="row-value">3 ausgewählt</div><div class="chev">›</div></button>
-    <div class="row"><div class="row-icon">🃏</div><div class="row-copy"><div class="row-title">Runden pro Spieler</div><div class="row-sub">Wie viele Begriffe jede Person bekommt</div></div><div class="number-choice-group"><button class="choice-num" data-who-rounds="3">3</button><button class="choice-num selected-mint" data-who-rounds="5">5</button><button class="choice-num" data-who-rounds="10">10</button></div></div>
+    <div class="row"><div class="row-icon">🃏</div><div class="row-copy"><div class="row-title">Runden pro Spieler</div><div class="row-sub">Wie viele Personen oder Charaktere jede Person bekommt</div></div><div class="number-choice-group"><button class="choice-num" data-who-rounds="3">3</button><button class="choice-num selected-mint" data-who-rounds="5">5</button><button class="choice-num" data-who-rounds="10">10</button></div></div>
   </div></div>
   <div class="startbar"><button id="startWho" class="primary">STARTEN</button></div>
 </section>
@@ -2542,7 +2638,7 @@ html:not(.vybe-standalone) .app{
         <div class="row-icon">ℹ️</div>
         <div class="row-copy">
           <div class="row-title">Version</div>
-          <div class="row-sub">VYBE 6.3</div>
+          <div class="row-sub">VYBE 6.4</div>
         </div>
       </div>
     </div>
@@ -3473,7 +3569,7 @@ function itemFingerprint(item){
 }
 
 /*
-  VYBE 6.3 content rotation:
+  VYBE 6.4 content rotation:
   Each game stores when an item was ACTUALLY shown. Unseen content is always
   placed first. Already seen content is ordered from oldest to newest, with a
   secure random tie-breaker. This creates a persistent "use everything else
@@ -3797,6 +3893,7 @@ function prepareImpPass(){
 document.getElementById("showImpCard").addEventListener("click",()=>{
   impRevealed=false;
   document.getElementById("impFlip").classList.remove("on");
+  document.getElementById("impFlipArea").classList.remove("revealed");
   document.getElementById("impNextBtn").style.visibility="hidden";
   document.getElementById("impRevealProgress").style.width=`${(impIndex+1)/impPlayers.length*100}%`;
   const isImp=impRoles[impIndex],back=document.getElementById("impBackface");
@@ -3820,8 +3917,11 @@ document.getElementById("showImpCard").addEventListener("click",()=>{
   go("impReveal");
 });
 document.getElementById("impFlipArea").addEventListener("click",()=>{
-  if(impRevealed)return;impRevealed=true;buzz([15,35,20]);document.getElementById("impFlip").classList.add("on");
-  setTimeout(()=>document.getElementById("impNextBtn").style.visibility="visible",430);
+  if(impRevealed)return;
+  impRevealed=true;
+  buzz([15,35,20]);
+  document.getElementById("impFlipArea").classList.add("revealed");
+  setTimeout(()=>document.getElementById("impNextBtn").style.visibility="visible",180);
 });
 document.getElementById("impNextBtn").addEventListener("click",()=>{
   impIndex++;
@@ -3858,11 +3958,12 @@ function showWouldQuestion(){
   wouldSelectedPerson=null;
 
   document.getElementById("wouldFlip").classList.remove("on");
+  document.getElementById("wouldFlipArea").setAttribute("aria-expanded","false");
   document.getElementById("wouldCategoryLabel").textContent=wouldQuestion.category.toUpperCase();
   document.getElementById("wouldQuestionEmoji").textContent=wouldQuestion.emoji||"👉";
   document.getElementById("wouldQuestionText").textContent=wouldQuestion.text;
   document.getElementById("wouldCounter").textContent=`Karte ${wouldRoundIndex+1} von ${wouldQuestions.length}`;
-  document.getElementById("wouldRoundProgress").style.width=`${wouldRoundIndex/wouldQuestions.length*100}%`;
+  document.getElementById("wouldRoundProgress").style.width=`${(wouldRoundIndex+1)/wouldQuestions.length*100}%`;
 
   const choices=document.getElementById("wouldPlayerChoices");
   choices.innerHTML="";
@@ -3891,9 +3992,13 @@ function showWouldQuestion(){
   go("wouldCard");
 }
 
-document.getElementById("wouldFlipArea").addEventListener("click",()=>{
+document.getElementById("wouldFlipArea").addEventListener("click",event=>{
+  if(event.target.closest(".would-person"))return;
   buzz([15,35,20]);
-  document.getElementById("wouldFlip").classList.toggle("on");
+  const flip=document.getElementById("wouldFlip");
+  const open=!flip.classList.contains("on");
+  flip.classList.toggle("on",open);
+  document.getElementById("wouldFlipArea").setAttribute("aria-expanded",String(open));
 });
 
 document.getElementById("wouldNextRoundBtn").addEventListener("click",()=>{
@@ -4423,12 +4528,36 @@ const truthData={
 };
 
 const whoData={
-  people:{name:"Berühmte Personen",emoji:"⭐",items:["Taylor Swift","Cristiano Ronaldo","Beyoncé","Albert Einstein","Adele","Leonardo DiCaprio","Rihanna","Elon Musk","Billie Eilish","Dwayne Johnson","Shakira","Ed Sheeran"]},
-  characters:{name:"Filmfiguren",emoji:"🎬",items:["Harry Potter","Spider-Man","Shrek","Barbie","Darth Vader","Wednesday Addams","Homer Simpson","Jack Sparrow","Elsa","Batman","Mr. Bean","Indiana Jones"]},
-  animals:{name:"Tiere",emoji:"🐾",items:["Pinguin","Elefant","Faultier","Delfin","Giraffe","Känguru","Panda","Flamingo","Hai","Tiger","Koala","Oktopus"]},
-  jobs:{name:"Berufe",emoji:"💼",items:["Feuerwehrmann","Astronaut","Lehrer","DJ","Koch","Detektiv","Pilot","Influencer","Arzt","Fußballtrainer","Fotograf","Zauberer"]},
-  random:{name:"Komplett Random",emoji:"🌀",items:["Zeitmaschine","Pizza","Vulkan","Roboter","Discokugel","Geist","Superheld","Kühlschrank","Luftballon","Schatzkarte","Mikrofon","Regenschirm"]},
-  spicy:{name:"Spicy",emoji:"🌶️",items:["Dein Crush","Blind Date","Urlaubsflirt","Romantischer Filmheld","Dating-App-Match","Geheimer Verehrer","Ex-Partner","Hochzeitsgast","Anmachspruch","Erstes Date","Liebesbrief","Traumpartner"]}
+  people:{
+    name:"Echte Personen",
+    emoji:"⭐",
+    items:[
+      "Taylor Swift","Cristiano Ronaldo","Beyoncé","Albert Einstein",
+      "Adele","Leonardo DiCaprio","Rihanna","Elon Musk",
+      "Billie Eilish","Dwayne Johnson","Shakira","Ed Sheeran",
+      "Lionel Messi","Michael Jackson","Lady Gaga","Tom Holland",
+      "Zendaya","Snoop Dogg","Greta Thunberg","Gordon Ramsay",
+      "Kylian Mbappé","Neymar","Ariana Grande","Bruno Mars",
+      "Justin Bieber","Selena Gomez","Will Smith","Eminem",
+      "Kim Kardashian","LeBron James","Usain Bolt","Roger Federer",
+      "Angela Merkel","Barack Obama","Steve Jobs","Mark Zuckerberg"
+    ]
+  },
+  characters:{
+    name:"Fiktive Charaktere",
+    emoji:"🎬",
+    items:[
+      "Harry Potter","Spider-Man","Shrek","Barbie",
+      "Darth Vader","Wednesday Addams","Homer Simpson","Jack Sparrow",
+      "Elsa","Batman","Mr. Bean","Indiana Jones",
+      "Iron Man","Superman","Wonder Woman","Joker",
+      "SpongeBob Schwammkopf","Sherlock Holmes","James Bond","Rocky Balboa",
+      "Forrest Gump","Katniss Everdeen","Micky Maus","Simba",
+      "Stitch","Pikachu","Naruto Uzumaki","Son Goku",
+      "Walter White","Eleven","Loki","Deadpool",
+      "Winnie Puuh","Aladdin","Arielle","Cruella de Vil"
+    ]
+  }
 };
 
 let tabooPlayers=["Lena","Max","Sophie","Ben"];
@@ -4440,8 +4569,10 @@ let truthSelected=new Set(["soft","party"]);
 let truthMode="mix",truthRounds=20,truthIndex=0,truthDeck=[],truthCurrent=null;
 
 let whoPlayers=["Lena","Max","Sophie","Ben"];
-let whoSelected=new Set(["people","characters","animals"]);
+let whoSelected=new Set(["people","characters"]);
 let whoRounds=5,whoPlayerIndex=0,whoCardIndex=0,whoDeck=[],whoScores=[];
+whoSelected=new Set([...whoSelected].filter(key=>Object.prototype.hasOwnProperty.call(whoData,key)));
+if(whoSelected.size===0)whoSelected=new Set(["people","characters"]);
 
 function getNewGameConfig(type){
   return {
@@ -4659,6 +4790,10 @@ function showTruthCard(){
   document.getElementById("truthTypeBadge").textContent=`${truthCurrent.icon} ${truthCurrent.type}`;
   document.getElementById("truthCategoryBadge").textContent=`${truthCurrent.emoji} ${truthCurrent.category}`;
   document.getElementById("truthPrompt").textContent=truthCurrent.prompt;
+  const truthScreen=document.getElementById("truthPlay");
+  const isTruth=truthCurrent.type==="Wahrheit";
+  truthScreen.classList.toggle("truth-is-truth",isTruth);
+  truthScreen.classList.toggle("truth-is-dare",!isTruth);
 }
 function nextTruth(countRound=true){
   if(countRound){
@@ -4694,7 +4829,7 @@ function startWhoGame(){
   normalizeNewGamePlayers("who");
   if(whoPlayers.length<2){showSettingToast("Mindestens 2 Spieler benötigt");return}
   whoDeck=buildWhoDeck();
-  if(!whoDeck.length){showSettingToast("Keine Begriffe verfügbar");return}
+  if(!whoDeck.length){showSettingToast("Keine Personen oder Charaktere verfügbar");return}
   whoPlayerIndex=0;whoCardIndex=0;whoScores=whoPlayers.map(()=>0);
   resetGameGuard("who");prepareWhoPass();
 }
@@ -4970,7 +5105,7 @@ if ("serviceWorker" in navigator) {
 
 
 <script>
-/* VYBE 6.3 adaptive viewport and iPhone/PWA classification */
+/* VYBE 6.4 adaptive viewport and iPhone/PWA classification */
 (function(){
   const root=document.documentElement;
   const ua=navigator.userAgent||"";
