@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="theme-color" content="#17111f">
-<title>VYBE 5.6.5 – Zufall & Ball-Balance</title>
+<title>VYBE 6.0 – Quiz-Update</title>
 <style>
 :root{
   --bg:#211b2d;
@@ -1475,7 +1475,7 @@ body.light-theme .knowledge-back .ball-source{color:#756b7b}
 
 
 /* =========================================================
-   VYBE 5.6.5 – Fragenbalance
+   VYBE 6.0 – Fragenbalance
    ========================================================= */
 .home-top-actions{display:flex;align-items:center;gap:8px}
 .favorite-header-button{
@@ -1620,7 +1620,7 @@ html,body{
 
 
 /* =========================================================
-   VYBE 5.6.5 – iPhone layout and flip-card fixes
+   VYBE 6.0 – iPhone layout and flip-card fixes
    ========================================================= */
 #home .compact-home-content{padding-top:18px !important}
 #home .compact-home-copy{padding-top:4px !important;margin-top:8px !important}
@@ -1689,6 +1689,119 @@ html,body{
     padding:64px 19px 22px;
   }
   #ballCard .ball-question,#knowledgeCard .ball-question{font-size:24px}
+}
+
+
+/* =========================================================
+   VYBE 6.0 – Quizwertung, Navigation und Ergebnisse
+   ========================================================= */
+.quiz-live-row{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:10px;min-height:38px;margin:0 2px 7px;
+}
+.quiz-live-score{display:flex;gap:8px;flex:none}
+.quiz-live-score span{
+  display:inline-flex;align-items:center;gap:4px;padding:7px 10px;
+  border-radius:999px;font-size:13px;font-weight:950;
+  background:var(--panel);border:1px solid var(--line);
+}
+.quiz-correct-mini{color:#4fe09d!important}
+.quiz-wrong-mini{color:#ff707d!important}
+
+.quiz-rating{
+  display:grid;grid-template-columns:1fr 1fr;gap:12px;
+  margin:4px 0 10px;
+}
+.quiz-rating[hidden]{display:none!important}
+.quiz-rate-btn{
+  min-height:66px;border:0;border-radius:19px;color:#fff;
+  font-weight:1000;font-size:16px;letter-spacing:.5px;
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  box-shadow:0 10px 24px rgba(0,0,0,.18);
+  transition:transform .14s ease,filter .14s ease,opacity .14s ease;
+}
+.quiz-rate-btn:active{transform:scale(.97)}
+.quiz-rate-icon{
+  display:grid;place-items:center;width:34px;height:34px;border-radius:50%;
+  background:rgba(255,255,255,.18);font-size:23px;line-height:1;
+}
+.quiz-rate-wrong{background:linear-gradient(145deg,#d83348,#ff6a72)}
+.quiz-rate-correct{background:linear-gradient(145deg,#15945d,#40d996)}
+.quiz-rate-btn.selected{
+  outline:3px solid rgba(255,255,255,.72);
+  filter:saturate(1.16) brightness(1.06);
+}
+.quiz-rate-btn.dimmed{opacity:.43}
+
+.quiz-navigation{
+  display:grid;grid-template-columns:1fr 1fr;gap:10px;
+  margin-bottom:2px;
+}
+.quiz-nav-btn{min-width:0!important;width:100%!important;padding-left:10px;padding-right:10px}
+.quiz-nav-btn:disabled{opacity:.35;filter:grayscale(.35);pointer-events:none}
+
+.quiz-answer-flash{
+  position:fixed;inset:0;z-index:9999;display:grid;place-items:center;
+  pointer-events:none;animation:quizFlash .45s ease forwards;
+}
+.quiz-answer-flash span{
+  width:112px;height:112px;border-radius:50%;display:grid;place-items:center;
+  color:white;font-size:68px;font-weight:1000;
+  box-shadow:0 18px 48px rgba(0,0,0,.3);
+}
+.quiz-answer-flash.correct span{background:linear-gradient(145deg,#15945d,#40d996)}
+.quiz-answer-flash.wrong span{background:linear-gradient(145deg,#d83348,#ff6a72)}
+@keyframes quizFlash{
+  0%{opacity:0;transform:scale(.55)}
+  35%{opacity:1;transform:scale(1.06)}
+  100%{opacity:0;transform:scale(1.24)}
+}
+
+.quiz-result-wrap{
+  flex:1;overflow:auto;text-align:center;padding:8px 4px 18px;
+  display:flex;flex-direction:column;align-items:center;
+}
+.quiz-result-emoji{
+  width:86px;height:86px;border-radius:28px;display:grid;place-items:center;
+  font-size:48px;background:linear-gradient(145deg,#176046,#3bd092);
+  box-shadow:0 18px 44px rgba(33,205,144,.22);
+}
+.quiz-result-title{font-size:32px;line-height:1.05;margin:17px 0 6px}
+.quiz-result-message{color:var(--muted);max-width:330px;margin:0 0 14px;line-height:1.45}
+.quiz-percent-ring{
+  width:130px;height:130px;border-radius:50%;display:grid;place-items:center;
+  margin:4px 0 17px;
+  background:
+    radial-gradient(circle at center,var(--bg) 55%,transparent 56%),
+    conic-gradient(var(--mint) var(--quiz-percent,0%),rgba(255,255,255,.1) 0);
+  box-shadow:inset 0 0 0 1px var(--line);
+}
+.quiz-percent-ring span{font-size:31px;font-weight:1000}
+.knowledge-ring{
+  background:
+    radial-gradient(circle at center,var(--bg) 55%,transparent 56%),
+    conic-gradient(var(--blue) var(--quiz-percent,0%),rgba(255,255,255,.1) 0);
+}
+.quiz-result-grid{
+  width:100%;display:grid;grid-template-columns:repeat(3,1fr);gap:9px;
+  margin-bottom:12px;
+}
+.quiz-result-stat{
+  background:var(--panel);border:1px solid var(--line);border-radius:18px;
+  padding:13px 5px;
+}
+.quiz-result-stat span{display:block;color:var(--muted);font-size:10px;font-weight:950;letter-spacing:.9px}
+.quiz-result-stat strong{display:block;font-size:27px;margin-top:3px}
+.quiz-result-stat.correct strong{color:#4fe09d}
+.quiz-result-stat.wrong strong{color:#ff707d}
+.quiz-best-panel{width:100%;padding:15px 18px;text-align:left;margin:0}
+.quiz-best-panel .result-head+.result-head{margin-top:10px}
+
+@media(max-width:380px){
+  .quiz-rate-btn{min-height:60px;font-size:14px}
+  .quiz-rate-icon{width:31px;height:31px;font-size:20px}
+  .quiz-result-title{font-size:28px}
+  .quiz-percent-ring{width:116px;height:116px}
 }
 
 </style>
@@ -2149,7 +2262,7 @@ html,body{
         <div class="row-icon">ℹ️</div>
         <div class="row-copy">
           <div class="row-title">Version</div>
-          <div class="row-sub">VYBE 5.6.5</div>
+          <div class="row-sub">VYBE 6.0</div>
         </div>
       </div>
     </div>
@@ -2376,21 +2489,43 @@ html,body{
       </div>
     </div>
   </div>
-  <div class="knowledge-bottom-row">
+  <div class="quiz-live-row">
     <div id="knowledgeCounter" class="ball-counter"></div>
-    <button id="knowledgeNext" class="primary knowledge-primary knowledge-next">NÄCHSTE KARTE</button>
+    <div class="quiz-live-score">
+      <span class="quiz-correct-mini">✓ <b id="knowledgeLiveCorrect">0</b></span>
+      <span class="quiz-wrong-mini">✕ <b id="knowledgeLiveWrong">0</b></span>
+    </div>
+  </div>
+  <div id="knowledgeRating" class="quiz-rating" hidden>
+    <button id="knowledgeWrong" class="quiz-rate-btn quiz-rate-wrong" type="button">
+      <span class="quiz-rate-icon">✕</span><span>FALSCH</span>
+    </button>
+    <button id="knowledgeCorrect" class="quiz-rate-btn quiz-rate-correct" type="button">
+      <span class="quiz-rate-icon">✓</span><span>RICHTIG</span>
+    </button>
+  </div>
+  <div class="quiz-navigation">
+    <button id="knowledgePrevious" class="secondary quiz-nav-btn" type="button">‹ VORHERIGE</button>
+    <button id="knowledgeNext" class="primary knowledge-primary quiz-nav-btn" type="button">NÄCHSTE ›</button>
   </div>
 </section>
 
 <section id="knowledgeEnd" class="screen">
-  <div class="top"><button class="back" data-open="home">‹</button><div class="page-title">RUNDE BEENDET</div><span style="width:43px"></span></div>
-  <div class="pass">
-    <div class="pass-icon knowledge-pass-icon">🧠</div>
-    <h1 style="margin:20px 0 4px;font-size:38px">Starkes Wissen.</h1>
-    <p id="knowledgeEndText"></p>
-    <div class="panel knowledge-result-panel">
-      <div class="result-head"><span>Gespielte Fragen</span><span id="knowledgePlayedCount"></span></div>
-      <div class="result-head" style="margin-top:10px"><span>Schwierigkeiten</span><span id="knowledgeEndLevels"></span></div>
+  <div class="top"><button class="back" data-open="home">‹</button><div class="page-title">DEIN ERGEBNIS</div><span style="width:43px"></span></div>
+  <div class="quiz-result-wrap">
+    <div id="knowledgeResultEmoji" class="quiz-result-emoji">🧠</div>
+    <h1 id="knowledgeResultTitle" class="quiz-result-title">Starkes Wissen.</h1>
+    <p id="knowledgeEndText" class="quiz-result-message"></p>
+    <div class="quiz-percent-ring knowledge-ring"><span id="knowledgeResultPercent">0%</span></div>
+    <div class="quiz-result-grid">
+      <div class="quiz-result-stat"><span>FRAGEN</span><strong id="knowledgePlayedCount">0</strong></div>
+      <div class="quiz-result-stat correct"><span>RICHTIG</span><strong id="knowledgeResultCorrect">0</strong></div>
+      <div class="quiz-result-stat wrong"><span>FALSCH</span><strong id="knowledgeResultWrong">0</strong></div>
+    </div>
+    <div class="panel quiz-best-panel">
+      <div class="result-head"><span>Beste Quote</span><span id="knowledgeBestPercent">0%</span></div>
+      <div class="result-head"><span>Insgesamt beantwortet</span><span id="knowledgeTotalAnswered">0</span></div>
+      <div class="result-head"><span>Schwierigkeiten</span><span id="knowledgeEndLevels"></span></div>
     </div>
   </div>
   <div class="two"><button class="secondary" data-open="home">ZUR STARTSEITE</button><button id="restartKnowledge" class="primary knowledge-primary">NEUE RUNDE</button></div>
@@ -2462,24 +2597,46 @@ html,body{
       </div>
     </div>
   </div>
-  <div style="display:flex;align-items:center;gap:10px">
-    <div id="ballCounter" class="ball-counter" style="flex:1"></div>
-    <button id="ballNext" class="primary" style="width:auto;min-width:170px;background:linear-gradient(90deg,var(--mint),var(--blue))">NÄCHSTE KARTE</button>
+  <div class="quiz-live-row">
+    <div id="ballCounter" class="ball-counter"></div>
+    <div class="quiz-live-score">
+      <span class="quiz-correct-mini">✓ <b id="ballLiveCorrect">0</b></span>
+      <span class="quiz-wrong-mini">✕ <b id="ballLiveWrong">0</b></span>
+    </div>
+  </div>
+  <div id="ballRating" class="quiz-rating" hidden>
+    <button id="ballWrong" class="quiz-rate-btn quiz-rate-wrong" type="button">
+      <span class="quiz-rate-icon">✕</span><span>FALSCH</span>
+    </button>
+    <button id="ballCorrect" class="quiz-rate-btn quiz-rate-correct" type="button">
+      <span class="quiz-rate-icon">✓</span><span>RICHTIG</span>
+    </button>
+  </div>
+  <div class="quiz-navigation">
+    <button id="ballPrevious" class="secondary quiz-nav-btn" type="button">‹ VORHERIGE</button>
+    <button id="ballNext" class="primary quiz-nav-btn" type="button">NÄCHSTE ›</button>
   </div>
 </section>
 
 <section id="ballEnd" class="screen">
-  <div class="top"><button class="back" data-open="home">‹</button><div class="page-title">RUNDE BEENDET</div><span style="width:43px"></span></div>
-  <div class="pass">
-    <div class="pass-icon" style="background:linear-gradient(145deg,#176046,#3bd092)">🏆</div>
-    <h1 style="margin:20px 0 4px;font-size:38px">Stabiler Ball Knowledge.</h1>
-    <p id="ballEndText"></p>
-    <div class="panel" style="padding:16px 20px;margin-top:16px;text-align:left;width:100%">
-      <div class="result-head"><span>Gespielte Karten</span><span id="ballPlayedCount"></span></div>
-      <div class="result-head" style="margin-top:10px"><span>Schwierigkeiten</span><span id="ballEndLevels"></span></div>
+  <div class="top"><button class="back" data-open="home">‹</button><div class="page-title">DEIN ERGEBNIS</div><span style="width:43px"></span></div>
+  <div class="quiz-result-wrap">
+    <div id="ballResultEmoji" class="quiz-result-emoji">🏆</div>
+    <h1 id="ballResultTitle" class="quiz-result-title">Starker Auftritt.</h1>
+    <p id="ballEndText" class="quiz-result-message"></p>
+    <div class="quiz-percent-ring"><span id="ballResultPercent">0%</span></div>
+    <div class="quiz-result-grid">
+      <div class="quiz-result-stat"><span>FRAGEN</span><strong id="ballPlayedCount">0</strong></div>
+      <div class="quiz-result-stat correct"><span>RICHTIG</span><strong id="ballResultCorrect">0</strong></div>
+      <div class="quiz-result-stat wrong"><span>FALSCH</span><strong id="ballResultWrong">0</strong></div>
+    </div>
+    <div class="panel quiz-best-panel">
+      <div class="result-head"><span>Beste Quote</span><span id="ballBestPercent">0%</span></div>
+      <div class="result-head"><span>Insgesamt beantwortet</span><span id="ballTotalAnswered">0</span></div>
+      <div class="result-head"><span>Schwierigkeiten</span><span id="ballEndLevels"></span></div>
     </div>
   </div>
-  <div class="two"><button class="secondary" data-open="home">ZUR STARTSEITE</button><button id="restartBall" class="primary" style="background:linear-gradient(90deg,var(--mint),var(--blue))">NEUE RUNDE</button></div>
+  <div class="two"><button class="secondary" data-open="home">ZUR STARTSEITE</button><button id="restartBall" class="primary">NEUE RUNDE</button></div>
 </section>
 
 <div id="gameMenu" class="menu">
@@ -2824,9 +2981,64 @@ let wouldQuestions=[],wouldRoundIndex=0,wouldQuestion=null,wouldSelectedPerson=n
 let categoryType="imp",categoryReturn="impSetup";
 let ballDifficulties=new Set(["Easy","Baller","Elite Ballknowledge"]);
 let ballTypes=new Set([...new Set(ballQuestions.map(q=>q.type))]);
-let ballCount=10,ballDeck=[],ballIndex=0,ballRevealed=false;
+let ballCount=10,ballDeck=[],ballIndex=0,ballRevealed=false,ballAnswers=[];
 let knowledgeDifficulties=new Set(["Muss jeder wissen","Normal","Fortgeschritten"]);
-let knowledgeCount=15,knowledgeDeck=[],knowledgeIndex=0,knowledgeRevealed=false;
+let knowledgeCount=15,knowledgeDeck=[],knowledgeIndex=0,knowledgeRevealed=false,knowledgeAnswers=[];
+
+const QUIZ_STATS_KEY="vybe_quiz_stats_v1";
+const defaultQuizStats={
+  ball:{bestPercent:0,totalAnswered:0,totalCorrect:0,totalWrong:0},
+  knowledge:{bestPercent:0,totalAnswered:0,totalCorrect:0,totalWrong:0}
+};
+let quizStats=JSON.parse(JSON.stringify(defaultQuizStats));
+try{
+  const storedQuizStats=JSON.parse(localStorage.getItem(QUIZ_STATS_KEY)||"null");
+  if(storedQuizStats){
+    quizStats={
+      ball:{...defaultQuizStats.ball,...(storedQuizStats.ball||{})},
+      knowledge:{...defaultQuizStats.knowledge,...(storedQuizStats.knowledge||{})}
+    };
+  }
+}catch(error){}
+function persistQuizStats(){
+  try{localStorage.setItem(QUIZ_STATS_KEY,JSON.stringify(quizStats))}catch(error){}
+}
+function quizScore(answers){
+  const rated=answers.filter(value=>value==="correct"||value==="wrong");
+  const correct=rated.filter(value=>value==="correct").length;
+  const wrong=rated.length-correct;
+  const percent=rated.length?Math.round(correct/rated.length*100):0;
+  return{answered:rated.length,correct,wrong,percent};
+}
+function quizCopy(game,percent){
+  if(game==="ball"){
+    if(percent===100)return{emoji:"👑",title:"Absolute Fußballmaschine.",message:"Perfekte Runde. Mehr Ball Knowledge geht praktisch nicht."};
+    if(percent>=85)return{emoji:"🔥",title:"Krasser Baller!",message:"Das war richtig stark. Du kennst nicht nur die großen Namen."};
+    if(percent>=65)return{emoji:"⚽",title:"Stabile Ball Knowledge.",message:"Gute Runde – ein paar Nerd-Fakten fehlen noch zur Elite."};
+    if(percent>=40)return{emoji:"🙂",title:"Solide, aber ausbaufähig.",message:"Du bist im Spiel. Für den Expertenstatus braucht es noch ein Trainingslager."};
+    return{emoji:"😅",title:"Da war der Ball öfter im Aus.",message:"Nicht schlimm – immerhin weißt du jetzt, welche Highlights du nachholen musst."};
+  }
+  if(percent===100)return{emoji:"👑",title:"Allgemeinwissens-Genie.",message:"Perfekt. Du wärst bei jedem Quizabend eine ernsthafte Gefahr."};
+  if(percent>=85)return{emoji:"🧠",title:"Brutal starkes Wissen!",message:"Das war eine echte Ansage. Dein Kopf ist offenbar gut sortiert."};
+  if(percent>=65)return{emoji:"💡",title:"Richtig gute Runde.",message:"Sehr ordentlich – du weißt über erstaunlich viele Dinge Bescheid."};
+  if(percent>=40)return{emoji:"🙂",title:"Solides Mittelfeld.",message:"Nicht schlecht. Ein paar Wissenslücken machen dich immerhin noch sympathisch."};
+  return{emoji:"😅",title:"Heute eher Halbwissen.",message:"Mutig geraten ist auch eine Strategie. Beim nächsten Mal wird es besser."};
+}
+function showQuizFlash(result){
+  const flash=document.createElement("div");
+  flash.className=`quiz-answer-flash ${result}`;
+  flash.innerHTML=`<span>${result==="correct"?"✓":"✕"}</span>`;
+  document.body.appendChild(flash);
+  setTimeout(()=>flash.remove(),480);
+}
+function updateQuizStats(game,score){
+  const stats=quizStats[game];
+  stats.bestPercent=Math.max(stats.bestPercent,score.percent);
+  stats.totalAnswered+=score.answered;
+  stats.totalCorrect+=score.correct;
+  stats.totalWrong+=score.wrong;
+  persistQuizStats();
+}
 
 let menuGame="imp",resumeScreen="home";
 
@@ -2903,8 +3115,10 @@ document.addEventListener("click",e=>{
     const game=directExit.dataset.exitGame;
     document.getElementById("gameMenu").classList.remove("open");
     if(game==="taboo"&&tabooTimerId){clearInterval(tabooTimerId);tabooTimerId=null}
+    if(game==="ball"&&quizScore(ballAnswers).answered>0){finishBallRound();return}
+    if(game==="knowledge"&&quizScore(knowledgeAnswers).answered>0){finishKnowledgeRound();return}
     const setupMap={
-      imp:"impSetup",would:"wouldSetup",ball:"ballSetup",
+      imp:"impSetup",would:"wouldSetup",ball:"ballSetup",knowledge:"knowledgeSetup",
       taboo:"tabooSetup",truth:"truthSetup",who:"whoSetup"
     };
     go(setupMap[game]||"home");
@@ -3080,7 +3294,7 @@ document.getElementById("menuResume").addEventListener("click",()=>{document.get
 document.getElementById("menuSettings").addEventListener("click",()=>{
   document.getElementById("gameMenu").classList.remove("open");
   if(menuGame==="taboo"&&tabooTimerId){clearInterval(tabooTimerId);tabooTimerId=null}
-  const setupMap={imp:"impSetup",would:"wouldSetup",ball:"ballSetup",taboo:"tabooSetup",truth:"truthSetup",who:"whoSetup"};
+  const setupMap={imp:"impSetup",would:"wouldSetup",ball:"ballSetup",knowledge:"knowledgeSetup",taboo:"tabooSetup",truth:"truthSetup",who:"whoSetup"};
   go(setupMap[menuGame]||"home");
 });
 
@@ -3326,16 +3540,47 @@ function startBallRound(){
   ballDeck=freshDeck(filtered,`ball:${[...ballDifficulties].sort().join("+")}:${[...ballTypes].sort().join("+")}`);
   if(ballCount!==999)ballDeck=ballDeck.slice(0,Math.min(ballCount,ballDeck.length));
   ballIndex=0;
+  ballAnswers=Array(ballDeck.length).fill(null);
+  resetGameGuard("ball");
   showBallCard();
 }
+function renderBallRating(){
+  const rating=ballAnswers[ballIndex];
+  const wrap=document.getElementById("ballRating");
+  wrap.hidden=!ballRevealed;
+  const wrong=document.getElementById("ballWrong");
+  const correct=document.getElementById("ballCorrect");
+  wrong.classList.toggle("selected",rating==="wrong");
+  correct.classList.toggle("selected",rating==="correct");
+  wrong.classList.toggle("dimmed",rating==="correct");
+  correct.classList.toggle("dimmed",rating==="wrong");
+}
+function updateBallLiveScore(){
+  const score=quizScore(ballAnswers);
+  document.getElementById("ballLiveCorrect").textContent=score.correct;
+  document.getElementById("ballLiveWrong").textContent=score.wrong;
+}
+function finishBallRound(){
+  const score=quizScore(ballAnswers);
+  const copy=quizCopy("ball",score.percent);
+  document.getElementById("ballPlayedCount").textContent=score.answered;
+  document.getElementById("ballResultCorrect").textContent=score.correct;
+  document.getElementById("ballResultWrong").textContent=score.wrong;
+  document.getElementById("ballResultPercent").textContent=`${score.percent}%`;
+  document.querySelector("#ballEnd .quiz-percent-ring").style.setProperty("--quiz-percent",`${score.percent}%`);
+  document.getElementById("ballResultEmoji").textContent=copy.emoji;
+  document.getElementById("ballResultTitle").textContent=copy.title;
+  document.getElementById("ballEndText").textContent=copy.message;
+  document.getElementById("ballEndLevels").textContent=[...ballDifficulties].map(x=>x==="Elite Ballknowledge"?"Elite":x).join(", ");
+  updateQuizStats("ball",score);
+  document.getElementById("ballBestPercent").textContent=`${quizStats.ball.bestPercent}%`;
+  document.getElementById("ballTotalAnswered").textContent=quizStats.ball.totalAnswered;
+  recordGameOnce("ball",score.answered||1);
+  triggerHaptic(score.percent>=65?"success":"medium");
+  go("ballEnd");
+}
 function showBallCard(){
-  if(ballIndex>=ballDeck.length){
-    document.getElementById("ballPlayedCount").textContent=ballDeck.length;
-    document.getElementById("ballEndLevels").textContent=[...ballDifficulties].map(x=>x==="Elite Ballknowledge"?"Elite":x).join(", ");
-    document.getElementById("ballEndText").textContent=`Ihr habt ${ballDeck.length} Fragen aus ${ballTypes.size} Fußball-Kategorien gespielt.`;
-    recordGameOnce("ball",ballDeck.length||1);go("ballEnd");
-    return;
-  }
+  if(ballIndex>=ballDeck.length){finishBallRound();return}
   const card=ballDeck[ballIndex];
   ballRevealed=false;
   document.getElementById("ballFlip").classList.remove("on");
@@ -3346,36 +3591,54 @@ function showBallCard(){
     "Ligen & Meister":"🏟️","Trainer & Taktik":"🧠","Stadien & Klubs":"🏟️",
     "Rekorde":"📈","Spieler & Legenden":"⭐","Fußballgeschichte":"📜"
   };
-  const difficultyIcons={
-    "Easy":"⚽",
-    "Baller":"🔥",
-    "Elite Ballknowledge":"🏆"
-  };
-  document.getElementById("ballFrontDifficulty").textContent=
-    `${difficultyIcons[card.level]||"⚽"} ${card.level}`;
-  document.getElementById("ballFrontCategory").textContent=
-    `${categoryEmojis[card.type]||"⚽️"} ${card.type}`;
+  const difficultyIcons={"Easy":"⚽","Baller":"🔥","Elite Ballknowledge":"🏆"};
+  document.getElementById("ballFrontDifficulty").textContent=`${difficultyIcons[card.level]||"⚽"} ${card.level}`;
+  document.getElementById("ballFrontCategory").textContent=`${categoryEmojis[card.type]||"⚽️"} ${card.type}`;
   document.getElementById("ballQuestionEmoji").textContent=categoryEmojis[card.type]||"⚽️";
   document.getElementById("ballQuestion").textContent=card.q;
   document.getElementById("ballAnswer").textContent=card.a;
   document.getElementById("ballAnswerEmoji").textContent=card.answerEmoji||"";
   document.getElementById("ballDetail").textContent=card.detail;
   document.getElementById("ballSource").textContent=`Quelle: ${card.source}`;
-  document.getElementById("ballCounter").textContent=`Karte ${ballIndex+1} von ${ballDeck.length}`;
-  document.getElementById("ballProgress").style.width=`${ballIndex/ballDeck.length*100}%`;
-  document.getElementById("ballNext").textContent=ballIndex===ballDeck.length-1?"RUNDE BEENDEN":"NÄCHSTE KARTE";
+  document.getElementById("ballCounter").textContent=`Frage ${ballIndex+1} von ${ballDeck.length}`;
+  document.getElementById("ballProgress").style.width=`${(ballIndex+1)/ballDeck.length*100}%`;
+  document.getElementById("ballPrevious").disabled=ballIndex===0;
+  document.getElementById("ballNext").textContent=ballIndex===ballDeck.length-1?"ERGEBNIS":"NÄCHSTE ›";
+  document.getElementById("ballNext").disabled=!ballAnswers[ballIndex];
+  updateBallLiveScore();
+  renderBallRating();
   go("ballCard");
+}
+function rateBall(result){
+  if(!ballRevealed)return;
+  const changed=ballAnswers[ballIndex]!==result;
+  ballAnswers[ballIndex]=result;
+  renderBallRating();
+  updateBallLiveScore();
+  document.getElementById("ballNext").disabled=false;
+  if(changed){
+    triggerHaptic(result==="correct"?"success":"medium");
+    showQuizFlash(result);
+  }
 }
 document.getElementById("startBall").addEventListener("click",()=>{buzz();startBallRound()});
 document.getElementById("ballFlipArea").addEventListener("click",()=>{
   ballRevealed=!ballRevealed;
   buzz([15,35,20]);
   document.getElementById("ballFlip").classList.toggle("on",ballRevealed);
+  renderBallRating();
+});
+document.getElementById("ballWrong").addEventListener("click",()=>rateBall("wrong"));
+document.getElementById("ballCorrect").addEventListener("click",()=>rateBall("correct"));
+document.getElementById("ballPrevious").addEventListener("click",()=>{
+  if(ballIndex<=0)return;
+  buzz();ballIndex--;showBallCard();
 });
 document.getElementById("ballNext").addEventListener("click",()=>{
+  if(!ballAnswers[ballIndex])return;
   buzz();
-  ballIndex++;
-  showBallCard();
+  if(ballIndex===ballDeck.length-1)finishBallRound();
+  else{ballIndex++;showBallCard()}
 });
 document.getElementById("restartBall").addEventListener("click",()=>{buzz();startBallRound()});
 
@@ -3418,19 +3681,47 @@ function startKnowledgeRound(){
   knowledgeDeck=freshDeck(filtered,`knowledge:${[...knowledgeDifficulties].sort().join("+")}`);
   if(knowledgeCount!==999)knowledgeDeck=knowledgeDeck.slice(0,Math.min(knowledgeCount,knowledgeDeck.length));
   knowledgeIndex=0;
+  knowledgeAnswers=Array(knowledgeDeck.length).fill(null);
   resetGameGuard("knowledge");
   showKnowledgeCard();
 }
+function renderKnowledgeRating(){
+  const rating=knowledgeAnswers[knowledgeIndex];
+  const wrap=document.getElementById("knowledgeRating");
+  wrap.hidden=!knowledgeRevealed;
+  const wrong=document.getElementById("knowledgeWrong");
+  const correct=document.getElementById("knowledgeCorrect");
+  wrong.classList.toggle("selected",rating==="wrong");
+  correct.classList.toggle("selected",rating==="correct");
+  wrong.classList.toggle("dimmed",rating==="correct");
+  correct.classList.toggle("dimmed",rating==="wrong");
+}
+function updateKnowledgeLiveScore(){
+  const score=quizScore(knowledgeAnswers);
+  document.getElementById("knowledgeLiveCorrect").textContent=score.correct;
+  document.getElementById("knowledgeLiveWrong").textContent=score.wrong;
+}
+function finishKnowledgeRound(){
+  const score=quizScore(knowledgeAnswers);
+  const copy=quizCopy("knowledge",score.percent);
+  document.getElementById("knowledgePlayedCount").textContent=score.answered;
+  document.getElementById("knowledgeResultCorrect").textContent=score.correct;
+  document.getElementById("knowledgeResultWrong").textContent=score.wrong;
+  document.getElementById("knowledgeResultPercent").textContent=`${score.percent}%`;
+  document.querySelector("#knowledgeEnd .quiz-percent-ring").style.setProperty("--quiz-percent",`${score.percent}%`);
+  document.getElementById("knowledgeResultEmoji").textContent=copy.emoji;
+  document.getElementById("knowledgeResultTitle").textContent=copy.title;
+  document.getElementById("knowledgeEndText").textContent=copy.message;
+  document.getElementById("knowledgeEndLevels").textContent=[...knowledgeDifficulties].join(", ");
+  updateQuizStats("knowledge",score);
+  document.getElementById("knowledgeBestPercent").textContent=`${quizStats.knowledge.bestPercent}%`;
+  document.getElementById("knowledgeTotalAnswered").textContent=quizStats.knowledge.totalAnswered;
+  recordGameOnce("knowledge",score.answered||1);
+  triggerHaptic(score.percent>=65?"success":"medium");
+  go("knowledgeEnd");
+}
 function showKnowledgeCard(){
-  if(knowledgeIndex>=knowledgeDeck.length){
-    document.getElementById("knowledgePlayedCount").textContent=knowledgeDeck.length;
-    document.getElementById("knowledgeEndLevels").textContent=[...knowledgeDifficulties].join(", ");
-    document.getElementById("knowledgeEndText").textContent=`Ihr habt ${knowledgeDeck.length} Allgemeinwissensfragen gespielt.`;
-    recordGameOnce("knowledge",knowledgeDeck.length||1);
-    triggerHaptic("success");
-    go("knowledgeEnd");
-    return;
-  }
+  if(knowledgeIndex>=knowledgeDeck.length){finishKnowledgeRound();return}
   const card=knowledgeDeck[knowledgeIndex];
   knowledgeRevealed=false;
   document.getElementById("knowledgeFlip").classList.remove("on");
@@ -3441,9 +3732,25 @@ function showKnowledgeCard(){
   document.getElementById("knowledgeDetail").textContent=card.detail;
   document.getElementById("knowledgeSource").textContent=`Geprüft mit: ${card.source}`;
   document.getElementById("knowledgeCounter").textContent=`Frage ${knowledgeIndex+1} von ${knowledgeDeck.length}`;
-  document.getElementById("knowledgeProgress").style.width=`${knowledgeIndex/knowledgeDeck.length*100}%`;
-  document.getElementById("knowledgeNext").textContent=knowledgeIndex===knowledgeDeck.length-1?"RUNDE BEENDEN":"NÄCHSTE KARTE";
+  document.getElementById("knowledgeProgress").style.width=`${(knowledgeIndex+1)/knowledgeDeck.length*100}%`;
+  document.getElementById("knowledgePrevious").disabled=knowledgeIndex===0;
+  document.getElementById("knowledgeNext").textContent=knowledgeIndex===knowledgeDeck.length-1?"ERGEBNIS":"NÄCHSTE ›";
+  document.getElementById("knowledgeNext").disabled=!knowledgeAnswers[knowledgeIndex];
+  updateKnowledgeLiveScore();
+  renderKnowledgeRating();
   go("knowledgeCard");
+}
+function rateKnowledge(result){
+  if(!knowledgeRevealed)return;
+  const changed=knowledgeAnswers[knowledgeIndex]!==result;
+  knowledgeAnswers[knowledgeIndex]=result;
+  renderKnowledgeRating();
+  updateKnowledgeLiveScore();
+  document.getElementById("knowledgeNext").disabled=false;
+  if(changed){
+    triggerHaptic(result==="correct"?"success":"medium");
+    showQuizFlash(result);
+  }
 }
 document.querySelectorAll("[data-knowledge-count]").forEach(button=>{
   button.addEventListener("click",()=>{
@@ -3457,11 +3764,19 @@ document.getElementById("knowledgeFlipArea").addEventListener("click",()=>{
   knowledgeRevealed=!knowledgeRevealed;
   triggerHaptic(knowledgeRevealed?"medium":"light");
   document.getElementById("knowledgeFlip").classList.toggle("on",knowledgeRevealed);
+  renderKnowledgeRating();
+});
+document.getElementById("knowledgeWrong").addEventListener("click",()=>rateKnowledge("wrong"));
+document.getElementById("knowledgeCorrect").addEventListener("click",()=>rateKnowledge("correct"));
+document.getElementById("knowledgePrevious").addEventListener("click",()=>{
+  if(knowledgeIndex<=0)return;
+  buzz();knowledgeIndex--;showKnowledgeCard();
 });
 document.getElementById("knowledgeNext").addEventListener("click",()=>{
+  if(!knowledgeAnswers[knowledgeIndex])return;
   buzz();
-  knowledgeIndex++;
-  showKnowledgeCard();
+  if(knowledgeIndex===knowledgeDeck.length-1)finishKnowledgeRound();
+  else{knowledgeIndex++;showKnowledgeCard()}
 });
 document.getElementById("restartKnowledge").addEventListener("click",()=>{buzz();startKnowledgeRound()});
 
