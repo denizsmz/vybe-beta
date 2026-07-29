@@ -4,8 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="format-detection" content="telephone=no">
+<meta name="mobile-web-app-capable" content="yes">
 <meta name="theme-color" content="#17111f">
-<title>VYBE 6.2 – Intelligente Rotation</title>
+<title>VYBE 6.3 – iPhone Polish</title>
 <style>
 :root{
   --bg:#211b2d;
@@ -1475,7 +1478,7 @@ body.light-theme .knowledge-back .ball-source{color:#756b7b}
 
 
 /* =========================================================
-   VYBE 6.2 – Fragenbalance
+   VYBE 6.3 – Fragenbalance
    ========================================================= */
 .home-top-actions{display:flex;align-items:center;gap:8px}
 .favorite-header-button{
@@ -1620,7 +1623,7 @@ html,body{
 
 
 /* =========================================================
-   VYBE 6.2 – iPhone layout and flip-card fixes
+   VYBE 6.3 – iPhone layout and flip-card fixes
    ========================================================= */
 #home .compact-home-content{padding-top:18px !important}
 #home .compact-home-copy{padding-top:4px !important;margin-top:8px !important}
@@ -1693,7 +1696,7 @@ html,body{
 
 
 /* =========================================================
-   VYBE 6.2 – Quizwertung, Navigation und Ergebnisse
+   VYBE 6.3 – Quizwertung, Navigation und Ergebnisse
    ========================================================= */
 .quiz-live-row{
   display:flex;align-items:center;justify-content:space-between;
@@ -1806,7 +1809,7 @@ html,body{
 
 
 /* =========================================================
-   VYBE 6.2 – Swipe gestures and auto advance
+   VYBE 6.3 – Swipe gestures and auto advance
    ========================================================= */
 .ball-card-area{
   position:relative;
@@ -1872,6 +1875,212 @@ html,body{
 @media(max-width:380px){
   .quiz-swipe-indicator{
     width:64px;height:64px;font-size:36px;
+  }
+}
+
+
+/* ==========================================================
+   VYBE 6.3 – iPhone Polish
+   Adaptive sizing by usable viewport, safe areas and PWA mode.
+   No model sniffing: this remains correct for present/future iPhones.
+   ========================================================== */
+:root{
+  --app-height:100dvh;
+  --safe-top:max(env(safe-area-inset-top, 0px), 12px);
+  --safe-right:max(env(safe-area-inset-right, 0px), 0px);
+  --safe-bottom:max(env(safe-area-inset-bottom, 0px), 12px);
+  --safe-left:max(env(safe-area-inset-left, 0px), 0px);
+  --screen-inline:clamp(14px, 4vw, 20px);
+  --ui-scale:1;
+  --card-radius:clamp(24px, 7vw, 31px);
+  --motion-fast:180ms;
+  --motion-page:300ms;
+  --spring:cubic-bezier(.2,.8,.2,1);
+}
+html{
+  height:-webkit-fill-available;
+  background:var(--bg-deep);
+  -webkit-text-size-adjust:100%;
+  text-rendering:optimizeLegibility;
+}
+body{
+  min-height:100%;
+  min-height:-webkit-fill-available;
+  overscroll-behavior:none;
+  touch-action:manipulation;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+.app{
+  height:var(--app-height);
+  min-height:-webkit-fill-available;
+  isolation:isolate;
+  contain:layout paint;
+}
+.screen{
+  padding:
+    var(--safe-top)
+    calc(var(--screen-inline) + var(--safe-right))
+    var(--safe-bottom)
+    calc(var(--screen-inline) + var(--safe-left));
+}
+.screen.active{
+  animation-duration:var(--motion-page);
+  animation-timing-function:var(--spring);
+}
+.content,.settings-scroll,.game-grid,.category-list,.player-list,
+.would-face,.truth-card,.taboo-card,.who-card,.quiz-card{
+  -webkit-overflow-scrolling:touch;
+}
+button,.pressable,.game-card,.row,.category-card,.choice,.chip{
+  touch-action:manipulation;
+}
+button:active,.pressable:active{
+  transition-duration:80ms;
+}
+.flip,.would-flip,.quiz-card-inner,.swipe-card{
+  transform:translateZ(0);
+  backface-visibility:hidden;
+  -webkit-backface-visibility:hidden;
+  will-change:transform;
+}
+.face,.would-face,.question-card,.panel,.game-card,.quiz-card{
+  transform:translateZ(0);
+}
+.progress i,.bar i{
+  transform:translateZ(0);
+}
+.top{
+  min-height:54px;
+  height:clamp(54px, 7.2vh, 62px);
+}
+.back,.icon-btn{
+  width:clamp(41px, 11vw, 46px);
+  height:clamp(41px, 11vw, 46px);
+}
+.primary,.secondary,.answer,.choice,.chip,.row{
+  min-height:44px;
+}
+.question,.would-question-text{
+  overflow-wrap:anywhere;
+  text-wrap:balance;
+}
+.word,.pass-name,.game-hero h1,.home-copy h1{
+  text-wrap:balance;
+}
+
+/* Compact iPhones: SE/mini-like usable widths */
+html.vybe-compact{
+  --screen-inline:13px;
+  --ui-scale:.94;
+  --card-radius:23px;
+}
+html.vybe-compact .home-copy{padding-top:7px;padding-bottom:10px}
+html.vybe-compact .home-copy h1{font-size:clamp(31px,9.8vw,36px)}
+html.vybe-compact .game-grid{gap:9px}
+html.vybe-compact .game-card{border-radius:22px}
+html.vybe-compact .game-hero{padding:8px 0 13px}
+html.vybe-compact .game-hero h1{font-size:clamp(31px,10vw,36px)}
+html.vybe-compact .question,
+html.vybe-compact .would-question-text{font-size:clamp(23px,7vw,27px)}
+html.vybe-compact .word{font-size:clamp(34px,10vw,40px)}
+html.vybe-compact .face,
+html.vybe-compact .would-face,
+html.vybe-compact .question-card{padding:19px}
+
+/* Standard modern iPhones */
+html.vybe-standard{
+  --screen-inline:clamp(15px,4vw,18px);
+}
+html.vybe-standard .home-copy h1{font-size:clamp(36px,10vw,42px)}
+html.vybe-standard .question,
+html.vybe-standard .would-question-text{font-size:clamp(27px,7.2vw,31px)}
+
+/* Max/Plus-size iPhones */
+html.vybe-large{
+  --screen-inline:clamp(18px,4.4vw,22px);
+  --card-radius:31px;
+}
+html.vybe-large .app{max-width:520px}
+html.vybe-large .top{height:64px}
+html.vybe-large .home-copy{padding-top:16px;padding-bottom:19px}
+html.vybe-large .home-copy h1{font-size:clamp(42px,10vw,48px);line-height:.94}
+html.vybe-large .home-copy p{font-size:16px}
+html.vybe-large .game-grid{gap:14px}
+html.vybe-large .game-card{border-radius:31px}
+html.vybe-large .question,
+html.vybe-large .would-question-text{font-size:clamp(30px,7vw,35px)}
+html.vybe-large .word{font-size:clamp(44px,10vw,53px)}
+html.vybe-large .primary{padding-block:17px;font-size:18px}
+
+/* Short usable height, including landscape and browser chrome transitions */
+html.vybe-short .top{height:50px}
+html.vybe-short .home-copy{padding:4px 2px 8px}
+html.vybe-short .home-copy h1{font-size:clamp(29px,8.8vw,35px)}
+html.vybe-short .home-copy p{margin-top:5px;font-size:13px}
+html.vybe-short .game-grid{gap:8px;padding-top:4px}
+html.vybe-short .game-hero{padding:5px 0 8px}
+html.vybe-short .game-hero .game-icon{font-size:38px}
+html.vybe-short .game-hero h1{font-size:clamp(29px,8vw,34px)}
+html.vybe-short .startbar{padding-top:6px}
+html.vybe-short .flip-area,
+html.vybe-short .would-card-area,
+html.vybe-short .question-card{margin-block:8px}
+
+/* Installed iOS PWA gets its own safe, edge-to-edge rhythm */
+html.vybe-ios.vybe-standalone .app{
+  width:100%;
+  max-width:none;
+  border-radius:0;
+}
+html.vybe-ios.vybe-standalone .screen{
+  padding-top:calc(var(--safe-top) + 2px);
+  padding-bottom:calc(var(--safe-bottom) + 3px);
+}
+html.vybe-ios.vybe-standalone .top{
+  padding-top:1px;
+}
+html.vybe-ios.vybe-standalone .startbar{
+  padding-bottom:1px;
+}
+
+/* Browser mode can keep a slightly framed desktop/tablet presentation */
+html:not(.vybe-standalone) .app{
+  box-shadow:0 0 80px rgba(0,0,0,.18);
+}
+
+/* More stable GPU cost on iPhones, while preserving the same look */
+@supports (-webkit-touch-callout:none){
+  .game-card,.panel,.question-card,.face,.would-face{
+    box-shadow:0 14px 34px rgba(7,4,12,.22);
+  }
+  .screen.active{
+    animation-name:pageInIOS;
+  }
+  @keyframes pageInIOS{
+    from{opacity:0;transform:translate3d(0,8px,0) scale(.997)}
+    to{opacity:1;transform:translate3d(0,0,0) scale(1)}
+  }
+}
+
+/* Landscape: preserve all controls rather than scaling the whole interface */
+@media (orientation:landscape) and (max-height:520px){
+  :root{--screen-inline:18px}
+  .app{max-width:none}
+  .screen{overflow:auto}
+  .content{min-height:max-content}
+  .home-copy{padding-block:4px 8px}
+  .home-copy h1{font-size:31px}
+  .game-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+
+/* Accessibility: keep polish without forcing movement */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    scroll-behavior:auto!important;
+    animation-duration:.01ms!important;
+    animation-iteration-count:1!important;
+    transition-duration:.01ms!important;
   }
 }
 
@@ -2333,7 +2542,7 @@ html,body{
         <div class="row-icon">ℹ️</div>
         <div class="row-copy">
           <div class="row-title">Version</div>
-          <div class="row-sub">VYBE 6.2</div>
+          <div class="row-sub">VYBE 6.3</div>
         </div>
       </div>
     </div>
@@ -3264,7 +3473,7 @@ function itemFingerprint(item){
 }
 
 /*
-  VYBE 6.2 content rotation:
+  VYBE 6.3 content rotation:
   Each game stores when an item was ACTUALLY shown. Unseen content is always
   placed first. Already seen content is ordered from oldest to newest, with a
   secure random tie-breaker. This creates a persistent "use everything else
@@ -4757,6 +4966,54 @@ if ("serviceWorker" in navigator) {
     });
   });
 }
+</script>
+
+
+<script>
+/* VYBE 6.3 adaptive viewport and iPhone/PWA classification */
+(function(){
+  const root=document.documentElement;
+  const ua=navigator.userAgent||"";
+  const isIOS=/iPad|iPhone|iPod/.test(ua) ||
+    (navigator.platform==="MacIntel" && navigator.maxTouchPoints>1);
+  const isStandalone=window.matchMedia("(display-mode: standalone)").matches ||
+    window.navigator.standalone===true;
+
+  function updateViewportProfile(){
+    const viewport=window.visualViewport;
+    const width=Math.round(viewport?.width || window.innerWidth || root.clientWidth);
+    const height=Math.round(viewport?.height || window.innerHeight || root.clientHeight);
+
+    root.style.setProperty("--app-height", height+"px");
+    root.style.setProperty("--viewport-width", width+"px");
+    root.style.setProperty("--viewport-height", height+"px");
+
+    root.classList.toggle("vybe-ios",isIOS);
+    root.classList.toggle("vybe-standalone",isStandalone);
+    root.classList.toggle("vybe-browser",!isStandalone);
+    root.classList.toggle("vybe-compact",width<=375);
+    root.classList.toggle("vybe-standard",width>375 && width<430);
+    root.classList.toggle("vybe-large",width>=430);
+    root.classList.toggle("vybe-short",height<700);
+    root.classList.toggle("vybe-tall",height>=820);
+    root.dataset.viewport=`${width}x${height}`;
+  }
+
+  let frame=0;
+  function scheduleUpdate(){
+    cancelAnimationFrame(frame);
+    frame=requestAnimationFrame(updateViewportProfile);
+  }
+
+  updateViewportProfile();
+  window.addEventListener("resize",scheduleUpdate,{passive:true});
+  window.addEventListener("orientationchange",scheduleUpdate,{passive:true});
+  window.visualViewport?.addEventListener("resize",scheduleUpdate,{passive:true});
+  window.visualViewport?.addEventListener("scroll",scheduleUpdate,{passive:true});
+  document.addEventListener("visibilitychange",()=>{
+    if(!document.hidden)setTimeout(updateViewportProfile,50);
+  });
+})();
 </script>
 
 </body>
