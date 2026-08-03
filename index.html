@@ -8,7 +8,7 @@
 <meta name="format-detection" content="telephone=no">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="theme-color" content="#17111f">
-<title>VYBE 6.9 – Werwolf</title>
+<title>VYBE 7.0 – Cinematic Polish</title>
 <style>
 :root{
   --bg:#211b2d;
@@ -2278,7 +2278,7 @@ html:not(.vybe-standalone) .app{
 }
 
 
-/* VYBE 6.9 – Tabu & Team-Ausloser */
+/* VYBE 7.0 – Tabu & Team-Ausloser */
 .game-card.teamer{background:linear-gradient(145deg,#3151b6,#7145c9 58%,#aa66ed)}
 .team-gradient-title{background:linear-gradient(90deg,#78a7ff,#c18aff);-webkit-background-clip:text;color:transparent}
 .taboo-round-stats{width:100%;display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:18px 0 12px}
@@ -2311,7 +2311,7 @@ html:not(.vybe-standalone) .app{
 
 
 /* ==========================================================
-   VYBE 6.9 – Werwolf
+   VYBE 7.0 – Werwolf
    ========================================================== */
 .game-card.werewolf{background:linear-gradient(145deg,#171c30,#48335e 58%,#9a3f64)}
 .ww-title{background:linear-gradient(90deg,#c8d7ff,#ff7399);-webkit-background-clip:text;color:transparent}
@@ -2364,6 +2364,200 @@ html:not(.vybe-standalone) .app{
 .ww-result-role+.ww-result-role{margin-top:7px}.ww-result-role.dead{opacity:.55}.ww-result-role span:last-child{font-weight:900;color:#ff88a7}
 @media(max-width:380px){.ww-name-grid{grid-template-columns:1fr}.ww-role-balance{grid-template-columns:1fr 1fr 1fr}.ww-player-row{grid-template-columns:36px minmax(0,1fr) auto 34px}.ww-narrator-button{padding:8px 7px;font-size:10px}}
 
+
+/* ==========================================================
+   VYBE 7.0 – Team suspense + Werwolf narrator polish
+   ========================================================== */
+
+/* TEAM-AUSLOSER */
+.team-draw-content{
+  position:relative;overflow:hidden;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
+}
+.team-draw-content::before{
+  content:"";position:absolute;inset:8% -40% auto;height:300px;
+  background:radial-gradient(circle,rgba(112,83,224,.22),transparent 68%);
+  filter:blur(12px);pointer-events:none;
+}
+.team-lottery-stage{position:relative;width:132px;height:132px;display:grid;place-items:center;margin-bottom:14px}
+.team-lottery-icon{
+  position:relative;z-index:3;width:88px;height:88px;border-radius:29px;
+  display:grid;place-items:center;font-size:50px;
+  background:linear-gradient(145deg,#3151b6,#a65be5);
+  box-shadow:0 20px 50px rgba(93,70,209,.35);
+  animation:teamDiceFloat 1.55s ease-in-out infinite alternate;
+}
+.team-lottery-orbit{
+  position:absolute;inset:7px;border-radius:50%;border:1px solid rgba(169,132,255,.32);
+  animation:teamOrbit 4.8s linear infinite;
+}
+.team-lottery-orbit::after{
+  content:"";position:absolute;top:-5px;left:50%;width:10px;height:10px;border-radius:50%;
+  background:#b693ff;box-shadow:0 0 18px #a879ff;
+}
+.orbit-two{inset:20px;animation-duration:3.3s;animation-direction:reverse;opacity:.7}
+@keyframes teamOrbit{to{transform:rotate(360deg)}}
+@keyframes teamDiceFloat{
+  from{transform:translateY(3px) rotate(-4deg) scale(.98)}
+  to{transform:translateY(-5px) rotate(4deg) scale(1.04)}
+}
+.team-draw-kicker{
+  color:#a98be8;font-size:10px;font-weight:1000;letter-spacing:1.6px;margin-top:5px
+}
+#teamDrawTitle{margin:8px 0 5px;font-size:clamp(28px,8vw,38px)}
+#teamDrawSubtitle{margin:0;color:var(--muted)}
+.team-shuffle-name{
+  min-height:72px;min-width:min(90%,370px);margin-top:23px;padding:17px 24px;border-radius:24px;
+  display:grid;place-items:center;background:rgba(255,255,255,.055);
+  border:1px solid rgba(178,145,255,.25);font-size:clamp(24px,7vw,33px);font-weight:1000;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.08);
+  transition:opacity .22s ease,transform .22s ease;
+}
+.team-shuffle-name.fade{opacity:.2;transform:scale(.94)}
+.team-reveal-target{
+  width:min(92%,390px);margin-top:21px;padding:15px 17px 18px;border-radius:24px;
+  background:linear-gradient(145deg,rgba(57,76,171,.92),rgba(126,62,181,.92));
+  box-shadow:0 20px 50px rgba(65,49,137,.3);
+  animation:teamRevealCard .42s cubic-bezier(.2,.8,.2,1);
+}
+.team-reveal-target[hidden]{display:none!important}
+.team-reveal-target span{
+  display:block;font-size:10px;letter-spacing:1.5px;font-weight:1000;color:rgba(255,255,255,.72)
+}
+.team-reveal-target strong{
+  display:block;font-size:clamp(29px,8vw,39px);line-height:1.05;margin-top:7px
+}
+@keyframes teamRevealCard{
+  from{opacity:0;transform:translateY(18px) scale(.94)}
+  to{opacity:1;transform:translateY(0) scale(1)}
+}
+.team-reveal-progress{
+  width:min(88%,350px);min-height:8px;margin-top:17px;display:flex;justify-content:center;gap:6px;flex-wrap:wrap
+}
+.team-reveal-progress i{
+  width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.15);transition:.25s
+}
+.team-reveal-progress i.done{background:#aa85ff;box-shadow:0 0 10px rgba(170,133,255,.7)}
+.team-result-card{animation:teamResultIn .42s cubic-bezier(.2,.8,.2,1) both}
+.team-result-card:nth-child(2){animation-delay:.08s}
+.team-result-card:nth-child(3){animation-delay:.16s}
+.team-result-card:nth-child(4){animation-delay:.24s}
+.team-result-card:nth-child(5){animation-delay:.32s}
+.team-result-card:nth-child(6){animation-delay:.4s}
+@keyframes teamResultIn{from{opacity:0;transform:translateY(18px) scale(.97)}to{opacity:1;transform:none}}
+
+/* WERWOLF ROLE MENU */
+#wwRoles .settings-scroll{padding-bottom:24px}
+#wwSpecialRoles{
+  overflow:hidden;border:1px solid rgba(160,132,190,.15);
+  background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.026))
+}
+.ww-role-row{
+  position:relative;min-height:70px;padding:12px 14px;
+  transition:background .2s ease,opacity .2s ease;
+}
+.ww-role-row:hover{background:rgba(255,255,255,.025)}
+.ww-role-row.role-on{background:linear-gradient(90deg,rgba(89,107,200,.08),rgba(180,73,120,.075))}
+.ww-role-icon{
+  width:43px;height:43px;border-radius:15px;
+  background:linear-gradient(145deg,rgba(74,88,153,.4),rgba(139,61,101,.34));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.08)
+}
+.ww-role-copy strong{font-size:15px}
+.ww-role-copy span{line-height:1.32}
+.ww-role-toggle{
+  width:58px;height:33px;padding:0;border-radius:999px;
+  border:1px solid rgba(255,255,255,.1);
+  background:linear-gradient(180deg,#3e3a45,#302d36);
+  box-shadow:inset 0 2px 5px rgba(0,0,0,.25);
+  transition:background .24s ease,box-shadow .24s ease,opacity .2s ease;
+}
+.ww-role-toggle::after{
+  width:27px;height:27px;left:2px;top:2px;
+  background:linear-gradient(180deg,#fff,#e7e4ea);
+  box-shadow:0 3px 8px rgba(0,0,0,.3);
+  transition:transform .26s cubic-bezier(.2,.8,.2,1),background .22s ease;
+}
+.ww-role-toggle.on{
+  background:linear-gradient(90deg,#536cd1,#b44979);
+  box-shadow:0 0 0 3px rgba(113,87,198,.09),inset 0 1px 0 rgba(255,255,255,.19);
+}
+.ww-role-toggle.on::after{transform:translateX(27px);background:#fff}
+.ww-role-toggle:active::after{width:30px}
+.ww-role-toggle:disabled{opacity:.28;filter:grayscale(.35)}
+.ww-role-balance{
+  position:sticky;bottom:0;z-index:4;
+  background:rgba(27,21,34,.9);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+  border:1px solid rgba(255,255,255,.08)
+}
+
+/* WERWOLF NARRATOR EXPERIENCE */
+#wwPhase,#wwMorning,#wwDay,#wwWitch,#wwSelect,#wwSeerResult,#wwHunter{
+  overflow:hidden;
+}
+#wwPhase::before,#wwMorning::before,#wwDay::before,#wwWitch::before,#wwSelect::before,#wwSeerResult::before,#wwHunter::before{
+  content:"";position:absolute;inset:0;pointer-events:none;opacity:.78;
+  background:
+    radial-gradient(circle at 18% 18%,rgba(118,95,190,.11),transparent 25%),
+    radial-gradient(circle at 82% 72%,rgba(180,67,110,.08),transparent 28%);
+}
+#wwPhase::after{
+  content:"";position:absolute;inset:75px 0 auto;height:180px;pointer-events:none;
+  background-image:
+    radial-gradient(circle at 13% 30%,rgba(255,255,255,.55) 0 1px,transparent 2px),
+    radial-gradient(circle at 34% 72%,rgba(255,255,255,.34) 0 1px,transparent 2px),
+    radial-gradient(circle at 70% 18%,rgba(255,255,255,.44) 0 1px,transparent 2px),
+    radial-gradient(circle at 88% 62%,rgba(255,255,255,.28) 0 1px,transparent 2px);
+  animation:wwStars 4s ease-in-out infinite alternate;
+}
+@keyframes wwStars{from{opacity:.35;transform:translateY(0)}to{opacity:.75;transform:translateY(-3px)}}
+.ww-phase-content,.ww-select-content,.ww-reveal-content{
+  position:relative;z-index:2
+}
+.ww-phase-content>*,
+.ww-select-content>*,
+.ww-reveal-content>*{
+  animation:wwSoftIn .38s cubic-bezier(.2,.8,.2,1) both
+}
+.ww-phase-content>*:nth-child(2),.ww-select-content>*:nth-child(2){animation-delay:.04s}
+.ww-phase-content>*:nth-child(3),.ww-select-content>*:nth-child(3){animation-delay:.08s}
+.ww-phase-content>*:nth-child(4),.ww-select-content>*:nth-child(4){animation-delay:.12s}
+@keyframes wwSoftIn{
+  from{opacity:0;transform:translateY(12px) scale(.99)}
+  to{opacity:1;transform:none}
+}
+.ww-phase-emoji{
+  filter:drop-shadow(0 12px 22px rgba(104,77,148,.28));
+  animation:wwEmojiFloat 2.5s ease-in-out infinite alternate!important
+}
+@keyframes wwEmojiFloat{from{transform:translateY(2px)}to{transform:translateY(-5px)}}
+.ww-script-text{
+  position:relative;background:linear-gradient(180deg,rgba(255,255,255,.068),rgba(255,255,255,.035));
+  border-color:rgba(255,255,255,.085);box-shadow:0 16px 38px rgba(0,0,0,.16);
+}
+.ww-script-text::before{
+  content:"“";position:absolute;left:13px;top:-12px;font-size:48px;color:rgba(190,148,219,.2);font-family:Georgia,serif
+}
+.ww-name-option{
+  transition:transform .14s ease,background .2s ease,border-color .2s ease,box-shadow .2s ease
+}
+.ww-name-option:active{transform:scale(.97)}
+.ww-name-option.selected{
+  transform:translateY(-2px);
+  box-shadow:0 12px 24px rgba(91,62,144,.25),0 0 0 1px rgba(255,255,255,.15)
+}
+.ww-primary{
+  box-shadow:0 14px 30px rgba(91,58,128,.24);
+  transition:transform .14s ease,filter .2s ease
+}
+.ww-primary:active{transform:scale(.98)}
+.ww-phase-transition{
+  position:fixed;inset:0;z-index:9998;pointer-events:none;
+  background:radial-gradient(circle at center,rgba(110,82,171,.18),transparent 62%);
+  animation:wwTransition .42s ease forwards;
+}
+@keyframes wwTransition{from{opacity:0}45%{opacity:1}to{opacity:0}}
+
 </style>
 
   <meta name="theme-color" content="#17131f">
@@ -2378,7 +2572,7 @@ html:not(.vybe-standalone) .app{
   <link rel="icon" type="image/png" sizes="192x192" href="./icons/icon-192.png">
   <link rel="icon" type="image/png" sizes="512x512" href="./icons/icon-512.png">
 
-<!-- VYBE 6.9 build: expanded verified quiz databases + Bundesliga category -->
+<!-- VYBE 7.0 build: expanded verified quiz databases + Bundesliga category -->
 </head>
 <body>
 <div class="app">
@@ -2856,10 +3050,20 @@ html:not(.vybe-standalone) .app{
 <section id="teamDraw" class="screen">
   <div class="top"><button class="back" data-open="teamSetup">‹</button><div class="page-title">AUSLOSUNG</div><span style="width:43px"></span></div>
   <div class="content team-draw-content">
-    <div class="team-lottery-icon">🎲</div>
-    <h2>Teams werden ausgelost</h2>
-    <p>Alle Namen werden komplett zufällig gemischt.</p>
+    <div class="team-lottery-stage">
+      <div class="team-lottery-orbit orbit-one"></div>
+      <div class="team-lottery-orbit orbit-two"></div>
+      <div class="team-lottery-icon">🎲</div>
+    </div>
+    <div id="teamDrawKicker" class="team-draw-kicker">NAMEN WERDEN GEMISCHT</div>
+    <h2 id="teamDrawTitle">Wer landet zusammen?</h2>
+    <p id="teamDrawSubtitle">Die Ziehung startet gleich.</p>
     <div id="teamShuffleName" class="team-shuffle-name">Bereit?</div>
+    <div id="teamRevealTarget" class="team-reveal-target" hidden>
+      <span id="teamRevealTeam">TEAM 1</span>
+      <strong id="teamRevealName">Name</strong>
+    </div>
+    <div id="teamRevealProgress" class="team-reveal-progress"></div>
     <div class="team-lottery-dots"><i></i><i></i><i></i></div>
   </div>
 </section>
@@ -3082,7 +3286,7 @@ html:not(.vybe-standalone) .app{
         <div class="row-icon">ℹ️</div>
         <div class="row-copy">
           <div class="row-title">Version</div>
-          <div class="row-sub">VYBE 6.9</div>
+          <div class="row-sub">VYBE 7.0</div>
         </div>
       </div>
     </div>
@@ -5557,7 +5761,7 @@ function wwRenderSpecialRoles(){
   WW_SPECIAL_ORDER.forEach(role=>{
     const meta=WW_SPECIAL_META[role];
     const row=document.createElement("div");
-    row.className="ww-role-row";
+    row.className=`ww-role-row${wwEnabledRoles.has(role)?" role-on":""}`;
 
     const icon=document.createElement("div");
     icon.className="ww-role-icon";
@@ -5672,7 +5876,14 @@ function wwShowNarratorReady(){
   });
   go("wwNarratorReady");
 }
+function wwVisualTransition(){
+  const overlay=document.createElement("div");
+  overlay.className="ww-phase-transition";
+  document.body.appendChild(overlay);
+  setTimeout(()=>overlay.remove(),460);
+}
 function wwSetPhase({emoji="🌙",kicker="VORLESEN",title,text,button="WEITER",action}){
+  wwVisualTransition();
   document.getElementById("wwPhaseHeader").textContent=`NACHT ${wwNight}`;
   document.getElementById("wwPhaseEmoji").textContent=emoji;
   document.getElementById("wwPhaseKicker").textContent=kicker;
@@ -5768,6 +5979,7 @@ function wwEligibleFor(mode){
   return living;
 }
 function wwOpenSelection(mode){
+  wwVisualTransition();
   wwSelectionMode=mode;
   wwSelected=[];
   const configs={
@@ -5852,6 +6064,7 @@ function wwConfirmSelection(){
   }
 }
 function wwShowWitch(){
+  wwVisualTransition();
   const root=document.getElementById("wwWitchActions");
   root.innerHTML="";
   const victimText=wwWolfTarget!==null
@@ -5934,6 +6147,7 @@ function wwFinalizeDeaths(){
   if(continuation)continuation();
 }
 function wwShowMorning(){
+  wwVisualTransition();
   const deaths=wwLastMorningDeaths;
   const text=deaths.length
     ?`„Das Dorf erwacht. In dieser Nacht sind ${deaths.map(i=>wwPlayers[i]).join(" und ")} gestorben.“`
@@ -5955,6 +6169,7 @@ function wwRenderAlive(id,includeDead=false){
   });
 }
 function wwStartDay(){
+  wwVisualTransition();
   document.getElementById("wwDayHeader").textContent=`TAG ${wwNight}`;
   wwRenderAlive("wwDayAlive");
   go("wwDay");
@@ -6071,16 +6286,115 @@ function renderTeamResults(){
     grid.appendChild(card);
   });
 }
+function buildTeamRevealOrder(teams){
+  const order=[];
+  let remaining=true;
+  let round=0;
+  while(remaining){
+    remaining=false;
+    teams.forEach((members,teamIndex)=>{
+      if(members[round]!==undefined){
+        order.push({name:members[round],teamIndex});
+        remaining=true;
+      }
+    });
+    round++;
+  }
+  return order;
+}
+function setTeamRevealProgress(total,done){
+  const root=document.getElementById("teamRevealProgress");
+  root.innerHTML="";
+  for(let i=0;i<total;i++){
+    const dot=document.createElement("i");
+    if(i<done)dot.classList.add("done");
+    root.appendChild(dot);
+  }
+}
+function finishTeamDraw(){
+  renderTeamResults();
+  addGameStat("teamer");
+  addRoundStat(1);
+  go("teamResult");
+  triggerHaptic("success");
+}
 function runTeamDraw(){
   normalizeTeamPlayers();
   if(teamPlayers.length<2){showSettingToast("Mindestens 2 Namen benötigt");return}
   if(teamCount<2||teamCount>teamPlayers.length){showSettingToast("Teamanzahl passt nicht zu den Teilnehmern");return}
-  latestTeams=makeRandomTeams();clearInterval(teamAnimationTimer);go("teamDraw");triggerHaptic("heavy");
-  const nameNode=document.getElementById("teamShuffleName");let ticks=0;
-  teamAnimationTimer=setInterval(()=>{
-    nameNode.textContent=teamPlayers[randomInt(teamPlayers.length)];ticks++;
-    if(ticks>=18){clearInterval(teamAnimationTimer);teamAnimationTimer=null;nameNode.textContent="Teams stehen fest!";triggerHaptic("success");setTimeout(()=>{renderTeamResults();addGameStat("teamer");addRoundStat(1);go("teamResult")},500)}
-  },85);
+
+  latestTeams=makeRandomTeams();
+  clearInterval(teamAnimationTimer);
+  go("teamDraw");
+  triggerHaptic("heavy");
+
+  const shuffleNode=document.getElementById("teamShuffleName");
+  const revealNode=document.getElementById("teamRevealTarget");
+  const revealName=document.getElementById("teamRevealName");
+  const revealTeam=document.getElementById("teamRevealTeam");
+  const kicker=document.getElementById("teamDrawKicker");
+  const title=document.getElementById("teamDrawTitle");
+  const subtitle=document.getElementById("teamDrawSubtitle");
+
+  revealNode.hidden=true;
+  shuffleNode.hidden=false;
+  shuffleNode.classList.remove("fade");
+  kicker.textContent="NAMEN WERDEN GEMISCHT";
+  title.textContent="Wer landet zusammen?";
+  subtitle.textContent="Die Ziehung startet gleich.";
+  setTeamRevealProgress(teamPlayers.length,0);
+
+  let ticks=0;
+  let delay=58;
+  const shuffleStep=()=>{
+    shuffleNode.classList.add("fade");
+    setTimeout(()=>{
+      shuffleNode.textContent=teamPlayers[randomInt(teamPlayers.length)];
+      shuffleNode.classList.remove("fade");
+    },85);
+    ticks++;
+    if(ticks<23){
+      delay=Math.min(155,delay+5);
+      teamAnimationTimer=setTimeout(shuffleStep,delay);
+    }else{
+      shuffleNode.textContent="Alles gemischt";
+      kicker.textContent="DIE TEAMS ENTSTEHEN";
+      title.textContent="Jetzt wird aufgedeckt";
+      subtitle.textContent="Name für Name.";
+      setTimeout(()=>{
+        shuffleNode.hidden=true;
+        revealNode.hidden=false;
+        revealTeamsOneByOne();
+      },650);
+    }
+  };
+
+  const revealOrder=buildTeamRevealOrder(latestTeams);
+  let revealIndex=0;
+  const revealTeamsOneByOne=()=>{
+    if(revealIndex>=revealOrder.length){
+      kicker.textContent="AUSLOSUNG ABGESCHLOSSEN";
+      title.textContent="Die Teams stehen!";
+      subtitle.textContent="Zeit für das Ergebnis.";
+      revealTeam.textContent="FERTIG";
+      revealName.textContent="🎉";
+      setTeamRevealProgress(revealOrder.length,revealOrder.length);
+      setTimeout(finishTeamDraw,1050);
+      return;
+    }
+    const item=revealOrder[revealIndex];
+    revealNode.style.animation="none";
+    void revealNode.offsetWidth;
+    revealNode.style.animation="";
+    revealTeam.textContent=`TEAM ${item.teamIndex+1}`;
+    revealName.textContent=item.name;
+    setTeamRevealProgress(revealOrder.length,revealIndex+1);
+    triggerHaptic(revealIndex%2===0?"light":"medium");
+    revealIndex++;
+    teamAnimationTimer=setTimeout(revealTeamsOneByOne,740);
+  };
+
+  teamAnimationTimer=setTimeout(shuffleStep,250);
 }
 document.getElementById("addTeamPlayer").addEventListener("click",()=>{
   const input=document.getElementById("newTeamPlayer"),name=input.value.trim();if(!name)return;
