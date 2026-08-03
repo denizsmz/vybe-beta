@@ -8,7 +8,7 @@
 <meta name="format-detection" content="telephone=no">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="theme-color" content="#17111f">
-<title>VYBE 7.0.2 – Cleaner Team Draw</title>
+<title>VYBE 7.0.3 – Wheel Team Draw</title>
 <style>
 :root{
   --bg:#211b2d;
@@ -2278,7 +2278,7 @@ html:not(.vybe-standalone) .app{
 }
 
 
-/* VYBE 7.0.2 – Tabu & Team-Ausloser */
+/* VYBE 7.0.3 – Tabu & Team-Ausloser */
 .game-card.teamer{background:linear-gradient(145deg,#3151b6,#7145c9 58%,#aa66ed)}
 .team-gradient-title{background:linear-gradient(90deg,#78a7ff,#c18aff);-webkit-background-clip:text;color:transparent}
 .taboo-round-stats{width:100%;display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:18px 0 12px}
@@ -2311,7 +2311,7 @@ html:not(.vybe-standalone) .app{
 
 
 /* ==========================================================
-   VYBE 7.0.2 – Werwolf
+   VYBE 7.0.3 – Werwolf
    ========================================================== */
 .game-card.werewolf{background:linear-gradient(145deg,#171c30,#48335e 58%,#9a3f64)}
 .ww-title{background:linear-gradient(90deg,#c8d7ff,#ff7399);-webkit-background-clip:text;color:transparent}
@@ -2366,7 +2366,7 @@ html:not(.vybe-standalone) .app{
 
 
 /* ==========================================================
-   VYBE 7.0.2 – Team suspense + Werwolf narrator polish
+   VYBE 7.0.3 – Team suspense + Werwolf narrator polish
    ========================================================== */
 
 /* TEAM-AUSLOSER */
@@ -2560,7 +2560,7 @@ html:not(.vybe-standalone) .app{
 
 
 /* ==========================================================
-   VYBE 7.0.2 – Team-Ausloser Redesign
+   VYBE 7.0.3 – Team-Ausloser Redesign
    ========================================================== */
 .team-count-picker{
   grid-column:1/-1;
@@ -2796,7 +2796,7 @@ html:not(.vybe-standalone) .app{
 
 
 /* ==========================================================
-   VYBE 7.0.2 – Cleaner Team-Ausloser
+   VYBE 7.0.3 – Cleaner Team-Ausloser
    ========================================================== */
 .clean-team-draw{overflow:auto;padding-bottom:18px}
 .clean-draw-head{display:flex;align-items:center;gap:13px;margin-bottom:14px}
@@ -2825,6 +2825,176 @@ html:not(.vybe-standalone) .app{
 @media(max-width:370px){.clean-team-grid{grid-template-columns:1fr}}
 @media(min-width:700px){.clean-team-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 
+
+/* ==========================================================
+   VYBE 7.0.3 – Wheel Team Draw + Werwolf Switch Redesign
+   ========================================================== */
+
+/* TEAM WHEEL */
+.team-wheel-stage{
+  position:relative;
+  margin-top:14px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+.team-wheel-pointer{
+  position:relative;
+  z-index:4;
+  margin-bottom:-8px;
+  color:#fff;
+  font-size:24px;
+  filter:drop-shadow(0 4px 8px rgba(0,0,0,.35));
+}
+.team-wheel{
+  position:relative;
+  width:min(68vw,250px);
+  aspect-ratio:1;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  background:
+    conic-gradient(
+      from 0deg,
+      #4e6ed7 0 45deg,
+      #8f57d3 45deg 90deg,
+      #566de1 90deg 135deg,
+      #a25bd4 135deg 180deg,
+      #4e6ed7 180deg 225deg,
+      #8f57d3 225deg 270deg,
+      #566de1 270deg 315deg,
+      #a25bd4 315deg 360deg
+    );
+  border:8px solid rgba(255,255,255,.09);
+  box-shadow:
+    0 22px 48px rgba(61,45,126,.28),
+    inset 0 0 0 2px rgba(255,255,255,.08);
+  transition:transform 1.15s cubic-bezier(.12,.72,.08,1);
+  will-change:transform;
+}
+.team-wheel::before{
+  content:"";
+  position:absolute;
+  inset:16%;
+  border-radius:50%;
+  background:linear-gradient(145deg,#252b50,#472e64);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.08);
+}
+.team-wheel::after{
+  content:"";
+  position:absolute;
+  width:18px;height:18px;
+  border-radius:50%;
+  top:-4px;left:50%;
+  transform:translateX(-50%);
+  background:#fff;
+  box-shadow:0 0 0 5px rgba(255,255,255,.12);
+}
+.team-wheel.spinning{
+  filter:saturate(1.08);
+}
+.team-wheel-name{
+  position:relative;
+  z-index:2;
+  max-width:64%;
+  text-align:center;
+  font-size:clamp(21px,6vw,30px);
+  font-weight:1000;
+  line-height:1.05;
+  color:#fff;
+  text-shadow:0 4px 14px rgba(0,0,0,.28);
+}
+.team-wheel-caption{
+  width:100%;
+  margin-top:12px;
+  min-height:61px;
+  padding:10px 14px;
+  border-radius:18px;
+  background:linear-gradient(145deg,#4266d0,#8d56d3);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  box-shadow:0 14px 30px rgba(71,54,153,.22);
+}
+.team-wheel-caption span{
+  font-size:9px;
+  letter-spacing:1.2px;
+  font-weight:1000;
+  color:rgba(255,255,255,.72);
+}
+.team-wheel-caption strong{
+  margin-top:4px;
+  font-size:clamp(22px,6.5vw,31px);
+}
+.team-wheel-caption.reveal{
+  animation:teamCaptionIn .3s cubic-bezier(.2,.8,.2,1);
+}
+@keyframes teamCaptionIn{
+  from{opacity:.35;transform:scale(.97)}
+  to{opacity:1;transform:none}
+}
+
+/* WERWOLF SWITCHES: completely new, stable layout */
+.ww-role-toggle{
+  position:relative!important;
+  width:64px!important;
+  height:34px!important;
+  min-width:64px!important;
+  border:0!important;
+  border-radius:999px!important;
+  padding:0!important;
+  background:#37333d!important;
+  box-shadow:inset 0 2px 5px rgba(0,0,0,.3)!important;
+  overflow:hidden!important;
+  flex:none!important;
+}
+.ww-role-toggle::before{
+  content:"AUS";
+  position:absolute;
+  inset:0 8px 0 auto;
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  font-size:8px;
+  font-weight:1000;
+  letter-spacing:.5px;
+  color:rgba(255,255,255,.48);
+  transition:opacity .2s ease;
+}
+.ww-role-toggle::after{
+  content:""!important;
+  position:absolute!important;
+  width:28px!important;
+  height:28px!important;
+  left:3px!important;
+  top:3px!important;
+  border-radius:50%!important;
+  background:#fff!important;
+  box-shadow:0 3px 8px rgba(0,0,0,.28)!important;
+  transform:none!important;
+  transition:transform .24s cubic-bezier(.2,.8,.2,1)!important;
+}
+.ww-role-toggle.on{
+  background:linear-gradient(90deg,#536cd1,#b44979)!important;
+}
+.ww-role-toggle.on::before{
+  content:"AN";
+  inset:0 auto 0 9px;
+  justify-content:flex-start;
+  color:#fff;
+}
+.ww-role-toggle.on::after{
+  transform:translateX(30px)!important;
+}
+.ww-role-toggle:active::after{
+  width:28px!important;
+}
+.ww-role-toggle:disabled{
+  opacity:.28!important;
+  filter:none!important;
+}
+
 </style>
 
   <meta name="theme-color" content="#17131f">
@@ -2839,7 +3009,7 @@ html:not(.vybe-standalone) .app{
   <link rel="icon" type="image/png" sizes="192x192" href="./icons/icon-192.png">
   <link rel="icon" type="image/png" sizes="512x512" href="./icons/icon-512.png">
 
-<!-- VYBE 7.0.2 build: expanded verified quiz databases + Bundesliga category -->
+<!-- VYBE 7.0.3 build: expanded verified quiz databases + Bundesliga category -->
 </head>
 <body>
 <div class="app">
@@ -3339,9 +3509,15 @@ html:not(.vybe-standalone) .app{
 
     <div id="teamLiveGrid" class="clean-team-grid"></div>
 
-    <div class="clean-draw-focus">
-      <span id="teamCurrentLabel">NÄCHSTER NAME</span>
-      <strong id="teamCurrentName">Bereit?</strong>
+    <div class="team-wheel-stage">
+      <div class="team-wheel-pointer">▼</div>
+      <div id="teamWheel" class="team-wheel">
+        <div id="teamWheelName" class="team-wheel-name">Bereit?</div>
+      </div>
+      <div class="team-wheel-caption">
+        <span id="teamCurrentLabel">NÄCHSTER NAME</span>
+        <strong id="teamCurrentName">Bereit?</strong>
+      </div>
     </div>
 
     <div class="clean-draw-footer">
@@ -3569,7 +3745,7 @@ html:not(.vybe-standalone) .app{
         <div class="row-icon">ℹ️</div>
         <div class="row-copy">
           <div class="row-title">Version</div>
-          <div class="row-sub">VYBE 7.0.2</div>
+          <div class="row-sub">VYBE 7.0.3</div>
         </div>
       </div>
     </div>
@@ -6627,17 +6803,26 @@ function revealCleanTeamMember(item,index,total){
   document.querySelectorAll(".clean-team-card").forEach(card=>{
     card.classList.toggle("active",Number(card.dataset.teamIndex)===item.teamIndex);
   });
-  const focus=document.querySelector(".clean-draw-focus");
-  focus.classList.remove("reveal");
-  void focus.offsetWidth;
-  focus.classList.add("reveal");
+
+  const caption=document.querySelector(".team-wheel-caption");
+  caption.classList.remove("reveal");
+  void caption.offsetWidth;
+  caption.classList.add("reveal");
+
   document.getElementById("teamCurrentLabel").textContent=`KOMMT IN TEAM ${item.teamIndex+1}`;
   document.getElementById("teamCurrentName").textContent=item.name;
+  document.getElementById("teamWheelName").textContent=item.name;
+
   const slot=document.getElementById(`cleanTeamSlot${item.teamIndex}_${item.slotIndex}`);
   slot.textContent=item.name;
   slot.classList.add("filled");
-  const count=document.querySelectorAll(`#teamLiveGrid .clean-team-card[data-team-index="${item.teamIndex}"] .clean-team-slot.filled`).length;
-  document.getElementById(`cleanTeamCount${item.teamIndex}`).textContent=`${count}/${latestTeams[item.teamIndex].length}`;
+
+  const count=document.querySelectorAll(
+    `#teamLiveGrid .clean-team-card[data-team-index="${item.teamIndex}"] .clean-team-slot.filled`
+  ).length;
+  document.getElementById(`cleanTeamCount${item.teamIndex}`).textContent=
+    `${count}/${latestTeams[item.teamIndex].length}`;
+
   document.getElementById("teamDrawProgressText").textContent=`${index+1} von ${total} verteilt`;
   document.getElementById("teamDrawProgressBar").style.width=`${(index+1)/total*100}%`;
 }
@@ -6656,45 +6841,85 @@ function finishTeamDraw(){
     go("teamResult");
   },700);
 }
+function spinTeamWheel(finalName,teamIndex,done){
+  const wheel=document.getElementById("teamWheel");
+  const wheelName=document.getElementById("teamWheelName");
+  const previewPool=shuffle([...teamPlayers]).slice(0,6);
+  let previewIndex=0;
+  let previewTimer=null;
+
+  wheel.classList.add("spinning");
+  wheelName.textContent=previewPool[0];
+
+  const updatePreview=()=>{
+    wheelName.textContent=previewPool[previewIndex%previewPool.length];
+    previewIndex++;
+    if(previewIndex<10){
+      previewTimer=setTimeout(updatePreview,70+previewIndex*8);
+    }
+  };
+  updatePreview();
+
+  const baseRotation=Number(wheel.dataset.rotation||0);
+  const extraTurns=1440+randomInt(720);
+  const targetOffset=teamIndex*45+randomInt(20)-10;
+  const finalRotation=baseRotation+extraTurns+targetOffset;
+  wheel.dataset.rotation=String(finalRotation);
+  wheel.style.transform=`rotate(${finalRotation}deg)`;
+
+  setTimeout(()=>{
+    clearTimeout(previewTimer);
+    wheel.classList.remove("spinning");
+    wheelName.textContent=finalName;
+    done();
+  },1180);
+}
 function runTeamDraw(){
   normalizeTeamPlayers();
   if(teamPlayers.length<2){showSettingToast("Mindestens 2 Namen benötigt");return}
   if(teamCount<2||teamCount>teamPlayers.length){showSettingToast("Teamanzahl passt nicht zu den Teilnehmern");return}
+
   latestTeams=makeRandomTeams();
   clearTimeout(teamAnimationTimer);
   go("teamDraw");
   triggerHaptic("heavy");
-  document.getElementById("teamDrawKicker").textContent="KURZ MISCHEN";
+
+  document.getElementById("teamDrawKicker").textContent="BEREIT";
   document.getElementById("teamDrawTitle").textContent="Teams werden ausgelost";
-  document.getElementById("teamDrawSubtitle").textContent="Jeder Name wird nacheinander verteilt.";
-  document.getElementById("teamCurrentLabel").textContent="MISCHEN";
+  document.getElementById("teamDrawSubtitle").textContent="Die Reihenfolge läuft Team 1, Team 2, Team 3 und wieder von vorn.";
+  document.getElementById("teamCurrentLabel").textContent="NÄCHSTER NAME";
   document.getElementById("teamCurrentName").textContent="Bereit?";
+  document.getElementById("teamWheelName").textContent="Bereit?";
   document.getElementById("teamDrawProgressText").textContent=`0 von ${teamPlayers.length} verteilt`;
   document.getElementById("teamDrawProgressBar").style.width="0%";
+
+  const wheel=document.getElementById("teamWheel");
+  wheel.style.transform="rotate(0deg)";
+  wheel.dataset.rotation="0";
+
   renderCleanTeamBoard();
+
   const revealOrder=buildTeamRevealOrder(latestTeams);
-  let previewIndex=0;
-  const previewNames=shuffle([...teamPlayers]).slice(0,5);
-  const previewStep=()=>{
-    document.getElementById("teamCurrentName").textContent=previewNames[previewIndex];
-    previewIndex++;
-    if(previewIndex<previewNames.length){
-      teamAnimationTimer=setTimeout(previewStep,110);
-    }else{
-      document.getElementById("teamDrawKicker").textContent="JETZT WIRD VERTEILT";
-      teamAnimationTimer=setTimeout(()=>revealNext(0),250);
-    }
-  };
+
   const revealNext=index=>{
     if(index>=revealOrder.length){
       finishTeamDraw();
       return;
     }
-    revealCleanTeamMember(revealOrder[index],index,revealOrder.length);
-    triggerHaptic(index%2===0?"light":"medium");
-    teamAnimationTimer=setTimeout(()=>revealNext(index+1),470);
+
+    const item=revealOrder[index];
+    document.getElementById("teamDrawKicker").textContent=`TEAM ${item.teamIndex+1} IST DRAN`;
+    document.getElementById("teamCurrentLabel").textContent="GLÜCKSRAD LÄUFT";
+    document.getElementById("teamCurrentName").textContent="...";
+
+    spinTeamWheel(item.name,item.teamIndex,()=>{
+      revealCleanTeamMember(item,index,revealOrder.length);
+      triggerHaptic(index%2===0?"light":"medium");
+      teamAnimationTimer=setTimeout(()=>revealNext(index+1),520);
+    });
   };
-  teamAnimationTimer=setTimeout(previewStep,250);
+
+  teamAnimationTimer=setTimeout(()=>revealNext(0),350);
 }
 document.getElementById("addTeamPlayer").addEventListener("click",()=>{
   const input=document.getElementById("newTeamPlayer"),name=input.value.trim();if(!name)return;
