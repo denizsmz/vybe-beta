@@ -8,7 +8,7 @@
 <meta name="format-detection" content="telephone=no">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="theme-color" content="#17111f">
-<title>VYBE 7.0.5 – Premium Team Draw</title>
+<title>VYBE 7.0.6 – Team-Ausloser Redesign</title>
 <style>
 :root{
   --bg:#211b2d;
@@ -2278,7 +2278,7 @@ html:not(.vybe-standalone) .app{
 }
 
 
-/* VYBE 7.0.5 – Tabu & Team-Ausloser */
+/* VYBE 7.0.6 – Tabu & Team-Ausloser */
 .game-card.teamer{background:linear-gradient(145deg,#3151b6,#7145c9 58%,#aa66ed)}
 .team-gradient-title{background:linear-gradient(90deg,#78a7ff,#c18aff);-webkit-background-clip:text;color:transparent}
 .taboo-round-stats{width:100%;display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:18px 0 12px}
@@ -2311,7 +2311,7 @@ html:not(.vybe-standalone) .app{
 
 
 /* ==========================================================
-   VYBE 7.0.5 – Werwolf
+   VYBE 7.0.6 – Werwolf
    ========================================================== */
 .game-card.werewolf{background:linear-gradient(145deg,#171c30,#48335e 58%,#9a3f64)}
 .ww-title{background:linear-gradient(90deg,#c8d7ff,#ff7399);-webkit-background-clip:text;color:transparent}
@@ -2366,7 +2366,7 @@ html:not(.vybe-standalone) .app{
 
 
 /* ==========================================================
-   VYBE 7.0.5 – Team suspense + Werwolf narrator polish
+   VYBE 7.0.6 – Team suspense + Werwolf narrator polish
    ========================================================== */
 
 /* TEAM-AUSLOSER */
@@ -2560,7 +2560,7 @@ html:not(.vybe-standalone) .app{
 
 
 /* ==========================================================
-   VYBE 7.0.5 – Team-Ausloser Redesign
+   VYBE 7.0.6 – Team-Ausloser Redesign
    ========================================================== */
 .team-count-picker{
   grid-column:1/-1;
@@ -2796,7 +2796,7 @@ html:not(.vybe-standalone) .app{
 
 
 /* ==========================================================
-   VYBE 7.0.5 – Cleaner Team-Ausloser
+   VYBE 7.0.6 – Cleaner Team-Ausloser
    ========================================================== */
 .clean-team-draw{overflow:auto;padding-bottom:18px}
 .clean-draw-head{display:flex;align-items:center;gap:13px;margin-bottom:14px}
@@ -2827,7 +2827,7 @@ html:not(.vybe-standalone) .app{
 
 
 /* ==========================================================
-   VYBE 7.0.5 – Wheel Team Draw + Werwolf Switch Redesign
+   VYBE 7.0.6 – Wheel Team Draw + Werwolf Switch Redesign
    ========================================================== */
 
 /* TEAM WHEEL */
@@ -2997,7 +2997,7 @@ html:not(.vybe-standalone) .app{
 
 
 /* ==========================================================
-   VYBE 7.0.5 – Manual Team Wheel + Werwolf alignment
+   VYBE 7.0.6 – Manual Team Wheel + Werwolf alignment
    ========================================================== */
 .team-wheel-stage{position:relative;margin-top:14px;display:flex;flex-direction:column;align-items:center}
 .team-wheel-pointer{position:relative;z-index:5;margin-bottom:-7px;color:#fff;font-size:24px;filter:drop-shadow(0 4px 8px rgba(0,0,0,.35))}
@@ -3064,7 +3064,7 @@ html:not(.vybe-standalone) .app{
 .ww-role-toggle:disabled{opacity:.28!important;filter:none!important}
 
 
-/* VYBE 7.0.5 – Premium Team-Ausloser */
+/* VYBE 7.0.6 – Premium Team-Ausloser */
 #teamSetup .settings-scroll{padding-bottom:calc(126px + env(safe-area-inset-bottom))}
 .team-count-panel{padding:16px!important;overflow:hidden}
 .team-count-heading{display:grid;grid-template-columns:44px minmax(0,1fr);align-items:center;gap:11px}
@@ -3110,6 +3110,35 @@ html:not(.vybe-standalone) .app{
 @media(max-height:760px){.team-draw-shell{grid-template-rows:auto auto minmax(135px,1fr) auto auto;gap:7px;padding-top:3px}.premium-wheel{width:min(34vw,150px)!important}.clean-team-slot{min-height:25px!important;padding:4px 6px!important}.premium-draw-caption{min-height:49px}}
 @media(max-width:390px){.team-count-picker{gap:5px!important}.team-count-card{min-height:56px!important;border-radius:14px!important}.premium-team-grid{gap:5px!important}.clean-team-card{padding:8px!important}}
 
+
+/* VYBE 7.0.6 – Team-Ausloser Mockup */
+.team-v706-screen{overflow:hidden!important}
+.team-v706-hero{text-align:center;padding:3px 20px 12px}.team-v706-dice{font-size:48px}.team-v706-hero h1{margin:3px 0 0;font-size:clamp(34px,9vw,47px);font-style:italic;line-height:.98;background:linear-gradient(90deg,#8093ff,#df64c9);-webkit-background-clip:text;color:transparent}
+.team-v706-setup-scroll{height:calc(100dvh - 235px - env(safe-area-inset-bottom));overflow:auto;padding:0 16px 112px}
+.team-v706-section-head{display:flex;justify-content:space-between;margin:10px 5px 8px;color:#c8becf;font-size:10px;font-weight:1000;letter-spacing:.8px}
+.team-v706-player-panel,.team-v706-count-panel{border:1px solid rgba(255,255,255,.09);border-radius:22px;background:linear-gradient(180deg,rgba(255,255,255,.052),rgba(255,255,255,.025));padding:12px}
+#teamSetup .team-player-list{display:flex;flex-direction:column;gap:7px}#teamSetup .team-player-row{display:grid;grid-template-columns:36px minmax(0,1fr) 36px;align-items:center;gap:9px;padding:7px 8px;border-radius:14px;background:rgba(255,255,255,.045)}
+#teamSetup .team-player-index{width:32px;height:32px;border-radius:10px;display:grid;place-items:center;background:linear-gradient(145deg,#526fe0,#9b58d5)}
+#teamSetup .team-player-row input{width:100%;min-width:0;border:0;outline:0;background:transparent;color:var(--text);font:inherit;font-size:14px;font-weight:900}
+#teamSetup .team-remove{width:32px;height:32px;border:0;border-radius:10px;background:rgba(255,80,104,.12);color:#ff7183;font-size:17px;font-weight:1000}
+.team-v706-add-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;margin-top:10px}.team-v706-add-row input{min-width:0;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.025);color:var(--text);font:inherit;padding:12px 13px;outline:0}.team-v706-add-row button{border:0;border-radius:14px;padding:0 15px;color:#fff;font-weight:950;background:linear-gradient(90deg,#536fdc,#e45d9a,#ff8a53)}
+.team-v706-count-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:7px}.team-v706-count{min-width:0;min-height:61px;border-radius:15px;border:1px solid var(--line);background:rgba(255,255,255,.035);color:var(--text);display:flex;flex-direction:column;align-items:center;justify-content:center}.team-v706-count strong{font-size:22px}.team-v706-count span{margin-top:3px;color:var(--muted);font-size:8px;font-weight:950}.team-v706-count.selected-team{background:linear-gradient(145deg,#4f6cdc,#9556d5)!important;border-color:#d17cff!important;box-shadow:0 0 0 2px rgba(187,105,255,.18)}.team-v706-count:disabled{opacity:.25}
+.team-v706-preview{margin-top:11px;padding:11px;border-radius:14px;text-align:center;background:rgba(255,255,255,.027);border:1px solid var(--line);font-size:11px;font-weight:850}.team-v706-startbar{background:linear-gradient(180deg,transparent,rgba(17,12,24,.94) 34%)}.team-v706-primary{background:linear-gradient(90deg,#526fe0,#a355dc,#ff765e)!important}
+.team-v706-draw-shell{height:calc(100dvh - 86px - 92px - env(safe-area-inset-bottom));padding:0 16px 8px;display:grid;grid-template-rows:auto auto auto minmax(230px,1fr);gap:9px;overflow:hidden}
+.team-v706-progress-row{display:grid;grid-template-columns:auto minmax(0,1fr);align-items:center;gap:10px}.team-v706-progress-row>span{font-size:10px;font-weight:950}.team-v706-progress{height:6px;border-radius:999px;background:rgba(255,255,255,.075);overflow:hidden}.team-v706-progress i{display:block;width:0;height:100%;background:linear-gradient(90deg,#7656db,#4d7aea);transition:width .35s}
+.team-v706-live-grid{display:grid;gap:7px;grid-template-columns:repeat(var(--team-columns,3),minmax(0,1fr))}.team-v706-live-card{min-width:0;padding:9px;border-radius:16px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.035)}.team-v706-live-title{display:flex;justify-content:space-between;gap:3px;margin-bottom:7px}.team-v706-live-title strong{font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.team-v706-live-title span{font-size:8px;color:var(--muted)}.team-v706-live-members{display:flex;flex-direction:column;gap:5px}.team-v706-live-slot{min-height:28px;padding:6px;border-radius:9px;border:1px dashed rgba(255,255,255,.1);color:rgba(255,255,255,.22);font-size:9px;font-weight:850;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.team-v706-live-slot.filled{border-style:solid;color:#fff;background:rgba(255,255,255,.055)}.team-v706-live-card.active{border-color:#b268f1}
+.team-v706-turn{text-align:center}.team-v706-turn strong{display:block;color:#bd76ed;font-size:15px}.team-v706-turn span{display:block;margin-top:3px;color:var(--muted);font-size:10px}
+.team-v706-wheel-wrap{position:relative;display:flex;align-items:center;justify-content:center;min-height:0}.team-v706-pointer{position:absolute;z-index:8;top:0;left:50%;transform:translateX(-50%);width:0;height:0;border-left:13px solid transparent;border-right:13px solid transparent;border-top:23px solid #ff8962}
+.team-v706-wheel{position:relative;width:min(73vw,325px);aspect-ratio:1;border-radius:50%;background:#151220;border:7px solid #6e57c8;box-shadow:0 0 0 3px rgba(212,79,203,.25),0 0 35px rgba(123,69,215,.28)}
+.team-v706-wheel-rotor{position:absolute;inset:0;border-radius:50%;overflow:hidden;transition:transform 3.25s cubic-bezier(.08,.7,.04,1);background:conic-gradient(#2a223d 0 60deg,#5c3475 60deg 120deg,#251f37 120deg 180deg,#53336f 180deg 240deg,#28223b 240deg 300deg,#613879 300deg)}
+.team-v706-wheel-label{position:absolute;left:50%;top:50%;z-index:2;width:76px;margin-left:-38px;transform-origin:38px 0;text-align:center;font-size:11px;font-weight:950;color:#fff;text-shadow:0 2px 5px #000}
+.team-v706-wheel-center{position:absolute;z-index:5;inset:33%;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:linear-gradient(145deg,#17141f,#2a1a32);border:1px solid rgba(210,94,208,.28)}.team-v706-wheel-center span{font-size:7px;letter-spacing:1px;color:var(--muted);font-weight:1000}.team-v706-wheel-center strong{margin-top:5px;font-size:clamp(18px,5vw,25px)}
+.team-v706-action{position:absolute;left:0;right:0;bottom:0;padding:9px 16px calc(9px + env(safe-area-inset-bottom));background:linear-gradient(180deg,transparent,rgba(15,11,21,.95) 30%);z-index:10}.team-v706-action button{width:100%;min-height:60px;border-radius:19px;font-size:16px}.team-v706-action button:disabled{opacity:.45}
+.team-v706-result-scroll{height:calc(100dvh - 86px - 145px - env(safe-area-inset-bottom));overflow:auto;padding:0 16px 20px}.team-v706-result-hero{text-align:center;padding:5px 0 15px}.team-v706-result-hero>div{font-size:48px}.team-v706-result-hero h2{margin:5px 0;font-size:19px}.team-v706-result-grid{display:flex;flex-direction:column;gap:10px}.team-v706-result-card{padding:14px;border-radius:19px;border:1px solid rgba(255,255,255,.09);background:rgba(255,255,255,.035)}.team-v706-result-card h3{margin:0 0 10px;font-size:15px;display:flex;justify-content:space-between}.team-v706-result-member{display:grid;grid-template-columns:28px minmax(0,1fr);align-items:center;gap:9px;padding:8px 9px;border-radius:11px;background:rgba(255,255,255,.045);font-size:12px;font-weight:900}.team-v706-result-member+.team-v706-result-member{margin-top:6px}.team-v706-result-number{width:27px;height:27px;border-radius:8px;display:grid;place-items:center;background:linear-gradient(145deg,#526fe0,#9858d6)}
+.team-v706-result-actions{position:absolute;left:0;right:0;bottom:0;display:grid;gap:8px;padding:10px 16px calc(10px + env(safe-area-inset-bottom));background:linear-gradient(180deg,transparent,rgba(15,11,21,.96) 25%)}.team-v706-result-actions button{width:100%;min-height:50px;border-radius:17px}
+@media(max-height:790px){.team-v706-wheel{width:min(56vw,245px)}.team-v706-draw-shell{grid-template-rows:auto auto auto minmax(185px,1fr);gap:6px}}
+@media(max-width:390px){.team-v706-count-grid{gap:5px}.team-v706-count{min-height:56px}.team-v706-add-row{grid-template-columns:1fr}.team-v706-add-row button{min-height:44px}}
+
 </style>
 
   <meta name="theme-color" content="#17131f">
@@ -3124,7 +3153,7 @@ html:not(.vybe-standalone) .app{
   <link rel="icon" type="image/png" sizes="192x192" href="./icons/icon-192.png">
   <link rel="icon" type="image/png" sizes="512x512" href="./icons/icon-512.png">
 
-<!-- VYBE 7.0.5 build: expanded verified quiz databases + Bundesliga category -->
+<!-- VYBE 7.0.6 build: expanded verified quiz databases + Bundesliga category -->
 </head>
 <body>
 <div class="app">
@@ -3569,80 +3598,54 @@ html:not(.vybe-standalone) .app{
 </section>
 
 <!-- ======================= TEAM-AUSLOSER ======================= -->
-<section id="teamSetup" class="screen">
+<section id="teamSetup" class="screen team-v706-screen">
   <div class="top"><button class="back" data-open="home">‹</button><div></div><button class="icon-btn" type="button">?</button></div>
-  <div class="game-hero"><div class="game-icon">🎲</div><h1 class="team-gradient-title">TEAM<br>AUSLOSER</h1></div>
-  <div class="settings-scroll">
-    <div class="section-label">TEILNEHMER</div>
-    <div class="panel team-setup-panel">
+  <div class="team-v706-hero"><div class="team-v706-dice">🎲</div><h1>TEAM AUSLOSER</h1></div>
+  <div class="team-v706-setup-scroll">
+    <div class="team-v706-section-head"><span>1. SPIELER HINZUFÜGEN</span><strong id="teamPlayerCounter">6 / 20</strong></div>
+    <div class="team-v706-player-panel">
       <div id="teamPlayerList" class="team-player-list"></div>
-      <div class="add-player team-add-player">
-        <input id="newTeamPlayer" placeholder="Name hinzufügen" maxlength="20">
-        <button id="addTeamPlayer" type="button">+</button>
-      </div>
+      <div class="team-v706-add-row"><input id="newTeamPlayer" placeholder="Name hinzufügen" maxlength="20"><button id="addTeamPlayer" type="button">＋ Spieler hinzufügen</button></div>
     </div>
-    <div class="section-label">ANZAHL TEAMS</div>
-    <div class="panel team-count-panel">
-      <div class="team-count-heading">
-        <div class="row-icon">👥</div>
-        <div>
-          <div class="row-title">Wie viele Teams?</div>
-          <div class="row-sub">Die Gruppen werden möglichst gleich groß verteilt.</div>
-        </div>
+    <div class="team-v706-section-head"><span>2. ANZAHL TEAMS</span></div>
+    <div class="team-v706-count-panel">
+      <div id="teamCountOptions" class="team-v706-count-grid">
+        <button class="team-v706-count selected-team" data-team-count="2" type="button"><strong>2</strong><span>Teams</span></button>
+        <button class="team-v706-count" data-team-count="3" type="button"><strong>3</strong><span>Teams</span></button>
+        <button class="team-v706-count" data-team-count="4" type="button"><strong>4</strong><span>Teams</span></button>
+        <button class="team-v706-count" data-team-count="5" type="button"><strong>5</strong><span>Teams</span></button>
+        <button class="team-v706-count" data-team-count="6" type="button"><strong>6</strong><span>Teams</span></button>
       </div>
-      <div id="teamCountOptions" class="team-count-picker">
-        <button class="team-count-card selected-team" data-team-count="2" type="button"><strong>2</strong><span>Teams</span></button>
-        <button class="team-count-card" data-team-count="3" type="button"><strong>3</strong><span>Teams</span></button>
-        <button class="team-count-card" data-team-count="4" type="button"><strong>4</strong><span>Teams</span></button>
-        <button class="team-count-card" data-team-count="5" type="button"><strong>5</strong><span>Teams</span></button>
-        <button class="team-count-card" data-team-count="6" type="button"><strong>6</strong><span>Teams</span></button>
-      </div>
-      <div id="teamCountPreview" class="team-count-preview">6 Personen → 2 Teams mit je 3 Personen</div>
+      <div id="teamCountPreview" class="team-v706-preview">6 Personen → 2 Teams mit je 3 Personen</div>
     </div>
   </div>
-  <div class="startbar"><button id="startTeamDraw" class="primary team-primary">TEAMS AUSLOSEN</button></div>
+  <div class="startbar team-v706-startbar"><button id="startTeamDraw" class="primary team-v706-primary">AUSLOSUNG STARTEN</button></div>
 </section>
 
-<section id="teamDraw" class="screen team-draw-screen">
+<section id="teamDraw" class="screen team-v706-screen">
   <div class="top"><button class="back" data-open="teamSetup">‹</button><div class="page-title">AUSLOSUNG</div><span style="width:43px"></span></div>
-  <div class="team-draw-shell">
-    <div class="team-draw-status">
-      <div>
-        <div id="teamDrawKicker" class="clean-draw-kicker">BEREIT</div>
-        <h2 id="teamDrawTitle">Teams werden ausgelost</h2>
-        <p id="teamDrawSubtitle">Du bestimmst das Tempo selbst.</p>
-      </div>
-      <div id="teamDrawProgressText" class="team-progress-badge">0 von 0</div>
-    </div>
-
-    <div id="teamLiveGrid" class="premium-team-grid"></div>
-
-    <div class="premium-wheel-zone">
-      <div class="team-wheel-pointer">▼</div>
-      <div id="teamWheel" class="team-wheel premium-wheel">
-        <div class="team-wheel-center">
-          <span>NÄCHSTER NAME</span>
-          <strong id="teamWheelName">Bereit?</strong>
-        </div>
+  <div class="team-v706-draw-shell">
+    <div class="team-v706-progress-row"><span id="teamDrawProgressText">0 / 6 verteilt</span><div class="team-v706-progress"><i id="teamDrawProgressBar"></i></div></div>
+    <div id="teamLiveGrid" class="team-v706-live-grid"></div>
+    <div class="team-v706-turn"><strong id="teamCurrentLabel">Team 1 ist dran</strong><span id="teamCurrentName">Drehe das Rad und ziehe den nächsten Namen</span></div>
+    <div class="team-v706-wheel-wrap">
+      <div class="team-v706-pointer"></div>
+      <div id="teamWheel" class="team-v706-wheel">
+        <div id="teamWheelRotor" class="team-v706-wheel-rotor"></div>
+        <div class="team-v706-wheel-center"><span>NÄCHSTER NAME</span><strong id="teamWheelName">Bereit?</strong></div>
       </div>
     </div>
-
-    <div class="premium-draw-caption">
-      <span id="teamCurrentLabel">TEAM 1 IST DRAN</span>
-      <strong id="teamCurrentName">Tippe auf „Rad drehen“</strong>
-    </div>
-
-    <div class="premium-progress-track"><i id="teamDrawProgressBar"></i></div>
   </div>
-  <div class="team-draw-action">
-    <button id="spinTeamWheelButton" class="primary team-primary" type="button">RAD DREHEN</button>
-  </div>
+  <div class="team-v706-action"><button id="spinTeamWheelButton" class="primary team-v706-primary" type="button">RAD DREHEN</button></div>
 </section>
 
-<section id="teamResult" class="screen">
-  <div class="top"><button class="back" data-open="teamSetup">‹</button><div class="page-title">DEINE TEAMS</div><button id="rerollTeams" class="icon-btn" type="button" aria-label="Neu auslosen">↻</button></div>
-  <div id="teamResultGrid" class="content team-result-grid"></div>
-  <div class="two"><button class="secondary" data-open="home">FERTIG</button><button id="drawAgain" class="primary team-primary">NEU AUSLOSEN</button></div>
+<section id="teamResult" class="screen team-v706-screen">
+  <div class="top"><button class="back" data-open="teamSetup">‹</button><div class="page-title">ERGEBNIS</div><span style="width:43px"></span></div>
+  <div class="team-v706-result-scroll">
+    <div class="team-v706-result-hero"><div>🎉</div><h2>Auslosung abgeschlossen!</h2></div>
+    <div id="teamResultGrid" class="team-v706-result-grid"></div>
+  </div>
+  <div class="team-v706-result-actions"><button id="drawAgain" class="primary team-v706-primary">NEU AUSLOSEN</button><button class="secondary" data-open="home">ZURÜCK ZUR STARTSEITE</button></div>
 </section>
 
 <!-- ================= WAHRHEIT ODER PFLICHT ================= -->
@@ -3857,7 +3860,7 @@ html:not(.vybe-standalone) .app{
         <div class="row-icon">ℹ️</div>
         <div class="row-copy">
           <div class="row-title">Version</div>
-          <div class="row-sub">VYBE 7.0.5</div>
+          <div class="row-sub">VYBE 7.0.6</div>
         </div>
       </div>
     </div>
@@ -6824,243 +6827,87 @@ wwUpdateSetup();
 
 /* TEAM-AUSLOSER */
 let teamPlayers=["Lena","Max","Sophie","Ben","Mia","Noah"];
-let teamCount=2;
-let latestTeams=[];
-let teamAnimationTimer=null;
+let teamCount=2,latestTeams=[],teamRevealOrder=[],teamRevealIndex=0,teamWheelLocked=false,teamWheelRotation=0;
+const teamColors=["🔵","🟣","🟢","🟠","🔴","🟡"];
+
 function renderTeamPlayers(){
   const list=document.getElementById("teamPlayerList");if(!list)return;list.innerHTML="";
   teamPlayers.forEach((name,index)=>{
     const row=document.createElement("div");row.className="team-player-row";
     const badge=document.createElement("div");badge.className="team-player-index";badge.textContent=index+1;
-    const input=document.createElement("input");input.value=name;input.maxLength=20;input.setAttribute("aria-label",`Name ${index+1}`);input.addEventListener("input",()=>teamPlayers[index]=input.value);
+    const input=document.createElement("input");input.value=name;input.maxLength=20;input.addEventListener("input",()=>teamPlayers[index]=input.value);
     const remove=document.createElement("button");remove.type="button";remove.className="team-remove";remove.textContent="×";remove.disabled=teamPlayers.length<=2;
     remove.addEventListener("click",()=>{if(teamPlayers.length<=2)return;teamPlayers.splice(index,1);if(teamCount>teamPlayers.length)teamCount=teamPlayers.length;renderTeamPlayers();renderTeamCountOptions();triggerHaptic("light")});
     row.append(badge,input,remove);list.appendChild(row);
   });
+  const counter=document.getElementById("teamPlayerCounter");if(counter)counter.textContent=`${teamPlayers.length} / 20`;
 }
 function renderTeamCountOptions(){
-  document.querySelectorAll("[data-team-count]").forEach(button=>{
-    const count=Number(button.dataset.teamCount);
-    button.classList.toggle("selected-team",count===teamCount);
-    button.disabled=count>teamPlayers.length;
-  });
-  const preview=document.getElementById("teamCountPreview");
-  if(preview){
-    const base=Math.floor(teamPlayers.length/teamCount);
-    const rest=teamPlayers.length%teamCount;
-    preview.textContent=rest===0
-      ?`${teamPlayers.length} Personen → ${teamCount} Teams mit je ${base} Personen`
-      :`${teamPlayers.length} Personen → ${rest} Team${rest===1?"":"s"} mit ${base+1}, der Rest mit ${base} Personen`;
-  }
+  document.querySelectorAll("[data-team-count]").forEach(button=>{const count=Number(button.dataset.teamCount);button.classList.toggle("selected-team",count===teamCount);button.disabled=count>teamPlayers.length});
+  const base=Math.floor(teamPlayers.length/teamCount),rest=teamPlayers.length%teamCount,preview=document.getElementById("teamCountPreview");
+  if(preview)preview.textContent=rest===0?`${teamPlayers.length} Personen → ${teamCount} Teams mit je ${base} Personen`:`${teamPlayers.length} Personen → ${rest} Team${rest===1?"":"s"} mit ${base+1}, Rest mit ${base}`;
 }
 function normalizeTeamPlayers(){teamPlayers=teamPlayers.map((name,index)=>(name||"").trim()||`Person ${index+1}`).filter(Boolean)}
-function makeRandomTeams(){
-  normalizeTeamPlayers();
-  const shuffled=shuffle([...teamPlayers]);
-  const teams=Array.from({length:teamCount},()=>[]);
-  shuffled.forEach((name,index)=>teams[index%teamCount].push(name));
-  return teams;
+function makeRandomTeams(){normalizeTeamPlayers();const shuffled=shuffle([...teamPlayers]),teams=Array.from({length:teamCount},()=>[]);shuffled.forEach((name,index)=>teams[index%teamCount].push(name));return teams}
+function buildTeamRevealOrder(teams){const order=[];let row=0,added=true;while(added){added=false;teams.forEach((members,teamIndex)=>{if(members[row]!==undefined){order.push({name:members[row],teamIndex,slotIndex:row});added=true}});row++}return order}
+
+function renderTeamLiveBoard(){
+  const grid=document.getElementById("teamLiveGrid");grid.innerHTML="";grid.style.setProperty("--team-columns",String(teamCount));
+  latestTeams.forEach((members,teamIndex)=>{
+    const card=document.createElement("div");card.className="team-v706-live-card";card.dataset.teamIndex=teamIndex;
+    const title=document.createElement("div");title.className="team-v706-live-title";title.innerHTML=`<strong>${teamColors[teamIndex]} Team ${teamIndex+1}</strong><span id="teamLiveCount${teamIndex}">0/${members.length}</span>`;
+    const memberList=document.createElement("div");memberList.className="team-v706-live-members";
+    members.forEach((_,slotIndex)=>{const slot=document.createElement("div");slot.className="team-v706-live-slot";slot.id=`teamLiveSlot${teamIndex}_${slotIndex}`;slot.textContent="Freier Platz";memberList.appendChild(slot)});
+    card.append(title,memberList);grid.appendChild(card);
+  });
+}
+function renderWheelNames(){
+  const rotor=document.getElementById("teamWheelRotor");rotor.innerHTML="";
+  const assigned=new Set(teamRevealOrder.slice(0,teamRevealIndex).map(item=>item.name));
+  const names=teamPlayers.filter(name=>!assigned.has(name));const shown=names.length?names:["Fertig"],angle=360/shown.length;
+  shown.forEach((name,index)=>{const label=document.createElement("div");label.className="team-v706-wheel-label";const rotation=index*angle;label.style.transform=`rotate(${rotation}deg) translateY(-112px) rotate(${-rotation}deg)`;label.textContent=name;rotor.appendChild(label)});
+}
+function revealTeamMember(item,index,total){
+  document.querySelectorAll(".team-v706-live-card").forEach(card=>card.classList.toggle("active",Number(card.dataset.teamIndex)===item.teamIndex));
+  const slot=document.getElementById(`teamLiveSlot${item.teamIndex}_${item.slotIndex}`);slot.textContent=item.name;slot.classList.add("filled");
+  const count=document.querySelectorAll(`.team-v706-live-card[data-team-index="${item.teamIndex}"] .team-v706-live-slot.filled`).length;
+  document.getElementById(`teamLiveCount${item.teamIndex}`).textContent=`${count}/${latestTeams[item.teamIndex].length}`;
+  document.getElementById("teamWheelName").textContent=item.name;
+  document.getElementById("teamDrawProgressText").textContent=`${index+1} / ${total} verteilt`;
+  document.getElementById("teamDrawProgressBar").style.width=`${(index+1)/total*100}%`;
+}
+function prepareTeamSpin(){
+  const button=document.getElementById("spinTeamWheelButton");if(teamRevealIndex>=teamRevealOrder.length){showTeamResult();return}
+  const item=teamRevealOrder[teamRevealIndex];document.getElementById("teamCurrentLabel").textContent=`Team ${item.teamIndex+1} ist dran`;document.getElementById("teamCurrentName").textContent="Drehe das Rad und ziehe den nächsten Namen";document.getElementById("teamWheelName").textContent="Bereit?";button.disabled=false;button.textContent=teamRevealIndex===0?"RAD DREHEN":"NÄCHSTEN NAMEN ZIEHEN";renderWheelNames()
+}
+function spinNextTeamMember(){
+  if(teamWheelLocked||teamRevealIndex>=teamRevealOrder.length)return;
+  teamWheelLocked=true;const button=document.getElementById("spinTeamWheelButton"),rotor=document.getElementById("teamWheelRotor"),item=teamRevealOrder[teamRevealIndex];
+  button.disabled=true;button.textContent="RAD DREHT …";document.getElementById("teamWheelName").textContent="…";teamWheelRotation+=1080+randomInt(360);rotor.style.transform=`rotate(${teamWheelRotation}deg)`;
+  setTimeout(()=>{revealTeamMember(item,teamRevealIndex,teamRevealOrder.length);triggerHaptic("success");teamRevealIndex++;teamWheelLocked=false;
+    if(teamRevealIndex>=teamRevealOrder.length){button.disabled=true;button.textContent="ERGEBNIS ANZEIGEN";document.getElementById("teamCurrentLabel").textContent="Auslosung abgeschlossen";document.getElementById("teamCurrentName").textContent="Alle Teams stehen fest";setTimeout(showTeamResult,700)}
+    else{const next=teamRevealOrder[teamRevealIndex];document.getElementById("teamCurrentLabel").textContent=`${item.name} ist in Team ${item.teamIndex+1}`;document.getElementById("teamCurrentName").textContent=`Als Nächstes: Team ${next.teamIndex+1}`;button.disabled=false;button.textContent="NÄCHSTEN NAMEN ZIEHEN";renderWheelNames()}
+  },3300)
 }
 function renderTeamResults(){
   const grid=document.getElementById("teamResultGrid");grid.innerHTML="";
-  const emojis=["🔵","🟣","🟢","🟠","🔴","🟡"];
-  latestTeams.forEach((members,index)=>{
-    const card=document.createElement("div");card.className="team-result-card";
-    const title=document.createElement("h3");title.textContent=`${emojis[index]||"⚪"} Team ${index+1}`;card.appendChild(title);
-    members.forEach(name=>{const member=document.createElement("div");member.className="team-member";member.innerHTML=`<span class="team-dot"></span><span>${name}</span>`;card.appendChild(member)});
-    grid.appendChild(card);
-  });
+  latestTeams.forEach((members,teamIndex)=>{const card=document.createElement("div");card.className="team-v706-result-card";const title=document.createElement("h3");title.innerHTML=`<span>${teamColors[teamIndex]} Team ${teamIndex+1}</span><span>${members.length} Personen</span>`;card.appendChild(title);
+    members.forEach((name,index)=>{const row=document.createElement("div");row.className="team-v706-result-member";row.innerHTML=`<span class="team-v706-result-number">${index+1}</span><span>${name}</span>`;card.appendChild(row)});grid.appendChild(card)})
 }
-function buildTeamRevealOrder(teams){
-  const order=[];
-  let row=0;
-  let added=true;
-  while(added){
-    added=false;
-    teams.forEach((members,teamIndex)=>{
-      if(members[row]!==undefined){
-        order.push({name:members[row],teamIndex,slotIndex:row});
-        added=true;
-      }
-    });
-    row++;
-  }
-  return order;
-}
-function renderCleanTeamBoard(){
-  const grid=document.getElementById("teamLiveGrid");
-  grid.innerHTML="";
-  const emojis=["🔵","🟣","🟢","🟠","🔴","🟡"];
-  latestTeams.forEach((members,teamIndex)=>{
-    const card=document.createElement("div");
-    card.className="clean-team-card";
-    card.dataset.teamIndex=String(teamIndex);
-    const title=document.createElement("div");
-    title.className="clean-team-title";
-    title.innerHTML=`<strong>${emojis[teamIndex]||"⚪"} Team ${teamIndex+1}</strong><span id="cleanTeamCount${teamIndex}">0/${members.length}</span>`;
-    const slots=document.createElement("div");
-    slots.className="clean-team-slots";
-    members.forEach((_,slotIndex)=>{
-      const slot=document.createElement("div");
-      slot.className="clean-team-slot";
-      slot.id=`cleanTeamSlot${teamIndex}_${slotIndex}`;
-      slot.textContent="Freier Platz";
-      slots.appendChild(slot);
-    });
-    card.append(title,slots);
-    grid.appendChild(card);
-  });
-}
-function revealCleanTeamMember(item,index,total){
-  document.querySelectorAll(".clean-team-card").forEach(card=>{
-    card.classList.toggle("active",Number(card.dataset.teamIndex)===item.teamIndex);
-  });
-
-  const caption=document.querySelector(".premium-draw-caption");
-  caption.classList.remove("reveal");
-  void caption.offsetWidth;
-  caption.classList.add("reveal");
-
-  document.getElementById("teamCurrentLabel").textContent=`KOMMT IN TEAM ${item.teamIndex+1}`;
-  document.getElementById("teamCurrentName").textContent=item.name;
-  document.getElementById("teamWheelName").textContent=item.name;
-
-  const slot=document.getElementById(`cleanTeamSlot${item.teamIndex}_${item.slotIndex}`);
-  slot.textContent=item.name;
-  slot.classList.add("filled");
-
-  const count=document.querySelectorAll(
-    `#teamLiveGrid .clean-team-card[data-team-index="${item.teamIndex}"] .clean-team-slot.filled`
-  ).length;
-  document.getElementById(`cleanTeamCount${item.teamIndex}`).textContent=
-    `${count}/${latestTeams[item.teamIndex].length}`;
-
-  document.getElementById("teamDrawProgressText").textContent=`${index+1} von ${total} verteilt`;
-  document.getElementById("teamDrawProgressBar").style.width=`${(index+1)/total*100}%`;
-}
-function finishTeamDraw(){
-  document.querySelectorAll(".clean-team-card").forEach(card=>card.classList.remove("active"));
-  document.getElementById("teamDrawKicker").textContent="FERTIG";
-  document.getElementById("teamDrawTitle").textContent="Die Teams stehen";
-  document.getElementById("teamDrawSubtitle").textContent="Alle Namen wurden zufällig und gleichmäßig verteilt.";
-  document.getElementById("teamCurrentLabel").textContent="AUSLOSUNG ABGESCHLOSSEN";
-  document.getElementById("teamCurrentName").textContent="🎉";
-  triggerHaptic("success");
-  setTimeout(()=>{
-    renderTeamResults();
-    addGameStat("teamer");
-    addRoundStat(1);
-    go("teamResult");
-  },700);
-}
-let teamRevealOrder=[];
-let teamRevealIndex=0;
-let teamWheelLocked=false;
-
-function spinTeamWheel(finalName,teamIndex,done){
-  if(teamWheelLocked)return;
-  teamWheelLocked=true;
-  const wheel=document.getElementById("teamWheel");
-  const wheelName=document.getElementById("teamWheelName");
-  const button=document.getElementById("spinTeamWheelButton");
-
-  button.disabled=true;
-  button.textContent="RAD DREHT …";
-  wheelName.textContent="…";
-
-  const baseRotation=Number(wheel.dataset.rotation||0);
-  const finalRotation=baseRotation+1080+randomInt(360)+(teamIndex*36)+randomInt(12)-6;
-  wheel.dataset.rotation=String(finalRotation);
-  wheel.style.setProperty("--wheel-rotation",`${finalRotation}deg`);
-
-  setTimeout(()=>{
-    wheelName.textContent=finalName;
-    teamWheelLocked=false;
-    done();
-  },2800);
-}
-
-function prepareNextTeamSpin(){
-  const button=document.getElementById("spinTeamWheelButton");
-  if(teamRevealIndex>=teamRevealOrder.length){
-    finishTeamDraw();
-    return;
-  }
-  const item=teamRevealOrder[teamRevealIndex];
-  document.getElementById("teamDrawKicker").textContent=`TEAM ${item.teamIndex+1} IST DRAN`;
-  document.getElementById("teamCurrentLabel").textContent=`NÄCHSTER PLATZ: TEAM ${item.teamIndex+1}`;
-  document.getElementById("teamCurrentName").textContent="Rad drehen";
-  document.getElementById("teamWheelName").textContent="Bereit?";
-  button.disabled=false;
-  button.textContent=teamRevealIndex===0?"RAD DREHEN":"NÄCHSTEN NAMEN ZIEHEN";
-}
-
-function spinNextTeamMember(){
-  if(teamWheelLocked||teamRevealIndex>=teamRevealOrder.length)return;
-  const item=teamRevealOrder[teamRevealIndex];
-
-  spinTeamWheel(item.name,item.teamIndex,()=>{
-    revealCleanTeamMember(item,teamRevealIndex,teamRevealOrder.length);
-    triggerHaptic(teamRevealIndex%2===0?"light":"medium");
-    teamRevealIndex++;
-
-    if(teamRevealIndex>=teamRevealOrder.length){
-      const button=document.getElementById("spinTeamWheelButton");
-      button.disabled=true;
-      button.textContent="AUSLOSUNG FERTIG";
-      setTimeout(finishTeamDraw,750);
-    }else{
-      const next=teamRevealOrder[teamRevealIndex];
-      document.getElementById("teamCurrentLabel").textContent=`${item.name} IST IN TEAM ${item.teamIndex+1}`;
-      document.getElementById("teamCurrentName").textContent=`Danach: Team ${next.teamIndex+1}`;
-      document.getElementById("teamDrawKicker").textContent=`TEAM ${next.teamIndex+1} IST ALS NÄCHSTES DRAN`;
-      const button=document.getElementById("spinTeamWheelButton");
-      button.disabled=false;
-      button.textContent="NÄCHSTEN NAMEN ZIEHEN";
-    }
-  });
-}
-
+function showTeamResult(){renderTeamResults();addGameStat("teamer");addRoundStat(1);go("teamResult")}
 function runTeamDraw(){
-  normalizeTeamPlayers();
-  if(teamPlayers.length<2){showSettingToast("Mindestens 2 Namen benötigt");return}
-  if(teamCount<2||teamCount>teamPlayers.length){showSettingToast("Teamanzahl passt nicht zu den Teilnehmern");return}
-
-  latestTeams=makeRandomTeams();
-  go("teamDraw");
-  triggerHaptic("heavy");
-
-  document.getElementById("teamDrawTitle").textContent="Teams werden ausgelost";
-  document.getElementById("teamDrawSubtitle").textContent="Du drehst das Rad für jeden Namen selbst.";
-  document.getElementById("teamDrawProgressText").textContent=`0 von ${teamPlayers.length} verteilt`;
-  document.getElementById("teamDrawProgressBar").style.width="0%";
-
-  const wheel=document.getElementById("teamWheel");
-  wheel.dataset.rotation="0";
-  wheel.style.setProperty("--wheel-rotation","0deg");
-
-  document.getElementById("teamLiveGrid").style.setProperty("--team-columns",String(teamCount));
-  renderCleanTeamBoard();
-  teamRevealOrder=buildTeamRevealOrder(latestTeams);
-  teamRevealIndex=0;
-  teamWheelLocked=false;
-  prepareNextTeamSpin();
+  normalizeTeamPlayers();if(teamPlayers.length<2){showSettingToast("Mindestens 2 Namen benötigt");return}if(teamCount<2||teamCount>teamPlayers.length){showSettingToast("Teamanzahl passt nicht zur Spielerzahl");return}
+  latestTeams=makeRandomTeams();teamRevealOrder=buildTeamRevealOrder(latestTeams);teamRevealIndex=0;teamWheelLocked=false;teamWheelRotation=0;
+  document.getElementById("teamWheelRotor").style.transform="rotate(0deg)";document.getElementById("teamDrawProgressText").textContent=`0 / ${teamPlayers.length} verteilt`;document.getElementById("teamDrawProgressBar").style.width="0%";
+  renderTeamLiveBoard();prepareTeamSpin();triggerHaptic("heavy");go("teamDraw")
 }
-
-document.getElementById("spinTeamWheelButton").addEventListener("click",spinNextTeamMember);
-
-document.getElementById("addTeamPlayer").addEventListener("click",()=>{
-  const input=document.getElementById("newTeamPlayer"),name=input.value.trim();if(!name)return;
-  if(teamPlayers.length>=30){showSettingToast("Maximal 30 Teilnehmer");return}
-  teamPlayers.push(name);input.value="";renderTeamPlayers();renderTeamCountOptions();triggerHaptic("medium");
-});
+document.getElementById("addTeamPlayer").addEventListener("click",()=>{const input=document.getElementById("newTeamPlayer"),name=input.value.trim();if(!name)return;if(teamPlayers.length>=20){showSettingToast("Maximal 20 Teilnehmer");return}teamPlayers.push(name);input.value="";renderTeamPlayers();renderTeamCountOptions();triggerHaptic("medium")});
 document.getElementById("newTeamPlayer").addEventListener("keydown",event=>{if(event.key==="Enter")document.getElementById("addTeamPlayer").click()});
 document.querySelectorAll("[data-team-count]").forEach(button=>button.addEventListener("click",()=>{const value=Number(button.dataset.teamCount);if(value>teamPlayers.length)return;teamCount=value;renderTeamCountOptions();triggerHaptic("light")}));
 document.getElementById("startTeamDraw").addEventListener("click",runTeamDraw);
+document.getElementById("spinTeamWheelButton").addEventListener("click",spinNextTeamMember);
 document.getElementById("drawAgain").addEventListener("click",runTeamDraw);
-document.getElementById("rerollTeams").addEventListener("click",runTeamDraw);
 renderTeamPlayers();renderTeamCountOptions();
-
 
 /* FAVORITEN */
 const FAVORITES_KEY="vybe_favorites_v1";
