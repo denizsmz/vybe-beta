@@ -8,7 +8,7 @@
 <meta name="format-detection" content="telephone=no">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="theme-color" content="#17111f">
-<title>VYBE 6.7 – Content & Stability Update</title>
+<title>VYBE 6.9 – Werwolf</title>
 <style>
 :root{
   --bg:#211b2d;
@@ -2277,6 +2277,93 @@ html:not(.vybe-standalone) .app{
   overflow-wrap:anywhere;
 }
 
+
+/* VYBE 6.9 – Tabu & Team-Ausloser */
+.game-card.teamer{background:linear-gradient(145deg,#3151b6,#7145c9 58%,#aa66ed)}
+.team-gradient-title{background:linear-gradient(90deg,#78a7ff,#c18aff);-webkit-background-clip:text;color:transparent}
+.taboo-round-stats{width:100%;display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:18px 0 12px}
+.taboo-stat{border-radius:22px;padding:17px 10px;background:var(--panel);border:1px solid var(--line)}
+.taboo-stat span{display:block;font-size:10px;font-weight:950;letter-spacing:.9px;color:var(--muted)}
+.taboo-stat strong{display:block;font-size:38px;margin-top:3px}
+.taboo-stat.correct strong{color:#51df9f}.taboo-stat.skipped strong{color:#ff7884}
+.taboo-total-line{width:100%;display:flex;align-items:center;justify-content:space-between;padding:15px 18px;border-radius:18px;background:var(--panel);border:1px solid var(--line);margin-top:10px;font-weight:900}
+.taboo-total-line strong{font-size:25px;color:#51df9f}.taboo-total-line.skipped strong{color:#ff7884}
+.taboo-player-result{padding:14px 16px;border-radius:18px;background:var(--panel);border:1px solid var(--line);display:grid;grid-template-columns:minmax(0,1fr) auto auto;align-items:center;gap:12px}
+.taboo-player-result+.taboo-player-result{margin-top:9px}.taboo-player-result .name{font-weight:950;overflow:hidden;text-overflow:ellipsis}.taboo-player-result .correct{color:#51df9f;font-weight:950}.taboo-player-result .skipped{color:#ff7884;font-weight:950}
+.taboo-forbidden span{font-size:clamp(15px,4vw,18px)}
+.team-setup-panel{padding:12px}.team-player-list{display:flex;flex-direction:column;gap:8px}
+.team-player-row{display:grid;grid-template-columns:42px minmax(0,1fr) 42px;align-items:center;gap:10px;padding:8px;border-radius:17px;background:rgba(255,255,255,.055)}
+.team-player-index{width:36px;height:36px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(145deg,#3151b6,#8c55d8);font-weight:950}
+.team-player-row input{width:100%;border:0;outline:0;background:transparent;color:var(--text);font:inherit;font-weight:850;min-width:0}
+.team-remove{width:36px;height:36px;border:0;border-radius:12px;background:rgba(255,86,105,.13);color:#ff7b89;font-size:19px;font-weight:950}
+.team-add-player{margin-top:10px}.selected-team{background:linear-gradient(145deg,#476fe1,#a05ae1)!important;color:white!important}.team-primary{background:linear-gradient(90deg,#426fe5,#a65be5)!important}
+.team-draw-content{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.team-lottery-icon{width:92px;height:92px;border-radius:30px;display:grid;place-items:center;font-size:52px;background:linear-gradient(145deg,#3151b6,#a65be5);box-shadow:0 20px 48px rgba(93,70,209,.28);animation:teamDice 1s ease-in-out infinite alternate}
+@keyframes teamDice{from{transform:rotate(-7deg) scale(.97)}to{transform:rotate(7deg) scale(1.04)}}
+.team-shuffle-name{min-height:74px;min-width:min(88%,360px);margin-top:28px;padding:18px 24px;border-radius:24px;display:grid;place-items:center;background:var(--panel);border:1px solid var(--line);font-size:clamp(25px,7vw,34px);font-weight:1000}
+.team-lottery-dots{display:flex;gap:8px;margin-top:24px}.team-lottery-dots i{width:9px;height:9px;border-radius:50%;background:#9d7ce6;animation:teamDots .75s ease-in-out infinite alternate}.team-lottery-dots i:nth-child(2){animation-delay:.18s}.team-lottery-dots i:nth-child(3){animation-delay:.36s}
+@keyframes teamDots{from{opacity:.25;transform:translateY(0)}to{opacity:1;transform:translateY(-7px)}}
+.team-result-grid{display:grid;grid-template-columns:1fr;gap:13px;overflow:auto;padding-bottom:18px}
+.team-result-card{border-radius:24px;padding:17px;background:var(--panel);border:1px solid var(--line);box-shadow:0 14px 34px rgba(0,0,0,.14)}
+.team-result-card h3{margin:0 0 12px;font-size:20px;display:flex;align-items:center;gap:9px}
+.team-member{display:flex;align-items:center;gap:10px;padding:10px 11px;border-radius:14px;background:rgba(255,255,255,.055);font-weight:850}.team-member+.team-member{margin-top:7px}.team-dot{width:9px;height:9px;border-radius:50%;background:#9c7be6;flex:none}
+@media(min-width:700px){.team-result-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+
+/* ==========================================================
+   VYBE 6.9 – Werwolf
+   ========================================================== */
+.game-card.werewolf{background:linear-gradient(145deg,#171c30,#48335e 58%,#9a3f64)}
+.ww-title{background:linear-gradient(90deg,#c8d7ff,#ff7399);-webkit-background-clip:text;color:transparent}
+.ww-primary{background:linear-gradient(90deg,#596bc8,#b44978)!important}
+.ww-ready-badge{padding:7px 10px;border-radius:999px;background:rgba(94,219,153,.13);color:#62dda2;font-size:11px;font-weight:1000}
+.ww-info-panel{padding:17px 19px}.ww-info-panel p{margin:7px 0 0;color:var(--muted);line-height:1.45}
+.ww-player-row{display:grid;grid-template-columns:40px minmax(0,1fr) auto 38px;align-items:center;gap:8px;padding:8px;border-radius:17px;background:rgba(255,255,255,.055)}
+.ww-player-row+.ww-player-row{margin-top:8px}
+.ww-player-row input{width:100%;min-width:0;border:0;background:transparent;color:var(--text);font:inherit;font-weight:850;outline:0}
+.ww-narrator-button{border:1px solid var(--line);background:rgba(255,255,255,.055);color:var(--muted);border-radius:12px;padding:9px 10px;font-size:11px;font-weight:950}
+.ww-narrator-button.active{color:#fff;background:linear-gradient(145deg,#536bc8,#a44877);border-color:transparent}
+.ww-narrator-note{padding:13px 5px;color:var(--muted);font-size:12px;line-height:1.45}
+.ww-role-row{display:grid;grid-template-columns:44px minmax(0,1fr) auto;align-items:center;gap:10px;padding:13px 14px}
+.ww-role-row+.ww-role-row{border-top:1px solid var(--line)}
+.ww-role-icon{width:39px;height:39px;border-radius:13px;display:grid;place-items:center;background:rgba(255,255,255,.07);font-size:22px}
+.ww-role-copy strong{display:block}.ww-role-copy span{display:block;color:var(--muted);font-size:11px;margin-top:3px}
+.ww-role-toggle{width:52px;height:30px;border-radius:999px;border:0;background:#4c4654;position:relative}
+.ww-role-toggle::after{content:"";position:absolute;width:24px;height:24px;border-radius:50%;left:3px;top:3px;background:#fff;transition:.2s}
+.ww-role-toggle.on{background:linear-gradient(90deg,#566bc9,#b44a78)}.ww-role-toggle.on::after{transform:translateX(22px)}
+.ww-role-toggle:disabled{opacity:.35}
+.selected-wolf{background:linear-gradient(145deg,#596bc8,#b44978)!important;color:#fff!important}
+.ww-role-balance{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:13px}
+.ww-role-balance div{text-align:center;padding:10px 3px;border-radius:14px;background:rgba(255,255,255,.045)}
+.ww-role-balance span{display:block;color:var(--muted);font-size:9px;font-weight:900}.ww-role-balance strong{display:block;font-size:22px;margin-top:3px}
+.ww-reveal-content,.ww-narrator-ready{display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
+.ww-role-emoji{width:94px;height:94px;border-radius:30px;display:grid;place-items:center;font-size:54px;background:linear-gradient(145deg,#273057,#8d3f69);box-shadow:0 20px 50px rgba(65,38,82,.3)}
+.ww-role-name{font-size:clamp(30px,9vw,44px);font-weight:1000;margin-top:18px;text-align:center}
+.ww-reveal-content p,.ww-narrator-ready p{max-width:350px;color:var(--muted);line-height:1.5}
+.ww-team-note{width:100%;padding:14px;border-radius:17px;background:var(--panel);border:1px solid var(--line);font-weight:850;margin:5px 0 20px}
+.ww-narrator-roles{width:100%;max-height:310px;overflow:auto;margin:10px 0 18px}
+.ww-narrator-role{display:flex;justify-content:space-between;gap:12px;padding:10px 13px;border-radius:13px;background:rgba(255,255,255,.05)}
+.ww-narrator-role+.ww-narrator-role{margin-top:6px}.ww-narrator-role span:last-child{color:#ff87a7;font-weight:900}
+.ww-phase-content{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.ww-phase-emoji{font-size:66px;margin-bottom:12px}.ww-phase-kicker{font-size:10px;letter-spacing:1.5px;font-weight:1000;color:#a799b1}
+.ww-phase-content h2,.ww-select-content h2{font-size:clamp(27px,8vw,36px);line-height:1.05;margin:10px 0}
+.ww-script-text{width:100%;padding:19px;border-radius:22px;background:var(--panel);border:1px solid var(--line);font-size:17px;line-height:1.55;margin:10px 0 18px}
+.ww-select-content{text-align:center;overflow:auto}.ww-select-content>p{color:var(--muted)}
+.ww-name-grid{width:100%;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin:13px 0 18px}
+.ww-name-option{min-height:53px;border-radius:16px;border:1px solid var(--line);background:var(--panel);color:var(--text);font-weight:900;padding:9px}
+.ww-name-option.selected{background:linear-gradient(145deg,#546bc8,#ad4677);border-color:transparent;outline:2px solid rgba(255,255,255,.75);outline-offset:-3px}
+.ww-name-option.dead{opacity:.32;text-decoration:line-through}
+.ww-inspected-player{font-size:18px;color:var(--muted);margin-top:20px}
+.ww-witch-actions{width:100%;display:grid;gap:10px}.ww-witch-action{min-height:58px;border:0;border-radius:18px;color:#fff;font-weight:950;font-size:15px}
+.ww-witch-heal{background:linear-gradient(145deg,#16865a,#44d79c)}.ww-witch-poison{background:linear-gradient(145deg,#8f314d,#e05272)}.ww-witch-skip{background:#4c4654}
+.ww-witch-action:disabled{opacity:.32}
+.ww-alive-summary{width:100%;display:flex;flex-wrap:wrap;justify-content:center;gap:7px;margin:5px 0 18px}
+.ww-alive-chip{padding:8px 10px;border-radius:999px;background:rgba(90,214,151,.11);color:#62dca1;font-size:12px;font-weight:850}
+.ww-dead-chip{background:rgba(255,92,112,.1);color:#ff7c8b;text-decoration:line-through}
+.ww-result-roles{width:100%;margin:14px 0 20px}.ww-result-role{display:flex;justify-content:space-between;padding:11px 13px;border-radius:14px;background:var(--panel);border:1px solid var(--line)}
+.ww-result-role+.ww-result-role{margin-top:7px}.ww-result-role.dead{opacity:.55}.ww-result-role span:last-child{font-weight:900;color:#ff88a7}
+@media(max-width:380px){.ww-name-grid{grid-template-columns:1fr}.ww-role-balance{grid-template-columns:1fr 1fr 1fr}.ww-player-row{grid-template-columns:36px minmax(0,1fr) auto 34px}.ww-narrator-button{padding:8px 7px;font-size:10px}}
+
 </style>
 
   <meta name="theme-color" content="#17131f">
@@ -2291,7 +2378,7 @@ html:not(.vybe-standalone) .app{
   <link rel="icon" type="image/png" sizes="192x192" href="./icons/icon-192.png">
   <link rel="icon" type="image/png" sizes="512x512" href="./icons/icon-512.png">
 
-<!-- VYBE 6.7 build: expanded verified quiz databases + Bundesliga category -->
+<!-- VYBE 6.9 build: expanded verified quiz databases + Bundesliga category -->
 </head>
 <body>
 <div class="app">
@@ -2346,7 +2433,7 @@ html:not(.vybe-standalone) .app{
 
     <div class="section-heading compact-section-heading">
       <strong>Spiele</strong>
-      <span>7 verfügbar</span>
+      <span>9 verfügbar</span>
     </div>
 
     <div class="game-grid compact-game-grid">
@@ -2401,6 +2488,18 @@ html:not(.vybe-standalone) .app{
       <button class="game-card knowledge pressable" data-game-id="knowledge" data-open="knowledgeSetup">
         <div class="game-art">🧠</div>
         <div><div class="game-name">Allgemeinwissen</div></div>
+        <div class="arrow">›</div>
+      </button>
+
+      <button class="game-card teamer pressable" data-game-id="teamer" data-open="teamSetup">
+        <div class="game-art">🎲</div>
+        <div><div class="game-name">Team-Ausloser</div></div>
+        <div class="arrow">›</div>
+      </button>
+
+      <button class="game-card werewolf pressable" data-game-id="werewolf" data-open="wwSetup">
+        <div class="game-art">🐺</div>
+        <div><div class="game-name">Werwolf</div></div>
         <div class="arrow">›</div>
       </button>
 
@@ -2459,7 +2558,7 @@ html:not(.vybe-standalone) .app{
     <button class="row" data-open="tabooPlayers"><div class="row-icon">👥</div><div class="row-copy"><div class="row-title">Spieler</div><div class="row-sub">Namen und Spielerzahl</div></div><div id="tabooPlayerValue" class="row-value">4</div><div class="chev">›</div></button>
     <button class="row" data-open-categories-new="taboo"><div class="row-icon">🏷️</div><div class="row-copy"><div class="row-title">Kategorien</div><div class="row-sub">Mehrfachauswahl möglich</div></div><div id="tabooCategoryValue" class="row-value">3 ausgewählt</div><div class="chev">›</div></button>
     <div class="row"><div class="row-icon">🃏</div><div class="row-copy"><div class="row-title">Anzahl Karten</div><div class="row-sub">Wie viele Begriffe gespielt werden</div></div><div class="number-choice-group"><button class="choice-num" data-taboo-rounds="5">5</button><button class="choice-num selected-purple" data-taboo-rounds="10">10</button><button class="choice-num" data-taboo-rounds="20">20</button><button class="choice-num" data-taboo-rounds="0">∞</button></div></div>
-    <div class="row"><div class="row-icon">⏱️</div><div class="row-copy"><div class="row-title">Rundenzeit</div><div class="row-sub">Sekunden pro Begriff</div></div><div class="number-choice-group"><button class="choice-num" data-taboo-time="30">30</button><button class="choice-num selected-purple" data-taboo-time="60">60</button><button class="choice-num" data-taboo-time="90">90</button></div></div>
+    <div class="row"><div class="row-icon">⏱️</div><div class="row-copy"><div class="row-title">Rundenzeit</div><div class="row-sub">Zeit für möglichst viele Begriffe</div></div><div class="number-choice-group"><button class="choice-num" data-taboo-time="30">30</button><button class="choice-num selected-purple" data-taboo-time="60">60</button><button class="choice-num" data-taboo-time="90">90</button></div></div>
   </div></div>
   <div class="startbar"><button id="startTaboo" class="primary">STARTEN</button></div>
 </section>
@@ -2484,7 +2583,16 @@ html:not(.vybe-standalone) .app{
 </section>
 <section id="tabooRoundEnd" class="screen">
   <div class="top"><button class="back direct-game-exit pressable" data-exit-game="taboo">×</button><div class="page-title">RUNDE BEENDET</div><span style="width:43px"></span></div>
-  <div class="content result-center"><div class="result-emoji">⏱️</div><h2 id="tabooRoundPlayer">Runde beendet</h2><div class="big-result-number" id="tabooRoundScore">0</div><p>Begriffe wurden in dieser Runde erraten.</p><button id="tabooNextRound" class="primary full-primary">NÄCHSTER SPIELER</button></div>
+  <div class="content result-center">
+    <div class="result-emoji">⏱️</div>
+    <h2 id="tabooRoundPlayer">Runde beendet</h2>
+    <div class="taboo-round-stats">
+      <div class="taboo-stat correct"><span>RICHTIG</span><strong id="tabooRoundCorrect">0</strong></div>
+      <div class="taboo-stat skipped"><span>ÜBERSPRUNGEN</span><strong id="tabooRoundSkipped">0</strong></div>
+    </div>
+    <p id="tabooRoundComment">Starke Runde!</p>
+    <button id="tabooNextRound" class="primary full-primary">NÄCHSTER SPIELER</button>
+  </div>
 </section>
 <section id="tabooPlay" class="screen">
   <div class="top">
@@ -2507,8 +2615,8 @@ html:not(.vybe-standalone) .app{
     </div>
     <div class="current-player-line">Am Zug: <strong id="tabooCurrentPlayer"></strong></div>
     <div class="game-action-grid">
-      <button id="tabooSkip" class="secondary game-secondary-action danger-soft">ÜBERSPRINGEN</button>
-      <button id="tabooCorrect" class="primary game-primary-action">ERRATEN</button>
+      <button id="tabooSkip" class="secondary game-secondary-action danger-soft">NÄCHSTE KARTE</button>
+      <button id="tabooCorrect" class="primary game-primary-action">✓ RICHTIG</button>
     </div>
   </div>
 </section>
@@ -2517,11 +2625,249 @@ html:not(.vybe-standalone) .app{
   <div class="top"><span style="width:43px"></span><div class="page-title">ERGEBNIS</div><span style="width:43px"></span></div>
   <div class="content result-center">
     <div class="result-emoji">🚫</div>
-    <h2>Starke Runde!</h2>
-    <div class="big-result-number" id="tabooFinalScore">0</div>
-    <p>Punkte habt ihr gemeinsam gesammelt.</p>
+    <h2>Tabu beendet</h2>
+    <div class="taboo-total-line"><span>Gesamt richtig</span><strong id="tabooFinalScore">0</strong></div>
+    <div class="taboo-total-line skipped"><span>Gesamt übersprungen</span><strong id="tabooFinalSkipped">0</strong></div>
+    <div id="tabooPlayerResults" class="result-list" style="width:100%;margin-top:14px"></div>
     <div class="two"><button class="secondary" data-open="home">ZUR STARTSEITE</button><button id="restartTaboo" class="primary">NOCHMAL SPIELEN</button></div>
   </div>
+</section>
+
+
+
+<!-- ======================= WERWOLF ======================= -->
+<section id="wwSetup" class="screen">
+  <div class="top"><button class="back" data-open="home">‹</button><div></div><button class="icon-btn" type="button">?</button></div>
+  <div class="game-hero"><div class="game-icon">🐺</div><h1 class="ww-title">WERWOLF</h1></div>
+  <div class="settings-scroll">
+    <div class="panel">
+      <button class="row" data-open="wwPlayers">
+        <div class="row-icon">👥</div>
+        <div class="row-copy"><div class="row-title">Spieler & Erzähler</div><div class="row-sub">Namen eingeben und Erzähler bestimmen</div></div>
+        <div id="wwPlayerValue" class="row-value">8 Namen</div><div class="chev">›</div>
+      </button>
+      <button class="row" data-open="wwRoles">
+        <div class="row-icon">🎭</div>
+        <div class="row-copy"><div class="row-title">Rollen</div><div class="row-sub">Werwölfe und Spezialrollen einstellen</div></div>
+        <div id="wwRoleValue" class="row-value">2 Wölfe</div><div class="chev">›</div>
+      </button>
+      <div class="row">
+        <div class="row-icon">📖</div>
+        <div class="row-copy"><div class="row-title">Geführter Erzähler-Modus</div><div class="row-sub">Texte, Aktionen und Abstimmungen Schritt für Schritt</div></div>
+        <div class="ww-ready-badge">AKTIV</div>
+      </div>
+    </div>
+    <div class="panel ww-info-panel">
+      <strong>So läuft es ab</strong>
+      <p>Jede Person sieht ihre Rolle geheim. Danach führt die App den Erzähler durch Nacht, Tag, Abstimmungen und alle Spezialrollen.</p>
+    </div>
+  </div>
+  <div class="startbar"><button id="startWerewolf" class="primary ww-primary">ROLLEN VERTEILEN</button></div>
+</section>
+
+<section id="wwPlayers" class="screen">
+  <div class="top"><button class="back" data-open="wwSetup">‹</button><div class="page-title">SPIELER & ERZÄHLER</div><span style="width:43px"></span></div>
+  <div class="player-page">
+    <div class="player-summary"><strong>Mindestens 6 Namen</strong><div id="wwPlayerBadge" class="badge">8/18</div></div>
+    <div id="wwPlayerList" class="player-list ww-player-list"></div>
+    <div class="add-player"><input id="newWwPlayer" placeholder="Neuer Name" maxlength="18"><button id="addWwPlayer">+</button></div>
+    <div class="ww-narrator-note">Tippe bei einer Person auf <b>Erzähler</b>. Der Erzähler erhält keine geheime Rolle.</div>
+  </div>
+</section>
+
+<section id="wwRoles" class="screen">
+  <div class="top"><button class="back" data-open="wwSetup">‹</button><div class="page-title">ROLLEN</div><span style="width:43px"></span></div>
+  <div class="settings-scroll">
+    <div class="section-label">WERWÖLFE</div>
+    <div class="panel">
+      <div class="row">
+        <div class="row-icon">🐺</div>
+        <div class="row-copy"><div class="row-title">Anzahl Werwölfe</div><div id="wwWolfHint" class="row-sub">Empfehlung wird angepasst</div></div>
+        <div class="number-choice-group">
+          <button class="choice-num" data-ww-wolves="1">1</button>
+          <button class="choice-num selected-wolf" data-ww-wolves="2">2</button>
+          <button class="choice-num" data-ww-wolves="3">3</button>
+          <button class="choice-num" data-ww-wolves="4">4</button>
+        </div>
+      </div>
+    </div>
+    <div class="section-label">SPEZIALROLLEN</div>
+    <div id="wwSpecialRoles" class="panel"></div>
+    <div class="panel ww-role-balance">
+      <div><span>Aktive Spieler</span><strong id="wwActiveCount">7</strong></div>
+      <div><span>Spezialrollen</span><strong id="wwSpecialCount">5</strong></div>
+      <div><span>Dorfbewohner</span><strong id="wwVillagerCount">0</strong></div>
+    </div>
+  </div>
+</section>
+
+<section id="wwPass" class="screen">
+  <div class="top"><button class="back direct-game-exit" data-exit-game="werewolf">×</button><div class="page-title">ROLLENVERTEILUNG</div><span style="width:43px"></span></div>
+  <div class="content pass-screen">
+    <div class="pass-emoji">🤫</div>
+    <h2>Handy weitergeben</h2>
+    <p>Nur diese Person darf jetzt schauen:</p>
+    <div id="wwPassName" class="pass-name">Name</div>
+    <button id="wwShowRole" class="primary ww-primary full-primary">MEINE ROLLE ANZEIGEN</button>
+  </div>
+</section>
+
+<section id="wwReveal" class="screen">
+  <div class="top"><button class="back direct-game-exit" data-exit-game="werewolf">×</button><div class="page-title">DEINE ROLLE</div><span style="width:43px"></span></div>
+  <div class="content ww-reveal-content">
+    <div id="wwRevealEmoji" class="ww-role-emoji">🐺</div>
+    <div id="wwRevealName" class="ww-role-name">WERWOLF</div>
+    <p id="wwRevealDescription"></p>
+    <div id="wwRevealTeam" class="ww-team-note"></div>
+    <button id="wwHideRole" class="primary ww-primary full-primary">ROLLE VERSTANDEN</button>
+  </div>
+</section>
+
+<section id="wwNarratorReady" class="screen">
+  <div class="top"><button class="back direct-game-exit" data-exit-game="werewolf">×</button><div class="page-title">ERZÄHLER</div><span style="width:43px"></span></div>
+  <div class="content ww-narrator-ready">
+    <div class="ww-role-emoji">📖</div>
+    <h2 id="wwNarratorName">Erzähler</h2>
+    <p>Du führst jetzt durch das Spiel. Halte den Bildschirm so, dass nur du ihn siehst.</p>
+    <div id="wwNarratorRoles" class="ww-narrator-roles"></div>
+    <button id="wwBeginGame" class="primary ww-primary full-primary">ERSTE NACHT STARTEN</button>
+  </div>
+</section>
+
+<section id="wwPhase" class="screen">
+  <div class="top"><button class="back direct-game-exit" data-exit-game="werewolf">×</button><div id="wwPhaseHeader" class="page-title">NACHT 1</div><button class="icon-btn" data-menu="werewolf">•••</button></div>
+  <div class="content ww-phase-content">
+    <div id="wwPhaseEmoji" class="ww-phase-emoji">🌙</div>
+    <div id="wwPhaseKicker" class="ww-phase-kicker">VORLESEN</div>
+    <h2 id="wwPhaseTitle">Das Dorf schläft ein</h2>
+    <div id="wwPhaseText" class="ww-script-text"></div>
+    <button id="wwPhaseContinue" class="primary ww-primary full-primary">WEITER</button>
+  </div>
+</section>
+
+<section id="wwSelect" class="screen">
+  <div class="top"><button class="back direct-game-exit" data-exit-game="werewolf">×</button><div id="wwSelectHeader" class="page-title">AUSWAHL</div><span style="width:43px"></span></div>
+  <div class="content ww-select-content">
+    <div id="wwSelectEmoji" class="ww-phase-emoji">🐺</div>
+    <h2 id="wwSelectTitle">Wen wählen die Werwölfe?</h2>
+    <p id="wwSelectText"></p>
+    <div id="wwSelectNames" class="ww-name-grid"></div>
+    <button id="wwConfirmSelection" class="primary ww-primary full-primary" disabled>AUSWAHL BESTÄTIGEN</button>
+  </div>
+</section>
+
+<section id="wwSeerResult" class="screen">
+  <div class="top"><button class="back direct-game-exit" data-exit-game="werewolf">×</button><div class="page-title">SEHERIN</div><span style="width:43px"></span></div>
+  <div class="content ww-reveal-content">
+    <div class="ww-role-emoji">🔮</div>
+    <p id="wwSeerPlayer" class="ww-inspected-player"></p>
+    <div id="wwSeerRole" class="ww-role-name"></div>
+    <p>Zeige dem Seher das Ergebnis unauffällig und tippe danach weiter.</p>
+    <button id="wwSeerContinue" class="primary ww-primary full-primary">WEITER</button>
+  </div>
+</section>
+
+<section id="wwWitch" class="screen">
+  <div class="top"><button class="back direct-game-exit" data-exit-game="werewolf">×</button><div class="page-title">HEXE</div><span style="width:43px"></span></div>
+  <div class="content ww-phase-content">
+    <div class="ww-phase-emoji">🧪</div>
+    <h2>Die Hexe erwacht</h2>
+    <div id="wwWitchVictim" class="ww-script-text"></div>
+    <div id="wwWitchActions" class="ww-witch-actions"></div>
+  </div>
+</section>
+
+<section id="wwMorning" class="screen">
+  <div class="top"><button class="back direct-game-exit" data-exit-game="werewolf">×</button><div id="wwMorningHeader" class="page-title">MORGEN</div><button class="icon-btn" data-menu="werewolf">•••</button></div>
+  <div class="content ww-phase-content">
+    <div class="ww-phase-emoji">☀️</div>
+    <div class="ww-phase-kicker">VORLESEN</div>
+    <h2>Das Dorf erwacht</h2>
+    <div id="wwMorningText" class="ww-script-text"></div>
+    <div id="wwAliveSummary" class="ww-alive-summary"></div>
+    <button id="wwStartDay" class="primary ww-primary full-primary">DISKUSSION STARTEN</button>
+  </div>
+</section>
+
+<section id="wwDay" class="screen">
+  <div class="top"><button class="back direct-game-exit" data-exit-game="werewolf">×</button><div id="wwDayHeader" class="page-title">TAG 1</div><button class="icon-btn" data-menu="werewolf">•••</button></div>
+  <div class="content ww-phase-content">
+    <div class="ww-phase-emoji">🏘️</div>
+    <div class="ww-phase-kicker">VORLESEN</div>
+    <h2>Das Dorf berät sich</h2>
+    <div class="ww-script-text">„Ihr dürft jetzt diskutieren. Wer verhält sich verdächtig? Findet die Werwölfe, bevor sie das ganze Dorf übernehmen.“</div>
+    <div id="wwDayAlive" class="ww-alive-summary"></div>
+    <button id="wwStartVote" class="primary ww-primary full-primary">ABSTIMMUNG STARTEN</button>
+  </div>
+</section>
+
+<section id="wwHunter" class="screen">
+  <div class="top"><button class="back direct-game-exit" data-exit-game="werewolf">×</button><div class="page-title">JÄGER</div><span style="width:43px"></span></div>
+  <div class="content ww-phase-content">
+    <div class="ww-phase-emoji">🏹</div>
+    <h2>Der Jäger feuert seinen letzten Schuss</h2>
+    <div id="wwHunterText" class="ww-script-text"></div>
+    <button id="wwHunterChoose" class="primary ww-primary full-primary">ZIEL AUSWÄHLEN</button>
+  </div>
+</section>
+
+<section id="wwResult" class="screen">
+  <div class="top"><span style="width:43px"></span><div class="page-title">SPIEL BEENDET</div><span style="width:43px"></span></div>
+  <div class="content result-center">
+    <div id="wwResultEmoji" class="result-emoji">🏘️</div>
+    <h2 id="wwResultTitle">Das Dorf gewinnt!</h2>
+    <p id="wwResultText"></p>
+    <div id="wwResultRoles" class="ww-result-roles"></div>
+    <div class="two"><button class="secondary" data-open="home">STARTSEITE</button><button id="restartWerewolf" class="primary ww-primary">NOCHMAL</button></div>
+  </div>
+</section>
+
+<!-- ======================= TEAM-AUSLOSER ======================= -->
+<section id="teamSetup" class="screen">
+  <div class="top"><button class="back" data-open="home">‹</button><div></div><button class="icon-btn" type="button">?</button></div>
+  <div class="game-hero"><div class="game-icon">🎲</div><h1 class="team-gradient-title">TEAM<br>AUSLOSER</h1></div>
+  <div class="settings-scroll">
+    <div class="section-label">TEILNEHMER</div>
+    <div class="panel team-setup-panel">
+      <div id="teamPlayerList" class="team-player-list"></div>
+      <div class="add-player team-add-player">
+        <input id="newTeamPlayer" placeholder="Name hinzufügen" maxlength="20">
+        <button id="addTeamPlayer" type="button">+</button>
+      </div>
+    </div>
+    <div class="section-label">ANZAHL TEAMS</div>
+    <div class="panel">
+      <div class="row">
+        <div class="row-icon">👥</div>
+        <div class="row-copy"><div class="row-title">Teams</div><div class="row-sub">Die Gruppen werden möglichst gleich groß</div></div>
+        <div id="teamCountOptions" class="number-choice-group">
+          <button class="choice-num selected-team" data-team-count="2">2</button>
+          <button class="choice-num" data-team-count="3">3</button>
+          <button class="choice-num" data-team-count="4">4</button>
+          <button class="choice-num" data-team-count="5">5</button>
+          <button class="choice-num" data-team-count="6">6</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="startbar"><button id="startTeamDraw" class="primary team-primary">TEAMS AUSLOSEN</button></div>
+</section>
+
+<section id="teamDraw" class="screen">
+  <div class="top"><button class="back" data-open="teamSetup">‹</button><div class="page-title">AUSLOSUNG</div><span style="width:43px"></span></div>
+  <div class="content team-draw-content">
+    <div class="team-lottery-icon">🎲</div>
+    <h2>Teams werden ausgelost</h2>
+    <p>Alle Namen werden komplett zufällig gemischt.</p>
+    <div id="teamShuffleName" class="team-shuffle-name">Bereit?</div>
+    <div class="team-lottery-dots"><i></i><i></i><i></i></div>
+  </div>
+</section>
+
+<section id="teamResult" class="screen">
+  <div class="top"><button class="back" data-open="teamSetup">‹</button><div class="page-title">DEINE TEAMS</div><button id="rerollTeams" class="icon-btn" type="button" aria-label="Neu auslosen">↻</button></div>
+  <div id="teamResultGrid" class="content team-result-grid"></div>
+  <div class="two"><button class="secondary" data-open="home">FERTIG</button><button id="drawAgain" class="primary team-primary">NEU AUSLOSEN</button></div>
 </section>
 
 <!-- ================= WAHRHEIT ODER PFLICHT ================= -->
@@ -2736,7 +3082,7 @@ html:not(.vybe-standalone) .app{
         <div class="row-icon">ℹ️</div>
         <div class="row-copy">
           <div class="row-title">Version</div>
-          <div class="row-sub">VYBE 6.7</div>
+          <div class="row-sub">VYBE 6.9</div>
         </div>
       </div>
     </div>
@@ -3167,7 +3513,7 @@ function getBallCategoryData(){
 
 
 
-let statsGameGuard={impostor:false,would:false,ball:false,knowledge:false,taboo:false,truth:false,who:false};
+let statsGameGuard={impostor:false,would:false,ball:false,knowledge:false,taboo:false,truth:false,who:false,teamer:false,werewolf:false};
 function recordGameOnce(game,rounds){
   if(statsGameGuard[game])return;
   statsGameGuard[game]=true;
@@ -3182,7 +3528,7 @@ const defaultStats={
   games:0,
   rounds:0,
   minutes:0,
-  byGame:{impostor:0,would:0,ball:0,knowledge:0,taboo:0,truth:0,who:0}
+  byGame:{impostor:0,would:0,ball:0,knowledge:0,taboo:0,truth:0,who:0,teamer:0,werewolf:0}
 };
 let globalStats={...defaultStats,byGame:{...defaultStats.byGame}};
 let sessionStartedAt=Date.now();
@@ -3228,7 +3574,9 @@ function getFavoriteGame(){
     ["Ball Knowledge","⚽️",globalStats.byGame.ball],
     ["Tabu","🚫",globalStats.byGame.taboo],
     ["Wahrheit oder Pflicht","🎭",globalStats.byGame.truth],
-    ["Wer bin ich?","🤔",globalStats.byGame.who]
+    ["Wer bin ich?","🤔",globalStats.byGame.who],
+    ["Team-Ausloser","🎲",globalStats.byGame.teamer],
+    ["Werwolf","🐺",globalStats.byGame.werewolf]
   ].sort((a,b)=>b[2]-a[2]);
   return entries[0][2]>0?entries[0]:["Noch keins","✨",0];
 }
@@ -3277,6 +3625,8 @@ document.addEventListener("click",event=>{
   if(target==="tabooSetup")resetGameGuard("taboo");
   if(target==="truthSetup")resetGameGuard("truth");
   if(target==="whoSetup")resetGameGuard("who");
+  if(target==="teamSetup")resetGameGuard("teamer");
+  if(target==="wwSetup")resetGameGuard("werewolf");
 });
 
 window.addEventListener("pagehide",updateSessionMinutes);
@@ -3756,7 +4106,7 @@ document.addEventListener("click",e=>{
     if(game==="knowledge"&&quizScore(knowledgeAnswers).answered>0){finishKnowledgeRound();return}
     const setupMap={
       imp:"impSetup",would:"wouldSetup",ball:"ballSetup",knowledge:"knowledgeSetup",
-      taboo:"tabooSetup",truth:"truthSetup",who:"whoSetup"
+      taboo:"tabooSetup",truth:"truthSetup",who:"whoSetup",werewolf:"wwSetup"
     };
     go(setupMap[game]||"home");
     return;
@@ -3931,7 +4281,7 @@ document.getElementById("menuResume").addEventListener("click",()=>{document.get
 document.getElementById("menuSettings").addEventListener("click",()=>{
   document.getElementById("gameMenu").classList.remove("open");
   if(menuGame==="taboo"&&tabooTimerId){clearInterval(tabooTimerId);tabooTimerId=null}
-  const setupMap={imp:"impSetup",would:"wouldSetup",ball:"ballSetup",knowledge:"knowledgeSetup",taboo:"tabooSetup",truth:"truthSetup",who:"whoSetup"};
+  const setupMap={imp:"impSetup",would:"wouldSetup",ball:"ballSetup",knowledge:"knowledgeSetup",taboo:"tabooSetup",truth:"truthSetup",who:"whoSetup",werewolf:"wwSetup"};
   go(setupMap[menuGame]||"home");
 });
 
@@ -4519,68 +4869,7 @@ bindQuizSwipe({
 /* =========================================================
    VYBE 5.6 GAME PACK
    ========================================================= */
-const tabooData={
-  alltag:{name:"Alltag",emoji:"🏠",cards:[
-    ["Kühlschrank",["kalt","Essen","Küche","Tür","Gefrierfach"]],
-    ["Regenschirm",["Regen","nass","Wetter","aufspannen","Schirm"]],
-    ["Wecker",["Uhr","morgens","klingeln","aufstehen","schlafen"]],
-    ["Supermarkt",["einkaufen","Kasse","Lebensmittel","Wagen","Regal"]],
-    ["Zahnbürste",["Zähne","putzen","Bad","Pasta","Mund"]],
-    ["Fernbedienung",["TV","Knopf","Sender","Couch","Batterie"]],
-    ["Staubsauger",["sauber","Boden","saugen","Staub","Kabel"]],
-    ["Schlüssel",["Tür","öffnen","Schloss","verlieren","Bund"]],
-    ["Kopfhörer",["Musik","Ohren","Bluetooth","hören","Kabel"]],
-    ["Aufzug",["Etage","hoch","runter","Knopf","Gebäude"]]
-  ]},
-  party:{name:"Party",emoji:"🥳",cards:[
-    ["Karaoke",["singen","Mikrofon","Song","Bühne","Text"]],
-    ["DJ",["Musik","Club","auflegen","Pult","Party"]],
-    ["Konfetti",["bunt","Papier","werfen","Feier","Silvester"]],
-    ["Tanzfläche",["tanzen","Club","Musik","Boden","Party"]],
-    ["Hausparty",["Wohnung","Freunde","Feiern","Nachbarn","Musik"]],
-    ["Kater",["Alkohol","Kopfschmerzen","Morgen","trinken","Übelkeit"]],
-    ["Discokugel",["Licht","spiegeln","Club","Decke","tanzen"]],
-    ["Playlist",["Songs","Musik","Spotify","Liste","hören"]],
-    ["Türsteher",["Club","Einlass","Security","Tür","Ausweis"]],
-    ["Mitternacht",["zwölf","Nacht","Silvester","Uhr","spät"]]
-  ]},
-  pop:{name:"Popkultur",emoji:"🎬",cards:[
-    ["Superheld",["Kraft","Comic","retten","Cape","Marvel"]],
-    ["Streaming",["Netflix","Serie","Film","Internet","schauen"]],
-    ["Influencer",["Instagram","Follower","Werbung","Social Media","Content"]],
-    ["Podcast",["hören","Mikrofon","Episode","Gespräch","Audio"]],
-    ["Meme",["Internet","lustig","Bild","viral","Text"]],
-    ["Realityshow",["Fernsehen","Kandidaten","Drama","Kamera","Villa"]],
-    ["Fan",["berühmt","Star","mögen","Autogramm","Anhänger"]],
-    ["Premiere",["Film","Kino","erste","roter Teppich","Start"]],
-    ["Spoiler",["Ende","verraten","Serie","Film","wissen"]],
-    ["Hashtag",["Raute","Trend","Instagram","Wort","Social Media"]]
-  ]},
-  spicy:{name:"Spicy",emoji:"🌶️",cards:[
-    ["Erstes Date",["Treffen","Restaurant","nervös","Kennenlernen","Liebe"]],
-    ["Crush",["verliebt","Person","heimlich","Gefühle","mögen"]],
-    ["Flirt",["Blickkontakt","Kompliment","Dating","anmachen","lächeln"]],
-    ["Liebesbrief",["schreiben","romantisch","Gefühle","Papier","Herz"]],
-    ["Eifersucht",["Partner","neidisch","Beziehung","Misstrauen","Gefühl"]],
-    ["Kuss",["Lippen","küssen","romantisch","Mund","Liebe"]],
-    ["Anmachspruch",["Flirt","Satz","peinlich","kennenlernen","Bar"]],
-    ["Blind Date",["unbekannt","Treffen","Dating","Überraschung","Restaurant"]],
-    ["Urlaubsflirt",["Reise","Sommer","Romanze","Strand","kurz"]],
-    ["Kompliment",["nett","sagen","Aussehen","loben","freuen"]]
-  ]},
-  adult:{name:"Ü18",emoji:"🔞",cards:[
-    ["One-Night-Stand",["Sex","eine Nacht","Date","fremd","morgen"]],
-    ["Strip-Poker",["Karten","ausziehen","Spiel","nackt","verlieren"]],
-    ["Nacktbaden",["Wasser","Kleidung","See","schwimmen","nackt"]],
-    ["Friends with Benefits",["Freunde","Sex","Beziehung","Vorteile","kompliziert"]],
-    ["Hotelzimmer",["Bett","Übernachtung","Rezeption","Zimmerkarte","Urlaub"]],
-    ["Dating-App",["Match","swipen","Profil","Tinder","Chat"]],
-    ["Ex zurückschreiben",["Nachricht","Trennung","Antwort","nachts","Fehler"]],
-    ["Verbotener Crush",["Gefühle","Person","nicht dürfen","heimlich","Liebe"]],
-    ["Morgen danach",["Nacht","aufwachen","Erinnerung","Bett","Frühstück"]],
-    ["Heimlicher Kuss",["Lippen","versteckt","niemand","romantisch","küssen"]]
-  ]}
-};
+const tabooData={"alltag":{"name":"Alltag","emoji":"🏠","cards":[["Kühlschrank",["kalt","Küche","Essen","Tür"]],["Schlüssel",["Tür","öffnen","Bund","verlieren"]],["Zahnbürste",["Zähne","putzen","Bad","Paste"]],["Handy",["telefonieren","Nachricht","App","Display"]],["Wecker",["morgens","klingeln","Zeit","aufstehen"]],["Spiegel",["sehen","Gesicht","Glas","Bad"]],["Staubsauger",["Boden","Schmutz","saugen","Kabel"]],["Waschmaschine",["Wäsche","sauber","drehen","Keller"]],["Fernseher",["schauen","Sender","Bild","Fernbedienung"]],["Sofa",["sitzen","Wohnzimmer","weich","Kissen"]],["Lampe",["Licht","hell","Schalter","Decke"]],["Fenster",["Glas","öffnen","Luft","Vorhang"]],["Bett",["schlafen","Decke","Kissen","Zimmer"]],["Dusche",["Wasser","Bad","waschen","nass"]],["Toilette",["Bad","spülen","Klo","sitzen"]],["Briefkasten",["Post","Brief","Haus","Schlüssel"]],["Rucksack",["tragen","Schule","Rücken","Tasche"]],["Regenschirm",["Regen","nass","öffnen","Wetter"]],["Kalender",["Datum","Monat","Termin","Jahr"]],["Steckdose",["Strom","Wand","Kabel","Stecker"]],["Fernbedienung",["Fernseher","Knopf","Sender","Batterie"]],["Kopfhörer",["Musik","Ohren","hören","Kabel"]],["Mülleimer",["Abfall","Tonne","wegwerfen","Beutel"]],["Hausschuh",["Fuß","Wohnung","tragen","bequem"]],["Treppenhaus",["Stufen","Haus","hoch","runter"]]]},"essen":{"name":"Essen","emoji":"🍕","cards":[["Pizza",["Käse","Ofen","Italien","rund"]],["Pommes",["Kartoffel","frittiert","Salz","Ketchup"]],["Burger",["Brötchen","Fleisch","Fastfood","Käse"]],["Nudeln",["Pasta","Soße","kochen","Italien"]],["Schokolade",["süß","Kakao","Tafel","braun"]],["Banane",["gelb","Obst","Schale","Affe"]],["Apfel",["Obst","rot","Baum","Kern"]],["Brot",["Bäcker","Scheibe","Mehl","Frühstück"]],["Käse",["Milch","gelb","Loch","Scheibe"]],["Eis",["kalt","Kugel","Sommer","Waffel"]],["Kuchen",["backen","süß","Geburtstag","Stück"]],["Suppe",["warm","Löffel","Topf","flüssig"]],["Salat",["grün","gesund","Blätter","Schüssel"]],["Wurst",["Fleisch","Grill","Scheibe","Brötchen"]],["Reis",["weiß","Korn","kochen","Asien"]],["Ei",["Huhn","Schale","Frühstück","kochen"]],["Müsli",["Milch","Schüssel","Frühstück","Hafer"]],["Kaffee",["heiß","Tasse","Koffein","morgens"]],["Cola",["Getränk","braun","Flasche","Koffein"]],["Wasser",["trinken","klar","Flasche","Durst"]],["Döner",["Fleisch","Brot","Soße","Imbiss"]],["Schnitzel",["Fleisch","Panade","Pfanne","Restaurant"]],["Pfannkuchen",["Teig","Pfanne","süß","flach"]],["Erdbeere",["rot","Obst","Sommer","klein"]],["Popcorn",["Kino","Mais","salzig","Tüte"]]]},"freizeit":{"name":"Freizeit","emoji":"🎮","cards":[["Kino",["Film","Leinwand","Popcorn","Saal"]],["Gaming",["Konsole","spielen","Controller","Computer"]],["Musik",["hören","Lied","Sänger","Kopfhörer"]],["Buch",["lesen","Seiten","Autor","Geschichte"]],["Party",["feiern","Musik","Freunde","tanzen"]],["Schwimmen",["Wasser","Becken","nass","Freibad"]],["Tanzen",["Musik","Bewegung","Disco","Rhythmus"]],["Grillen",["Fleisch","Feuer","Sommer","Garten"]],["Spazieren",["gehen","draußen","Park","laufen"]],["Fotografie",["Kamera","Bild","Foto","Objektiv"]],["Zeichnen",["Stift","Papier","Bild","malen"]],["Kochen",["Küche","Essen","Topf","Rezept"]],["Backen",["Ofen","Kuchen","Teig","Mehl"]],["Shoppen",["kaufen","Laden","Geld","Tüte"]],["Picknick",["Decke","Park","Essen","draußen"]],["Konzert",["Musik","Bühne","Sänger","Publikum"]],["Festival",["Musik","Zelt","Sommer","Bühne"]],["Bowling",["Kugel","Pins","Bahn","werfen"]],["Karaoke",["singen","Mikrofon","Lied","Bar"]],["Puzzle",["Teile","Bild","zusammen","Tisch"]],["Stricken",["Wolle","Nadel","Pullover","Hand"]],["Angeln",["Fisch","Rute","Wasser","Haken"]],["Campen",["Zelt","Natur","schlafen","Campingplatz"]],["Lesen",["Buch","Text","Seite","Wörter"]],["Garten",["Pflanzen","Rasen","draußen","Blumen"]]]},"tiere":{"name":"Tiere","emoji":"🐾","cards":[["Hund",["bellen","Leine","Haustier","Pfote"]],["Katze",["miauen","Haustier","Schnurren","Maus"]],["Elefant",["Rüssel","groß","Afrika","grau"]],["Löwe",["Mähne","Afrika","König","brüllen"]],["Giraffe",["Hals","lang","Afrika","Flecken"]],["Affe",["Banane","Baum","Zoo","klettern"]],["Pinguin",["Eis","schwarz","weiß","watscheln"]],["Delfin",["Meer","schwimmen","Flosse","springen"]],["Hai",["Meer","Zähne","Flosse","gefährlich"]],["Pferd",["reiten","Stall","Hufe","Mähne"]],["Kuh",["Milch","Wiese","muhen","Flecken"]],["Schwein",["rosa","Bauernhof","grunzen","Schnauze"]],["Huhn",["Ei","Bauernhof","Federn","gackern"]],["Frosch",["grün","springen","Teich","quaken"]],["Biene",["Honig","Blume","stechen","gelb"]],["Schmetterling",["Flügel","bunt","Blume","Raupe"]],["Spinne",["acht","Beine","Netz","krabbeln"]],["Maus",["klein","Käse","grau","Loch"]],["Kaninchen",["Ohren","Karotte","Stall","hoppeln"]],["Fuchs",["rot","Wald","Schwanz","schlau"]],["Wolf",["Rudel","heulen","Wald","Hund"]],["Eule",["Nacht","Vogel","Augen","Wald"]],["Krokodil",["Zähne","Wasser","grün","Reptil"]],["Schildkröte",["Panzer","langsam","Reptil","grün"]],["Zebra",["Streifen","schwarz","weiß","Afrika"]]]},"sport":{"name":"Sport","emoji":"⚽","cards":[["Fußball",["Ball","Tor","spielen","Platz"]],["Basketball",["Korb","Ball","werfen","NBA"]],["Tennis",["Schläger","Ball","Netz","Platz"]],["Boxen",["Handschuhe","Ring","Kampf","Faust"]],["Joggen",["laufen","Sport","Schuhe","draußen"]],["Skifahren",["Schnee","Berg","Bretter","Winter"]],["Radfahren",["Fahrrad","Pedale","Helm","Straße"]],["Handball",["Ball","Tor","Halle","Hand"]],["Volleyball",["Netz","Ball","Team","Halle"]],["Golf",["Schläger","Loch","Ball","Rasen"]],["Darts",["Pfeil","Scheibe","werfen","Punkte"]],["Billard",["Kugel","Tisch","Queue","Loch"]],["Surfen",["Welle","Brett","Meer","Wasser"]],["Klettern",["Wand","Berg","Seil","hoch"]],["Ringen",["Kampf","Matte","Sport","greifen"]],["Fechten",["Degen","Maske","Kampf","Treffer"]],["Rudern",["Boot","Wasser","Paddel","Team"]],["Turnen",["Halle","Boden","Sprung","Körper"]],["Sprint",["schnell","laufen","Start","Ziel"]],["Marathon",["laufen","lang","Kilometer","Rennen"]],["Schiedsrichter",["Pfeife","Regeln","Spiel","Karte"]],["Stadion",["Zuschauer","Sport","Tribüne","Platz"]],["Medaille",["Gold","Gewinner","Sport","Hals"]],["Training",["üben","Sport","fit","Mannschaft"]],["Trikot",["Spieler","Nummer","Team","tragen"]]]},"reise":{"name":"Reisen","emoji":"✈️","cards":[["Flughafen",["Flugzeug","Reise","Koffer","Start"]],["Koffer",["Reise","packen","Kleidung","Rollen"]],["Hotel",["Zimmer","Urlaub","schlafen","Rezeption"]],["Strand",["Meer","Sand","Sonne","Urlaub"]],["Camping",["Zelt","Urlaub","Natur","Platz"]],["Reisepass",["Ausweis","Grenze","Flug","Dokument"]],["Ticket",["Fahrt","Eintritt","kaufen","Kontrolle"]],["Bahnhof",["Zug","Gleis","Reise","Abfahrt"]],["Flugzeug",["fliegen","Himmel","Pilot","Flügel"]],["Kreuzfahrt",["Schiff","Meer","Urlaub","Kabine"]],["Landkarte",["Weg","Land","Papier","Orientierung"]],["Souvenir",["Urlaub","Andenken","kaufen","Geschenk"]],["Sonnencreme",["Sonne","Haut","Urlaub","eincremen"]],["Reiseziel",["Ort","Urlaub","fahren","Plan"]],["Berge",["hoch","Natur","Wandern","Gipfel"]],["Insel",["Meer","Land","Urlaub","Wasser"]],["Abenteuer",["erleben","Reise","spannend","Mut"]],["Ausflug",["fahren","Tag","Ziel","Gruppe"]],["Wohnmobil",["fahren","schlafen","Camping","Urlaub"]],["Zelt",["Camping","Stoff","schlafen","aufbauen"]],["Rucksack",["tragen","Reise","Rücken","packen"]],["Kompass",["Richtung","Norden","Orientierung","Nadel"]],["Grenze",["Land","Kontrolle","überqueren","Pass"]],["Urlaub",["Reise","frei","Hotel","erholen"]],["Wandern",["gehen","Berg","Natur","Schuhe"]]]},"pop":{"name":"Popkultur","emoji":"🎬","cards":[["Netflix",["Serie","Film","streamen","Fernseher"]],["TikTok",["Video","App","scrollen","kurz"]],["YouTube",["Video","Kanal","Internet","abonnieren"]],["Instagram",["Foto","Story","App","Follower"]],["Batman",["Held","Gotham","Maske","Fledermaus"]],["Superman",["Held","fliegen","Umhang","Krypton"]],["Barbie",["Puppe","pink","Film","Spielzeug"]],["Shrek",["Oger","grün","Esel","Film"]],["SpongeBob",["Schwamm","Meer","Ananas","Patrick"]],["Pokémon",["Pikachu","fangen","Spiel","Anime"]],["Disney",["Micky","Film","Prinzessin","Park"]],["Marvel",["Helden","Filme","Avengers","Comic"]],["Starwars",["Weltraum","Jedi","Lichtschwert","Vader"]],["Minecraft",["Blöcke","Spiel","bauen","Creeper"]],["Fortnite",["Spiel","Battle","bauen","Insel"]],["Playstation",["Konsole","Sony","Controller","spielen"]],["Nintendo",["Mario","Konsole","Switch","Spiel"]],["Spotify",["Musik","App","Playlist","hören"]],["Harrypotter",["Zauberer","Hogwarts","Buch","Narbe"]],["Simpsons",["gelb","Familie","Homer","Serie"]],["Friends",["Serie","Freunde","NewYork","Café"]],["Avatar",["blau","Film","Pandora","Kino"]],["Wednesday",["Addams","Serie","schwarz","Tanz"]],["Minions",["gelb","Banane","Film","klein"]],["Joker",["Batman","Bösewicht","Clown","Gotham"]]]},"party":{"name":"Party","emoji":"🎉","cards":[["Disco",["tanzen","Musik","Club","Nacht"]],["Cocktail",["Getränk","Glas","Mix","Alkohol"]],["Konfetti",["bunt","Papier","werfen","Feier"]],["Geburtstag",["Kuchen","Geschenk","Feier","Alter"]],["DJ",["Musik","Pult","Club","auflegen"]],["Tanzfläche",["tanzen","Club","Boden","Musik"]],["Einladung",["Party","Gäste","Karte","kommen"]],["Mitternacht",["Uhr","Nacht","zwölf","Silvester"]],["Silvester",["Feuerwerk","Jahr","Mitternacht","Party"]],["Feuerwerk",["Himmel","bunt","laut","Rakete"]],["Luftballon",["Luft","bunt","Party","platzen"]],["Geschenk",["einpacken","Geburtstag","überraschen","Papier"]],["Karaoke",["singen","Mikrofon","Lied","Party"]],["Bierpong",["Becher","Ball","Tisch","Party"]],["Fotobox",["Foto","Party","Kamera","lustig"]],["Dresscode",["Kleidung","Party","tragen","Vorgabe"]],["Gästeliste",["Namen","Einlass","Party","Tür"]],["Club",["Musik","tanzen","Nacht","Einlass"]],["Bar",["Getränke","Tresen","Abend","Glas"]],["Feier",["Party","Menschen","Musik","Spaß"]],["Musikbox",["Lieder","spielen","Box","Bluetooth"]],["Nachbar",["Wohnung","laut","Haus","beschweren"]],["Kater",["morgens","Kopf","Party","müde"]],["Anstoßen",["Glas","Prost","trinken","Feier"]],["Polonaise",["tanzen","Reihe","Party","Musik"]]]}};
 
 const truthData={
   soft:{name:"Locker",emoji:"😊",truth:[
@@ -4712,7 +5001,7 @@ const whoData={
 
 let tabooPlayers=["Lena","Max","Sophie","Ben"];
 let tabooSelected=new Set(["alltag","party","pop"]);
-let tabooRounds=10,tabooSeconds=60,tabooDeck=[],tabooIndex=0,tabooScore=0,tabooRoundScore=0,tabooPlayerIndex=0,tabooCompletedRounds=0,tabooTimerId=null,tabooTimeLeft=60;
+let tabooRounds=10,tabooSeconds=60,tabooDeck=[],tabooIndex=0,tabooScore=0,tabooSkipped=0,tabooRoundScore=0,tabooRoundSkipped=0,tabooPlayerIndex=0,tabooCompletedRounds=0,tabooTimerId=null,tabooTimeLeft=60,tabooPlayerStats=[];
 
 let truthPlayers=["Lena","Max","Sophie","Ben"];
 let truthSelected=new Set(["soft","party"]);
@@ -4845,14 +5134,14 @@ function startTabooGame(){
   if(tabooPlayers.length<2){showSettingToast("Mindestens 2 Spieler benötigt");return}
   tabooDeck=buildTabooDeck();
   if(!tabooDeck.length){showSettingToast("Keine Karten verfügbar");return}
-  tabooIndex=0;tabooScore=0;tabooRoundScore=0;tabooPlayerIndex=0;tabooCompletedRounds=0;
+  tabooIndex=0;tabooScore=0;tabooSkipped=0;tabooRoundScore=0;tabooRoundSkipped=0;tabooPlayerIndex=0;tabooCompletedRounds=0;tabooPlayerStats=tabooPlayers.map(name=>({name,correct:0,skipped:0}));
   clearInterval(tabooTimerId);tabooTimerId=null;
   resetGameGuard("taboo");
   prepareTabooRound();
 }
 function prepareTabooRound(){
   clearInterval(tabooTimerId);tabooTimerId=null;
-  tabooRoundScore=0;tabooTimeLeft=tabooSeconds;
+  tabooRoundScore=0;tabooRoundSkipped=0;tabooTimeLeft=tabooSeconds;
   document.getElementById("tabooPassName").textContent=tabooPlayers[tabooPlayerIndex];
   go("tabooPass");
 }
@@ -4886,15 +5175,22 @@ function startTabooTimer(){
 }
 function nextTaboo(correct){
   if(correct){tabooScore++;tabooRoundScore++;triggerHaptic("success")}
-  else triggerHaptic("light");
+  else{tabooSkipped++;tabooRoundSkipped++;triggerHaptic("light")}
   tabooIndex++;
   showTabooCard();
 }
 function finishTabooRound(){
   clearInterval(tabooTimerId);tabooTimerId=null;
   tabooCompletedRounds++;
+  const playerStat=tabooPlayerStats[tabooPlayerIndex];
+  playerStat.correct=tabooRoundScore;
+  playerStat.skipped=tabooRoundSkipped;
   document.getElementById("tabooRoundPlayer").textContent=tabooPlayers[tabooPlayerIndex];
-  document.getElementById("tabooRoundScore").textContent=tabooRoundScore;
+  document.getElementById("tabooRoundCorrect").textContent=tabooRoundScore;
+  document.getElementById("tabooRoundSkipped").textContent=tabooRoundSkipped;
+  const total=tabooRoundScore+tabooRoundSkipped;
+  const quote=total?Math.round(tabooRoundScore/total*100):0;
+  document.getElementById("tabooRoundComment").textContent=quote>=80?"Richtig starke Runde!":quote>=55?"Solide erklärt!":"Die nächsten Begriffe werden besser.";
   document.getElementById("tabooNextRound").textContent=tabooCompletedRounds>=tabooPlayers.length?"ERGEBNIS ANZEIGEN":"NÄCHSTER SPIELER";
   triggerHaptic("heavy");
   go("tabooRoundEnd");
@@ -4907,6 +5203,15 @@ function advanceTabooRound(){
 function finishTaboo(){
   clearInterval(tabooTimerId);tabooTimerId=null;
   document.getElementById("tabooFinalScore").textContent=tabooScore;
+  document.getElementById("tabooFinalSkipped").textContent=tabooSkipped;
+  const results=document.getElementById("tabooPlayerResults");
+  results.innerHTML="";
+  tabooPlayerStats.forEach(stat=>{
+    const row=document.createElement("div");
+    row.className="taboo-player-result";
+    row.innerHTML=`<span class="name">${stat.name}</span><span class="correct">✓ ${stat.correct}</span><span class="skipped">✕ ${stat.skipped}</span>`;
+    results.appendChild(row);
+  });
   recordGameOnce("taboo",Math.max(1,tabooIndex));
   triggerHaptic("success");
   go("tabooEnd");
@@ -5086,6 +5391,710 @@ document.addEventListener("pointerup",event=>{
 },{passive:true});
 
 
+
+
+/* ==========================================================
+   WERWOLF
+   ========================================================== */
+const WW_ROLES={
+  werewolf:{name:"Werwolf",emoji:"🐺",team:"wolf",description:"Du wachst nachts mit den anderen Werwölfen auf und wählst gemeinsam ein Opfer."},
+  villager:{name:"Dorfbewohner",emoji:"🏘️",team:"village",description:"Du besitzt keine Nachtfähigkeit. Beobachte gut und finde die Werwölfe."},
+  seer:{name:"Seherin",emoji:"🔮",team:"village",description:"Du darfst jede Nacht die Rolle einer lebenden Person erfahren."},
+  witch:{name:"Hexe",emoji:"🧪",team:"village",description:"Du hast einmal einen Heiltrank und einmal einen Gifttrank."},
+  hunter:{name:"Jäger",emoji:"🏹",team:"village",description:"Wenn du stirbst, darfst du eine lebende Person mit in den Tod nehmen."},
+  cupid:{name:"Amor",emoji:"💘",team:"village",description:"In der ersten Nacht bestimmst du zwei Verliebte. Stirbt einer, stirbt auch der andere."},
+  protector:{name:"Beschützer",emoji:"🛡️",team:"village",description:"Du schützt jede Nacht eine Person vor den Werwölfen. Nicht zweimal dieselbe Person hintereinander."}
+};
+const WW_SPECIAL_ORDER=["seer","witch","hunter","cupid","protector"];
+const WW_SPECIAL_META={
+  seer:{label:"Seherin",emoji:"🔮",hint:"Erfährt jede Nacht eine Rolle"},
+  witch:{label:"Hexe",emoji:"🧪",hint:"Ein Heil- und ein Gifttrank"},
+  hunter:{label:"Jäger",emoji:"🏹",hint:"Nimmt beim Tod jemanden mit"},
+  cupid:{label:"Amor",emoji:"💘",hint:"Bestimmt zwei Verliebte"},
+  protector:{label:"Beschützer",emoji:"🛡️",hint:"Schützt nachts eine Person"}
+};
+
+let wwPlayers=["Deniz","Lena","Max","Sophie","Ben","Mia","Noah","Emma"];
+let wwNarratorIndex=0;
+let wwWolfCount=2;
+let wwEnabledRoles=new Set(["seer","witch","hunter","cupid","protector"]);
+let wwRoleMap={};
+let wwRevealOrder=[];
+let wwRevealIndex=0;
+let wwAlive=new Set();
+let wwNight=1;
+let wwCurrentQueue=[];
+let wwQueueIndex=0;
+let wwSelectionMode="";
+let wwSelected=[];
+let wwSelectionCallback=null;
+let wwWolfTarget=null;
+let wwProtectedTarget=null;
+let wwPreviousProtected=null;
+let wwPoisonTarget=null;
+let wwLovers=[];
+let wwWitchHeal=true;
+let wwWitchPoison=true;
+let wwPendingDeaths=[];
+let wwHunterPending=null;
+let wwAfterHunter=null;
+let wwLastMorningDeaths=[];
+let wwGameFinished=false;
+
+function wwActiveIndices(){
+  return wwPlayers.map((_,i)=>i).filter(i=>i!==wwNarratorIndex);
+}
+function wwLivingIndices(){
+  return [...wwAlive];
+}
+function wwRecommendedWolves(count=wwActiveIndices().length){
+  if(count<=6)return 1;
+  if(count<=10)return 2;
+  if(count<=14)return 3;
+  return 4;
+}
+function wwMaxWolves(count=wwActiveIndices().length){
+  return Math.max(1,Math.min(4,Math.floor((count-1)/2)));
+}
+function wwRoleCount(){
+  return wwWolfCount+wwEnabledRoles.size;
+}
+function wwNarratorName(){
+  return wwPlayers[wwNarratorIndex]||"Erzähler";
+}
+function wwRoleOf(index){
+  return WW_ROLES[wwRoleMap[index]||"villager"];
+}
+function wwPlayerByRole(role){
+  return wwLivingIndices().find(i=>wwRoleMap[i]===role);
+}
+function wwUpdateSetup(){
+  const active=wwActiveIndices().length;
+  const recommended=wwRecommendedWolves(active);
+  const maxWolves=wwMaxWolves(active);
+  if(wwWolfCount>maxWolves)wwWolfCount=maxWolves;
+  if(wwWolfCount<1)wwWolfCount=1;
+
+  while(wwRoleCount()>active&&wwEnabledRoles.size){
+    const last=[...WW_SPECIAL_ORDER].reverse().find(r=>wwEnabledRoles.has(r));
+    if(!last)break;
+    wwEnabledRoles.delete(last);
+  }
+
+  document.getElementById("wwPlayerValue").textContent=`${wwPlayers.length} Namen`;
+  document.getElementById("wwPlayerBadge").textContent=`${wwPlayers.length}/18`;
+  document.getElementById("wwRoleValue").textContent=`${wwWolfCount} ${wwWolfCount===1?"Wolf":"Wölfe"}`;
+  document.getElementById("wwWolfHint").textContent=`Empfohlen: ${recommended} bei ${active} aktiven Spielern`;
+  document.getElementById("wwActiveCount").textContent=active;
+  document.getElementById("wwSpecialCount").textContent=wwEnabledRoles.size;
+  document.getElementById("wwVillagerCount").textContent=Math.max(0,active-wwRoleCount());
+
+  document.querySelectorAll("[data-ww-wolves]").forEach(button=>{
+    const value=Number(button.dataset.wwWolves);
+    button.disabled=value>maxWolves;
+    button.classList.toggle("selected-wolf",value===wwWolfCount);
+  });
+  wwRenderSpecialRoles();
+}
+function wwRenderPlayers(){
+  const list=document.getElementById("wwPlayerList");
+  list.innerHTML="";
+  wwPlayers.forEach((name,index)=>{
+    const row=document.createElement("div");
+    row.className="ww-player-row";
+
+    const badge=document.createElement("div");
+    badge.className="player-number";
+    badge.textContent=index+1;
+
+    const input=document.createElement("input");
+    input.value=name;
+    input.maxLength=18;
+    input.addEventListener("input",()=>{
+      wwPlayers[index]=input.value;
+      narrator.textContent=index===wwNarratorIndex?"ERZÄHLER":"Erzähler";
+      wwUpdateSetup();
+    });
+
+    const narrator=document.createElement("button");
+    narrator.type="button";
+    narrator.className="ww-narrator-button";
+    narrator.classList.toggle("active",index===wwNarratorIndex);
+    narrator.textContent=index===wwNarratorIndex?"ERZÄHLER":"Erzähler";
+    narrator.addEventListener("click",()=>{
+      wwNarratorIndex=index;
+      wwRenderPlayers();
+      wwUpdateSetup();
+      triggerHaptic("medium");
+    });
+
+    const remove=document.createElement("button");
+    remove.type="button";
+    remove.className="remove-player";
+    remove.textContent="×";
+    remove.disabled=wwPlayers.length<=6;
+    remove.addEventListener("click",()=>{
+      if(wwPlayers.length<=6)return;
+      wwPlayers.splice(index,1);
+      if(wwNarratorIndex===index)wwNarratorIndex=0;
+      else if(wwNarratorIndex>index)wwNarratorIndex--;
+      wwRenderPlayers();
+      wwUpdateSetup();
+      triggerHaptic("light");
+    });
+
+    row.append(badge,input,narrator,remove);
+    list.appendChild(row);
+  });
+  wwUpdateSetup();
+}
+function wwRenderSpecialRoles(){
+  const root=document.getElementById("wwSpecialRoles");
+  if(!root)return;
+  root.innerHTML="";
+  const active=wwActiveIndices().length;
+
+  WW_SPECIAL_ORDER.forEach(role=>{
+    const meta=WW_SPECIAL_META[role];
+    const row=document.createElement("div");
+    row.className="ww-role-row";
+
+    const icon=document.createElement("div");
+    icon.className="ww-role-icon";
+    icon.textContent=meta.emoji;
+
+    const copy=document.createElement("div");
+    copy.className="ww-role-copy";
+    copy.innerHTML=`<strong>${meta.label}</strong><span>${meta.hint}</span>`;
+
+    const toggle=document.createElement("button");
+    toggle.type="button";
+    toggle.className="ww-role-toggle";
+    toggle.classList.toggle("on",wwEnabledRoles.has(role));
+    const wouldExceed=!wwEnabledRoles.has(role)&&wwRoleCount()+1>active;
+    toggle.disabled=wouldExceed;
+    toggle.addEventListener("click",()=>{
+      if(wwEnabledRoles.has(role))wwEnabledRoles.delete(role);
+      else if(wwRoleCount()<active)wwEnabledRoles.add(role);
+      wwUpdateSetup();
+      triggerHaptic("light");
+    });
+
+    row.append(icon,copy,toggle);
+    root.appendChild(row);
+  });
+}
+function wwNormalizePlayers(){
+  wwPlayers=wwPlayers.map((name,i)=>(name||"").trim()||`Person ${i+1}`);
+}
+function wwAssignRoles(){
+  wwNormalizePlayers();
+  const active=shuffle(wwActiveIndices());
+  const roles=[
+    ...Array(wwWolfCount).fill("werewolf"),
+    ...WW_SPECIAL_ORDER.filter(role=>wwEnabledRoles.has(role))
+  ];
+  while(roles.length<active.length)roles.push("villager");
+  const shuffledRoles=shuffle(roles);
+  wwRoleMap={};
+  active.forEach((player,index)=>wwRoleMap[player]=shuffledRoles[index]);
+  wwRevealOrder=shuffle([...active]);
+  wwRevealIndex=0;
+}
+function wwResetGame(){
+  wwAlive=new Set(wwActiveIndices());
+  wwNight=1;
+  wwWitchHeal=true;
+  wwWitchPoison=true;
+  wwLovers=[];
+  wwPreviousProtected=null;
+  wwProtectedTarget=null;
+  wwWolfTarget=null;
+  wwPoisonTarget=null;
+  wwPendingDeaths=[];
+  wwHunterPending=null;
+  wwLastMorningDeaths=[];
+  wwGameFinished=false;
+}
+function wwStart(){
+  wwNormalizePlayers();
+  const active=wwActiveIndices().length;
+  if(wwPlayers.length<6||active<5){
+    showSettingToast("Mindestens 6 Namen inklusive Erzähler");
+    return;
+  }
+  if(wwRoleCount()>active){
+    showSettingToast("Zu viele Rollen für die Spielerzahl");
+    return;
+  }
+  wwAssignRoles();
+  wwResetGame();
+  resetGameGuard("werewolf");
+  wwShowPass();
+}
+function wwShowPass(){
+  if(wwRevealIndex>=wwRevealOrder.length){
+    wwShowNarratorReady();
+    return;
+  }
+  const player=wwRevealOrder[wwRevealIndex];
+  document.getElementById("wwPassName").textContent=wwPlayers[player];
+  go("wwPass");
+}
+function wwShowRole(){
+  const player=wwRevealOrder[wwRevealIndex];
+  const roleKey=wwRoleMap[player];
+  const role=WW_ROLES[roleKey];
+  document.getElementById("wwRevealEmoji").textContent=role.emoji;
+  document.getElementById("wwRevealName").textContent=role.name.toUpperCase();
+  document.getElementById("wwRevealDescription").textContent=role.description;
+  let teamText=role.team==="wolf"?"Du gehörst zum Rudel.":"Du gehörst zum Dorf.";
+  if(roleKey==="werewolf"){
+    const mates=wwActiveIndices().filter(i=>i!==player&&wwRoleMap[i]==="werewolf").map(i=>wwPlayers[i]);
+    teamText=mates.length?`Deine Mitwerwölfe: ${mates.join(", ")}`:"Du bist der einzige Werwolf.";
+  }
+  document.getElementById("wwRevealTeam").textContent=teamText;
+  go("wwReveal");
+}
+function wwHideRole(){
+  wwRevealIndex++;
+  wwShowPass();
+}
+function wwShowNarratorReady(){
+  document.getElementById("wwNarratorName").textContent=wwNarratorName();
+  const root=document.getElementById("wwNarratorRoles");
+  root.innerHTML="";
+  wwActiveIndices().forEach(index=>{
+    const row=document.createElement("div");
+    row.className="ww-narrator-role";
+    row.innerHTML=`<span>${wwPlayers[index]}</span><span>${wwRoleOf(index).emoji} ${wwRoleOf(index).name}</span>`;
+    root.appendChild(row);
+  });
+  go("wwNarratorReady");
+}
+function wwSetPhase({emoji="🌙",kicker="VORLESEN",title,text,button="WEITER",action}){
+  document.getElementById("wwPhaseHeader").textContent=`NACHT ${wwNight}`;
+  document.getElementById("wwPhaseEmoji").textContent=emoji;
+  document.getElementById("wwPhaseKicker").textContent=kicker;
+  document.getElementById("wwPhaseTitle").textContent=title;
+  document.getElementById("wwPhaseText").textContent=text;
+  const btn=document.getElementById("wwPhaseContinue");
+  btn.textContent=button;
+  btn.onclick=action;
+  go("wwPhase");
+}
+function wwBuildNightQueue(){
+  const queue=[
+    ()=>wwSetPhase({
+      emoji:"🌙",title:"Das Dorf schläft ein",
+      text:"„Das Dorf wird still. Alle schließen die Augen. Niemand spricht und niemand spickt.“",
+      action:wwNextNightStep
+    })
+  ];
+  if(wwNight===1&&wwPlayerByRole("cupid")!==undefined){
+    queue.push(()=>wwSetPhase({
+      emoji:"💘",title:"Amor erwacht",
+      text:"„Amor, öffne die Augen und bestimme zwei Personen, die sich unsterblich ineinander verlieben.“",
+      button:"VERLIEBTE AUSWÄHLEN",
+      action:()=>wwOpenSelection("cupid")
+    }));
+  }
+  if(wwPlayerByRole("protector")!==undefined){
+    queue.push(()=>wwSetPhase({
+      emoji:"🛡️",title:"Der Beschützer erwacht",
+      text:"„Beschützer, wähle eine Person, die in dieser Nacht vor dem Angriff der Werwölfe geschützt ist.“",
+      button:"SCHUTZ AUSWÄHLEN",
+      action:()=>wwOpenSelection("protector")
+    }));
+  }
+  queue.push(()=>wwSetPhase({
+    emoji:"🐺",title:"Die Werwölfe erwachen",
+    text:"„Werwölfe, öffnet die Augen. Einigt euch lautlos auf eine Person, die ihr in dieser Nacht angreifen wollt.“",
+    button:"OPFER AUSWÄHLEN",
+    action:()=>wwOpenSelection("wolves")
+  }));
+  if(wwPlayerByRole("seer")!==undefined){
+    queue.push(()=>wwSetPhase({
+      emoji:"🔮",title:"Die Seherin erwacht",
+      text:"„Seherin, öffne die Augen und wähle eine lebende Person. Du erfährst ihre wahre Rolle.“",
+      button:"PERSON PRÜFEN",
+      action:()=>wwOpenSelection("seer")
+    }));
+  }
+  if(wwPlayerByRole("witch")!==undefined){
+    queue.push(()=>wwSetPhase({
+      emoji:"🧪",title:"Die Hexe erwacht",
+      text:"„Hexe, öffne die Augen. Du erfährst, wen die Werwölfe angegriffen haben, und darfst deine Tränke einsetzen.“",
+      button:"TRÄNKE ANSEHEN",
+      action:wwShowWitch
+    }));
+  }
+  queue.push(()=>wwSetPhase({
+    emoji:"🌘",title:"Die Nacht endet",
+    text:"„Alle Nachtrollen schließen wieder die Augen. Gleich erwacht das Dorf.“",
+    button:"DORF AUFWECKEN",
+    action:wwResolveNight
+  }));
+  wwCurrentQueue=queue;
+  wwQueueIndex=0;
+}
+function wwStartNight(){
+  wwWolfTarget=null;
+  wwProtectedTarget=null;
+  wwPoisonTarget=null;
+  wwBuildNightQueue();
+  wwCurrentQueue[0]();
+}
+function wwNextNightStep(){
+  wwQueueIndex++;
+  if(wwQueueIndex<wwCurrentQueue.length)wwCurrentQueue[wwQueueIndex]();
+}
+function wwEligibleFor(mode){
+  const living=wwLivingIndices();
+  if(mode==="wolves")return living.filter(i=>wwRoleMap[i]!=="werewolf");
+  if(mode==="seer"){
+    const seer=wwPlayerByRole("seer");
+    return living.filter(i=>i!==seer);
+  }
+  if(mode==="protector")return living.filter(i=>i!==wwPreviousProtected);
+  if(mode==="poison"){
+    const witch=wwPlayerByRole("witch");
+    return living.filter(i=>i!==witch);
+  }
+  if(mode==="hunter"){
+    return living.filter(i=>i!==wwHunterPending);
+  }
+  if(mode==="vote")return living;
+  return living;
+}
+function wwOpenSelection(mode){
+  wwSelectionMode=mode;
+  wwSelected=[];
+  const configs={
+    cupid:{emoji:"💘",title:"Zwei Verliebte wählen",text:"Wähle genau zwei lebende Personen.",max:2,button:"VERLIEBTE BESTÄTIGEN"},
+    protector:{emoji:"🛡️",title:"Wen schützt der Beschützer?",text:"Die zuletzt geschützte Person ist dieses Mal gesperrt.",max:1,button:"SCHUTZ BESTÄTIGEN"},
+    wolves:{emoji:"🐺",title:"Wen greifen die Werwölfe an?",text:"Wähle das gemeinsam bestimmte Opfer.",max:1,button:"OPFER BESTÄTIGEN"},
+    seer:{emoji:"🔮",title:"Wen prüft die Seherin?",text:"Wähle eine Person, deren Rolle angezeigt werden soll.",max:1,button:"ROLLE ANZEIGEN"},
+    poison:{emoji:"☠️",title:"Wen vergiftet die Hexe?",text:"Der Gifttrank kann im gesamten Spiel nur einmal benutzt werden.",max:1,button:"VERGIFTEN"},
+    vote:{emoji:"🗳️",title:"Wen wählt das Dorf?",text:"Wähle die Person mit den meisten Stimmen.",max:1,button:"ABSTIMMUNG BESTÄTIGEN"},
+    hunter:{emoji:"🏹",title:"Wen nimmt der Jäger mit?",text:"Der letzte Schuss trifft genau eine lebende Person.",max:1,button:"SCHUSS BESTÄTIGEN"}
+  };
+  const config=configs[mode];
+  document.getElementById("wwSelectHeader").textContent=mode==="vote"?"ABSTIMMUNG":"AUSWAHL";
+  document.getElementById("wwSelectEmoji").textContent=config.emoji;
+  document.getElementById("wwSelectTitle").textContent=config.title;
+  document.getElementById("wwSelectText").textContent=config.text;
+  const confirm=document.getElementById("wwConfirmSelection");
+  confirm.textContent=config.button;
+  confirm.disabled=true;
+
+  const root=document.getElementById("wwSelectNames");
+  root.innerHTML="";
+  wwEligibleFor(mode).forEach(index=>{
+    const button=document.createElement("button");
+    button.type="button";
+    button.className="ww-name-option";
+    button.textContent=wwPlayers[index];
+    button.dataset.index=index;
+    button.addEventListener("click",()=>{
+      const value=Number(button.dataset.index);
+      if(config.max===1){
+        wwSelected=[value];
+        root.querySelectorAll(".ww-name-option").forEach(x=>x.classList.toggle("selected",x===button));
+      }else{
+        if(wwSelected.includes(value)){
+          wwSelected=wwSelected.filter(x=>x!==value);
+          button.classList.remove("selected");
+        }else if(wwSelected.length<config.max){
+          wwSelected.push(value);
+          button.classList.add("selected");
+        }
+      }
+      confirm.disabled=wwSelected.length!==config.max;
+      triggerHaptic("light");
+    });
+    root.appendChild(button);
+  });
+
+  confirm.onclick=wwConfirmSelection;
+  go("wwSelect");
+}
+function wwConfirmSelection(){
+  if(!wwSelected.length)return;
+  const selected=wwSelected[0];
+  if(wwSelectionMode==="cupid"){
+    wwLovers=[...wwSelected];
+    wwNextNightStep();
+  }else if(wwSelectionMode==="protector"){
+    wwProtectedTarget=selected;
+    wwPreviousProtected=selected;
+    wwNextNightStep();
+  }else if(wwSelectionMode==="wolves"){
+    wwWolfTarget=selected;
+    wwNextNightStep();
+  }else if(wwSelectionMode==="seer"){
+    const role=wwRoleOf(selected);
+    document.getElementById("wwSeerPlayer").textContent=wwPlayers[selected];
+    document.getElementById("wwSeerRole").textContent=`${role.emoji} ${role.name}`;
+    go("wwSeerResult");
+  }else if(wwSelectionMode==="poison"){
+    wwPoisonTarget=selected;
+    wwWitchPoison=false;
+    wwNextNightStep();
+  }else if(wwSelectionMode==="vote"){
+    wwResolveDayVote(selected);
+  }else if(wwSelectionMode==="hunter"){
+    const target=selected;
+    wwAlive.delete(target);
+    wwAddLoverDeath(target,wwPendingDeaths);
+    wwHunterPending=null;
+    wwFinalizeDeaths();
+  }
+}
+function wwShowWitch(){
+  const root=document.getElementById("wwWitchActions");
+  root.innerHTML="";
+  const victimText=wwWolfTarget!==null
+    ?`Die Werwölfe haben ${wwPlayers[wwWolfTarget]} angegriffen.`
+    :"Die Werwölfe haben kein Opfer bestimmt.";
+  document.getElementById("wwWitchVictim").textContent=victimText;
+
+  const heal=document.createElement("button");
+  heal.className="ww-witch-action ww-witch-heal";
+  heal.textContent="💚 HEILTRANK BENUTZEN";
+  heal.disabled=!wwWitchHeal||wwWolfTarget===null;
+  heal.onclick=()=>{
+    wwWitchHeal=false;
+    wwWolfTarget=null;
+    wwNextNightStep();
+  };
+
+  const poison=document.createElement("button");
+  poison.className="ww-witch-action ww-witch-poison";
+  poison.textContent="☠️ GIFTTRANK BENUTZEN";
+  poison.disabled=!wwWitchPoison;
+  poison.onclick=()=>wwOpenSelection("poison");
+
+  const skip=document.createElement("button");
+  skip.className="ww-witch-action ww-witch-skip";
+  skip.textContent="KEINEN TRANK BENUTZEN";
+  skip.onclick=wwNextNightStep;
+
+  root.append(heal,poison,skip);
+  go("wwWitch");
+}
+function wwAddLoverDeath(index,deaths){
+  if(!wwLovers.includes(index))return;
+  const partner=wwLovers.find(i=>i!==index&&wwAlive.has(i));
+  if(partner!==undefined&&!deaths.includes(partner))deaths.push(partner);
+}
+function wwCollectDeaths(initial){
+  const deaths=[...new Set(initial.filter(i=>i!==null&&wwAlive.has(i)))];
+  let changed=true;
+  while(changed){
+    changed=false;
+    [...deaths].forEach(index=>{
+      if(wwLovers.includes(index)){
+        const partner=wwLovers.find(i=>i!==index&&wwAlive.has(i));
+        if(partner!==undefined&&!deaths.includes(partner)){
+          deaths.push(partner);
+          changed=true;
+        }
+      }
+    });
+  }
+  return deaths;
+}
+function wwResolveNight(){
+  const initial=[];
+  if(wwWolfTarget!==null&&wwWolfTarget!==wwProtectedTarget)initial.push(wwWolfTarget);
+  if(wwPoisonTarget!==null)initial.push(wwPoisonTarget);
+  wwPendingDeaths=wwCollectDeaths(initial);
+  wwHandleDeaths(()=>wwShowMorning());
+}
+function wwHandleDeaths(after){
+  wwAfterHunter=after;
+  const hunter=wwPendingDeaths.find(i=>wwRoleMap[i]==="hunter"&&wwAlive.has(i));
+  wwPendingDeaths.forEach(i=>wwAlive.delete(i));
+  if(hunter!==undefined&&wwLivingIndices().length){
+    wwHunterPending=hunter;
+    document.getElementById("wwHunterText").textContent=`${wwPlayers[hunter]} ist der Jäger und darf jetzt eine lebende Person bestimmen, die mit ihm stirbt.`;
+    document.getElementById("wwHunterChoose").onclick=()=>wwOpenSelection("hunter");
+    go("wwHunter");
+    return;
+  }
+  wwFinalizeDeaths();
+}
+function wwFinalizeDeaths(){
+  wwLastMorningDeaths=[...new Set(wwPendingDeaths.filter(i=>!wwAlive.has(i)))];
+  const continuation=wwAfterHunter;
+  wwPendingDeaths=[];
+  wwAfterHunter=null;
+  if(wwCheckWin())return;
+  if(continuation)continuation();
+}
+function wwShowMorning(){
+  const deaths=wwLastMorningDeaths;
+  const text=deaths.length
+    ?`„Das Dorf erwacht. In dieser Nacht sind ${deaths.map(i=>wwPlayers[i]).join(" und ")} gestorben.“`
+    :"„Das Dorf erwacht. In dieser Nacht ist niemand gestorben.“";
+  document.getElementById("wwMorningHeader").textContent=`MORGEN ${wwNight}`;
+  document.getElementById("wwMorningText").textContent=text;
+  wwRenderAlive("wwAliveSummary",true);
+  go("wwMorning");
+}
+function wwRenderAlive(id,includeDead=false){
+  const root=document.getElementById(id);
+  root.innerHTML="";
+  wwActiveIndices().forEach(index=>{
+    if(!includeDead&&!wwAlive.has(index))return;
+    const chip=document.createElement("span");
+    chip.className=`ww-alive-chip${wwAlive.has(index)?"":" ww-dead-chip"}`;
+    chip.textContent=wwPlayers[index];
+    root.appendChild(chip);
+  });
+}
+function wwStartDay(){
+  document.getElementById("wwDayHeader").textContent=`TAG ${wwNight}`;
+  wwRenderAlive("wwDayAlive");
+  go("wwDay");
+}
+function wwResolveDayVote(index){
+  wwPendingDeaths=wwCollectDeaths([index]);
+  wwHandleDeaths(()=>{
+    if(wwCheckWin())return;
+    wwNight++;
+    wwStartNight();
+  });
+}
+function wwCheckWin(){
+  const living=wwLivingIndices();
+  const wolves=living.filter(i=>wwRoleMap[i]==="werewolf");
+  const villagers=living.filter(i=>wwRoleMap[i]!=="werewolf");
+  if(wolves.length===0){
+    wwEndGame("village");
+    return true;
+  }
+  if(wolves.length>=villagers.length){
+    wwEndGame("wolf");
+    return true;
+  }
+  return false;
+}
+function wwEndGame(team){
+  wwGameFinished=true;
+  document.getElementById("wwResultEmoji").textContent=team==="wolf"?"🐺":"🏘️";
+  document.getElementById("wwResultTitle").textContent=team==="wolf"?"Die Werwölfe gewinnen!":"Das Dorf gewinnt!";
+  document.getElementById("wwResultText").textContent=team==="wolf"
+    ?"Die Werwölfe sind mindestens genauso zahlreich wie die übrigen Dorfbewohner."
+    :"Alle Werwölfe wurden enttarnt und ausgeschaltet.";
+  const root=document.getElementById("wwResultRoles");
+  root.innerHTML="";
+  wwActiveIndices().forEach(index=>{
+    const role=wwRoleOf(index);
+    const row=document.createElement("div");
+    row.className=`ww-result-role${wwAlive.has(index)?"":" dead"}`;
+    row.innerHTML=`<span>${wwPlayers[index]}${wwAlive.has(index)?"":" †"}</span><span>${role.emoji} ${role.name}</span>`;
+    root.appendChild(row);
+  });
+  recordGameOnce("werewolf",Math.max(1,wwNight));
+  go("wwResult");
+}
+
+document.getElementById("addWwPlayer").addEventListener("click",()=>{
+  const input=document.getElementById("newWwPlayer");
+  const name=input.value.trim();
+  if(!name)return;
+  if(wwPlayers.length>=18){showSettingToast("Maximal 18 Namen");return}
+  wwPlayers.push(name);
+  input.value="";
+  wwRenderPlayers();
+  triggerHaptic("medium");
+});
+document.getElementById("newWwPlayer").addEventListener("keydown",event=>{
+  if(event.key==="Enter")document.getElementById("addWwPlayer").click();
+});
+document.querySelectorAll("[data-ww-wolves]").forEach(button=>{
+  button.addEventListener("click",()=>{
+    const value=Number(button.dataset.wwWolves);
+    if(value>wwMaxWolves())return;
+    wwWolfCount=value;
+    wwUpdateSetup();
+    triggerHaptic("light");
+  });
+});
+document.getElementById("startWerewolf").addEventListener("click",wwStart);
+document.getElementById("wwShowRole").addEventListener("click",wwShowRole);
+document.getElementById("wwHideRole").addEventListener("click",wwHideRole);
+document.getElementById("wwBeginGame").addEventListener("click",wwStartNight);
+document.getElementById("wwSeerContinue").addEventListener("click",wwNextNightStep);
+document.getElementById("wwStartDay").addEventListener("click",wwStartDay);
+document.getElementById("wwStartVote").addEventListener("click",()=>wwOpenSelection("vote"));
+document.getElementById("restartWerewolf").addEventListener("click",()=>{wwUpdateSetup();go("wwSetup")});
+wwRenderPlayers();
+wwRenderSpecialRoles();
+wwUpdateSetup();
+
+
+/* TEAM-AUSLOSER */
+let teamPlayers=["Lena","Max","Sophie","Ben","Mia","Noah"];
+let teamCount=2;
+let latestTeams=[];
+let teamAnimationTimer=null;
+function renderTeamPlayers(){
+  const list=document.getElementById("teamPlayerList");if(!list)return;list.innerHTML="";
+  teamPlayers.forEach((name,index)=>{
+    const row=document.createElement("div");row.className="team-player-row";
+    const badge=document.createElement("div");badge.className="team-player-index";badge.textContent=index+1;
+    const input=document.createElement("input");input.value=name;input.maxLength=20;input.setAttribute("aria-label",`Name ${index+1}`);input.addEventListener("input",()=>teamPlayers[index]=input.value);
+    const remove=document.createElement("button");remove.type="button";remove.className="team-remove";remove.textContent="×";remove.disabled=teamPlayers.length<=2;
+    remove.addEventListener("click",()=>{if(teamPlayers.length<=2)return;teamPlayers.splice(index,1);if(teamCount>teamPlayers.length)teamCount=teamPlayers.length;renderTeamPlayers();renderTeamCountOptions();triggerHaptic("light")});
+    row.append(badge,input,remove);list.appendChild(row);
+  });
+}
+function renderTeamCountOptions(){document.querySelectorAll("[data-team-count]").forEach(button=>{const count=Number(button.dataset.teamCount);button.classList.toggle("selected-team",count===teamCount);button.disabled=count>teamPlayers.length})}
+function normalizeTeamPlayers(){teamPlayers=teamPlayers.map((name,index)=>(name||"").trim()||`Person ${index+1}`).filter(Boolean)}
+function makeRandomTeams(){
+  normalizeTeamPlayers();
+  const shuffled=shuffle([...teamPlayers]);
+  const teams=Array.from({length:teamCount},()=>[]);
+  shuffled.forEach((name,index)=>teams[index%teamCount].push(name));
+  return teams;
+}
+function renderTeamResults(){
+  const grid=document.getElementById("teamResultGrid");grid.innerHTML="";
+  const emojis=["🔵","🟣","🟢","🟠","🔴","🟡"];
+  latestTeams.forEach((members,index)=>{
+    const card=document.createElement("div");card.className="team-result-card";
+    const title=document.createElement("h3");title.textContent=`${emojis[index]||"⚪"} Team ${index+1}`;card.appendChild(title);
+    members.forEach(name=>{const member=document.createElement("div");member.className="team-member";member.innerHTML=`<span class="team-dot"></span><span>${name}</span>`;card.appendChild(member)});
+    grid.appendChild(card);
+  });
+}
+function runTeamDraw(){
+  normalizeTeamPlayers();
+  if(teamPlayers.length<2){showSettingToast("Mindestens 2 Namen benötigt");return}
+  if(teamCount<2||teamCount>teamPlayers.length){showSettingToast("Teamanzahl passt nicht zu den Teilnehmern");return}
+  latestTeams=makeRandomTeams();clearInterval(teamAnimationTimer);go("teamDraw");triggerHaptic("heavy");
+  const nameNode=document.getElementById("teamShuffleName");let ticks=0;
+  teamAnimationTimer=setInterval(()=>{
+    nameNode.textContent=teamPlayers[randomInt(teamPlayers.length)];ticks++;
+    if(ticks>=18){clearInterval(teamAnimationTimer);teamAnimationTimer=null;nameNode.textContent="Teams stehen fest!";triggerHaptic("success");setTimeout(()=>{renderTeamResults();addGameStat("teamer");addRoundStat(1);go("teamResult")},500)}
+  },85);
+}
+document.getElementById("addTeamPlayer").addEventListener("click",()=>{
+  const input=document.getElementById("newTeamPlayer"),name=input.value.trim();if(!name)return;
+  if(teamPlayers.length>=30){showSettingToast("Maximal 30 Teilnehmer");return}
+  teamPlayers.push(name);input.value="";renderTeamPlayers();renderTeamCountOptions();triggerHaptic("medium");
+});
+document.getElementById("newTeamPlayer").addEventListener("keydown",event=>{if(event.key==="Enter")document.getElementById("addTeamPlayer").click()});
+document.querySelectorAll("[data-team-count]").forEach(button=>button.addEventListener("click",()=>{const value=Number(button.dataset.teamCount);if(value>teamPlayers.length)return;teamCount=value;renderTeamCountOptions();triggerHaptic("light")}));
+document.getElementById("startTeamDraw").addEventListener("click",runTeamDraw);
+document.getElementById("drawAgain").addEventListener("click",runTeamDraw);
+document.getElementById("rerollTeams").addEventListener("click",runTeamDraw);
+renderTeamPlayers();renderTeamCountOptions();
+
+
 /* FAVORITEN */
 const FAVORITES_KEY="vybe_favorites_v1";
 const favoriteGames={
@@ -5095,7 +6104,9 @@ const favoriteGames={
   taboo:{name:"Tabu",emoji:"🚫",screen:"tabooSetup",className:"taboo"},
   truth:{name:"Wahrheit oder Pflicht",emoji:"🎭",screen:"truthSetup",className:"truth"},
   who:{name:"Wer bin ich?",emoji:"🤔",screen:"whoSetup",className:"who"},
-  knowledge:{name:"Allgemeinwissen",emoji:"🧠",screen:"knowledgeSetup",className:"knowledge"}
+  knowledge:{name:"Allgemeinwissen",emoji:"🧠",screen:"knowledgeSetup",className:"knowledge"},
+  teamer:{name:"Team-Ausloser",emoji:"🎲",screen:"teamSetup",className:"teamer"},
+  werewolf:{name:"Werwolf",emoji:"🐺",screen:"wwSetup",className:"werewolf"}
 };
 let favoriteIds=[];
 let favoriteSheetGameId=null;
