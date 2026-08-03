@@ -8,7 +8,7 @@
 <meta name="format-detection" content="telephone=no">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="theme-color" content="#17111f">
-<title>VYBE 7.0.1.1 – Team-Ausloser Redesign</title>
+<title>VYBE 7.0.2 – Cleaner Team Draw</title>
 <style>
 :root{
   --bg:#211b2d;
@@ -2278,7 +2278,7 @@ html:not(.vybe-standalone) .app{
 }
 
 
-/* VYBE 7.0.1 – Tabu & Team-Ausloser */
+/* VYBE 7.0.2 – Tabu & Team-Ausloser */
 .game-card.teamer{background:linear-gradient(145deg,#3151b6,#7145c9 58%,#aa66ed)}
 .team-gradient-title{background:linear-gradient(90deg,#78a7ff,#c18aff);-webkit-background-clip:text;color:transparent}
 .taboo-round-stats{width:100%;display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:18px 0 12px}
@@ -2311,7 +2311,7 @@ html:not(.vybe-standalone) .app{
 
 
 /* ==========================================================
-   VYBE 7.0.1 – Werwolf
+   VYBE 7.0.2 – Werwolf
    ========================================================== */
 .game-card.werewolf{background:linear-gradient(145deg,#171c30,#48335e 58%,#9a3f64)}
 .ww-title{background:linear-gradient(90deg,#c8d7ff,#ff7399);-webkit-background-clip:text;color:transparent}
@@ -2366,7 +2366,7 @@ html:not(.vybe-standalone) .app{
 
 
 /* ==========================================================
-   VYBE 7.0.1 – Team suspense + Werwolf narrator polish
+   VYBE 7.0.2 – Team suspense + Werwolf narrator polish
    ========================================================== */
 
 /* TEAM-AUSLOSER */
@@ -2560,7 +2560,7 @@ html:not(.vybe-standalone) .app{
 
 
 /* ==========================================================
-   VYBE 7.0.1 – Team-Ausloser Redesign
+   VYBE 7.0.2 – Team-Ausloser Redesign
    ========================================================== */
 .team-count-picker{
   grid-column:1/-1;
@@ -2794,6 +2794,37 @@ html:not(.vybe-standalone) .app{
   .team-live-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
 }
 
+
+/* ==========================================================
+   VYBE 7.0.2 – Cleaner Team-Ausloser
+   ========================================================== */
+.clean-team-draw{overflow:auto;padding-bottom:18px}
+.clean-draw-head{display:flex;align-items:center;gap:13px;margin-bottom:14px}
+.clean-draw-icon{width:58px;height:58px;flex:none;border-radius:19px;display:grid;place-items:center;font-size:33px;background:linear-gradient(145deg,#3151b6,#9b5bdd);box-shadow:0 12px 28px rgba(78,61,176,.24)}
+.clean-draw-kicker{color:#aa8de8;font-size:10px;font-weight:1000;letter-spacing:1.3px}
+.clean-draw-head h2{margin:5px 0 3px;font-size:clamp(25px,7vw,33px);line-height:1.02}
+.clean-draw-head p{margin:0;color:var(--muted);font-size:13px}
+.clean-team-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.clean-team-card{min-height:130px;padding:13px;border-radius:20px;background:var(--panel);border:1px solid var(--line);box-shadow:0 10px 24px rgba(0,0,0,.1);transition:border-color .22s ease,box-shadow .22s ease,transform .22s ease}
+.clean-team-card.active{border-color:rgba(168,127,255,.72);box-shadow:0 0 0 3px rgba(132,94,219,.08),0 14px 30px rgba(72,53,139,.2);transform:translateY(-2px)}
+.clean-team-title{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:10px}
+.clean-team-title strong{font-size:15px}
+.clean-team-title span{color:var(--muted);font-size:10px;font-weight:900}
+.clean-team-slots{display:flex;flex-direction:column;gap:6px}
+.clean-team-slot{min-height:36px;padding:9px 10px;border-radius:12px;background:rgba(255,255,255,.045);border:1px dashed rgba(255,255,255,.09);color:rgba(255,255,255,.18);font-size:12px;font-weight:850;display:flex;align-items:center}
+.clean-team-slot.filled{background:rgba(255,255,255,.07);border-style:solid;border-color:rgba(255,255,255,.08);color:var(--text);animation:cleanSlotIn .3s cubic-bezier(.2,.8,.2,1)}
+@keyframes cleanSlotIn{from{opacity:0;transform:translateY(-7px)}to{opacity:1;transform:none}}
+.clean-draw-focus{margin-top:13px;min-height:72px;border-radius:20px;background:linear-gradient(145deg,#4266d0,#8d56d3);display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:12px 15px;box-shadow:0 14px 30px rgba(71,54,153,.24)}
+.clean-draw-focus span{font-size:9px;letter-spacing:1.25px;font-weight:1000;color:rgba(255,255,255,.72)}
+.clean-draw-focus strong{margin-top:5px;font-size:clamp(25px,7vw,34px);line-height:1}
+.clean-draw-focus.reveal{animation:cleanFocusIn .3s cubic-bezier(.2,.8,.2,1)}
+@keyframes cleanFocusIn{from{opacity:.35;transform:scale(.96)}to{opacity:1;transform:scale(1)}}
+.clean-draw-footer{margin-top:12px;color:var(--muted);font-size:11px;font-weight:850}
+.clean-draw-progress{margin-top:7px;height:6px;border-radius:999px;background:rgba(255,255,255,.08);overflow:hidden}
+.clean-draw-progress i{display:block;width:0;height:100%;border-radius:inherit;background:linear-gradient(90deg,#5d79e4,#b063e3);transition:width .3s ease}
+@media(max-width:370px){.clean-team-grid{grid-template-columns:1fr}}
+@media(min-width:700px){.clean-team-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+
 </style>
 
   <meta name="theme-color" content="#17131f">
@@ -2808,7 +2839,7 @@ html:not(.vybe-standalone) .app{
   <link rel="icon" type="image/png" sizes="192x192" href="./icons/icon-192.png">
   <link rel="icon" type="image/png" sizes="512x512" href="./icons/icon-512.png">
 
-<!-- VYBE 7.0.1 build: expanded verified quiz databases + Bundesliga category -->
+<!-- VYBE 7.0.2 build: expanded verified quiz databases + Bundesliga category -->
 </head>
 <body>
 <div class="app">
@@ -3296,34 +3327,26 @@ html:not(.vybe-standalone) .app{
 
 <section id="teamDraw" class="screen">
   <div class="top"><button class="back" data-open="teamSetup">‹</button><div class="page-title">AUSLOSUNG</div><span style="width:43px"></span></div>
-  <div class="content team-live-draw">
-    <div class="team-live-header">
+  <div class="content clean-team-draw">
+    <div class="clean-draw-head">
+      <div class="clean-draw-icon">🎲</div>
       <div>
-        <div id="teamDrawKicker" class="team-draw-kicker">TEAMS WERDEN GEMISCHT</div>
-        <h2 id="teamDrawTitle">Wer kommt zusammen?</h2>
-        <p id="teamDrawSubtitle">Die Namen werden gleichmäßig und zufällig verteilt.</p>
+        <div id="teamDrawKicker" class="clean-draw-kicker">BEREIT</div>
+        <h2 id="teamDrawTitle">Teams werden ausgelost</h2>
+        <p id="teamDrawSubtitle">Jeder Name wird nacheinander verteilt.</p>
       </div>
-      <div class="team-live-dice">🎲</div>
     </div>
 
-    <div class="team-open-pool">
-      <div class="team-pool-head">
-        <span>NOCH OFFEN</span>
-        <strong id="teamOpenCount">0</strong>
-      </div>
-      <div id="teamOpenNames" class="team-open-names"></div>
-    </div>
+    <div id="teamLiveGrid" class="clean-team-grid"></div>
 
-    <div id="teamLiveGrid" class="team-live-grid"></div>
-
-    <div class="team-current-draw">
-      <span id="teamCurrentLabel">NÄCHSTE PERSON</span>
+    <div class="clean-draw-focus">
+      <span id="teamCurrentLabel">NÄCHSTER NAME</span>
       <strong id="teamCurrentName">Bereit?</strong>
     </div>
 
-    <div class="team-draw-bottom">
+    <div class="clean-draw-footer">
       <div id="teamDrawProgressText">0 von 0 verteilt</div>
-      <div class="team-draw-progress"><i id="teamDrawProgressBar"></i></div>
+      <div class="clean-draw-progress"><i id="teamDrawProgressBar"></i></div>
     </div>
   </div>
 </section>
@@ -3546,7 +3569,7 @@ html:not(.vybe-standalone) .app{
         <div class="row-icon">ℹ️</div>
         <div class="row-copy">
           <div class="row-title">Version</div>
-          <div class="row-sub">VYBE 7.0.1</div>
+          <div class="row-sub">VYBE 7.0.2</div>
         </div>
       </div>
     </div>
@@ -6562,155 +6585,116 @@ function renderTeamResults(){
 }
 function buildTeamRevealOrder(teams){
   const order=[];
-  let remaining=true;
-  let round=0;
-  while(remaining){
-    remaining=false;
+  let row=0;
+  let added=true;
+  while(added){
+    added=false;
     teams.forEach((members,teamIndex)=>{
-      if(members[round]!==undefined){
-        order.push({name:members[round],teamIndex});
-        remaining=true;
+      if(members[row]!==undefined){
+        order.push({name:members[row],teamIndex,slotIndex:row});
+        added=true;
       }
     });
-    round++;
+    row++;
   }
   return order;
 }
-function renderTeamLiveBoard(){
+function renderCleanTeamBoard(){
   const grid=document.getElementById("teamLiveGrid");
   grid.innerHTML="";
   const emojis=["🔵","🟣","🟢","🟠","🔴","🟡"];
-  latestTeams.forEach((_,index)=>{
+  latestTeams.forEach((members,teamIndex)=>{
     const card=document.createElement("div");
-    card.className="team-live-card";
-    card.dataset.teamIndex=String(index);
-
-    const head=document.createElement("div");
-    head.className="team-live-title";
-    head.innerHTML=`<strong>${emojis[index]||"⚪"} Team ${index+1}</strong><span id="teamLiveCount${index}">0/${latestTeams[index].length}</span>`;
-
-    const members=document.createElement("div");
-    members.className="team-live-members";
-    members.id=`teamLiveMembers${index}`;
-    members.innerHTML='<div class="team-live-placeholder">Noch niemand zugelost</div>';
-
-    card.append(head,members);
+    card.className="clean-team-card";
+    card.dataset.teamIndex=String(teamIndex);
+    const title=document.createElement("div");
+    title.className="clean-team-title";
+    title.innerHTML=`<strong>${emojis[teamIndex]||"⚪"} Team ${teamIndex+1}</strong><span id="cleanTeamCount${teamIndex}">0/${members.length}</span>`;
+    const slots=document.createElement("div");
+    slots.className="clean-team-slots";
+    members.forEach((_,slotIndex)=>{
+      const slot=document.createElement("div");
+      slot.className="clean-team-slot";
+      slot.id=`cleanTeamSlot${teamIndex}_${slotIndex}`;
+      slot.textContent="Freier Platz";
+      slots.appendChild(slot);
+    });
+    card.append(title,slots);
     grid.appendChild(card);
   });
 }
-function renderTeamOpenPool(names){
-  const root=document.getElementById("teamOpenNames");
-  root.innerHTML="";
-  names.forEach((name,index)=>{
-    const chip=document.createElement("span");
-    chip.className="team-open-chip";
-    chip.dataset.openIndex=String(index);
-    chip.textContent=name;
-    root.appendChild(chip);
-  });
-  document.getElementById("teamOpenCount").textContent=names.length;
-}
-function addTeamLiveMember(item,index,total){
-  document.querySelectorAll(".team-live-card").forEach(card=>{
+function revealCleanTeamMember(item,index,total){
+  document.querySelectorAll(".clean-team-card").forEach(card=>{
     card.classList.toggle("active",Number(card.dataset.teamIndex)===item.teamIndex);
   });
-
-  const members=document.getElementById(`teamLiveMembers${item.teamIndex}`);
-  const placeholder=members.querySelector(".team-live-placeholder");
-  if(placeholder)placeholder.remove();
-
-  const member=document.createElement("div");
-  member.className="team-live-member";
-  member.textContent=item.name;
-  members.appendChild(member);
-
-  const assignedCount=members.querySelectorAll(".team-live-member").length;
-  document.getElementById(`teamLiveCount${item.teamIndex}`).textContent=
-    `${assignedCount}/${latestTeams[item.teamIndex].length}`;
-
-  const openChip=[...document.querySelectorAll(".team-open-chip")]
-    .find(chip=>chip.textContent===item.name&&!chip.classList.contains("assigned"));
-  if(openChip){
-    openChip.classList.add("assigned");
-    setTimeout(()=>openChip.remove(),230);
-  }
-
-  const remaining=total-index-1;
-  document.getElementById("teamOpenCount").textContent=remaining;
+  const focus=document.querySelector(".clean-draw-focus");
+  focus.classList.remove("reveal");
+  void focus.offsetWidth;
+  focus.classList.add("reveal");
+  document.getElementById("teamCurrentLabel").textContent=`KOMMT IN TEAM ${item.teamIndex+1}`;
+  document.getElementById("teamCurrentName").textContent=item.name;
+  const slot=document.getElementById(`cleanTeamSlot${item.teamIndex}_${item.slotIndex}`);
+  slot.textContent=item.name;
+  slot.classList.add("filled");
+  const count=document.querySelectorAll(`#teamLiveGrid .clean-team-card[data-team-index="${item.teamIndex}"] .clean-team-slot.filled`).length;
+  document.getElementById(`cleanTeamCount${item.teamIndex}`).textContent=`${count}/${latestTeams[item.teamIndex].length}`;
   document.getElementById("teamDrawProgressText").textContent=`${index+1} von ${total} verteilt`;
   document.getElementById("teamDrawProgressBar").style.width=`${(index+1)/total*100}%`;
-
-  const current=document.querySelector(".team-current-draw");
-  current.classList.remove("pulse");
-  void current.offsetWidth;
-  current.classList.add("pulse");
-  document.getElementById("teamCurrentLabel").textContent=`LANDERT IN TEAM ${item.teamIndex+1}`;
-  document.getElementById("teamCurrentName").textContent=item.name;
 }
 function finishTeamDraw(){
-  document.querySelectorAll(".team-live-card").forEach(card=>card.classList.remove("active"));
-  document.getElementById("teamCurrentLabel").textContent="AUSLOSUNG FERTIG";
-  document.getElementById("teamCurrentName").textContent="🎉 Teams stehen!";
+  document.querySelectorAll(".clean-team-card").forEach(card=>card.classList.remove("active"));
   document.getElementById("teamDrawKicker").textContent="FERTIG";
   document.getElementById("teamDrawTitle").textContent="Die Teams stehen";
-  document.getElementById("teamDrawSubtitle").textContent="Alle Namen wurden fair und zufällig verteilt.";
+  document.getElementById("teamDrawSubtitle").textContent="Alle Namen wurden zufällig und gleichmäßig verteilt.";
+  document.getElementById("teamCurrentLabel").textContent="AUSLOSUNG ABGESCHLOSSEN";
+  document.getElementById("teamCurrentName").textContent="🎉";
   triggerHaptic("success");
   setTimeout(()=>{
     renderTeamResults();
     addGameStat("teamer");
     addRoundStat(1);
     go("teamResult");
-  },900);
+  },700);
 }
 function runTeamDraw(){
   normalizeTeamPlayers();
   if(teamPlayers.length<2){showSettingToast("Mindestens 2 Namen benötigt");return}
   if(teamCount<2||teamCount>teamPlayers.length){showSettingToast("Teamanzahl passt nicht zu den Teilnehmern");return}
-
   latestTeams=makeRandomTeams();
   clearTimeout(teamAnimationTimer);
   go("teamDraw");
   triggerHaptic("heavy");
-
-  document.getElementById("teamDrawKicker").textContent="KURZ DURCHMISCHEN";
-  document.getElementById("teamDrawTitle").textContent="Wer kommt zusammen?";
-  document.getElementById("teamDrawSubtitle").textContent="Du siehst jederzeit, wer schon verteilt wurde.";
+  document.getElementById("teamDrawKicker").textContent="KURZ MISCHEN";
+  document.getElementById("teamDrawTitle").textContent="Teams werden ausgelost";
+  document.getElementById("teamDrawSubtitle").textContent="Jeder Name wird nacheinander verteilt.";
   document.getElementById("teamCurrentLabel").textContent="MISCHEN";
   document.getElementById("teamCurrentName").textContent="Bereit?";
   document.getElementById("teamDrawProgressText").textContent=`0 von ${teamPlayers.length} verteilt`;
   document.getElementById("teamDrawProgressBar").style.width="0%";
-
-  renderTeamOpenPool(teamPlayers);
-  renderTeamLiveBoard();
-
+  renderCleanTeamBoard();
   const revealOrder=buildTeamRevealOrder(latestTeams);
-  let previewTicks=0;
-
-  const preview=()=>{
-    document.getElementById("teamCurrentName").textContent=
-      teamPlayers[randomInt(teamPlayers.length)];
-    previewTicks++;
-    if(previewTicks<9){
-      teamAnimationTimer=setTimeout(preview,90+previewTicks*12);
+  let previewIndex=0;
+  const previewNames=shuffle([...teamPlayers]).slice(0,5);
+  const previewStep=()=>{
+    document.getElementById("teamCurrentName").textContent=previewNames[previewIndex];
+    previewIndex++;
+    if(previewIndex<previewNames.length){
+      teamAnimationTimer=setTimeout(previewStep,110);
     }else{
-      document.getElementById("teamDrawKicker").textContent="JETZT WIRD ZUGELOST";
-      document.getElementById("teamCurrentLabel").textContent="ERSTE PERSON";
-      setTimeout(()=>revealNext(0),350);
+      document.getElementById("teamDrawKicker").textContent="JETZT WIRD VERTEILT";
+      teamAnimationTimer=setTimeout(()=>revealNext(0),250);
     }
   };
-
   const revealNext=index=>{
     if(index>=revealOrder.length){
       finishTeamDraw();
       return;
     }
-    const item=revealOrder[index];
-    addTeamLiveMember(item,index,revealOrder.length);
+    revealCleanTeamMember(revealOrder[index],index,revealOrder.length);
     triggerHaptic(index%2===0?"light":"medium");
-    teamAnimationTimer=setTimeout(()=>revealNext(index+1),520);
+    teamAnimationTimer=setTimeout(()=>revealNext(index+1),470);
   };
-
-  teamAnimationTimer=setTimeout(preview,250);
+  teamAnimationTimer=setTimeout(previewStep,250);
 }
 document.getElementById("addTeamPlayer").addEventListener("click",()=>{
   const input=document.getElementById("newTeamPlayer"),name=input.value.trim();if(!name)return;
