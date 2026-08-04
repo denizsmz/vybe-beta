@@ -8,7 +8,7 @@
 <meta name="format-detection" content="telephone=no">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="theme-color" content="#17111f">
-<title>VYBE 7.5 – Gameplay Polish</title>
+<title>VYBE 7.5.1.1 – Team Reveal Hotfix</title>
 <style>
 :root{
   --bg:#211b2d;
@@ -3474,7 +3474,7 @@ body.high-contrast{--line:rgba(255,255,255,.19);--muted:#c5bacb}body.high-contra
 .primary,.secondary,.back,.icon-btn,.choice-num,.switch,.row,button{-webkit-tap-highlight-color:transparent}.primary,.secondary{transition:transform .14s ease,filter .18s ease,opacity .18s ease}.primary:active,.secondary:active{transform:scale(.985)}input,button{touch-action:manipulation}
 
 
-/* VYBE 7.5 – Team reveal suspense */
+/* VYBE 7.5.1 – Team reveal suspense */
 #teamCandidateName{margin-top:9px!important;max-width:88%;font-size:clamp(28px,7vw,40px)!important;line-height:1.02!important;overflow-wrap:anywhere}
 #teamCandidateHint{margin-top:10px;color:rgba(255,255,255,.62);font-size:9px;font-weight:850}
 .team73-reveal-card.is-shuffling .team73-card-front{box-shadow:0 26px 65px rgba(79,54,179,.4)}
@@ -3484,7 +3484,7 @@ body.high-contrast{--line:rgba(255,255,255,.19);--muted:#c5bacb}body.high-contra
 @keyframes teamNearStop{0%{transform:translateY(-5px);opacity:.35}100%{transform:none;opacity:1}}
 
 
-/* VYBE 7.5 – Wer würde eher statistics */
+/* VYBE 7.5.1 – Wer würde eher statistics */
 .would75-summary-head{width:100%;display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin:14px 0 10px;padding:14px 15px;border-radius:19px;background:linear-gradient(145deg,rgba(82,103,214,.22),rgba(175,76,181,.16));border:1px solid rgba(180,112,236,.22)}
 .would75-summary-head span{display:block;color:#b894ec;font-size:9px;letter-spacing:1.2px;font-weight:1000}.would75-summary-head strong{display:block;margin-top:4px;font-size:20px}.would75-total{padding:7px 10px;border-radius:999px;background:rgba(255,255,255,.06);font-size:10px;font-weight:950;color:var(--muted)}
 .would75-results{width:100%;display:flex;flex-direction:column;gap:8px}.would75-result{padding:12px;border-radius:17px;background:var(--panel);border:1px solid var(--line)}
@@ -4289,7 +4289,7 @@ body.high-contrast{--line:rgba(255,255,255,.19);--muted:#c5bacb}body.high-contra
     </div>
 
     <div class="section-label">ÜBER VYBE</div>
-    <div class="panel settings74-panel"><div class="row"><div class="row-icon">ℹ️</div><div class="row-copy"><div class="row-title">Version</div><div class="row-sub">VYBE 7.5 · Gameplay Polish</div></div><div class="settings74-version-dot"></div></div></div>
+    <div class="panel settings74-panel"><div class="row"><div class="row-icon">ℹ️</div><div class="row-copy"><div class="row-title">Version</div><div class="row-sub">VYBE 7.5.1.1 · Team Reveal Hotfix</div></div><div class="settings74-version-dot"></div></div></div>
     <div class="made-by">Made by Deniz</div>
   </div>
 </section>
@@ -4297,7 +4297,7 @@ body.high-contrast{--line:rgba(255,255,255,.19);--muted:#c5bacb}body.high-contra
 <section id="releaseNotes" class="screen">
   <div class="top"><button class="back" data-open="settings">‹</button><div class="page-title">WAS IST NEU?</div><span style="width:43px"></span></div>
   <div class="settings-scroll settings74-detail-page">
-    <div class="settings74-release-hero"><span>🚀</span><div><div class="settings74-kicker">VERSION 7.5</div><h2>Der große VYBE-Ausbau</h2></div></div>
+    <div class="settings74-release-hero"><span>🚀</span><div><div class="settings74-kicker">VERSION 7.5.1</div><h2>Der große VYBE-Ausbau</h2></div></div>
     <div class="settings74-note-card"><strong>📚 Mehr Inhalte</strong><p>Neue Fächer, Fragen, Kategorien, Personen, Begriffe und Fußball-Fragetypen aus 7.1.</p></div>
     <div class="settings74-note-card"><strong>🎯 Überarbeitete Spiele</strong><p>Neuer Wahrheit-oder-Pflicht-Ablauf, größerer Tabu-Timer und Abbruchstatistiken aus 7.2.</p></div>
     <div class="settings74-note-card"><strong>🎟️ Neuer Team-Ausloser</strong><p>Kontrollierte Loskarten statt des alten Glücksrads – Karte für Karte aus Version 7.3.</p></div>
@@ -7544,6 +7544,14 @@ function revealTeamCard(){
   const card=document.getElementById("teamRevealCard");
   const candidate=document.getElementById("teamCandidateName");
   const hint=document.getElementById("teamCandidateHint");
+
+  // Jede neue Ziehung beginnt wieder sichtbar auf der Vorderseite.
+  card.classList.remove("is-flipped","is-moving","is-shuffling","near-stop");
+  document.getElementById("teamRevealName").textContent="Name";
+  document.getElementById("teamRevealTeam").textContent=`TEAM ${item.teamIndex+1}`;
+  candidate.textContent="?";
+  hint.textContent=`Los für Team ${item.teamIndex+1}`;
+  void card.offsetWidth;
 
   button.disabled=true;
   button.textContent="AUSLOSUNG LÄUFT …";
