@@ -8,7 +8,7 @@
 <meta name="format-detection" content="telephone=no">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="theme-color" content="#17111f">
-<title>VYBE 7.5.5 – Shared Players & Easter Egg</title>
+<title>VYBE 7.5.6 – Hidden Meme Easter Egg</title>
 <style>
 :root{
   --bg:#211b2d;
@@ -3497,7 +3497,7 @@ body.high-contrast{--line:rgba(255,255,255,.19);--muted:#c5bacb}body.high-contra
 .imp-result-concept strong{display:block;margin-top:7px;font-size:clamp(25px,7vw,35px)}
 
 
-/* VYBE 7.5.5 – Karte als Auslösefläche */
+/* VYBE 7.5.6 – Karte als Auslösefläche */
 .team73-reveal-card{
   appearance:none;
   -webkit-appearance:none;
@@ -3520,113 +3520,41 @@ body.high-contrast{--line:rgba(255,255,255,.19);--muted:#c5bacb}body.high-contra
 }
 
 
-/* VYBE 7.5.5 – Shared Players & Easter Egg */
-.deniz-easter-trigger{
-  display:block;
-  margin:18px auto 2px;
-  border:0;
-  background:transparent;
-  color:var(--muted);
-  font:inherit;
-  font-size:11px;
-  cursor:pointer;
-  padding:10px 14px;
-  border-radius:999px;
+/* VYBE 7.5.6 – Shared Players & Easter Egg */
+.deniz-easter-trigger{display:none!important}
+/* VYBE 7.5.6 – Hidden meme Easter Egg */
+#denizEasterEggTrigger{
+  color:inherit;cursor:inherit;user-select:none;-webkit-user-select:none;
   -webkit-tap-highlight-color:transparent;
 }
-.deniz-easter-trigger strong{color:inherit}
-.deniz-easter-trigger:active{transform:scale(.97)}
-
-.deniz-easter-overlay{
-  position:fixed;
-  inset:0;
-  z-index:9999;
-  display:grid;
-  place-items:center;
-  padding:24px;
-  background:rgba(8,6,13,.76);
-  backdrop-filter:blur(18px);
-  opacity:0;
-  pointer-events:none;
-  transition:opacity .28s ease;
+#denizEasterEggTrigger:active{transform:none!important;opacity:1!important}
+.deniz-meme-overlay{
+  position:fixed;inset:0;z-index:9999;display:grid;place-items:center;padding:24px;
+  background:rgba(8,6,13,.18);backdrop-filter:blur(2px);opacity:0;
+  pointer-events:none;transition:opacity .14s ease;
 }
-.deniz-easter-overlay.active{
-  opacity:1;
-  pointer-events:auto;
+.deniz-meme-overlay.active{opacity:1}
+.deniz-meme-card{
+  width:min(82vw,340px);padding:22px 20px;border-radius:22px;text-align:center;
+  color:#fff;border:1px solid rgba(255,255,255,.14);background:rgba(22,17,30,.94);
+  box-shadow:0 20px 55px rgba(0,0,0,.38);transform:scale(.94);opacity:0;
+  transition:transform .16s ease,opacity .16s ease;
 }
-.deniz-easter-card{
-  position:relative;
-  width:min(88vw,380px);
-  padding:34px 24px 24px;
-  border-radius:30px;
-  text-align:center;
-  color:white;
-  overflow:hidden;
-  border:1px solid rgba(255,255,255,.16);
-  background:
-    radial-gradient(circle at 50% 0%,rgba(255,255,255,.18),transparent 32%),
-    linear-gradient(145deg,#253c9e,#7547bb 55%,#ed5a8b);
-  box-shadow:0 30px 90px rgba(0,0,0,.5);
-  transform:translateY(22px) scale(.94);
-  transition:transform .4s cubic-bezier(.18,.9,.2,1.15);
+.deniz-meme-overlay.active .deniz-meme-card{transform:scale(1);opacity:1}
+.deniz-meme-card.jackpot{
+  background:linear-gradient(145deg,#6c4b00,#c69215);
+  box-shadow:0 0 0 1px rgba(255,226,116,.35),0 18px 65px rgba(255,191,0,.35);
 }
-.deniz-easter-overlay.active .deniz-easter-card{
-  transform:translateY(0) scale(1);
+.deniz-meme-emoji{font-size:38px}
+.deniz-meme-text{margin-top:9px;font-size:18px;font-weight:1000;line-height:1.22}
+body.deniz-glitch{animation:denizGlitch .16s linear}
+@keyframes denizGlitch{
+  0%{transform:translateX(0) scale(1)}
+  25%{transform:translateX(-3px) scale(1.015)}
+  50%{transform:translateX(3px) scale(1.02)}
+  75%{transform:translateX(-2px) scale(1.01)}
+  100%{transform:translateX(0) scale(1)}
 }
-.deniz-easter-logo{
-  width:86px;height:86px;margin:0 auto 18px;border-radius:29px;
-  display:grid;place-items:center;
-  font-size:49px;font-weight:1000;
-  background:linear-gradient(145deg,#ffffff,#d7d4ff);
-  color:#633fb5;
-  box-shadow:0 18px 35px rgba(0,0,0,.25);
-  animation:denizLogoFloat 1.8s ease-in-out infinite alternate;
-}
-@keyframes denizLogoFloat{from{transform:translateY(0) rotate(-2deg)}to{transform:translateY(-8px) rotate(2deg)}}
-.deniz-easter-kicker{font-size:9px;letter-spacing:1.6px;font-weight:1000;color:rgba(255,255,255,.72)}
-.deniz-easter-card h2{margin:7px 0 5px;font-size:30px}
-.deniz-easter-card p{margin:0 0 20px;color:rgba(255,255,255,.8);font-weight:850}
-.deniz-easter-card button{width:100%;min-height:54px;border-radius:18px;background:rgba(255,255,255,.95)!important;color:#5b3aa7!important}
-.deniz-easter-orbit{
-  position:absolute;inset:9px;
-  pointer-events:none;
-}
-.deniz-easter-orbit span{
-  position:absolute;
-  font-size:22px;
-  animation:denizOrbit 3.6s linear infinite;
-  transform-origin:170px 170px;
-}
-.deniz-easter-orbit span:nth-child(1){left:5px;top:5px;animation-delay:0s}
-.deniz-easter-orbit span:nth-child(2){right:9px;top:28px;animation-delay:-.9s}
-.deniz-easter-orbit span:nth-child(3){left:24px;bottom:24px;animation-delay:-1.8s}
-.deniz-easter-orbit span:nth-child(4){right:20px;bottom:30px;animation-delay:-2.7s}
-@keyframes denizOrbit{from{transform:rotate(0deg) scale(1)}50%{transform:rotate(180deg) scale(1.18)}to{transform:rotate(360deg) scale(1)}}
-.deniz-confetti{
-  position:absolute;
-  inset:0;
-  overflow:hidden;
-  pointer-events:none;
-}
-.deniz-confetti-piece{
-  position:absolute;
-  top:-20px;
-  width:9px;height:16px;border-radius:3px;
-  background:currentColor;
-  animation:denizConfettiFall var(--duration) linear forwards;
-}
-@keyframes denizConfettiFall{
-  0%{transform:translate3d(0,-20px,0) rotate(0);opacity:1}
-  100%{transform:translate3d(var(--drift),110vh,0) rotate(900deg);opacity:.15}
-}
-body.deniz-mode{
-  animation:denizHue 5s linear infinite;
-}
-@keyframes denizHue{
-  0%,100%{filter:hue-rotate(0deg)}
-  50%{filter:hue-rotate(18deg)}
-}
-
 </style>
 
   <meta name="theme-color" content="#17131f">
@@ -4420,15 +4348,15 @@ body.deniz-mode{
     </div>
 
     <div class="section-label">ÜBER VYBE</div>
-    <div class="panel settings74-panel"><div class="row"><div class="row-icon">ℹ️</div><div class="row-copy"><div class="row-title">Version</div><div class="row-sub">VYBE 7.5.5 · Shared Players</div></div><div class="settings74-version-dot"></div></div></div>
-    <button id="denizEasterEggTrigger" class="made-by deniz-easter-trigger" type="button" aria-label="Made by Deniz">Made by <strong>Deniz</strong></button>
+    <div class="panel settings74-panel"><div class="row"><div class="row-icon">ℹ️</div><div class="row-copy"><div class="row-title">Version</div><div class="row-sub">VYBE 7.5.6 · Hidden Meme Easter Egg</div></div><div class="settings74-version-dot"></div></div></div>
+    <div class="made-by">Made by <span id="denizEasterEggTrigger">Deniz</span></div>
   </div>
 </section>
 
 <section id="releaseNotes" class="screen">
   <div class="top"><button class="back" data-open="settings">‹</button><div class="page-title">WAS IST NEU?</div><span style="width:43px"></span></div>
   <div class="settings-scroll settings74-detail-page">
-    <div class="settings74-release-hero"><span>🚀</span><div><div class="settings74-kicker">VERSION 7.5.5</div><h2>Der große VYBE-Ausbau</h2></div></div>
+    <div class="settings74-release-hero"><span>🚀</span><div><div class="settings74-kicker">VERSION 7.5.6</div><h2>Der große VYBE-Ausbau</h2></div></div>
     <div class="settings74-note-card"><strong>📚 Mehr Inhalte</strong><p>Neue Fächer, Fragen, Kategorien, Personen, Begriffe und Fußball-Fragetypen aus 7.1.</p></div>
     <div class="settings74-note-card"><strong>🎯 Überarbeitete Spiele</strong><p>Neuer Wahrheit-oder-Pflicht-Ablauf, größerer Tabu-Timer und Abbruchstatistiken aus 7.2.</p></div>
     <div class="settings74-note-card"><strong>🎟️ Neuer Team-Ausloser</strong><p>Kontrollierte Loskarten statt des alten Glücksrads – Karte für Karte aus Version 7.3.</p></div>
@@ -8233,63 +8161,56 @@ renderKnowledgeSubjects();
 renderBallOptions();document.getElementById("impCategoryValue").textContent="Alle ausgewählt";document.getElementById("wouldCategoryValue").textContent="Alle ausgewählt";go("home");
 
 let denizTapCount=0;
-let denizTapTimer=null;
-
-function createDenizConfetti(){
-  const container=document.getElementById("denizConfetti");
-  if(!container)return;
-  container.innerHTML="";
-  const colors=["#ffffff","#ffd45c","#ff6f91","#7ee7ff","#9d7cff","#72f0ad"];
-
-  for(let i=0;i<70;i++){
-    const piece=document.createElement("i");
-    piece.className="deniz-confetti-piece";
-    piece.style.left=`${Math.random()*100}%`;
-    piece.style.color=colors[i%colors.length];
-    piece.style.setProperty("--duration",`${2.4+Math.random()*2.1}s`);
-    piece.style.setProperty("--drift",`${-110+Math.random()*220}px`);
-    piece.style.animationDelay=`${Math.random()*.45}s`;
-    container.appendChild(piece);
-  }
+let denizTapResetTimer=null;
+let denizMemeHideTimer=null;
+const denizMemeMessages=[
+ ["💀","Bro... warum hast du das gefunden?"],
+ ["🌱","Achievement unlocked: Touch Grass"],
+ ["🗿","Developer-Mode? Schön wär's."],
+ ["🐸","Frosch-Modus aktiviert."],
+ ["🧠","IQ +1"],
+ ["📈","Seltene Entdeckung (0,3 %)"],
+ ["🎲","Du hast zu viel Freizeit."],
+ ["🚪","Jetzt geh wieder spielen."],
+ ["🫵","Erwischt."],
+ ["🥸","Es gibt hier nichts zu sehen..."],
+ ["💸","+0 XP erhalten."],
+ ["🚨","Cheatcode ungültig... ach nee doch."]
+];
+function showDenizMeme(){
+ const overlay=document.getElementById("denizEasterEgg");
+ const card=document.getElementById("denizMemeCard");
+ const emoji=document.getElementById("denizMemeEmoji");
+ const text=document.getElementById("denizMemeText");
+ if(!overlay||!card||!emoji||!text)return;
+ clearTimeout(denizMemeHideTimer);
+ const jackpot=Math.random()<.01;
+ if(jackpot){
+   emoji.textContent="👑";
+   text.textContent="JACKPOT! Ultra seltenes Easter Egg gefunden.";
+   card.classList.add("jackpot");
+ }else{
+   const [e,t]=denizMemeMessages[randomInt(denizMemeMessages.length)];
+   emoji.textContent=e;text.textContent=t;card.classList.remove("jackpot");
+ }
+ document.body.classList.remove("deniz-glitch");
+ void document.body.offsetWidth;
+ document.body.classList.add("deniz-glitch");
+ overlay.classList.add("active");
+ overlay.setAttribute("aria-hidden","false");
+ triggerHaptic("light");
+ denizMemeHideTimer=setTimeout(()=>{
+   overlay.classList.remove("active");
+   overlay.setAttribute("aria-hidden","true");
+   document.body.classList.remove("deniz-glitch");
+ },jackpot?3000:2000);
 }
-
-function openDenizEasterEgg(){
-  const overlay=document.getElementById("denizEasterEgg");
-  if(!overlay)return;
-  createDenizConfetti();
-  overlay.classList.add("active");
-  overlay.setAttribute("aria-hidden","false");
-  document.body.classList.add("deniz-mode");
-  playTimerSignal("end");
-  triggerHaptic("success");
-}
-
-function closeDenizEasterEgg(){
-  const overlay=document.getElementById("denizEasterEgg");
-  if(!overlay)return;
-  overlay.classList.remove("active");
-  overlay.setAttribute("aria-hidden","true");
-  document.body.classList.remove("deniz-mode");
-}
-
 document.getElementById("denizEasterEggTrigger")?.addEventListener("click",()=>{
-  denizTapCount++;
-  clearTimeout(denizTapTimer);
-
-  if(denizTapCount>=5){
-    denizTapCount=0;
-    openDenizEasterEgg();
-    return;
-  }
-
-  denizTapTimer=setTimeout(()=>{denizTapCount=0},1200);
+ denizTapCount++;
+ clearTimeout(denizTapResetTimer);
+ if(denizTapCount>=5){denizTapCount=0;showDenizMeme();return}
+ denizTapResetTimer=setTimeout(()=>denizTapCount=0,1000);
 });
-
-document.getElementById("closeDenizEasterEgg")?.addEventListener("click",closeDenizEasterEgg);
-document.getElementById("denizEasterEgg")?.addEventListener("click",event=>{
-  if(event.target.id==="denizEasterEgg")closeDenizEasterEgg();
-});
-
 </script>
 <div id="settingToast" class="setting-toast" aria-live="polite"></div>
 
@@ -8352,19 +8273,11 @@ if ("serviceWorker" in navigator) {
 </script>
 
 
-<div id="denizEasterEgg" class="deniz-easter-overlay" aria-hidden="true">
-  <div class="deniz-easter-card">
-    <div class="deniz-easter-orbit">
-      <span>🚀</span><span>⚽</span><span>🎲</span><span>🔥</span>
-    </div>
-    <div class="deniz-easter-logo">D</div>
-    <div class="deniz-easter-kicker">GEHEIMMODUS ENTDECKT</div>
-    <h2>Deniz Mode aktiviert</h2>
-    <p>Straight to the moon. 🌙</p>
-    <button id="closeDenizEasterEgg" class="primary" type="button">LEGENDÄR</button>
+<div id="denizEasterEgg" class="deniz-meme-overlay" aria-hidden="true">
+  <div id="denizMemeCard" class="deniz-meme-card">
+    <div id="denizMemeEmoji" class="deniz-meme-emoji">💀</div>
+    <div id="denizMemeText" class="deniz-meme-text">Bro... warum hast du das gefunden?</div>
   </div>
-  <div id="denizConfetti" class="deniz-confetti"></div>
 </div>
-
 </body>
 </html>
