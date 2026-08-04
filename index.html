@@ -8,7 +8,7 @@
 <meta name="format-detection" content="telephone=no">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="theme-color" content="#17111f">
-<title>VYBE 7.5.1.1 – Team Reveal Hotfix</title>
+<title>VYBE 7.5.3 – Team Final Slot</title>
 <style>
 :root{
   --bg:#211b2d;
@@ -4289,7 +4289,7 @@ body.high-contrast{--line:rgba(255,255,255,.19);--muted:#c5bacb}body.high-contra
     </div>
 
     <div class="section-label">ÜBER VYBE</div>
-    <div class="panel settings74-panel"><div class="row"><div class="row-icon">ℹ️</div><div class="row-copy"><div class="row-title">Version</div><div class="row-sub">VYBE 7.5.1.1 · Team Reveal Hotfix</div></div><div class="settings74-version-dot"></div></div></div>
+    <div class="panel settings74-panel"><div class="row"><div class="row-icon">ℹ️</div><div class="row-copy"><div class="row-title">Version</div><div class="row-sub">VYBE 7.5.3 · Team Final Slot</div></div><div class="settings74-version-dot"></div></div></div>
     <div class="made-by">Made by Deniz</div>
   </div>
 </section>
@@ -4297,7 +4297,7 @@ body.high-contrast{--line:rgba(255,255,255,.19);--muted:#c5bacb}body.high-contra
 <section id="releaseNotes" class="screen">
   <div class="top"><button class="back" data-open="settings">‹</button><div class="page-title">WAS IST NEU?</div><span style="width:43px"></span></div>
   <div class="settings-scroll settings74-detail-page">
-    <div class="settings74-release-hero"><span>🚀</span><div><div class="settings74-kicker">VERSION 7.5.1</div><h2>Der große VYBE-Ausbau</h2></div></div>
+    <div class="settings74-release-hero"><span>🚀</span><div><div class="settings74-kicker">VERSION 7.5.3</div><h2>Der große VYBE-Ausbau</h2></div></div>
     <div class="settings74-note-card"><strong>📚 Mehr Inhalte</strong><p>Neue Fächer, Fragen, Kategorien, Personen, Begriffe und Fußball-Fragetypen aus 7.1.</p></div>
     <div class="settings74-note-card"><strong>🎯 Überarbeitete Spiele</strong><p>Neuer Wahrheit-oder-Pflicht-Ablauf, größerer Tabu-Timer und Abbruchstatistiken aus 7.2.</p></div>
     <div class="settings74-note-card"><strong>🎟️ Neuer Team-Ausloser</strong><p>Kontrollierte Loskarten statt des alten Glücksrads – Karte für Karte aus Version 7.3.</p></div>
@@ -7535,8 +7535,57 @@ function prepareNextTeamCard(){
   resetRevealCard();
 }
 
+
+function autoAssignLastTeamMember(){
+  if(teamRevealOrder.length-teamRevealIndex!==1)return false;
+
+  const item=teamRevealOrder[teamRevealIndex];
+  const button=document.getElementById("drawNextTeamCard");
+  const card=document.getElementById("teamRevealCard");
+
+  teamCardLocked=true;
+  button.disabled=true;
+  button.textContent="LETZTE PERSON WIRD ZUGEORDNET …";
+
+  card.classList.remove("is-flipped","is-moving","is-shuffling","near-stop");
+  document.getElementById("teamCandidateName").textContent=item.name;
+  document.getElementById("teamCandidateHint").textContent="Letzte verbleibende Person";
+  document.getElementById("teamRevealTeam").textContent=`TEAM ${item.teamIndex+1}`;
+  document.getElementById("teamRevealName").textContent=item.name;
+
+  document.querySelectorAll(".team73-live-card").forEach(teamCard=>{
+    teamCard.classList.toggle("active",Number(teamCard.dataset.teamIndex)===item.teamIndex);
+  });
+
+  const slot=document.getElementById(`teamLiveSlot${item.teamIndex}_${item.slotIndex}`);
+  slot.textContent=item.name;
+  slot.classList.add("filled");
+
+  const count=document.querySelectorAll(
+    `.team73-live-card[data-team-index="${item.teamIndex}"] .team73-live-slot.filled`
+  ).length;
+  document.getElementById(`teamLiveCount${item.teamIndex}`).textContent=
+    `${count}/${latestTeams[item.teamIndex].length}`;
+
+  teamRevealIndex++;
+  document.getElementById("teamDrawProgressText").textContent=
+    `${teamRevealIndex} / ${teamRevealOrder.length}`;
+  document.getElementById("teamDrawProgressBar").style.width="100%";
+  document.getElementById("teamCurrentLabel").textContent="AUSLOSUNG BEENDET";
+  document.getElementById("teamCurrentName").textContent=`${item.name} wurde automatisch Team ${item.teamIndex+1} zugeordnet`;
+  button.textContent="AUSLOSUNG FERTIG";
+  triggerHaptic("success");
+
+  setTimeout(finishTeamDraw,900);
+  return true;
+}
+
 function revealTeamCard(){
   if(teamCardLocked||teamRevealIndex>=teamRevealOrder.length)return;
+  if(teamRevealOrder.length-teamRevealIndex===1){
+    autoAssignLastTeamMember();
+    return;
+  }
   teamCardLocked=true;
 
   const item=teamRevealOrder[teamRevealIndex];
@@ -7624,6 +7673,10 @@ function revealTeamCard(){
         document.getElementById("teamCurrentLabel").textContent="AUSLOSUNG BEENDET";
         document.getElementById("teamCurrentName").textContent="Alle Teams stehen fest";
         setTimeout(finishTeamDraw,1000);
+      }else if(teamRevealOrder.length-teamRevealIndex===1){
+        document.getElementById("teamCurrentLabel").textContent="LETZTE PERSON";
+        document.getElementById("teamCurrentName").textContent="Der letzte freie Platz wird automatisch besetzt";
+        setTimeout(autoAssignLastTeamMember,450);
       }else{
         const next=teamRevealOrder[teamRevealIndex];
         document.getElementById("teamCurrentLabel").textContent=`${item.name} IST IN TEAM ${item.teamIndex+1}`;
