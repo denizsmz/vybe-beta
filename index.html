@@ -8,7 +8,7 @@
 <meta name="format-detection" content="telephone=no">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="theme-color" content="#17111f">
-<title>VYBE 7.4 – Release Candidate</title>
+<title>VYBE 7.4.1 – Navigation Hotfix</title>
 <style>
 :root{
   --bg:#211b2d;
@@ -4265,7 +4265,7 @@ body.high-contrast{--line:rgba(255,255,255,.19);--muted:#c5bacb}body.high-contra
     </div>
 
     <div class="section-label">ÜBER VYBE</div>
-    <div class="panel settings74-panel"><div class="row"><div class="row-icon">ℹ️</div><div class="row-copy"><div class="row-title">Version</div><div class="row-sub">VYBE 7.4 · Release Candidate</div></div><div class="settings74-version-dot"></div></div></div>
+    <div class="panel settings74-panel"><div class="row"><div class="row-icon">ℹ️</div><div class="row-copy"><div class="row-title">Version</div><div class="row-sub">VYBE 7.4.1 · Navigation Hotfix</div></div><div class="settings74-version-dot"></div></div></div>
     <div class="made-by">Made by Deniz</div>
   </div>
 </section>
@@ -4273,7 +4273,7 @@ body.high-contrast{--line:rgba(255,255,255,.19);--muted:#c5bacb}body.high-contra
 <section id="releaseNotes" class="screen">
   <div class="top"><button class="back" data-open="settings">‹</button><div class="page-title">WAS IST NEU?</div><span style="width:43px"></span></div>
   <div class="settings-scroll settings74-detail-page">
-    <div class="settings74-release-hero"><span>🚀</span><div><div class="settings74-kicker">VERSION 7.4</div><h2>Der große VYBE-Ausbau</h2></div></div>
+    <div class="settings74-release-hero"><span>🚀</span><div><div class="settings74-kicker">VERSION 7.4.1</div><h2>Der große VYBE-Ausbau</h2></div></div>
     <div class="settings74-note-card"><strong>📚 Mehr Inhalte</strong><p>Neue Fächer, Fragen, Kategorien, Personen, Begriffe und Fußball-Fragetypen aus 7.1.</p></div>
     <div class="settings74-note-card"><strong>🎯 Überarbeitete Spiele</strong><p>Neuer Wahrheit-oder-Pflicht-Ablauf, größerer Tabu-Timer und Abbruchstatistiken aus 7.2.</p></div>
     <div class="settings74-note-card"><strong>🎟️ Neuer Team-Ausloser</strong><p>Kontrollierte Loskarten statt des alten Glücksrads – Karte für Karte aus Version 7.3.</p></div>
@@ -5217,7 +5217,6 @@ function buzz(pattern=12){
   if(appSettings.vibration){
     try{navigator.vibrate&&navigator.vibrate(pattern)}catch(error){}
   }
-  playUiSound();
 }
 function go(id){
   saveRememberedGameState();
