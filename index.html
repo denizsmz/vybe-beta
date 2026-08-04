@@ -8,7 +8,7 @@
 <meta name="format-detection" content="telephone=no">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="theme-color" content="#17111f">
-<title>VYBE 7.5.3 – Team Final Slot</title>
+<title>VYBE 7.5.4 – Team Card Interaction</title>
 <style>
 :root{
   --bg:#211b2d;
@@ -3496,6 +3496,29 @@ body.high-contrast{--line:rgba(255,255,255,.19);--muted:#c5bacb}body.high-contra
 .imp-result-concept span{display:block;color:var(--muted);font-size:9px;letter-spacing:1.2px;font-weight:1000}
 .imp-result-concept strong{display:block;margin-top:7px;font-size:clamp(25px,7vw,35px)}
 
+
+/* VYBE 7.5.4 – Karte als Auslösefläche */
+.team73-reveal-card{
+  appearance:none;
+  -webkit-appearance:none;
+  padding:0;
+  border:0;
+  background:transparent;
+  color:inherit;
+  cursor:pointer;
+  -webkit-tap-highlight-color:transparent;
+}
+.team73-reveal-card:disabled{
+  cursor:default;
+}
+.team73-reveal-card:not(:disabled):active{
+  transform:scale(.985);
+}
+.team73-reveal-card:focus-visible{
+  outline:2px solid #c67af0;
+  outline-offset:6px;
+}
+
 </style>
 
   <meta name="theme-color" content="#17131f">
@@ -4037,7 +4060,7 @@ body.high-contrast{--line:rgba(255,255,255,.19);--muted:#c5bacb}body.high-contra
         <div class="team73-deck-card card-back-1"></div>
       </div>
 
-      <div id="teamRevealCard" class="team73-reveal-card">
+      <button id="teamRevealCard" class="team73-reveal-card" type="button" aria-label="Nächste Person auslosen">
         <div class="team73-card-inner">
           <div class="team73-card-face team73-card-front">
             <div class="team73-card-logo">VYBE</div>
@@ -4050,7 +4073,7 @@ body.high-contrast{--line:rgba(255,255,255,.19);--muted:#c5bacb}body.high-contra
             <strong id="teamRevealName">Name</strong>
           </div>
         </div>
-      </div>
+      </button>
     </div>
 
     <div class="team73-progress-track"><i id="teamDrawProgressBar"></i></div>
@@ -4289,7 +4312,7 @@ body.high-contrast{--line:rgba(255,255,255,.19);--muted:#c5bacb}body.high-contra
     </div>
 
     <div class="section-label">ÜBER VYBE</div>
-    <div class="panel settings74-panel"><div class="row"><div class="row-icon">ℹ️</div><div class="row-copy"><div class="row-title">Version</div><div class="row-sub">VYBE 7.5.3 · Team Final Slot</div></div><div class="settings74-version-dot"></div></div></div>
+    <div class="panel settings74-panel"><div class="row"><div class="row-icon">ℹ️</div><div class="row-copy"><div class="row-title">Version</div><div class="row-sub">VYBE 7.5.4 · Team Card Interaction</div></div><div class="settings74-version-dot"></div></div></div>
     <div class="made-by">Made by Deniz</div>
   </div>
 </section>
@@ -4297,7 +4320,7 @@ body.high-contrast{--line:rgba(255,255,255,.19);--muted:#c5bacb}body.high-contra
 <section id="releaseNotes" class="screen">
   <div class="top"><button class="back" data-open="settings">‹</button><div class="page-title">WAS IST NEU?</div><span style="width:43px"></span></div>
   <div class="settings-scroll settings74-detail-page">
-    <div class="settings74-release-hero"><span>🚀</span><div><div class="settings74-kicker">VERSION 7.5.3</div><h2>Der große VYBE-Ausbau</h2></div></div>
+    <div class="settings74-release-hero"><span>🚀</span><div><div class="settings74-kicker">VERSION 7.5.4</div><h2>Der große VYBE-Ausbau</h2></div></div>
     <div class="settings74-note-card"><strong>📚 Mehr Inhalte</strong><p>Neue Fächer, Fragen, Kategorien, Personen, Begriffe und Fußball-Fragetypen aus 7.1.</p></div>
     <div class="settings74-note-card"><strong>🎯 Überarbeitete Spiele</strong><p>Neuer Wahrheit-oder-Pflicht-Ablauf, größerer Tabu-Timer und Abbruchstatistiken aus 7.2.</p></div>
     <div class="settings74-note-card"><strong>🎟️ Neuer Team-Ausloser</strong><p>Kontrollierte Loskarten statt des alten Glücksrads – Karte für Karte aus Version 7.3.</p></div>
@@ -7531,6 +7554,7 @@ function prepareNextTeamCard(){
   document.getElementById("teamCurrentName").textContent="Ziehe die nächste Karte";
   document.getElementById("teamRevealTeam").textContent=`TEAM ${item.teamIndex+1}`;
   button.disabled=false;
+  document.getElementById("teamRevealCard").disabled=false;
   button.textContent=teamRevealIndex===0?"ERSTE KARTE ZIEHEN":"NÄCHSTE KARTE ZIEHEN";
   resetRevealCard();
 }
@@ -7545,6 +7569,7 @@ function autoAssignLastTeamMember(){
 
   teamCardLocked=true;
   button.disabled=true;
+  card.disabled=true;
   button.textContent="LETZTE PERSON WIRD ZUGEORDNET …";
 
   card.classList.remove("is-flipped","is-moving","is-shuffling","near-stop");
@@ -7603,6 +7628,7 @@ function revealTeamCard(){
   void card.offsetWidth;
 
   button.disabled=true;
+  card.disabled=true;
   button.textContent="AUSLOSUNG LÄUFT …";
   document.querySelectorAll(".team73-live-card").forEach(teamCard=>{
     teamCard.classList.toggle("active",Number(teamCard.dataset.teamIndex)===item.teamIndex);
@@ -7615,15 +7641,35 @@ function revealTeamCard(){
   const remaining=teamPlayers.filter(name=>!assignedNames.has(name));
   const decoys=remaining.filter(name=>name!==item.name);
   const sequence=[];
+  let lastCandidate=null;
 
+  const pickDifferentCandidate=(pool,preferredAvoid=null)=>{
+    const unique=[...new Set(pool)].filter(name=>name!==preferredAvoid);
+    const usable=unique.length?unique:[...new Set(pool)];
+    if(!usable.length)return item.name;
+    const different=usable.filter(name=>name!==lastCandidate);
+    const candidates=different.length?different:usable;
+    const chosen=candidates[randomInt(candidates.length)];
+    lastCandidate=chosen;
+    return chosen;
+  };
+
+  // Schneller Start, aber niemals derselbe Name direkt zweimal.
   for(let i=0;i<12;i++){
     const pool=i<9?remaining:(decoys.length?decoys:remaining);
-    sequence.push(pool[randomInt(pool.length)]);
+    sequence.push(pickDifferentCandidate(pool));
   }
+
+  // Kontrolliertes Abbremsen mit wechselnden Beinahe-Treffern.
   if(decoys.length){
-    sequence.push(decoys[randomInt(decoys.length)]);
-    sequence.push(item.name);
-    sequence.push(decoys[randomInt(decoys.length)]);
+    sequence.push(pickDifferentCandidate(decoys,item.name));
+    sequence.push(pickDifferentCandidate([item.name,...decoys]));
+    sequence.push(pickDifferentCandidate(decoys,item.name));
+  }
+
+  // Endgültiger Name nur einmal am Schluss.
+  if(sequence[sequence.length-1]===item.name&&decoys.length){
+    sequence[sequence.length-1]=pickDifferentCandidate(decoys,item.name);
   }
   sequence.push(item.name);
 
@@ -7669,6 +7715,7 @@ function revealTeamCard(){
 
       if(teamRevealIndex>=teamRevealOrder.length){
         button.disabled=true;
+        card.disabled=true;
         button.textContent="AUSLOSUNG FERTIG";
         document.getElementById("teamCurrentLabel").textContent="AUSLOSUNG BEENDET";
         document.getElementById("teamCurrentName").textContent="Alle Teams stehen fest";
@@ -7682,6 +7729,7 @@ function revealTeamCard(){
         document.getElementById("teamCurrentLabel").textContent=`${item.name} IST IN TEAM ${item.teamIndex+1}`;
         document.getElementById("teamCurrentName").textContent=`Als Nächstes: Team ${next.teamIndex+1}`;
         button.disabled=false;
+        card.disabled=false;
         button.textContent="NÄCHSTE KARTE ZIEHEN";
       }
     },1350);
@@ -7781,6 +7829,7 @@ document.querySelectorAll("[data-team-count]").forEach(button=>{
 
 document.getElementById("startTeamDraw").addEventListener("click",runTeamDraw);
 document.getElementById("drawNextTeamCard").addEventListener("click",revealTeamCard);
+document.getElementById("teamRevealCard").addEventListener("click",revealTeamCard);
 document.getElementById("drawAgain").addEventListener("click",runTeamDraw);
 
 renderTeamPlayers();
