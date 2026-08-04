@@ -1,4 +1,4 @@
-const CACHE_VERSION = "vybe-pwa-v35";
+const CACHE_VERSION = "vybe-pwa-v36";
 const APP_SHELL = [
   "./",
   "./index.html",

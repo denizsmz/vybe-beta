@@ -8,7 +8,7 @@
 <meta name="format-detection" content="telephone=no">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="theme-color" content="#17111f">
-<title>VYBE 7.5.4 – Team Card Interaction</title>
+<title>VYBE 7.5.5 – Shared Players & Easter Egg</title>
 <style>
 :root{
   --bg:#211b2d;
@@ -3497,7 +3497,7 @@ body.high-contrast{--line:rgba(255,255,255,.19);--muted:#c5bacb}body.high-contra
 .imp-result-concept strong{display:block;margin-top:7px;font-size:clamp(25px,7vw,35px)}
 
 
-/* VYBE 7.5.4 – Karte als Auslösefläche */
+/* VYBE 7.5.5 – Karte als Auslösefläche */
 .team73-reveal-card{
   appearance:none;
   -webkit-appearance:none;
@@ -3517,6 +3517,114 @@ body.high-contrast{--line:rgba(255,255,255,.19);--muted:#c5bacb}body.high-contra
 .team73-reveal-card:focus-visible{
   outline:2px solid #c67af0;
   outline-offset:6px;
+}
+
+
+/* VYBE 7.5.5 – Shared Players & Easter Egg */
+.deniz-easter-trigger{
+  display:block;
+  margin:18px auto 2px;
+  border:0;
+  background:transparent;
+  color:var(--muted);
+  font:inherit;
+  font-size:11px;
+  cursor:pointer;
+  padding:10px 14px;
+  border-radius:999px;
+  -webkit-tap-highlight-color:transparent;
+}
+.deniz-easter-trigger strong{color:inherit}
+.deniz-easter-trigger:active{transform:scale(.97)}
+
+.deniz-easter-overlay{
+  position:fixed;
+  inset:0;
+  z-index:9999;
+  display:grid;
+  place-items:center;
+  padding:24px;
+  background:rgba(8,6,13,.76);
+  backdrop-filter:blur(18px);
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .28s ease;
+}
+.deniz-easter-overlay.active{
+  opacity:1;
+  pointer-events:auto;
+}
+.deniz-easter-card{
+  position:relative;
+  width:min(88vw,380px);
+  padding:34px 24px 24px;
+  border-radius:30px;
+  text-align:center;
+  color:white;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.16);
+  background:
+    radial-gradient(circle at 50% 0%,rgba(255,255,255,.18),transparent 32%),
+    linear-gradient(145deg,#253c9e,#7547bb 55%,#ed5a8b);
+  box-shadow:0 30px 90px rgba(0,0,0,.5);
+  transform:translateY(22px) scale(.94);
+  transition:transform .4s cubic-bezier(.18,.9,.2,1.15);
+}
+.deniz-easter-overlay.active .deniz-easter-card{
+  transform:translateY(0) scale(1);
+}
+.deniz-easter-logo{
+  width:86px;height:86px;margin:0 auto 18px;border-radius:29px;
+  display:grid;place-items:center;
+  font-size:49px;font-weight:1000;
+  background:linear-gradient(145deg,#ffffff,#d7d4ff);
+  color:#633fb5;
+  box-shadow:0 18px 35px rgba(0,0,0,.25);
+  animation:denizLogoFloat 1.8s ease-in-out infinite alternate;
+}
+@keyframes denizLogoFloat{from{transform:translateY(0) rotate(-2deg)}to{transform:translateY(-8px) rotate(2deg)}}
+.deniz-easter-kicker{font-size:9px;letter-spacing:1.6px;font-weight:1000;color:rgba(255,255,255,.72)}
+.deniz-easter-card h2{margin:7px 0 5px;font-size:30px}
+.deniz-easter-card p{margin:0 0 20px;color:rgba(255,255,255,.8);font-weight:850}
+.deniz-easter-card button{width:100%;min-height:54px;border-radius:18px;background:rgba(255,255,255,.95)!important;color:#5b3aa7!important}
+.deniz-easter-orbit{
+  position:absolute;inset:9px;
+  pointer-events:none;
+}
+.deniz-easter-orbit span{
+  position:absolute;
+  font-size:22px;
+  animation:denizOrbit 3.6s linear infinite;
+  transform-origin:170px 170px;
+}
+.deniz-easter-orbit span:nth-child(1){left:5px;top:5px;animation-delay:0s}
+.deniz-easter-orbit span:nth-child(2){right:9px;top:28px;animation-delay:-.9s}
+.deniz-easter-orbit span:nth-child(3){left:24px;bottom:24px;animation-delay:-1.8s}
+.deniz-easter-orbit span:nth-child(4){right:20px;bottom:30px;animation-delay:-2.7s}
+@keyframes denizOrbit{from{transform:rotate(0deg) scale(1)}50%{transform:rotate(180deg) scale(1.18)}to{transform:rotate(360deg) scale(1)}}
+.deniz-confetti{
+  position:absolute;
+  inset:0;
+  overflow:hidden;
+  pointer-events:none;
+}
+.deniz-confetti-piece{
+  position:absolute;
+  top:-20px;
+  width:9px;height:16px;border-radius:3px;
+  background:currentColor;
+  animation:denizConfettiFall var(--duration) linear forwards;
+}
+@keyframes denizConfettiFall{
+  0%{transform:translate3d(0,-20px,0) rotate(0);opacity:1}
+  100%{transform:translate3d(var(--drift),110vh,0) rotate(900deg);opacity:.15}
+}
+body.deniz-mode{
+  animation:denizHue 5s linear infinite;
+}
+@keyframes denizHue{
+  0%,100%{filter:hue-rotate(0deg)}
+  50%{filter:hue-rotate(18deg)}
 }
 
 </style>
@@ -4312,15 +4420,15 @@ body.high-contrast{--line:rgba(255,255,255,.19);--muted:#c5bacb}body.high-contra
     </div>
 
     <div class="section-label">ÜBER VYBE</div>
-    <div class="panel settings74-panel"><div class="row"><div class="row-icon">ℹ️</div><div class="row-copy"><div class="row-title">Version</div><div class="row-sub">VYBE 7.5.4 · Team Card Interaction</div></div><div class="settings74-version-dot"></div></div></div>
-    <div class="made-by">Made by Deniz</div>
+    <div class="panel settings74-panel"><div class="row"><div class="row-icon">ℹ️</div><div class="row-copy"><div class="row-title">Version</div><div class="row-sub">VYBE 7.5.5 · Shared Players</div></div><div class="settings74-version-dot"></div></div></div>
+    <button id="denizEasterEggTrigger" class="made-by deniz-easter-trigger" type="button" aria-label="Made by Deniz">Made by <strong>Deniz</strong></button>
   </div>
 </section>
 
 <section id="releaseNotes" class="screen">
   <div class="top"><button class="back" data-open="settings">‹</button><div class="page-title">WAS IST NEU?</div><span style="width:43px"></span></div>
   <div class="settings-scroll settings74-detail-page">
-    <div class="settings74-release-hero"><span>🚀</span><div><div class="settings74-kicker">VERSION 7.5.4</div><h2>Der große VYBE-Ausbau</h2></div></div>
+    <div class="settings74-release-hero"><span>🚀</span><div><div class="settings74-kicker">VERSION 7.5.5</div><h2>Der große VYBE-Ausbau</h2></div></div>
     <div class="settings74-note-card"><strong>📚 Mehr Inhalte</strong><p>Neue Fächer, Fragen, Kategorien, Personen, Begriffe und Fußball-Fragetypen aus 7.1.</p></div>
     <div class="settings74-note-card"><strong>🎯 Überarbeitete Spiele</strong><p>Neuer Wahrheit-oder-Pflicht-Ablauf, größerer Tabu-Timer und Abbruchstatistiken aus 7.2.</p></div>
     <div class="settings74-note-card"><strong>🎟️ Neuer Team-Ausloser</strong><p>Kontrollierte Loskarten statt des alten Glücksrads – Karte für Karte aus Version 7.3.</p></div>
@@ -5080,16 +5188,142 @@ function resetStatisticsData(){
   try{localStorage.removeItem(STATS_KEY);localStorage.removeItem(QUIZ_STATS_KEY)}catch(error){}
   renderStats();showSettingToast("Statistiken zurückgesetzt")
 }
-function resetSavedSetupData(){try{localStorage.removeItem(GAME_STATE_KEY)}catch(error){}showSettingToast("Gespeicherte Auswahlen gelöscht")}
+function resetSavedSetupData(){
+  try{
+    localStorage.removeItem(GAME_STATE_KEY);
+    localStorage.removeItem(SHARED_PLAYERS_KEY);
+  }catch(error){}
+  sharedPlayers=["Lena","Max","Sophie","Ben"];
+  syncAllGamePlayers(sharedPlayers,{save:true,render:true});
+  showSettingToast("Gespeicherte Auswahlen gelöscht");
+}
 document.addEventListener("visibilitychange",()=>{if(!document.hidden&&appSettings.wakeLock)updateWakeLock()});
 document.getElementById("resetContentHistory")?.addEventListener("click",resetContentHistoryData);
 document.getElementById("resetStatistics")?.addEventListener("click",resetStatisticsData);
 document.getElementById("resetSavedSetup")?.addEventListener("click",resetSavedSetupData);
 
-let impPlayers=["Lena","Max","Sophie","Ben"],impCount=1,impSelected=new Set(Object.keys(impCategories));
+
+const SHARED_PLAYERS_KEY="vybe_shared_players_v1";
+let sharedPlayers=[];
+
+function sanitizeSharedPlayers(players){
+  const seen=new Set();
+  return (players||[])
+    .map((name,index)=>(name||"").trim())
+    .filter(name=>{
+      const key=name.toLowerCase();
+      if(!name||seen.has(key))return false;
+      seen.add(key);
+      return true;
+    })
+    .slice(0,20);
+}
+
+function loadSharedPlayers(){
+  try{
+    const saved=JSON.parse(localStorage.getItem(SHARED_PLAYERS_KEY)||"null");
+    sharedPlayers=sanitizeSharedPlayers(saved);
+  }catch(error){
+    sharedPlayers=[];
+  }
+
+  if(sharedPlayers.length<2){
+    sharedPlayers=["Lena","Max","Sophie","Ben"];
+  }
+}
+
+function getSharedPlayers(){
+  return [...sharedPlayers];
+}
+
+function syncAllGamePlayers(players,{save=true,render=true}={}){
+  const clean=sanitizeSharedPlayers(players);
+  if(clean.length<2)return false;
+
+  sharedPlayers=[...clean];
+
+  // Alle Spiele greifen auf dieselbe Namensliste zurück.
+  if(typeof impPlayers!=="undefined")impPlayers=[...clean];
+  if(typeof wouldPlayers!=="undefined")wouldPlayers=[...clean];
+  if(typeof tabooPlayers!=="undefined")tabooPlayers=[...clean];
+  if(typeof truthPlayers!=="undefined")truthPlayers=[...clean];
+  if(typeof whoPlayers!=="undefined")whoPlayers=[...clean];
+  if(typeof knowledgePlayers!=="undefined")knowledgePlayers=[...clean];
+  if(typeof ballPlayers!=="undefined")ballPlayers=[...clean];
+  if(typeof teamPlayers!=="undefined")teamPlayers=[...clean];
+  if(typeof wwPlayers!=="undefined")wwPlayers=[...clean];
+
+  if(save){
+    try{localStorage.setItem(SHARED_PLAYERS_KEY,JSON.stringify(sharedPlayers))}catch(error){}
+  }
+
+  if(render)renderAllSharedPlayerLists();
+  return true;
+}
+
+function renderAllSharedPlayerLists(){
+  const renderers=[
+    "renderImpPlayers","renderWouldPlayers","renderTabooPlayers","renderTruthPlayers",
+    "renderWhoPlayers","renderKnowledgePlayers","renderBallPlayers","renderTeamPlayers",
+    "wwRenderPlayers"
+  ];
+
+  renderers.forEach(name=>{
+    const fn=window[name];
+    if(typeof fn==="function"){
+      try{fn()}catch(error){}
+    }
+  });
+
+  if(typeof renderTeamCountOptions==="function"){
+    try{renderTeamCountOptions()}catch(error){}
+  }
+}
+
+function saveSharedPlayersFrom(sourcePlayers){
+  const clean=sanitizeSharedPlayers(sourcePlayers);
+  if(clean.length>=2)syncAllGamePlayers(clean,{save:true,render:false});
+}
+
+function installSharedPlayerWatchers(){
+  const getPlayerArrays=()=>[
+    typeof impPlayers!=="undefined"?impPlayers:null,
+    typeof wouldPlayers!=="undefined"?wouldPlayers:null,
+    typeof tabooPlayers!=="undefined"?tabooPlayers:null,
+    typeof truthPlayers!=="undefined"?truthPlayers:null,
+    typeof whoPlayers!=="undefined"?whoPlayers:null,
+    typeof teamPlayers!=="undefined"?teamPlayers:null,
+    typeof wwPlayers!=="undefined"?wwPlayers:null
+  ].filter(Array.isArray);
+
+  let previousSignature=JSON.stringify(sharedPlayers);
+
+  setInterval(()=>{
+    const currentSignature=JSON.stringify(sharedPlayers);
+
+    // Eine bereits bewusst synchronisierte zentrale Liste hat Vorrang.
+    if(currentSignature!==previousSignature){
+      previousSignature=currentSignature;
+      return;
+    }
+
+    for(const value of getPlayerArrays()){
+      const clean=sanitizeSharedPlayers(value);
+      const signature=JSON.stringify(clean);
+      if(clean.length>=2&&signature!==currentSignature){
+        syncAllGamePlayers(clean,{save:true,render:false});
+        previousSignature=JSON.stringify(sharedPlayers);
+        return;
+      }
+    }
+  },500);
+}
+
+loadSharedPlayers();
+let impPlayers=getSharedPlayers(),impCount=1,impSelected=new Set(Object.keys(impCategories));
 let impRoles=[],impIndex=0,impItem=null,impRevealed=false;
 
-let wouldPlayers=["Lena","Max","Sophie","Ben"],wouldSelected=new Set(Object.keys(wouldCategories)),wouldRounds=10;
+let wouldPlayers=getSharedPlayers(),wouldSelected=new Set(Object.keys(wouldCategories)),wouldRounds=10;
 let wouldQuestions=[],wouldRoundIndex=0,wouldQuestion=null,wouldSelectedPerson=null,wouldScores=[];
 
 let categoryType="imp",categoryReturn="impSetup";
@@ -6307,15 +6541,15 @@ Object.entries({"alltag":[["Mikrowelle",["warm","Küche","Essen","Minute"]],["Ka
   if(tabooData[key])tabooData[key].cards.push(...cards);
 });
 
-let tabooPlayers=["Lena","Max","Sophie","Ben"];
+let tabooPlayers=getSharedPlayers();
 let tabooSelected=new Set(["alltag","party","pop"]);
 let tabooRounds=10,tabooSeconds=60,tabooDeck=[],tabooIndex=0,tabooScore=0,tabooSkipped=0,tabooRoundScore=0,tabooRoundSkipped=0,tabooPlayerIndex=0,tabooCompletedRounds=0,tabooTimerId=null,tabooTimeLeft=60,tabooPlayerStats=[];
 
-let truthPlayers=["Lena","Max","Sophie","Ben"];
+let truthPlayers=getSharedPlayers();
 let truthSelected=new Set(["soft","party"]);
 let truthMode="mix",truthRounds=20,truthIndex=0,truthDeck=[],truthCurrent=null,truthChosenType=null,truthTruthCount=0,truthDareCount=0;
 
-let whoPlayers=["Lena","Max","Sophie","Ben"];
+let whoPlayers=getSharedPlayers();
 let whoSelected=new Set(["people","characters"]);
 let whoRounds=5,whoPlayerIndex=0,whoCardIndex=0,whoDeck=[],whoScores=[];
 whoSelected=new Set([...whoSelected].filter(key=>Object.prototype.hasOwnProperty.call(whoData,key)));
@@ -6772,7 +7006,7 @@ const WW_SPECIAL_META={
   protector:{label:"Beschützer",emoji:"🛡️",hint:"Schützt nachts eine Person"}
 };
 
-let wwPlayers=["Deniz","Lena","Max","Sophie","Ben","Mia","Noah","Emma"];
+let wwPlayers=getSharedPlayers();
 let wwNarratorIndex=0;
 let wwWolfCount=2;
 let wwEnabledRoles=new Set(["seer","witch","hunter","cupid","protector"]);
@@ -6869,7 +7103,7 @@ function wwRenderPlayers(){
     input.value=name;
     input.maxLength=18;
     input.addEventListener("input",()=>{
-      wwPlayers[index]=input.value;
+      wwPlayers[index]=input.value; saveSharedPlayersFrom(wwPlayers);
       narrator.textContent=index===wwNarratorIndex?"ERZÄHLER":"Erzähler";
       wwUpdateSetup();
     });
@@ -6893,7 +7127,7 @@ function wwRenderPlayers(){
     remove.disabled=wwPlayers.length<=6;
     remove.addEventListener("click",()=>{
       if(wwPlayers.length<=6)return;
-      wwPlayers.splice(index,1);
+      wwPlayers.splice(index,1);saveSharedPlayersFrom(wwPlayers);
       if(wwNarratorIndex===index)wwNarratorIndex=0;
       else if(wwNarratorIndex>index)wwNarratorIndex--;
       wwRenderPlayers();
@@ -7375,7 +7609,7 @@ document.getElementById("addWwPlayer").addEventListener("click",()=>{
   const name=input.value.trim();
   if(!name)return;
   if(wwPlayers.length>=18){showSettingToast("Maximal 18 Namen");return}
-  wwPlayers.push(name);
+  wwPlayers.push(name);saveSharedPlayersFrom(wwPlayers);
   input.value="";
   wwRenderPlayers();
   triggerHaptic("medium");
@@ -7406,7 +7640,7 @@ wwUpdateSetup();
 
 
 /* TEAM-AUSLOSER */
-let teamPlayers=["Lena","Max","Sophie","Ben","Mia","Noah"];
+let teamPlayers=getSharedPlayers();
 let teamCount=2;
 let latestTeams=[];
 let teamRevealOrder=[];
@@ -7438,7 +7672,7 @@ function renderTeamPlayers(){
     remove.disabled=teamPlayers.length<=2;
     remove.addEventListener("click",()=>{
       if(teamPlayers.length<=2)return;
-      teamPlayers.splice(index,1);
+      teamPlayers.splice(index,1);saveSharedPlayersFrom(teamPlayers);
       if(teamCount>teamPlayers.length)teamCount=teamPlayers.length;
       renderTeamPlayers();
       renderTeamCountOptions();
@@ -7806,7 +8040,7 @@ document.getElementById("addTeamPlayer").addEventListener("click",()=>{
     return;
   }
 
-  teamPlayers.push(name);
+  teamPlayers.push(name);saveSharedPlayersFrom(teamPlayers);
   input.value="";
   renderTeamPlayers();
   renderTeamCountOptions();
@@ -7834,6 +8068,8 @@ document.getElementById("drawAgain").addEventListener("click",runTeamDraw);
 
 renderTeamPlayers();
 renderTeamCountOptions();
+syncAllGamePlayers(getSharedPlayers(),{save:false,render:false});
+installSharedPlayerWatchers();
 
 /* FAVORITEN */
 const FAVORITES_KEY="vybe_favorites_v1";
@@ -7995,6 +8231,65 @@ if(appSettings.wakeLock)updateWakeLock();
 renderPlayers("imp");renderPlayers("would");renderImpCountChoices();renderKnowledgeOptions();
 renderKnowledgeSubjects();
 renderBallOptions();document.getElementById("impCategoryValue").textContent="Alle ausgewählt";document.getElementById("wouldCategoryValue").textContent="Alle ausgewählt";go("home");
+
+let denizTapCount=0;
+let denizTapTimer=null;
+
+function createDenizConfetti(){
+  const container=document.getElementById("denizConfetti");
+  if(!container)return;
+  container.innerHTML="";
+  const colors=["#ffffff","#ffd45c","#ff6f91","#7ee7ff","#9d7cff","#72f0ad"];
+
+  for(let i=0;i<70;i++){
+    const piece=document.createElement("i");
+    piece.className="deniz-confetti-piece";
+    piece.style.left=`${Math.random()*100}%`;
+    piece.style.color=colors[i%colors.length];
+    piece.style.setProperty("--duration",`${2.4+Math.random()*2.1}s`);
+    piece.style.setProperty("--drift",`${-110+Math.random()*220}px`);
+    piece.style.animationDelay=`${Math.random()*.45}s`;
+    container.appendChild(piece);
+  }
+}
+
+function openDenizEasterEgg(){
+  const overlay=document.getElementById("denizEasterEgg");
+  if(!overlay)return;
+  createDenizConfetti();
+  overlay.classList.add("active");
+  overlay.setAttribute("aria-hidden","false");
+  document.body.classList.add("deniz-mode");
+  playTimerSignal("end");
+  triggerHaptic("success");
+}
+
+function closeDenizEasterEgg(){
+  const overlay=document.getElementById("denizEasterEgg");
+  if(!overlay)return;
+  overlay.classList.remove("active");
+  overlay.setAttribute("aria-hidden","true");
+  document.body.classList.remove("deniz-mode");
+}
+
+document.getElementById("denizEasterEggTrigger")?.addEventListener("click",()=>{
+  denizTapCount++;
+  clearTimeout(denizTapTimer);
+
+  if(denizTapCount>=5){
+    denizTapCount=0;
+    openDenizEasterEgg();
+    return;
+  }
+
+  denizTapTimer=setTimeout(()=>{denizTapCount=0},1200);
+});
+
+document.getElementById("closeDenizEasterEgg")?.addEventListener("click",closeDenizEasterEgg);
+document.getElementById("denizEasterEgg")?.addEventListener("click",event=>{
+  if(event.target.id==="denizEasterEgg")closeDenizEasterEgg();
+});
+
 </script>
 <div id="settingToast" class="setting-toast" aria-live="polite"></div>
 
@@ -8055,6 +8350,21 @@ if ("serviceWorker" in navigator) {
   });
 })();
 </script>
+
+
+<div id="denizEasterEgg" class="deniz-easter-overlay" aria-hidden="true">
+  <div class="deniz-easter-card">
+    <div class="deniz-easter-orbit">
+      <span>🚀</span><span>⚽</span><span>🎲</span><span>🔥</span>
+    </div>
+    <div class="deniz-easter-logo">D</div>
+    <div class="deniz-easter-kicker">GEHEIMMODUS ENTDECKT</div>
+    <h2>Deniz Mode aktiviert</h2>
+    <p>Straight to the moon. 🌙</p>
+    <button id="closeDenizEasterEgg" class="primary" type="button">LEGENDÄR</button>
+  </div>
+  <div id="denizConfetti" class="deniz-confetti"></div>
+</div>
 
 </body>
 </html>
