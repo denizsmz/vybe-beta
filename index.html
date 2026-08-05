@@ -8,7 +8,7 @@
 <meta name="format-detection" content="telephone=no">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="theme-color" content="#17111f">
-<title>VYBE 7.5.6 – Hidden Meme Easter Egg</title>
+<title>VYBE 7.5.7</title>
 <style>
 :root{
   --bg:#211b2d;
@@ -3497,7 +3497,7 @@ body.high-contrast{--line:rgba(255,255,255,.19);--muted:#c5bacb}body.high-contra
 .imp-result-concept strong{display:block;margin-top:7px;font-size:clamp(25px,7vw,35px)}
 
 
-/* VYBE 7.5.6 – Karte als Auslösefläche */
+/* VYBE 7.5.7 – Karte als Auslösefläche */
 .team73-reveal-card{
   appearance:none;
   -webkit-appearance:none;
@@ -3520,9 +3520,9 @@ body.high-contrast{--line:rgba(255,255,255,.19);--muted:#c5bacb}body.high-contra
 }
 
 
-/* VYBE 7.5.6 – Shared Players & Easter Egg */
+/* VYBE 7.5.7 –  */
 .deniz-easter-trigger{display:none!important}
-/* VYBE 7.5.6 – Hidden meme Easter Egg */
+/* VYBE 7.5.7 –  */
 #denizEasterEggTrigger{
   color:inherit;cursor:inherit;user-select:none;-webkit-user-select:none;
   -webkit-tap-highlight-color:transparent;
@@ -4343,12 +4343,12 @@ body.deniz-glitch{animation:denizGlitch .16s linear}
       <button id="resetContentHistory" class="row settings74-action" type="button"><div class="row-icon">🃏</div><div class="row-copy"><div class="row-title">Kartenverlauf zurücksetzen</div><div class="row-sub">Bereits gespielte Inhalte wieder freigeben</div></div><div class="chev">›</div></button>
       <button id="resetStatistics" class="row settings74-action" type="button"><div class="row-icon">📊</div><div class="row-copy"><div class="row-title">Statistiken zurücksetzen</div><div class="row-sub">Spielzeit, Runden und Quizwerte löschen</div></div><div class="chev">›</div></button>
       <button id="resetSavedSetup" class="row settings74-action" type="button"><div class="row-icon">↺</div><div class="row-copy"><div class="row-title">Gespeicherte Auswahlen löschen</div><div class="row-sub">Spieler, Kategorien und Optionen zurücksetzen</div></div><div class="chev">›</div></button>
-      <button class="row settings74-action" data-open="releaseNotes" type="button"><div class="row-icon">🚀</div><div class="row-copy"><div class="row-title">Was ist neu?</div><div class="row-sub">Änderungen aus Version 7.4 ansehen</div></div><div class="chev">›</div></button>
+      <button class="row settings74-action" data-open="releaseNotes" type="button"><div class="row-icon">🚀</div><div class="row-copy"><div class="row-title">Was ist neu?</div><div class="row-sub">Die wichtigsten Änderungen ansehen</div></div><div class="chev">›</div></button>
       <button class="row settings74-action" data-open="dataInfo" type="button"><div class="row-icon">🔐</div><div class="row-copy"><div class="row-title">Lokale Datenspeicherung</div><div class="row-sub">Welche Daten auf deinem Gerät bleiben</div></div><div class="chev">›</div></button>
     </div>
 
     <div class="section-label">ÜBER VYBE</div>
-    <div class="panel settings74-panel"><div class="row"><div class="row-icon">ℹ️</div><div class="row-copy"><div class="row-title">Version</div><div class="row-sub">VYBE 7.5.6 · Hidden Meme Easter Egg</div></div><div class="settings74-version-dot"></div></div></div>
+    <div class="panel settings74-panel"><div class="row"><div class="row-icon">ℹ️</div><div class="row-copy"><div class="row-title">Version</div><div class="row-sub">VYBE 7.5.7</div></div><div class="settings74-version-dot"></div></div></div>
     <div class="made-by">Made by <span id="denizEasterEggTrigger">Deniz</span></div>
   </div>
 </section>
@@ -4356,7 +4356,7 @@ body.deniz-glitch{animation:denizGlitch .16s linear}
 <section id="releaseNotes" class="screen">
   <div class="top"><button class="back" data-open="settings">‹</button><div class="page-title">WAS IST NEU?</div><span style="width:43px"></span></div>
   <div class="settings-scroll settings74-detail-page">
-    <div class="settings74-release-hero"><span>🚀</span><div><div class="settings74-kicker">VERSION 7.5.6</div><h2>Der große VYBE-Ausbau</h2></div></div>
+    <div class="settings74-release-hero"><span>🚀</span><div><div class="settings74-kicker">VERSION 7.5.7</div><h2>Was sich in VYBE verbessert hat</h2></div></div>
     <div class="settings74-note-card"><strong>📚 Mehr Inhalte</strong><p>Neue Fächer, Fragen, Kategorien, Personen, Begriffe und Fußball-Fragetypen aus 7.1.</p></div>
     <div class="settings74-note-card"><strong>🎯 Überarbeitete Spiele</strong><p>Neuer Wahrheit-oder-Pflicht-Ablauf, größerer Tabu-Timer und Abbruchstatistiken aus 7.2.</p></div>
     <div class="settings74-note-card"><strong>🎟️ Neuer Team-Ausloser</strong><p>Kontrollierte Loskarten statt des alten Glücksrads – Karte für Karte aus Version 7.3.</p></div>
@@ -8163,20 +8163,7 @@ renderBallOptions();document.getElementById("impCategoryValue").textContent="All
 let denizTapCount=0;
 let denizTapResetTimer=null;
 let denizMemeHideTimer=null;
-const denizMemeMessages=[
- ["💀","Bro... warum hast du das gefunden?"],
- ["🌱","Achievement unlocked: Touch Grass"],
- ["🗿","Developer-Mode? Schön wär's."],
- ["🐸","Frosch-Modus aktiviert."],
- ["🧠","IQ +1"],
- ["📈","Seltene Entdeckung (0,3 %)"],
- ["🎲","Du hast zu viel Freizeit."],
- ["🚪","Jetzt geh wieder spielen."],
- ["🫵","Erwischt."],
- ["🥸","Es gibt hier nichts zu sehen..."],
- ["💸","+0 XP erhalten."],
- ["🚨","Cheatcode ungültig... ach nee doch."]
-];
+const denizMemeMessages=[["💀","Bro... warum hast du das gefunden?"],["🌱","Achievement unlocked: Touch Grass"],["🗿","Developer-Mode? Schön wär's."],["🐸","Frosch-Modus aktiviert."],["🧠","IQ +1"],["📈","Seltene Entdeckung (0,3 %)"],["🎲","Du hast zu viel Freizeit."],["🚪","Jetzt geh wieder spielen."],["🫵","Erwischt."],["🥸","Es gibt hier nichts zu sehen..."],["💸","+0 XP erhalten."],["🚨","Cheatcode ungültig... ach nee doch."],["🤨","Was genau hast du hier erwartet?"],["📸","Screenshot oder es ist nie passiert."],["🧍","NPC-Dialog erfolgreich gestartet."],["🪑","Setz dich kurz. Das war peinlich."],["🎯","Fünfmal gedrückt. Starkes Hobby."],["🕵️","Geheimdienst möchte deinen Standort wissen."],["🧃","Belohnung: ein imaginärer Capri-Sun."],["🧱","Du hast die vierte Wand angeklickt."],["🧮","Mathe sagt: Das war unnötig."],["🛰️","Signal empfangen. Inhalt leider nutzlos."],["🐢","Turbo-Modus auf langsam gestellt."],["🧀","Käse erfolgreich kalibriert."],["👁️","Die App hat zurückgeguckt."],["🛒","Dieser Fund ist nicht im Warenkorb."],["🧊","Cool. Also wirklich: eisig."],["🫠","Die Entwickler schmelzen gerade."],["🧌","Ein Troll wurde erfolgreich gefüttert."],["📦","In diesem Paket war nichts drin."],["🛸","Aliens sagen: bisschen cringe."],["🧯","Hier gibt es nichts zu löschen."],["🎮","Bonuslevel ohne Bonus gefunden."],["🦆","Ente geladen. Quak."],["🧻","Notfallrolle freigeschaltet."],["🥔","Kartoffel-Grafik aktiviert."],["🧹","Bitte einmal den Cache fegen."],["🫡","Mission sinnlos erfolgreich."],["👻","Buh. Mehr Budget war nicht drin."],["🤡","Clown-Modus nur kurz verfügbar."],["🦀","Seitwärts denken freigeschaltet."],["📵","Handy weglegen wäre auch eine Option."],["🧬","Deine DNA sagt: neugierig."],["🍞","Toast-Level: kritisch."],["🧿","Du wurdest offiziell bemerkt."],["🔋","Akku -1 %, Erkenntnis +0."],["🛌","Schlaf wäre jetzt auch stark."],["🐌","Speedrun abgebrochen."],["🧑‍💻","Der Praktikant wurde informiert."],["🚧","Baustelle betreten. Nichts passiert."],["🫵","Ja du. Genau du."],["🤖","Roboter-Geräusch nicht im Budget."],["🎺","Tusch! Und jetzt weiter."],["📉","Produktivität erfolgreich gesenkt."],["🧠","Gedanke gefunden. War leer."],["🪦","Hier ruht deine Freizeit."],["🥇","Platz 1 im sinnlosen Tippen."],["🧨","Großer Knall. Unsichtbar."],["🍌","Bananenmodus bleibt geheim."],["🧙","Zauberspruch fehlgeschlagen."],["🧍‍♂️","Bitte warten... auf nichts."],["🧃","Du bekommst exakt gar nichts."],["🪄","Magie aus. Realität wieder an."],["🗑️","Fundstück erfolgreich weggeworfen."],["🥶","Dieser Moment war eiskalt."],["👟","Lauf. Bevor die App Fragen stellt."],["📡","WLAN gefunden. Sinn nicht."],["🥲","Das war jetzt dein Highlight, oder?"],["🧅","Zwiebelmodus: unnötig viele Schichten."],["🧑‍🚀","Houston, wir haben Langeweile."],["🎭","Plot Twist: Es gibt keinen Plot."],["🧷","Kleine Entdeckung. Riesiges Ego."],["🛎️","Service gerufen. Niemand kommt."],["🧠","Gehirn lädt... 2 %."],["🪫","Motivation nicht gefunden."],["🍿","Kurze Werbepause ohne Werbung."],["🧑‍🍳","Chefkoch empfiehlt: App schließen."],["📛","Zutritt erlaubt. Warum auch immer."],["🦖","Dino-Modus seit 65 Mio. Jahren offline."],["🪞","Plot Twist: Du bist das Geheimnis."],["🦧","Primatenmodus erfolgreich erkannt."],["🧠","Update fürs Gehirn nicht verfügbar."],["📱","Du hast offiziell zu genau geguckt."],["🚗","Diese Funktion hat keinen TÜV."],["🛂","Einreise in den Quatschmodus genehmigt."],["🪙","Belohnung: 0,00 Münzen."],["🧺","Wäsche wäre jetzt produktiver."],["🎈","Luftnummer erfolgreich gestartet."],["🧑‍⚖️","Urteil: eindeutig zu neugierig."],["🗺️","Du bist vom eigentlichen Spiel abgekommen."],["🦺","Sicherheitsabstand zur Produktivität einhalten."],["🧋","Bubble-Tea-Gutschein leider unsichtbar."],["🛗","Aufzug fährt nicht bis hierhin."],["📎","Clippy hätte jetzt eine Frage."],["🐀","Rattenmodus kurz aktiviert."],["🪤","Glückwunsch. Du bist in die Falle getippt."]];
 function showDenizMeme(){
  const overlay=document.getElementById("denizEasterEgg");
  const card=document.getElementById("denizMemeCard");
@@ -8187,7 +8174,7 @@ function showDenizMeme(){
  const jackpot=Math.random()<.01;
  if(jackpot){
    emoji.textContent="👑";
-   text.textContent="JACKPOT! Ultra seltenes Easter Egg gefunden.";
+   text.textContent="JACKPOT! 1%-Fund freigeschaltet.";
    card.classList.add("jackpot");
  }else{
    const [e,t]=denizMemeMessages[randomInt(denizMemeMessages.length)];
