@@ -8,7 +8,7 @@
 <meta name="format-detection" content="telephone=no">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="theme-color" content="#17111f">
-<title>VYBE 7.5.7</title>
+<title>VYBE 7.5.8</title>
 <style>
 :root{
   --bg:#211b2d;
@@ -28,11 +28,28 @@
   --shadow:0 18px 42px rgba(7,4,12,.24);
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#120f18;
-font-family:-apple-system,BlinkMacSystemFont,"SF Pro Rounded","Avenir Next Rounded","Arial Rounded MT Bold",sans-serif;color:var(--text)}
+html,body{
+  margin:0;
+  width:100%;
+  height:100%;
+  min-height:100%;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 94% -6%,rgba(255,79,135,.18),transparent 28%),
+    radial-gradient(circle at -8% 106%,rgba(121,92,255,.16),transparent 30%),
+    linear-gradient(180deg,var(--bg),var(--bg-deep));
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Rounded","Avenir Next Rounded","Arial Rounded MT Bold",sans-serif;
+  color:var(--text)
+}
 button,input{font:inherit}button{cursor:pointer}
 .app{
-  width:100%;height:100dvh;max-width:480px;margin:auto;position:relative;overflow:hidden;
+  width:100%;
+  height:100%;
+  min-height:100dvh;
+  max-width:480px;
+  margin:auto;
+  position:relative;
+  overflow:hidden;
   background:
     radial-gradient(circle at 94% -6%,rgba(255,79,135,.18),transparent 28%),
     radial-gradient(circle at -8% 106%,rgba(121,92,255,.16),transparent 30%),
@@ -3497,7 +3514,7 @@ body.high-contrast{--line:rgba(255,255,255,.19);--muted:#c5bacb}body.high-contra
 .imp-result-concept strong{display:block;margin-top:7px;font-size:clamp(25px,7vw,35px)}
 
 
-/* VYBE 7.5.7 – Karte als Auslösefläche */
+/* VYBE 7.5.8 – Karte als Auslösefläche */
 .team73-reveal-card{
   appearance:none;
   -webkit-appearance:none;
@@ -3520,9 +3537,9 @@ body.high-contrast{--line:rgba(255,255,255,.19);--muted:#c5bacb}body.high-contra
 }
 
 
-/* VYBE 7.5.7 –  */
+/* VYBE 7.5.8 –  */
 .deniz-easter-trigger{display:none!important}
-/* VYBE 7.5.7 –  */
+/* VYBE 7.5.8 –  */
 #denizEasterEggTrigger{
   color:inherit;cursor:inherit;user-select:none;-webkit-user-select:none;
   -webkit-tap-highlight-color:transparent;
@@ -3555,6 +3572,18 @@ body.deniz-glitch{animation:denizGlitch .16s linear}
   75%{transform:translateX(-2px) scale(1.01)}
   100%{transform:translateX(0) scale(1)}
 }
+
+/* VYBE 7.5.8 – iOS PWA bottom safe-area only */
+@supports (-webkit-touch-callout:none){
+  html,body{
+    min-height:-webkit-fill-available;
+  }
+  .app{
+    height:100%;
+    min-height:-webkit-fill-available;
+  }
+}
+
 </style>
 
   <meta name="theme-color" content="#17131f">
@@ -4348,7 +4377,7 @@ body.deniz-glitch{animation:denizGlitch .16s linear}
     </div>
 
     <div class="section-label">ÜBER VYBE</div>
-    <div class="panel settings74-panel"><div class="row"><div class="row-icon">ℹ️</div><div class="row-copy"><div class="row-title">Version</div><div class="row-sub">VYBE 7.5.7</div></div><div class="settings74-version-dot"></div></div></div>
+    <div class="panel settings74-panel"><div class="row"><div class="row-icon">ℹ️</div><div class="row-copy"><div class="row-title">Version</div><div class="row-sub">VYBE 7.5.8</div></div><div class="settings74-version-dot"></div></div></div>
     <div class="made-by">Made by <span id="denizEasterEggTrigger">Deniz</span></div>
   </div>
 </section>
@@ -4356,7 +4385,7 @@ body.deniz-glitch{animation:denizGlitch .16s linear}
 <section id="releaseNotes" class="screen">
   <div class="top"><button class="back" data-open="settings">‹</button><div class="page-title">WAS IST NEU?</div><span style="width:43px"></span></div>
   <div class="settings-scroll settings74-detail-page">
-    <div class="settings74-release-hero"><span>🚀</span><div><div class="settings74-kicker">VERSION 7.5.7</div><h2>Was sich in VYBE verbessert hat</h2></div></div>
+    <div class="settings74-release-hero"><span>🚀</span><div><div class="settings74-kicker">VERSION 7.5.8</div><h2>Was sich in VYBE verbessert hat</h2></div></div>
     <div class="settings74-note-card"><strong>📚 Mehr Inhalte</strong><p>Neue Fächer, Fragen, Kategorien, Personen, Begriffe und Fußball-Fragetypen aus 7.1.</p></div>
     <div class="settings74-note-card"><strong>🎯 Überarbeitete Spiele</strong><p>Neuer Wahrheit-oder-Pflicht-Ablauf, größerer Tabu-Timer und Abbruchstatistiken aus 7.2.</p></div>
     <div class="settings74-note-card"><strong>🎟️ Neuer Team-Ausloser</strong><p>Kontrollierte Loskarten statt des alten Glücksrads – Karte für Karte aus Version 7.3.</p></div>
