@@ -8,7 +8,7 @@
 <meta name="format-detection" content="telephone=no">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="theme-color" content="#17111f">
-<title>VYBE 7.5.8</title>
+<title>VYBE 7.5.9</title>
 <style>
 :root{
   --bg:#211b2d;
@@ -3514,7 +3514,7 @@ body.high-contrast{--line:rgba(255,255,255,.19);--muted:#c5bacb}body.high-contra
 .imp-result-concept strong{display:block;margin-top:7px;font-size:clamp(25px,7vw,35px)}
 
 
-/* VYBE 7.5.8 – Karte als Auslösefläche */
+/* VYBE 7.5.9 – Karte als Auslösefläche */
 .team73-reveal-card{
   appearance:none;
   -webkit-appearance:none;
@@ -3537,9 +3537,9 @@ body.high-contrast{--line:rgba(255,255,255,.19);--muted:#c5bacb}body.high-contra
 }
 
 
-/* VYBE 7.5.8 –  */
+/* VYBE 7.5.9 –  */
 .deniz-easter-trigger{display:none!important}
-/* VYBE 7.5.8 –  */
+/* VYBE 7.5.9 –  */
 #denizEasterEggTrigger{
   color:inherit;cursor:inherit;user-select:none;-webkit-user-select:none;
   -webkit-tap-highlight-color:transparent;
@@ -3573,7 +3573,7 @@ body.deniz-glitch{animation:denizGlitch .16s linear}
   100%{transform:translateX(0) scale(1)}
 }
 
-/* VYBE 7.5.8 – iOS PWA bottom safe-area only */
+/* VYBE 7.5.9 – iOS PWA bottom safe-area only */
 @supports (-webkit-touch-callout:none){
   html,body{
     min-height:-webkit-fill-available;
@@ -3581,6 +3581,47 @@ body.deniz-glitch{animation:denizGlitch .16s linear}
   .app{
     height:100%;
     min-height:-webkit-fill-available;
+  }
+}
+
+
+/* VYBE 7.5.9 – final iOS/PWA bottom-gap fix */
+html{
+  background:var(--bg-deep)!important;
+}
+body{
+  background:transparent!important;
+  min-height:100dvh!important;
+  min-height:-webkit-fill-available!important;
+}
+body::before{
+  content:"";
+  position:fixed;
+  inset:-40px 0 -80px 0;
+  z-index:-10;
+  pointer-events:none;
+  background:
+    radial-gradient(circle at 94% -6%,rgba(255,79,135,.18),transparent 28%),
+    radial-gradient(circle at -8% 106%,rgba(121,92,255,.16),transparent 30%),
+    linear-gradient(180deg,var(--bg),var(--bg-deep));
+}
+.app{
+  min-height:100dvh!important;
+  min-height:-webkit-fill-available!important;
+  background:transparent!important;
+}
+@supports(padding:max(0px)){
+  body{
+    padding-bottom:env(safe-area-inset-bottom);
+  }
+}
+@media(display-mode:standalone){
+  html,body{
+    background:var(--bg-deep)!important;
+  }
+  .app{
+    min-height:100vh!important;
+    min-height:100dvh!important;
   }
 }
 
@@ -4377,7 +4418,7 @@ body.deniz-glitch{animation:denizGlitch .16s linear}
     </div>
 
     <div class="section-label">ÜBER VYBE</div>
-    <div class="panel settings74-panel"><div class="row"><div class="row-icon">ℹ️</div><div class="row-copy"><div class="row-title">Version</div><div class="row-sub">VYBE 7.5.8</div></div><div class="settings74-version-dot"></div></div></div>
+    <div class="panel settings74-panel"><div class="row"><div class="row-icon">ℹ️</div><div class="row-copy"><div class="row-title">Version</div><div class="row-sub">VYBE 7.5.9</div></div><div class="settings74-version-dot"></div></div></div>
     <div class="made-by">Made by <span id="denizEasterEggTrigger">Deniz</span></div>
   </div>
 </section>
@@ -4385,7 +4426,7 @@ body.deniz-glitch{animation:denizGlitch .16s linear}
 <section id="releaseNotes" class="screen">
   <div class="top"><button class="back" data-open="settings">‹</button><div class="page-title">WAS IST NEU?</div><span style="width:43px"></span></div>
   <div class="settings-scroll settings74-detail-page">
-    <div class="settings74-release-hero"><span>🚀</span><div><div class="settings74-kicker">VERSION 7.5.8</div><h2>Was sich in VYBE verbessert hat</h2></div></div>
+    <div class="settings74-release-hero"><span>🚀</span><div><div class="settings74-kicker">VERSION 7.5.9</div><h2>Was sich in VYBE verbessert hat</h2></div></div>
     <div class="settings74-note-card"><strong>📚 Mehr Inhalte</strong><p>Neue Fächer, Fragen, Kategorien, Personen, Begriffe und Fußball-Fragetypen aus 7.1.</p></div>
     <div class="settings74-note-card"><strong>🎯 Überarbeitete Spiele</strong><p>Neuer Wahrheit-oder-Pflicht-Ablauf, größerer Tabu-Timer und Abbruchstatistiken aus 7.2.</p></div>
     <div class="settings74-note-card"><strong>🎟️ Neuer Team-Ausloser</strong><p>Kontrollierte Loskarten statt des alten Glücksrads – Karte für Karte aus Version 7.3.</p></div>
