@@ -9,7 +9,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta id="themeColorMeta" name="theme-color" content="#0b0a0e">
 <meta name="color-scheme" content="dark light">
-<title>VYBE 9</title>
+<title>VYBE 10</title>
 <link rel="stylesheet" href="./design.css">
 
   <meta name="apple-mobile-web-app-title" content="VYBE">
@@ -36,88 +36,82 @@
 
 
 <section id="home" class="screen active">
-  <div class="content">
-    <div class="home-bar">
-      <div class="wordmark">VYBE</div>
-      <div class="home-actions">
-        <button id="openFavorites" class="icon-btn pressable" type="button" data-open="favorites" aria-label="Favoriten">♡</button>
-        <button class="icon-btn home-settings pressable" type="button" data-open="settings" aria-label="Einstellungen">⚙</button>
-      </div>
-    </div>
-    <h1 class="home-title">Was spielen<br>wir heute?</h1>
-    <button class="home-stats pressable" type="button" data-open="stats" aria-label="Statistiken öffnen"><strong id="homeGamesPlayed">0</strong> Spiele · <strong id="homeRoundsPlayed">0</strong> Runden</button>
-
-    <div class="game-grid compact-game-grid">
-      <button class="game-card imp pressable" data-game-id="impostor" data-open="impSetup">
-        <div class="game-art">🕵️</div>
-        <div>
-          <div class="game-name">Impostor</div>
-        </div>
-        <div class="arrow">›</div>
-      </button>
-
-      <button class="game-card would pressable" data-game-id="would" data-open="wouldSetup">
-        <div class="game-art">👉</div>
-        <div>
-          <div class="game-name">Wer würde eher?</div>
-        </div>
-        <div class="arrow">›</div>
-      </button>
-
-      <button class="game-card ball pressable" data-game-id="ball" data-open="ballSetup">
-        <div class="game-art">⚽️</div>
-        <div>
-          <div class="game-name">Ball Knowledge</div>
-        </div>
-        <div class="arrow">›</div>
-      </button>
-
-      <button class="game-card taboo pressable" data-game-id="taboo" data-open="tabooSetup">
-        <div class="game-art">🚫</div>
-        <div>
-          <div class="game-name">Tabu</div>
-        </div>
-        <div class="arrow">›</div>
-      </button>
-
-      <button class="game-card truth pressable" data-game-id="truth" data-open="truthSetup">
-        <div class="game-art">🎭</div>
-        <div>
-          <div class="game-name">Wahrheit oder Pflicht</div>
-        </div>
-        <div class="arrow">›</div>
-      </button>
-
-      <button class="game-card who pressable" data-game-id="who" data-open="whoSetup">
-        <div class="game-art">🤔</div>
-        <div>
-          <div class="game-name">Wer bin ich?</div>
-        </div>
-        <div class="arrow">›</div>
-      </button>
-
-      <button class="game-card knowledge pressable" data-game-id="knowledge" data-open="knowledgeSetup">
-        <div class="game-art">🧠</div>
-        <div><div class="game-name">Allgemeinwissen</div></div>
-        <div class="arrow">›</div>
-      </button>
-
-      <button class="game-card teamer pressable" data-game-id="teamer" data-open="teamSetup">
-        <div class="game-art">🎲</div>
-        <div><div class="game-name">Team-Ausloser</div></div>
-        <div class="arrow">›</div>
-      </button>
-
-      <button class="game-card werewolf pressable" data-game-id="werewolf" data-open="wwSetup">
-        <div class="game-art">🐺</div>
-        <div><div class="game-name">Werwolf</div></div>
-        <div class="arrow">›</div>
-      </button>
+  <div class="home-bar">
+    <div class="wordmark">VYBE</div>
+    <div class="home-actions">
+      <button class="icon-btn home-stats pressable" type="button" data-open="stats" aria-label="Statistiken"><span hidden id="homeGamesPlayed">0</span><span hidden id="homeRoundsPlayed">0</span></button>
+      <button id="openFavorites" class="icon-btn pressable" type="button" data-open="favorites" aria-label="Favoriten">♡</button>
+      <button class="icon-btn home-settings pressable" type="button" data-open="settings" aria-label="Einstellungen">⚙</button>
     </div>
   </div>
+  <div id="gamePager" class="game-pager">
+      <button class="game-card imp pressable" type="button" data-game-id="impostor" data-open="impSetup" data-room="imp">
+        <span class="game-art"></span>
+        <span class="game-name">Impostor</span>
+        <span class="game-tag">Einer blufft. Findet ihn.</span>
+        <span class="game-play">Spielen</span>
+      </button>
+      <button class="game-card would pressable" type="button" data-game-id="would" data-open="wouldSetup" data-room="would">
+        <span class="game-art"></span>
+        <span class="game-name">Wer würde eher?</span>
+        <span class="game-tag">Zeigt aufeinander.</span>
+        <span class="game-play">Spielen</span>
+      </button>
+      <button class="game-card ball pressable" type="button" data-game-id="ball" data-open="ballSetup" data-room="ball">
+        <span class="game-art"></span>
+        <span class="game-name">Ball Knowledge</span>
+        <span class="game-tag">Wie tief geht dein Fußballwissen?</span>
+        <span class="game-play">Spielen</span>
+      </button>
+      <button class="game-card taboo pressable" type="button" data-game-id="taboo" data-open="tabooSetup" data-room="taboo">
+        <span class="game-art"></span>
+        <span class="game-name">Tabu</span>
+        <span class="game-tag">Erklären, ohne es zu sagen.</span>
+        <span class="game-play">Spielen</span>
+      </button>
+      <button class="game-card truth pressable" type="button" data-game-id="truth" data-open="truthSetup" data-room="truth">
+        <span class="game-art"></span>
+        <span class="game-name">Wahrheit oder Pflicht</span>
+        <span class="game-tag">Wie mutig seid ihr?</span>
+        <span class="game-play">Spielen</span>
+      </button>
+      <button class="game-card who pressable" type="button" data-game-id="who" data-open="whoSetup" data-room="who">
+        <span class="game-art"></span>
+        <span class="game-name">Wer bin ich?</span>
+        <span class="game-tag">Errate, wer du bist.</span>
+        <span class="game-play">Spielen</span>
+      </button>
+      <button class="game-card knowledge pressable" type="button" data-game-id="knowledge" data-open="knowledgeSetup" data-room="knowledge">
+        <span class="game-art"></span>
+        <span class="game-name">Allgemeinwissen</span>
+        <span class="game-tag">Das große Quiz.</span>
+        <span class="game-play">Spielen</span>
+      </button>
+      <button class="game-card teamer pressable" type="button" data-game-id="teamer" data-open="teamSetup" data-room="teamer">
+        <span class="game-art"></span>
+        <span class="game-name">Team-Ausloser</span>
+        <span class="game-tag">Karte für Karte zum Team.</span>
+        <span class="game-play">Spielen</span>
+      </button>
+      <button class="game-card werewolf pressable" type="button" data-game-id="werewolf" data-open="wwSetup" data-room="werewolf">
+        <span class="game-art"></span>
+        <span class="game-name">Werwolf</span>
+        <span class="game-tag">Das Dorf schläft ein.</span>
+        <span class="game-play">Spielen</span>
+      </button>
+  </div>
+  <nav id="gameDock" class="dock" aria-label="Spiele">
+    <button class="dock-item imp" type="button" data-slide="0" aria-label="Impostor"></button>
+    <button class="dock-item would" type="button" data-slide="1" aria-label="Wer würde eher?"></button>
+    <button class="dock-item ball" type="button" data-slide="2" aria-label="Ball Knowledge"></button>
+    <button class="dock-item taboo" type="button" data-slide="3" aria-label="Tabu"></button>
+    <button class="dock-item truth" type="button" data-slide="4" aria-label="Wahrheit oder Pflicht"></button>
+    <button class="dock-item who" type="button" data-slide="5" aria-label="Wer bin ich?"></button>
+    <button class="dock-item knowledge" type="button" data-slide="6" aria-label="Allgemeinwissen"></button>
+    <button class="dock-item teamer" type="button" data-slide="7" aria-label="Team-Ausloser"></button>
+    <button class="dock-item werewolf" type="button" data-slide="8" aria-label="Werwolf"></button>
+  </nav>
 </section>
-
-
 
 <section id="favorites" class="screen">
   <div class="top">
@@ -767,7 +761,7 @@
     </div>
 
     <div class="section-label">ÜBER VYBE</div>
-    <div class="panel settings74-panel"><div class="row"><div class="row-icon">ℹ️</div><div class="row-copy"><div class="row-title">Version</div><div class="row-sub">VYBE 9</div></div><div class="settings74-version-dot"></div></div></div>
+    <div class="panel settings74-panel"><div class="row"><div class="row-icon">ℹ️</div><div class="row-copy"><div class="row-title">Version</div><div class="row-sub">VYBE 10</div></div><div class="settings74-version-dot"></div></div></div>
     <div class="made-by">Made by <span id="denizEasterEggTrigger">Deniz</span></div>
   </div>
 </section>
@@ -775,8 +769,8 @@
 <section id="releaseNotes" class="screen">
   <div class="top"><button class="back" data-open="settings">‹</button><div class="page-title">Was ist neu?</div><span style="width:43px"></span></div>
   <div class="settings-scroll settings74-detail-page">
-    <div class="settings74-release-hero"><span>🚀</span><div><div class="settings74-kicker">VERSION 9</div><h2>Was sich in VYBE verbessert hat</h2></div></div>
-    <div class="settings74-note-card"><strong>✨ Komplett neues Design</strong><p>Jedes Spiel hat jetzt seinen eigenen Raum: Seine Farbe füllt den ganzen Bildschirm.</p></div>
+    <div class="settings74-release-hero"><span>🚀</span><div><div class="settings74-kicker">VERSION 10</div><h2>Was sich in VYBE verbessert hat</h2></div></div>
+    <div class="settings74-note-card"><strong>✨ Komplett neue App</strong><p>Wische durch die Spiele, wähle im Dock und tauche in die Farbe jedes Spiels ein.</p></div>
     <div class="settings74-note-card"><strong>📚 Mehr Inhalte</strong><p>Neue Fächer, Fragen, Kategorien, Personen, Begriffe und Fußball-Fragetypen aus 7.1.</p></div>
     <div class="settings74-note-card"><strong>🎯 Überarbeitete Spiele</strong><p>Neuer Wahrheit-oder-Pflicht-Ablauf, größerer Tabu-Timer und Abbruchstatistiken aus 7.2.</p></div>
     <div class="settings74-note-card"><strong>🎟️ Neuer Team-Ausloser</strong><p>Kontrollierte Loskarten statt des alten Glücksrads – Karte für Karte aus Version 7.3.</p></div>
@@ -1407,7 +1401,7 @@ function applyAppSettings(){
   appSettings.darkMode=appSettings.appearance==="system"?!systemLightQuery.matches:appSettings.appearance==="dark";
   document.body.classList.toggle("light-theme",!appSettings.darkMode);
   document.documentElement.classList.toggle("theme-light",!appSettings.darkMode);
-  document.getElementById("themeColorMeta")?.setAttribute("content",appSettings.darkMode?"#0b0a0e":"#f3f1ec");
+  document.getElementById("themeColorMeta")?.setAttribute("content",appSettings.darkMode?"#000000":"#f2f2f7");
   document.querySelectorAll("[data-appearance]").forEach(button=>{
     const active=button.dataset.appearance===appSettings.appearance;
     button.classList.toggle("active",active);
@@ -1873,13 +1867,20 @@ document.addEventListener("click",event=>{
   navigatingBack=Boolean(event.target.closest(".back:not(.direct-game-exit)"));
 },true);
 const roomPrefixes={imp:"imp",would:"would",ball:"ball",knowledge:"knowledge",taboo:"taboo",truth:"truth",who:"who",team:"teamer",ww:"werewolf"};
+function pagerRoom(){
+  const pager=document.getElementById("gamePager");
+  if(!pager)return null;
+  const index=Math.round(pager.scrollLeft/Math.max(1,pager.clientWidth));
+  return pager.children[index]?.dataset.room||"imp";
+}
 function roomFor(id){
   const key=Object.keys(roomPrefixes).find(prefix=>id.startsWith(prefix));
   return key?roomPrefixes[key]:null;
 }
 function setRoom(id){
   if(id==="categories"||id==="newCategories")return;
-  const room=roomFor(id),root=document.documentElement;
+  const root=document.documentElement;
+  const room=id==="home"?pagerRoom():roomFor(id);
   if(room)root.dataset.room=room;
   else delete root.dataset.room;
   requestAnimationFrame(()=>document.getElementById("themeColorMeta")?.setAttribute("content",getComputedStyle(root).getPropertyValue("--deep").trim()||"#0b0a0e"));
@@ -4684,6 +4685,9 @@ if ("serviceWorker" in navigator) {
     const height=Math.round(viewport?.height || window.innerHeight || root.clientHeight);
 
     root.style.setProperty("--app-height", height+"px");
+    const screenLong=Math.max(screen.width,screen.height),screenShort=Math.min(screen.width,screen.height);
+    const fullHeight=isIOS&&isStandalone?(window.innerWidth>window.innerHeight?screenShort:screenLong):0;
+    root.style.setProperty("--app-h",Math.max(fullHeight,window.innerHeight)+"px");
     root.style.setProperty("--viewport-width", width+"px");
     root.style.setProperty("--viewport-height", height+"px");
 
@@ -4725,6 +4729,33 @@ if ("serviceWorker" in navigator) {
     <button id="exitSheetCancel" class="favorite-sheet-cancel pressable" type="button">Weiterspielen</button>
   </div>
 </div>
+
+<script>
+/* VYBE 10 – Startseite: Wischen und Dock halten Farbe und Auswahl synchron */
+(function(){
+  const pager=document.getElementById("gamePager");
+  const dock=document.getElementById("gameDock");
+  const items=[...dock.children];
+  let current=-1,frame=0;
+  function sync(){
+    frame=0;
+    const index=Math.round(pager.scrollLeft/Math.max(1,pager.clientWidth));
+    if(index===current)return;
+    current=index;
+    items.forEach((item,i)=>item.classList.toggle("active",i===index));
+    if(document.getElementById("home").classList.contains("active"))setRoom("home");
+  }
+  pager.addEventListener("scroll",()=>{if(!frame)frame=requestAnimationFrame(sync)},{passive:true});
+  dock.addEventListener("click",event=>{
+    const item=event.target.closest("[data-slide]");
+    if(!item)return;
+    triggerHaptic("light");
+    pager.scrollTo({left:pager.clientWidth*Number(item.dataset.slide),behavior:"smooth"});
+  });
+  sync();
+  setRoom("home");
+})();
+</script>
 
 <script>
 /* VYBE 8.0 – Bestätigung vor dem Verlassen und ziehbare Sheets */

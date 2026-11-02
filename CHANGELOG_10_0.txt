@@ -1,0 +1,15 @@
+VYBE 10 – Komplett neue App-Oberfläche
+
+NEU
+- Startseite: ein Spiel pro Bildschirm zum Durchwischen, Glas-Dock für alle neun Spiele.
+- Leuchtende Farbwelten wie iPhone-Wallpaper, die jedes Spiel durchziehen.
+- Liquid Glass auf Tasten, Dock, Listen und Sheets.
+- Weiße Kapsel-Buttons, Einstellungen exakt im Aufbau von iOS.
+
+BEHOBEN
+- Scrollbereiche laufen nicht mehr unter die Statusleiste (verschwommener Streifen oben).
+- App nutzt in installierter Form die echte Bildschirmhöhe, Hintergrund reicht bis zum Rand.
+
+UNVERÄNDERT
+- Spielregeln, Inhalte, Spielstände und Speicherschlüssel.
+- Service-Worker-Cache: vybe-pwa-v43
