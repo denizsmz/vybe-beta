@@ -4,6 +4,7 @@ Diese Dateien gemeinsam in das Stammverzeichnis eines Webhostings hochladen:
 
 - index.html
 - design.css
+- gravity.js
 - manifest.webmanifest
 - service-worker.js
 - offline.html

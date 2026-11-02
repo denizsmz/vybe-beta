@@ -1,13 +1,13 @@
 /* ==========================================================
-   VYBE 10.2 – Designsystem
+   VYBE 10.3 – Designsystem
    Idee: leuchtende Farbwelten wie iPhone-Wallpaper, darauf echtes Glas.
    Alle Ansichten liegen in einer Farbwelt und teilen dieselben Glasflächen.
    setzt die Farbwelt --c1 bis --c3.
    ========================================================== */
 
-@property --c1{syntax:"<color>";inherits:true;initial-value:#000}
-@property --c2{syntax:"<color>";inherits:true;initial-value:#000}
-@property --c3{syntax:"<color>";inherits:true;initial-value:#000}
+@property --b1{syntax:"<color>";inherits:true;initial-value:#000}
+@property --b2{syntax:"<color>";inherits:true;initial-value:#000}
+@property --b3{syntax:"<color>";inherits:true;initial-value:#000}
 
 /* ---------- Tokens ---------- */
 :root{
@@ -76,8 +76,7 @@
 }
 
 /* Farbwelten: --b sind die Grundfarben, Dunkel vertieft sie nur */
-html{--c1:color-mix(in srgb,var(--b1) 78%,#000);--c2:color-mix(in srgb,var(--b2) 78%,#000);--c3:color-mix(in srgb,var(--b3) 78%,#000)}
-html.theme-light{--c1:var(--b1);--c2:var(--b2);--c3:var(--b3)}
+html{--c1:var(--b1);--c2:var(--b2);--c3:var(--b3);color-scheme:only light}
 html[data-room="imp"]{--b1:#ff2d78;--b2:#c13ce0;--b3:#5a1fd1}
 html[data-room="would"]{--b1:#ffb300;--b2:#ff6a00;--b3:#e8213f}
 html[data-room="ball"]{--b1:#34d865;--b2:#00b894;--b3:#0070d9}
@@ -102,7 +101,7 @@ html{
   background-repeat:no-repeat;
   -webkit-text-size-adjust:100%;
   overscroll-behavior:none;
-  transition:--c1 .55s var(--ease),--c2 .55s var(--ease),--c3 .55s var(--ease);
+  transition:--b1 .55s var(--ease),--b2 .55s var(--ease),--b3 .55s var(--ease);
 }
 body{
   margin:0;height:100%;overflow:hidden;overscroll-behavior:none;
@@ -740,16 +739,6 @@ input::placeholder{color:var(--faint)}
 .splash-logo,.splash-sub{display:none}
 .splash-name{font-family:var(--display);font-size:44px;font-weight:900;letter-spacing:-.05em;color:var(--text);animation:fade-up .5s var(--ease) both}
 
-/* Easter Egg */
-.deniz-meme-overlay{position:fixed;inset:0;z-index:9999;display:grid;place-items:center;padding:24px;background:var(--scrim);opacity:0;pointer-events:none;transition:opacity .14s ease}
-.deniz-meme-overlay.active{opacity:1}
-.deniz-meme-card{width:min(82vw,340px);padding:22px 20px;border-radius:var(--r-l);text-align:center;color:#fff;background:#1a1720;transform:scale(.94);opacity:0;transition:transform .16s ease,opacity .16s ease}
-.deniz-meme-overlay.active .deniz-meme-card{transform:scale(1);opacity:1}
-.deniz-meme-card.jackpot{background:linear-gradient(145deg,#6c4b00,#c69215)}
-.deniz-meme-emoji{font-size:38px}
-.deniz-meme-text{margin-top:9px;font-size:18px;font-weight:700;line-height:1.22}
-body.deniz-glitch{animation:glitch .16s linear}
-@keyframes glitch{25%{transform:translateX(-3px)}50%{transform:translateX(3px)}75%{transform:translateX(-2px)}}
 
 /* ---------- Kleine und kurze Displays ---------- */
 @media (max-height:700px){
@@ -859,12 +848,13 @@ body.reduce-motion *,body.reduce-motion *::before,body.reduce-motion *::after{an
 
 /* ---------- Spielleiste: dunkles Glas wie Apple Music ---------- */
 .dock{
-  position:relative;flex:none;height:72px;margin:6px 12px max(6px,var(--safe-b));overflow:hidden;border-radius:36px;
+  position:relative;flex:none;height:72px;margin:6px 12px max(6px,var(--safe-b));border-radius:36px;
   background:rgba(18,18,22,.56);
   box-shadow:inset 0 1px 0 rgba(255,255,255,.2),inset 0 0 0 .5px rgba(255,255,255,.14),0 14px 34px rgba(0,0,0,.26);
   -webkit-backdrop-filter:blur(30px) saturate(190%);backdrop-filter:blur(30px) saturate(190%);
   touch-action:none;user-select:none;-webkit-user-select:none;
 }
+.dock-clip{position:absolute;inset:0;overflow:hidden;border-radius:inherit}
 .dock-track{position:relative;display:flex;gap:0;width:max-content;height:100%;padding:0 4px;will-change:transform}
 .dock-item{
   position:relative;z-index:1;flex:none;width:82px;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;
@@ -875,15 +865,15 @@ body.reduce-motion *,body.reduce-motion *::before,body.reduce-motion *::after{an
 .dock-item.active .dock-label{color:color-mix(in srgb,var(--b1) 55%,#fff)}
 .dock-item.active .dock-emoji{transform:scale(1.08)}
 .dock-lens{
-  position:absolute;z-index:0;left:0;top:4px;bottom:4px;width:82px;border-radius:32px;
+  position:absolute;z-index:3;left:0;top:4px;bottom:4px;width:82px;border-radius:32px;pointer-events:none;
   background:rgba(255,255,255,.14);
   box-shadow:inset 0 1px 0 rgba(255,255,255,.26),inset 0 0 0 .5px rgba(255,255,255,.14);
   will-change:transform;transition:background .2s var(--ease),box-shadow .2s var(--ease);
 }
 .dock.dragging .dock-lens{
-  background:linear-gradient(145deg,rgba(255,255,255,.34),rgba(255,255,255,.1));
-  box-shadow:inset 0 1.5px 0 rgba(255,255,255,.75),inset 0 -1px 0 rgba(255,255,255,.24),inset 0 0 0 .5px rgba(255,255,255,.46),0 10px 24px rgba(0,0,0,.28);
-  -webkit-backdrop-filter:blur(2px) saturate(190%) brightness(1.18);backdrop-filter:blur(2px) saturate(190%) brightness(1.18);
+  background:linear-gradient(150deg,rgba(255,255,255,.3),rgba(255,255,255,.06) 55%,rgba(255,255,255,.18));
+  box-shadow:inset 0 1.5px 0 rgba(255,255,255,.85),inset 0 -1.5px 0 rgba(255,255,255,.34),inset 0 0 0 .75px rgba(255,255,255,.55),inset 0 0 18px rgba(255,255,255,.14),0 14px 30px rgba(0,0,0,.34);
+  -webkit-backdrop-filter:blur(1.5px) saturate(200%) brightness(1.2);backdrop-filter:blur(1.5px) saturate(200%) brightness(1.2);
 }
 .dock.dragging .dock-item.active .dock-emoji{transform:scale(1.2)}
 
@@ -943,3 +933,50 @@ html{background-size:100% var(--full-h,100%)}
   box-shadow:inset 0 1px 0 rgba(255,255,255,.7),inset 0 0 0 .5px rgba(255,255,255,.45),0 14px 30px rgba(0,0,0,.16);
 }
 .favorites-grid .game-art{width:auto;height:auto;font-size:30px;line-height:1;background:none;-webkit-mask:none;mask:none}
+
+
+/* ---------- Dunkel: schwarzer Raum mit Farblicht von oben, wie Apple Music ---------- */
+html:not(.theme-light){
+  --deep:#08070c;--surface:rgba(255,255,255,.1);--fill:rgba(255,255,255,.12);--fill-2:rgba(255,255,255,.2);
+  --glass:rgba(58,58,66,.56);--glass-edge:rgba(255,255,255,.2);--hair:rgba(255,255,255,.15);
+  background-color:#08070c;
+  background-image:
+    radial-gradient(130% 50% at 50% -8%,color-mix(in srgb,var(--b1) 74%,transparent),transparent 74%),
+    radial-gradient(90% 34% at 100% 30%,color-mix(in srgb,var(--b2) 38%,transparent),transparent 72%);
+}
+html:not(.theme-light) :is(.game-pager .game-art,.game-hero .game-icon,.team73-hero-icon,.backface,.backface.imp,.ball-back,.would-back,.who-play-card,.truth-v72-card,.team73-card-front,.team73-card-back){
+  background:linear-gradient(150deg,color-mix(in srgb,var(--b1) 62%,transparent),color-mix(in srgb,var(--b2) 30%,transparent));
+}
+html:not(.theme-light) .switch{background:rgba(120,120,128,.36)}
+.switch:not(:checked){background:rgba(255,255,255,.28)}
+.switch:checked{background:#34c759}
+.switch::before{background:#fff}
+
+/* ---------- Schwerkraft-Modus ---------- */
+html.gravity,html.gravity *{touch-action:none;animation:none!important}
+html.gravity :is(.screen,.content,.settings-scroll,.stats-scroll,.team73-setup-scroll,.team73-result-scroll,.panel,.game-pager,.dock,.dock-clip,.dock-track,.game-card,.game-stage,.pass,.pass-screen,.result-center,.quiz-result-wrap,.ww-phase-content,.ww-select-content,.ww-reveal-content,.truth-v72-play,.player-page,.team73-draw-shell){
+  overflow:visible!important;-webkit-mask:none;mask:none;background:none;box-shadow:none;
+  -webkit-backdrop-filter:none;backdrop-filter:none;
+}
+html.gravity .game-card:not(.current){display:none}
+html.gravity .dock-lens{display:none}
+html.gravity .dock-track{transform:none!important;flex-wrap:wrap}
+html.gravity .dock-item{pointer-events:auto;height:66px;border-radius:22px;background:rgba(18,18,22,.56)}
+html.gravity .row,html.gravity .section-label,html.gravity .made-by,html.gravity .page-title,html.gravity .wordmark{
+  flex:none;border-radius:18px;background:rgba(255,255,255,.16);padding-left:12px;padding-right:12px;
+}
+html.gravity .row+.row::before{display:none}
+.gravity-hidden{visibility:hidden}
+/* Im Glas: kompakte Teile statt breiter Zeilen */
+html.gravity .panel{display:block}
+html.gravity .row{width:max-content;max-width:190px;min-height:44px;padding:6px 12px;gap:8px}
+html.gravity .row-sub,html.gravity .row-value,html.gravity .row-icon,html.gravity .chev{display:none}
+html.gravity .row-title{font-size:14px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+html.gravity .settings-page::before{display:none}
+html.gravity #settings .page-title{opacity:1}
+html.gravity .section-label,html.gravity .made-by{width:max-content;padding:8px 12px;margin:4px;color:#fff;font-size:13px}
+html.gravity .appearance-row{flex-wrap:nowrap}
+html.gravity .segmented{display:contents}
+html.gravity .segmented::before{display:none}
+html.gravity .segmented button{background:rgba(255,255,255,.2);padding:0 12px;color:#fff}
+html.gravity .panel:has(.appearance-row) .appearance-row{max-width:none}

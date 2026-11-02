@@ -28,3 +28,11 @@ VYBE 10.2
 - Symbole oben ohne Text-Reste, exakt mittig.
 - Installierte App fordert die volle Gerätehöhe an, Hintergrund läuft durchgehend.
 - Service-Worker-Cache: vybe-pwa-v45
+
+VYBE 10.3
+- Glasblase ragt beim Wischen aus der Leiste heraus und dehnt sich mit der Bewegung.
+- Dunkel: schwarzer Raum mit Farblicht von oben; Hell: volle Farbflächen.
+- Farb-Umkehr durch Browser-Dunkelmodi gesperrt, Schalter wie unter iOS.
+- Easter Egg neu: fünfmal auf Deniz tippen dreht die App, alles fällt nach unten und
+  lässt sich werfen. Fünfmal erneut tippen stellt alles wieder her.
+- Service-Worker-Cache: vybe-pwa-v46

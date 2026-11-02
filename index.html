@@ -13,8 +13,9 @@ if(window.navigator.standalone===true||window.matchMedia("(display-mode: standal
 }
 </script>
 <meta id="themeColorMeta" name="theme-color" content="#0b0a0e">
-<meta name="color-scheme" content="dark light">
-<title>VYBE 10.2</title>
+<meta name="color-scheme" content="only light">
+<meta name="darkreader-lock">
+<title>VYBE 10.3</title>
 <link rel="stylesheet" href="./design.css">
 
   <meta name="apple-mobile-web-app-title" content="VYBE">
@@ -106,7 +107,7 @@ if(window.navigator.standalone===true||window.matchMedia("(display-mode: standal
       </button>
   </div>
   <nav id="gameDock" class="dock" aria-label="Spiele">
-    <div class="dock-track">
+    <div class="dock-clip"><div class="dock-track">
       <button class="dock-item" type="button" data-slide="0" aria-label="Impostor"><span class="dock-emoji">🕵️</span><span class="dock-label">Impostor</span></button>
       <button class="dock-item" type="button" data-slide="1" aria-label="Wer würde"><span class="dock-emoji">👉</span><span class="dock-label">Wer würde</span></button>
       <button class="dock-item" type="button" data-slide="2" aria-label="Ball"><span class="dock-emoji">⚽️</span><span class="dock-label">Ball</span></button>
@@ -116,7 +117,7 @@ if(window.navigator.standalone===true||window.matchMedia("(display-mode: standal
       <button class="dock-item" type="button" data-slide="6" aria-label="Wissen"><span class="dock-emoji">🧠</span><span class="dock-label">Wissen</span></button>
       <button class="dock-item" type="button" data-slide="7" aria-label="Teams"><span class="dock-emoji">🎲</span><span class="dock-label">Teams</span></button>
       <button class="dock-item" type="button" data-slide="8" aria-label="Werwolf"><span class="dock-emoji">🐺</span><span class="dock-label">Werwolf</span></button>
-    </div>
+    </div></div>
   </nav>
 </section>
 
@@ -768,7 +769,7 @@ if(window.navigator.standalone===true||window.matchMedia("(display-mode: standal
     </div>
 
     <div class="section-label">ÜBER VYBE</div>
-    <div class="panel settings74-panel"><div class="row"><div class="row-icon">ℹ️</div><div class="row-copy"><div class="row-title">Version</div><div class="row-sub">VYBE 10.2</div></div><div class="settings74-version-dot"></div></div></div>
+    <div class="panel settings74-panel"><div class="row"><div class="row-icon">ℹ️</div><div class="row-copy"><div class="row-title">Version</div><div class="row-sub">VYBE 10.3</div></div><div class="settings74-version-dot"></div></div></div>
     <div class="made-by">Made by <span id="denizEasterEggTrigger">Deniz</span></div>
   </div>
 </section>
@@ -776,7 +777,7 @@ if(window.navigator.standalone===true||window.matchMedia("(display-mode: standal
 <section id="releaseNotes" class="screen">
   <div class="top"><button class="back" data-open="settings" aria-label="Zurück"></button><div class="page-title">Was ist neu?</div><span style="width:43px"></span></div>
   <div class="settings-scroll settings74-detail-page">
-    <div class="settings74-release-hero"><span>🚀</span><div><div class="settings74-kicker">VERSION 10.2</div><h2>Was sich in VYBE verbessert hat</h2></div></div>
+    <div class="settings74-release-hero"><span>🚀</span><div><div class="settings74-kicker">VERSION 10.3</div><h2>Was sich in VYBE verbessert hat</h2></div></div>
     <div class="settings74-note-card"><strong>✨ Komplett neue App</strong><p>Wische durch die Spiele, wähle im Dock und tauche in die Farbe jedes Spiels ein.</p></div>
     <div class="settings74-note-card"><strong>📚 Mehr Inhalte</strong><p>Neue Fächer, Fragen, Kategorien, Personen, Begriffe und Fußball-Fragetypen aus 7.1.</p></div>
     <div class="settings74-note-card"><strong>🎯 Überarbeitete Spiele</strong><p>Neuer Wahrheit-oder-Pflicht-Ablauf, größerer Tabu-Timer und Abbruchstatistiken aus 7.2.</p></div>
@@ -1881,9 +1882,7 @@ document.addEventListener("click",event=>{
 const roomPrefixes={imp:"imp",would:"would",ball:"ball",knowledge:"knowledge",taboo:"taboo",truth:"truth",who:"who",team:"teamer",ww:"werewolf"};
 function pagerRoom(){
   const pager=document.getElementById("gamePager");
-  if(!pager)return null;
-  const index=Math.round(pager.scrollLeft/Math.max(1,pager.clientWidth));
-  return pager.children[index]?.dataset.room||"imp";
+  return pager?.children[window.vybePagerIndex||0]?.dataset.room||"imp";
 }
 function roomFor(id){
   const key=Object.keys(roomPrefixes).find(prefix=>id.startsWith(prefix));
@@ -1911,6 +1910,7 @@ function go(id){
   document.querySelectorAll(".screen").forEach(screen=>screen.classList.remove("active"));
   const target=document.getElementById(id);
   if(target)target.classList.add("active");
+  if(id==="home")window.vybeDock?.restore();
 }
 function randomInt(max){
   if(max<=0)return 0;
@@ -4654,41 +4654,11 @@ renderBallOptions();document.getElementById("impCategoryValue").textContent="All
 
 let denizTapCount=0;
 let denizTapResetTimer=null;
-let denizMemeHideTimer=null;
-const denizMemeMessages=[["💀","Bro... warum hast du das gefunden?"],["🌱","Achievement unlocked: Touch Grass"],["🗿","Developer-Mode? Schön wär's."],["🐸","Frosch-Modus aktiviert."],["🧠","IQ +1"],["📈","Seltene Entdeckung (0,3 %)"],["🎲","Du hast zu viel Freizeit."],["🚪","Jetzt geh wieder spielen."],["🫵","Erwischt."],["🥸","Es gibt hier nichts zu sehen..."],["💸","+0 XP erhalten."],["🚨","Cheatcode ungültig... ach nee doch."],["🤨","Was genau hast du hier erwartet?"],["📸","Screenshot oder es ist nie passiert."],["🧍","NPC-Dialog erfolgreich gestartet."],["🪑","Setz dich kurz. Das war peinlich."],["🎯","Fünfmal gedrückt. Starkes Hobby."],["🕵️","Geheimdienst möchte deinen Standort wissen."],["🧃","Belohnung: ein imaginärer Capri-Sun."],["🧱","Du hast die vierte Wand angeklickt."],["🧮","Mathe sagt: Das war unnötig."],["🛰️","Signal empfangen. Inhalt leider nutzlos."],["🐢","Turbo-Modus auf langsam gestellt."],["🧀","Käse erfolgreich kalibriert."],["👁️","Die App hat zurückgeguckt."],["🛒","Dieser Fund ist nicht im Warenkorb."],["🧊","Cool. Also wirklich: eisig."],["🫠","Die Entwickler schmelzen gerade."],["🧌","Ein Troll wurde erfolgreich gefüttert."],["📦","In diesem Paket war nichts drin."],["🛸","Aliens sagen: bisschen cringe."],["🧯","Hier gibt es nichts zu löschen."],["🎮","Bonuslevel ohne Bonus gefunden."],["🦆","Ente geladen. Quak."],["🧻","Notfallrolle freigeschaltet."],["🥔","Kartoffel-Grafik aktiviert."],["🧹","Bitte einmal den Cache fegen."],["🫡","Mission sinnlos erfolgreich."],["👻","Buh. Mehr Budget war nicht drin."],["🤡","Clown-Modus nur kurz verfügbar."],["🦀","Seitwärts denken freigeschaltet."],["📵","Handy weglegen wäre auch eine Option."],["🧬","Deine DNA sagt: neugierig."],["🍞","Toast-Level: kritisch."],["🧿","Du wurdest offiziell bemerkt."],["🔋","Akku -1 %, Erkenntnis +0."],["🛌","Schlaf wäre jetzt auch stark."],["🐌","Speedrun abgebrochen."],["🧑‍💻","Der Praktikant wurde informiert."],["🚧","Baustelle betreten. Nichts passiert."],["🫵","Ja du. Genau du."],["🤖","Roboter-Geräusch nicht im Budget."],["🎺","Tusch! Und jetzt weiter."],["📉","Produktivität erfolgreich gesenkt."],["🧠","Gedanke gefunden. War leer."],["🪦","Hier ruht deine Freizeit."],["🥇","Platz 1 im sinnlosen Tippen."],["🧨","Großer Knall. Unsichtbar."],["🍌","Bananenmodus bleibt geheim."],["🧙","Zauberspruch fehlgeschlagen."],["🧍‍♂️","Bitte warten... auf nichts."],["🧃","Du bekommst exakt gar nichts."],["🪄","Magie aus. Realität wieder an."],["🗑️","Fundstück erfolgreich weggeworfen."],["🥶","Dieser Moment war eiskalt."],["👟","Lauf. Bevor die App Fragen stellt."],["📡","WLAN gefunden. Sinn nicht."],["🥲","Das war jetzt dein Highlight, oder?"],["🧅","Zwiebelmodus: unnötig viele Schichten."],["🧑‍🚀","Houston, wir haben Langeweile."],["🎭","Plot Twist: Es gibt keinen Plot."],["🧷","Kleine Entdeckung. Riesiges Ego."],["🛎️","Service gerufen. Niemand kommt."],["🧠","Gehirn lädt... 2 %."],["🪫","Motivation nicht gefunden."],["🍿","Kurze Werbepause ohne Werbung."],["🧑‍🍳","Chefkoch empfiehlt: App schließen."],["📛","Zutritt erlaubt. Warum auch immer."],["🦖","Dino-Modus seit 65 Mio. Jahren offline."],["🪞","Plot Twist: Du bist das Geheimnis."],["🦧","Primatenmodus erfolgreich erkannt."],["🧠","Update fürs Gehirn nicht verfügbar."],["📱","Du hast offiziell zu genau geguckt."],["🚗","Diese Funktion hat keinen TÜV."],["🛂","Einreise in den Quatschmodus genehmigt."],["🪙","Belohnung: 0,00 Münzen."],["🧺","Wäsche wäre jetzt produktiver."],["🎈","Luftnummer erfolgreich gestartet."],["🧑‍⚖️","Urteil: eindeutig zu neugierig."],["🗺️","Du bist vom eigentlichen Spiel abgekommen."],["🦺","Sicherheitsabstand zur Produktivität einhalten."],["🧋","Bubble-Tea-Gutschein leider unsichtbar."],["🛗","Aufzug fährt nicht bis hierhin."],["📎","Clippy hätte jetzt eine Frage."],["🐀","Rattenmodus kurz aktiviert."],["🪤","Glückwunsch. Du bist in die Falle getippt."]];
-function showDenizMeme(){
- const overlay=document.getElementById("denizEasterEgg");
- const card=document.getElementById("denizMemeCard");
- const emoji=document.getElementById("denizMemeEmoji");
- const text=document.getElementById("denizMemeText");
- if(!overlay||!card||!emoji||!text)return;
- clearTimeout(denizMemeHideTimer);
- const jackpot=Math.random()<.01;
- if(jackpot){
-   emoji.textContent="👑";
-   text.textContent="JACKPOT! 1%-Fund freigeschaltet.";
-   card.classList.add("jackpot");
- }else{
-   const [e,t]=denizMemeMessages[randomInt(denizMemeMessages.length)];
-   emoji.textContent=e;text.textContent=t;card.classList.remove("jackpot");
- }
- document.body.classList.remove("deniz-glitch");
- void document.body.offsetWidth;
- document.body.classList.add("deniz-glitch");
- overlay.classList.add("active");
- overlay.setAttribute("aria-hidden","false");
- triggerHaptic("light");
- denizMemeHideTimer=setTimeout(()=>{
-   overlay.classList.remove("active");
-   overlay.setAttribute("aria-hidden","true");
-   document.body.classList.remove("deniz-glitch");
- },jackpot?3000:2000);
-}
 document.getElementById("denizEasterEggTrigger")?.addEventListener("click",()=>{
  denizTapCount++;
  clearTimeout(denizTapResetTimer);
- if(denizTapCount>=5){denizTapCount=0;showDenizMeme();return}
- denizTapResetTimer=setTimeout(()=>denizTapCount=0,1000);
+ if(denizTapCount>=5){denizTapCount=0;window.vybeGravity?.toggle();return}
+ denizTapResetTimer=setTimeout(()=>denizTapCount=0,1400);
 });
 </script>
 <div id="settingToast" class="setting-toast" aria-live="polite"></div>
@@ -4776,7 +4746,7 @@ if ("serviceWorker" in navigator) {
   const cards=[...pager.children];
   const lens=document.createElement("span");
   lens.className="dock-lens";
-  track.prepend(lens);
+  dock.prepend(lens);
 
   const reduced=window.matchMedia("(prefers-reduced-motion: reduce)");
   const stiffness=320,damping=29;
@@ -4784,18 +4754,20 @@ if ("serviceWorker" in navigator) {
   let shift=0,shiftTarget=0,frame=0,last=0;
   let dragging=false,pointerId=null,fingerX=0,current=-1,grabIndex=-1;
 
-  const slotX=index=>items[index].offsetLeft;
+  const slotWidth=82,trackPadding=4;
+  const slotX=index=>trackPadding+index*slotWidth;
   const step=()=>slotX(1)-slotX(0);
   const clampIndex=value=>Math.max(0,Math.min(items.length-1,value));
-  const minShift=()=>Math.min(0,dock.clientWidth-track.scrollWidth);
+  const minShift=()=>Math.min(0,dock.clientWidth-(trackPadding*2+items.length*slotWidth));
   const clampShift=value=>Math.max(minShift(),Math.min(0,value));
-  const centerOn=position=>clampShift(dock.clientWidth/2-position-items[0].offsetWidth/2);
+  const centerOn=position=>clampShift(dock.clientWidth/2-position-slotWidth/2);
   function paint(){
-    lens.style.transform=`translate3d(${x}px,0,0) scale(${scale})`;
+    const stretch=Math.min(Math.abs(velocity)/2400,.2);
+    lens.style.transform=`translate3d(${x+shift}px,0,0) scale(${scale*(1+stretch)},${scale*(1-stretch*.6)})`;
     track.style.transform=`translate3d(${shift}px,0,0)`;
   }
   function fingerTarget(){
-    const raw=fingerX-dock.getBoundingClientRect().left-shift-items[0].offsetWidth/2;
+    const raw=fingerX-dock.getBoundingClientRect().left-shift-slotWidth/2;
     const min=slotX(0),max=slotX(items.length-1);
     if(raw<min)return min-Math.sqrt(min-raw)*2;
     if(raw>max)return max+Math.sqrt(raw-max)*2;
@@ -4804,6 +4776,7 @@ if ("serviceWorker" in navigator) {
   function select(index){
     if(index===current)return;
     current=index;
+    window.vybePagerIndex=index;
     items.forEach((item,i)=>item.classList.toggle("active",i===index));
     cards.forEach((card,i)=>card.classList.toggle("current",i===index));
     if(document.getElementById("home").classList.contains("active"))setRoom("home");
@@ -4840,6 +4813,7 @@ if ("serviceWorker" in navigator) {
     if(!frame){last=performance.now();frame=requestAnimationFrame(animate)}
   }
   dock.addEventListener("pointerdown",event=>{
+    if(document.documentElement.classList.contains("gravity"))return;
     pointerId=event.pointerId;
     dock.setPointerCapture(pointerId);
     dragging=true;
@@ -4847,7 +4821,7 @@ if ("serviceWorker" in navigator) {
     fingerX=event.clientX;
     dock.classList.add("dragging");
     pager.classList.add("free");
-    scaleTarget=1.1;
+    scaleTarget=1.42;
     followFinger();
     triggerHaptic("light");
     run();
@@ -4874,7 +4848,18 @@ if ("serviceWorker" in navigator) {
   }
   dock.addEventListener("pointerup",release);
   dock.addEventListener("pointercancel",release);
-  dock.addEventListener("click",event=>event.stopPropagation());
+  dock.addEventListener("click",event=>{
+    event.stopPropagation();
+    const item=event.target.closest(".dock-item");
+    if(item&&document.documentElement.classList.contains("gravity"))select(items.indexOf(item));
+  });
+  window.vybeDock={restore(){
+    if(document.documentElement.classList.contains("gravity")||!dock.clientWidth)return;
+    jump(Math.max(0,current));
+    target=x=slotX(Math.max(0,current));
+    shiftTarget=shift=centerOn(target);
+    paint();
+  }};
   pager.addEventListener("scroll",()=>{
     if(dragging)return;
     const progress=pager.scrollLeft/Math.max(1,pager.clientWidth);
@@ -4954,11 +4939,6 @@ if ("serviceWorker" in navigator) {
 })();
 </script>
 
-<div id="denizEasterEgg" class="deniz-meme-overlay" aria-hidden="true">
-  <div id="denizMemeCard" class="deniz-meme-card">
-    <div id="denizMemeEmoji" class="deniz-meme-emoji">💀</div>
-    <div id="denizMemeText" class="deniz-meme-text">Bro... warum hast du das gefunden?</div>
-  </div>
-</div>
+<script src="./gravity.js"></script>
 </body>
 </html>
