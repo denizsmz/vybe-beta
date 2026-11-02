@@ -1,0 +1,27 @@
+VYBE 8.0 – Design-Update
+
+DESIGN
+- Neues Designsystem in design.css: Farben, Abstände, Rundungen, Schrift und Bewegung.
+- Systemschrift mit gerundeten Überschriften auf Apple-Geräten.
+- Neue Spielkarten mit eigener Farbe je Spiel; Logo und Pink-Orange bleiben.
+- Liquid Glass nur auf schwebenden Elementen: runde Kopfzeilen-Tasten, Menü, Sheets, Hinweise.
+- Ruhigere Beschriftungen statt durchgehender Großbuchstaben.
+- Erscheinungsbild: Dunkel, Hell oder System.
+- Heller Modus: dunkler Text auf farbigen Spielkarten behoben.
+
+BEDIENUNG
+- Bildschirmwechsel zeigen die Richtung (vor/zurück).
+- Sheets lassen sich am Griff nach unten wegziehen.
+- Bestätigung vor dem Verlassen eines laufenden Spiels.
+- Zoomen ist wieder möglich; berücksichtigt Einstellungen für reduzierte Bewegung, Transparenz und Kontrast.
+
+REPARIERT
+- Offline-Modus: fehlende Icons verhinderten die Installation des Service Workers.
+- Home-Bildschirm-Icon und maskierbare Icons ergänzt.
+- Einzelne fehlende Dateien stoppen die Offline-Installation nicht mehr.
+- Seite wird beim Öffnen immer auf Aktualität geprüft.
+- Veraltete Versionsangabe im Manifest entfernt.
+
+UNVERÄNDERT
+- Spielregeln, Inhalte, Spielstände und Speicherschlüssel.
+- Service-Worker-Cache: vybe-pwa-v41

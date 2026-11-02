@@ -3,6 +3,7 @@ VYBE PWA – Upload-Anleitung
 Diese Dateien gemeinsam in das Stammverzeichnis eines Webhostings hochladen:
 
 - index.html
+- design.css
 - manifest.webmanifest
 - service-worker.js
 - offline.html
@@ -24,4 +25,8 @@ Chrome > Menü > App installieren oder Zum Startbildschirm hinzufügen.
 
 Updates:
 Bei einer neuen Version CACHE_VERSION in service-worker.js ändern,
-zum Beispiel von vybe-pwa-v1 auf vybe-pwa-v2.
+zum Beispiel von vybe-pwa-v41 auf vybe-pwa-v42.
+
+Design:
+Neue Oberflächen-Regeln gehören in design.css. Dort stehen auch alle Farben,
+Abstände, Rundungen und Bewegungen als zentrale Werte (Design-Tokens).

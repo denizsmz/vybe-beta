@@ -1,14 +1,15 @@
 <!doctype html>
-<html lang="de">
+<html lang="de" class="v8">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="format-detection" content="telephone=no">
 <meta name="mobile-web-app-capable" content="yes">
-<meta name="theme-color" content="#17111f">
-<title>VYBE 7.5.9</title>
+<meta id="themeColorMeta" name="theme-color" content="#120d1a">
+<meta name="color-scheme" content="dark light">
+<title>VYBE 8.0</title>
 <style>
 :root{
   --bg:#211b2d;
@@ -3626,11 +3627,8 @@ body::before{
 }
 
 </style>
+<link rel="stylesheet" href="./design.css">
 
-  <meta name="theme-color" content="#17131f">
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="VYBE">
   <meta name="application-name" content="VYBE">
   <meta name="description" content="Offline Partyspiele für Freunde – direkt auf dem Handy.">
@@ -3773,7 +3771,7 @@ body::before{
 <section id="favorites" class="screen">
   <div class="top">
     <button class="back pressable" data-open="home" aria-label="Zurück">‹</button>
-    <div class="page-title">FAVORITEN</div>
+    <div class="page-title">Favoriten</div>
     <span style="width:43px"></span>
   </div>
   <div class="content favorites-content">
@@ -3821,29 +3819,29 @@ body::before{
     <div class="row"><div class="row-icon">🃏</div><div class="row-copy"><div class="row-title">Anzahl Karten</div><div class="row-sub">Wie viele Begriffe gespielt werden</div></div><div class="number-choice-group"><button class="choice-num" data-taboo-rounds="5">5</button><button class="choice-num selected-purple" data-taboo-rounds="10">10</button><button class="choice-num" data-taboo-rounds="20">20</button><button class="choice-num" data-taboo-rounds="0">∞</button></div></div>
     <div class="row"><div class="row-icon">⏱️</div><div class="row-copy"><div class="row-title">Rundenzeit</div><div class="row-sub">Zeit für möglichst viele Begriffe</div></div><div class="number-choice-group"><button class="choice-num" data-taboo-time="30">30</button><button class="choice-num selected-purple" data-taboo-time="60">60</button><button class="choice-num" data-taboo-time="90">90</button></div></div>
   </div></div>
-  <div class="startbar"><button id="startTaboo" class="primary">STARTEN</button></div>
+  <div class="startbar"><button id="startTaboo" class="primary">Starten</button></div>
 </section>
 <section id="tabooPlayers" class="screen">
-  <div class="top"><button class="back" data-open="tabooSetup">‹</button><div class="page-title">SPIELER</div><span style="width:43px"></span></div>
+  <div class="top"><button class="back" data-open="tabooSetup">‹</button><div class="page-title">Spieler</div><span style="width:43px"></span></div>
   <div class="player-page"><div class="player-summary"><strong>Aktive Spieler</strong><div id="tabooBadge" class="badge">4/12</div></div><div id="tabooPlayerList" class="player-list"></div><div class="add-player"><input id="newTabooPlayer" placeholder="Neuer Spieler" maxlength="18"><button id="addTabooPlayer">+</button></div></div>
 </section>
 
 
 <section id="newCategories" class="screen">
-  <div class="top"><button id="closeNewCategories" class="back">‹</button><div class="page-title">KATEGORIEN</div><span style="width:43px"></span></div>
+  <div class="top"><button id="closeNewCategories" class="back">‹</button><div class="page-title">Kategorien</div><span style="width:43px"></span></div>
   <div class="category-page">
     <div style="display:flex;justify-content:flex-end;padding:7px 0 11px"><button id="toggleAllNewCategories" class="chip on">Alle abwählen</button></div>
     <div id="newCategoryList" class="category-list"></div>
-    <div class="startbar"><button id="applyNewCategories" class="primary">AUSWAHL ÜBERNEHMEN</button></div>
+    <div class="startbar"><button id="applyNewCategories" class="primary">Auswahl übernehmen</button></div>
   </div>
 </section>
 
 <section id="tabooPass" class="screen">
-  <div class="top"><button class="back direct-game-exit pressable" data-exit-game="taboo">×</button><div class="page-title">TABU</div><button class="icon-btn pressable" data-menu="taboo">•••</button></div>
-  <div class="content pass-screen"><div class="pass-emoji">🚫</div><h2>Nächste Runde</h2><p>Gib das Handy an</p><div id="tabooPassName" class="pass-name"></div><button id="tabooBeginRound" class="primary full-primary">RUNDE STARTEN</button></div>
+  <div class="top"><button class="back direct-game-exit pressable" data-exit-game="taboo">×</button><div class="page-title">Tabu</div><button class="icon-btn pressable" data-menu="taboo">•••</button></div>
+  <div class="content pass-screen"><div class="pass-emoji">🚫</div><h2>Nächste Runde</h2><p>Gib das Handy an</p><div id="tabooPassName" class="pass-name"></div><button id="tabooBeginRound" class="primary full-primary">Runde starten</button></div>
 </section>
 <section id="tabooRoundEnd" class="screen">
-  <div class="top"><button class="back direct-game-exit pressable" data-exit-game="taboo">×</button><div class="page-title">RUNDE BEENDET</div><span style="width:43px"></span></div>
+  <div class="top"><button class="back direct-game-exit pressable" data-exit-game="taboo">×</button><div class="page-title">Runde beendet</div><span style="width:43px"></span></div>
   <div class="content result-center">
     <div class="result-emoji">⏱️</div>
     <h2 id="tabooRoundPlayer">Runde beendet</h2>
@@ -3852,13 +3850,13 @@ body::before{
       <div class="taboo-stat skipped"><span>ÜBERSPRUNGEN</span><strong id="tabooRoundSkipped">0</strong></div>
     </div>
     <p id="tabooRoundComment">Starke Runde!</p>
-    <button id="tabooNextRound" class="primary full-primary">NÄCHSTER SPIELER</button>
+    <button id="tabooNextRound" class="primary full-primary">Nächster Spieler</button>
   </div>
 </section>
 <section id="tabooPlay" class="screen">
   <div class="top">
     <button class="back direct-game-exit pressable" data-exit-game="taboo">×</button>
-    <div class="page-title">TABU</div>
+    <div class="page-title">Tabu</div>
     <button class="icon-btn pressable" data-menu="taboo">•••</button>
   </div>
   <div class="content game-stage">
@@ -3882,21 +3880,21 @@ body::before{
     </div>
     <div class="current-player-line">Am Zug: <strong id="tabooCurrentPlayer"></strong></div>
     <div class="game-action-grid">
-      <button id="tabooSkip" class="secondary game-secondary-action danger-soft">NÄCHSTE KARTE</button>
-      <button id="tabooCorrect" class="primary game-primary-action">✓ RICHTIG</button>
+      <button id="tabooSkip" class="secondary game-secondary-action danger-soft">Nächste Karte</button>
+      <button id="tabooCorrect" class="primary game-primary-action">✓ Richtig</button>
     </div>
   </div>
 </section>
 
 <section id="tabooEnd" class="screen">
-  <div class="top"><span style="width:43px"></span><div class="page-title">ERGEBNIS</div><span style="width:43px"></span></div>
+  <div class="top"><span style="width:43px"></span><div class="page-title">Ergebnis</div><span style="width:43px"></span></div>
   <div class="content result-center">
     <div class="result-emoji">🚫</div>
     <h2>Tabu beendet</h2>
     <div class="taboo-total-line"><span>Gesamt richtig</span><strong id="tabooFinalScore">0</strong></div>
     <div class="taboo-total-line skipped"><span>Gesamt übersprungen</span><strong id="tabooFinalSkipped">0</strong></div>
     <div id="tabooPlayerResults" class="result-list" style="width:100%;margin-top:14px"></div>
-    <div class="two"><button class="secondary" data-open="home">ZUR STARTSEITE</button><button id="restartTaboo" class="primary">NOCHMAL SPIELEN</button></div>
+    <div class="two"><button class="secondary" data-open="home">Zur Startseite</button><button id="restartTaboo" class="primary">Nochmal spielen</button></div>
   </div>
 </section>
 
@@ -3929,11 +3927,11 @@ body::before{
       <p>Jede Person sieht ihre Rolle geheim. Danach führt die App den Erzähler durch Nacht, Tag, Abstimmungen und alle Spezialrollen.</p>
     </div>
   </div>
-  <div class="startbar"><button id="startWerewolf" class="primary ww-primary">ROLLEN VERTEILEN</button></div>
+  <div class="startbar"><button id="startWerewolf" class="primary ww-primary">Rollen verteilen</button></div>
 </section>
 
 <section id="wwPlayers" class="screen">
-  <div class="top"><button class="back" data-open="wwSetup">‹</button><div class="page-title">SPIELER & ERZÄHLER</div><span style="width:43px"></span></div>
+  <div class="top"><button class="back" data-open="wwSetup">‹</button><div class="page-title">Spieler & Erzähler</div><span style="width:43px"></span></div>
   <div class="player-page">
     <div class="player-summary"><strong>Mindestens 6 Namen</strong><div id="wwPlayerBadge" class="badge">8/18</div></div>
     <div id="wwPlayerList" class="player-list ww-player-list"></div>
@@ -3943,7 +3941,7 @@ body::before{
 </section>
 
 <section id="wwRoles" class="screen">
-  <div class="top"><button class="back" data-open="wwSetup">‹</button><div class="page-title">ROLLEN</div><span style="width:43px"></span></div>
+  <div class="top"><button class="back" data-open="wwSetup">‹</button><div class="page-title">Rollen</div><span style="width:43px"></span></div>
   <div class="settings-scroll">
     <div class="section-label">WERWÖLFE</div>
     <div class="panel">
@@ -3969,73 +3967,73 @@ body::before{
 </section>
 
 <section id="wwPass" class="screen">
-  <div class="top"><button class="back direct-game-exit" data-exit-game="werewolf">×</button><div class="page-title">ROLLENVERTEILUNG</div><span style="width:43px"></span></div>
+  <div class="top"><button class="back direct-game-exit" data-exit-game="werewolf">×</button><div class="page-title">Rollenverteilung</div><span style="width:43px"></span></div>
   <div class="content pass-screen">
     <div class="pass-emoji">🤫</div>
     <h2>Handy weitergeben</h2>
     <p>Nur diese Person darf jetzt schauen:</p>
     <div id="wwPassName" class="pass-name">Name</div>
-    <button id="wwShowRole" class="primary ww-primary full-primary">MEINE ROLLE ANZEIGEN</button>
+    <button id="wwShowRole" class="primary ww-primary full-primary">Meine Rolle anzeigen</button>
   </div>
 </section>
 
 <section id="wwReveal" class="screen">
-  <div class="top"><button class="back direct-game-exit" data-exit-game="werewolf">×</button><div class="page-title">DEINE ROLLE</div><span style="width:43px"></span></div>
+  <div class="top"><button class="back direct-game-exit" data-exit-game="werewolf">×</button><div class="page-title">Deine Rolle</div><span style="width:43px"></span></div>
   <div class="content ww-reveal-content">
     <div id="wwRevealEmoji" class="ww-role-emoji">🐺</div>
     <div id="wwRevealName" class="ww-role-name">WERWOLF</div>
     <p id="wwRevealDescription"></p>
     <div id="wwRevealTeam" class="ww-team-note"></div>
-    <button id="wwHideRole" class="primary ww-primary full-primary">ROLLE VERSTANDEN</button>
+    <button id="wwHideRole" class="primary ww-primary full-primary">Rolle verstanden</button>
   </div>
 </section>
 
 <section id="wwNarratorReady" class="screen">
-  <div class="top"><button class="back direct-game-exit" data-exit-game="werewolf">×</button><div class="page-title">ERZÄHLER</div><span style="width:43px"></span></div>
+  <div class="top"><button class="back direct-game-exit" data-exit-game="werewolf">×</button><div class="page-title">Erzähler</div><span style="width:43px"></span></div>
   <div class="content ww-narrator-ready">
     <div class="ww-role-emoji">📖</div>
     <h2 id="wwNarratorName">Erzähler</h2>
     <p>Du führst jetzt durch das Spiel. Halte den Bildschirm so, dass nur du ihn siehst.</p>
     <div id="wwNarratorRoles" class="ww-narrator-roles"></div>
-    <button id="wwBeginGame" class="primary ww-primary full-primary">ERSTE NACHT STARTEN</button>
+    <button id="wwBeginGame" class="primary ww-primary full-primary">Erste Nacht starten</button>
   </div>
 </section>
 
 <section id="wwPhase" class="screen">
-  <div class="top"><button class="back direct-game-exit" data-exit-game="werewolf">×</button><div id="wwPhaseHeader" class="page-title">NACHT 1</div><button class="icon-btn" data-menu="werewolf">•••</button></div>
+  <div class="top"><button class="back direct-game-exit" data-exit-game="werewolf">×</button><div id="wwPhaseHeader" class="page-title">Nacht 1</div><button class="icon-btn" data-menu="werewolf">•••</button></div>
   <div class="content ww-phase-content">
     <div id="wwPhaseEmoji" class="ww-phase-emoji">🌙</div>
     <div id="wwPhaseKicker" class="ww-phase-kicker">VORLESEN</div>
     <h2 id="wwPhaseTitle">Das Dorf schläft ein</h2>
     <div id="wwPhaseText" class="ww-script-text"></div>
-    <button id="wwPhaseContinue" class="primary ww-primary full-primary">WEITER</button>
+    <button id="wwPhaseContinue" class="primary ww-primary full-primary">Weiter</button>
   </div>
 </section>
 
 <section id="wwSelect" class="screen">
-  <div class="top"><button class="back direct-game-exit" data-exit-game="werewolf">×</button><div id="wwSelectHeader" class="page-title">AUSWAHL</div><span style="width:43px"></span></div>
+  <div class="top"><button class="back direct-game-exit" data-exit-game="werewolf">×</button><div id="wwSelectHeader" class="page-title">Auswahl</div><span style="width:43px"></span></div>
   <div class="content ww-select-content">
     <div id="wwSelectEmoji" class="ww-phase-emoji">🐺</div>
     <h2 id="wwSelectTitle">Wen wählen die Werwölfe?</h2>
     <p id="wwSelectText"></p>
     <div id="wwSelectNames" class="ww-name-grid"></div>
-    <button id="wwConfirmSelection" class="primary ww-primary full-primary" disabled>AUSWAHL BESTÄTIGEN</button>
+    <button id="wwConfirmSelection" class="primary ww-primary full-primary" disabled>Auswahl bestätigen</button>
   </div>
 </section>
 
 <section id="wwSeerResult" class="screen">
-  <div class="top"><button class="back direct-game-exit" data-exit-game="werewolf">×</button><div class="page-title">SEHERIN</div><span style="width:43px"></span></div>
+  <div class="top"><button class="back direct-game-exit" data-exit-game="werewolf">×</button><div class="page-title">Seherin</div><span style="width:43px"></span></div>
   <div class="content ww-reveal-content">
     <div class="ww-role-emoji">🔮</div>
     <p id="wwSeerPlayer" class="ww-inspected-player"></p>
     <div id="wwSeerRole" class="ww-role-name"></div>
     <p>Zeige dem Seher das Ergebnis unauffällig und tippe danach weiter.</p>
-    <button id="wwSeerContinue" class="primary ww-primary full-primary">WEITER</button>
+    <button id="wwSeerContinue" class="primary ww-primary full-primary">Weiter</button>
   </div>
 </section>
 
 <section id="wwWitch" class="screen">
-  <div class="top"><button class="back direct-game-exit" data-exit-game="werewolf">×</button><div class="page-title">HEXE</div><span style="width:43px"></span></div>
+  <div class="top"><button class="back direct-game-exit" data-exit-game="werewolf">×</button><div class="page-title">Hexe</div><span style="width:43px"></span></div>
   <div class="content ww-phase-content">
     <div class="ww-phase-emoji">🧪</div>
     <h2>Die Hexe erwacht</h2>
@@ -4045,47 +4043,47 @@ body::before{
 </section>
 
 <section id="wwMorning" class="screen">
-  <div class="top"><button class="back direct-game-exit" data-exit-game="werewolf">×</button><div id="wwMorningHeader" class="page-title">MORGEN</div><button class="icon-btn" data-menu="werewolf">•••</button></div>
+  <div class="top"><button class="back direct-game-exit" data-exit-game="werewolf">×</button><div id="wwMorningHeader" class="page-title">Morgen</div><button class="icon-btn" data-menu="werewolf">•••</button></div>
   <div class="content ww-phase-content">
     <div class="ww-phase-emoji">☀️</div>
     <div class="ww-phase-kicker">VORLESEN</div>
     <h2>Das Dorf erwacht</h2>
     <div id="wwMorningText" class="ww-script-text"></div>
     <div id="wwAliveSummary" class="ww-alive-summary"></div>
-    <button id="wwStartDay" class="primary ww-primary full-primary">DISKUSSION STARTEN</button>
+    <button id="wwStartDay" class="primary ww-primary full-primary">Diskussion starten</button>
   </div>
 </section>
 
 <section id="wwDay" class="screen">
-  <div class="top"><button class="back direct-game-exit" data-exit-game="werewolf">×</button><div id="wwDayHeader" class="page-title">TAG 1</div><button class="icon-btn" data-menu="werewolf">•••</button></div>
+  <div class="top"><button class="back direct-game-exit" data-exit-game="werewolf">×</button><div id="wwDayHeader" class="page-title">Tag 1</div><button class="icon-btn" data-menu="werewolf">•••</button></div>
   <div class="content ww-phase-content">
     <div class="ww-phase-emoji">🏘️</div>
     <div class="ww-phase-kicker">VORLESEN</div>
     <h2>Das Dorf berät sich</h2>
     <div class="ww-script-text">„Ihr dürft jetzt diskutieren. Wer verhält sich verdächtig? Findet die Werwölfe, bevor sie das ganze Dorf übernehmen.“</div>
     <div id="wwDayAlive" class="ww-alive-summary"></div>
-    <button id="wwStartVote" class="primary ww-primary full-primary">ABSTIMMUNG STARTEN</button>
+    <button id="wwStartVote" class="primary ww-primary full-primary">Abstimmung starten</button>
   </div>
 </section>
 
 <section id="wwHunter" class="screen">
-  <div class="top"><button class="back direct-game-exit" data-exit-game="werewolf">×</button><div class="page-title">JÄGER</div><span style="width:43px"></span></div>
+  <div class="top"><button class="back direct-game-exit" data-exit-game="werewolf">×</button><div class="page-title">Jäger</div><span style="width:43px"></span></div>
   <div class="content ww-phase-content">
     <div class="ww-phase-emoji">🏹</div>
     <h2>Der Jäger feuert seinen letzten Schuss</h2>
     <div id="wwHunterText" class="ww-script-text"></div>
-    <button id="wwHunterChoose" class="primary ww-primary full-primary">ZIEL AUSWÄHLEN</button>
+    <button id="wwHunterChoose" class="primary ww-primary full-primary">Ziel auswählen</button>
   </div>
 </section>
 
 <section id="wwResult" class="screen">
-  <div class="top"><span style="width:43px"></span><div class="page-title">SPIEL BEENDET</div><span style="width:43px"></span></div>
+  <div class="top"><span style="width:43px"></span><div class="page-title">Spiel beendet</div><span style="width:43px"></span></div>
   <div class="content result-center">
     <div id="wwResultEmoji" class="result-emoji">🏘️</div>
     <h2 id="wwResultTitle">Das Dorf gewinnt!</h2>
     <p id="wwResultText"></p>
     <div id="wwResultRoles" class="ww-result-roles"></div>
-    <div class="two"><button class="secondary" data-open="home">STARTSEITE</button><button id="restartWerewolf" class="primary ww-primary">NOCHMAL</button></div>
+    <div class="two"><button class="secondary" data-open="home">Startseite</button><button id="restartWerewolf" class="primary ww-primary">Nochmal</button></div>
   </div>
 </section>
 
@@ -4137,14 +4135,14 @@ body::before{
   </div>
 
   <div class="team73-bottom-action">
-    <button id="startTeamDraw" class="primary team73-primary">AUSLOSUNG STARTEN</button>
+    <button id="startTeamDraw" class="primary team73-primary">Auslosung starten</button>
   </div>
 </section>
 
 <section id="teamDraw" class="screen team73-screen">
   <div class="top">
     <button class="back" data-open="teamSetup">‹</button>
-    <div class="page-title">AUSLOSUNG</div>
+    <div class="page-title">Auslosung</div>
     <span style="width:43px"></span>
   </div>
 
@@ -4186,14 +4184,14 @@ body::before{
   </div>
 
   <div class="team73-bottom-action">
-    <button id="drawNextTeamCard" class="primary team73-primary">NÄCHSTE KARTE ZIEHEN</button>
+    <button id="drawNextTeamCard" class="primary team73-primary">Nächste Karte ziehen</button>
   </div>
 </section>
 
 <section id="teamResult" class="screen team73-screen">
   <div class="top">
     <button class="back" data-open="teamSetup">‹</button>
-    <div class="page-title">ERGEBNIS</div>
+    <div class="page-title">Ergebnis</div>
     <span style="width:43px"></span>
   </div>
 
@@ -4209,8 +4207,8 @@ body::before{
   </div>
 
   <div class="team73-result-actions">
-    <button id="drawAgain" class="primary team73-primary">NEU AUSLOSEN</button>
-    <button class="secondary" data-open="home">ZUR STARTSEITE</button>
+    <button id="drawAgain" class="primary team73-primary">Neu auslosen</button>
+    <button class="secondary" data-open="home">Zur Startseite</button>
   </div>
 </section>
 
@@ -4225,17 +4223,17 @@ body::before{
     <div class="row"><div class="row-icon">🎲</div><div class="row-copy"><div class="row-title">Modus</div><div class="row-sub">Wahrheit, Pflicht oder gemischt</div></div><div class="number-choice-group"><button class="choice-num wide selected-pink" data-truth-mode="mix">Mix</button><button class="choice-num wide" data-truth-mode="truth">W</button><button class="choice-num wide" data-truth-mode="dare">P</button></div></div>
     <div class="row"><div class="row-icon">🃏</div><div class="row-copy"><div class="row-title">Anzahl Karten</div><div class="row-sub">Wie viele Aufgaben gespielt werden</div></div><div class="number-choice-group"><button class="choice-num" data-truth-rounds="10">10</button><button class="choice-num selected-pink" data-truth-rounds="20">20</button><button class="choice-num" data-truth-rounds="30">30</button><button class="choice-num" data-truth-rounds="0">∞</button></div></div>
   </div></div>
-  <div class="startbar"><button id="startTruth" class="primary">STARTEN</button></div>
+  <div class="startbar"><button id="startTruth" class="primary">Starten</button></div>
 </section>
 <section id="truthPlayers" class="screen">
-  <div class="top"><button class="back" data-open="truthSetup">‹</button><div class="page-title">SPIELER</div><span style="width:43px"></span></div>
+  <div class="top"><button class="back" data-open="truthSetup">‹</button><div class="page-title">Spieler</div><span style="width:43px"></span></div>
   <div class="player-page"><div class="player-summary"><strong>Aktive Spieler</strong><div id="truthBadge" class="badge">4/12</div></div><div id="truthPlayerList" class="player-list"></div><div class="add-player"><input id="newTruthPlayer" placeholder="Neuer Spieler" maxlength="18"><button id="addTruthPlayer">+</button></div></div>
 </section>
 
 <section id="truthChoice" class="screen truth-v72-screen">
   <div class="top">
     <button class="back direct-game-exit pressable" data-exit-game="truth">×</button>
-    <div class="page-title">DU BIST DRAN</div>
+    <div class="page-title">Du bist dran</div>
     <button class="icon-btn pressable" data-menu="truth">•••</button>
   </div>
   <div class="content truth-choice-content">
@@ -4260,7 +4258,7 @@ body::before{
 <section id="truthPlay" class="screen truth-v72-screen">
   <div class="top">
     <button class="back direct-game-exit pressable" data-exit-game="truth">×</button>
-    <div class="page-title">WAHRHEIT ODER PFLICHT</div>
+    <div class="page-title">Wahrheit oder Pflicht</div>
     <button class="icon-btn pressable" data-menu="truth">•••</button>
   </div>
   <div class="content truth-v72-play">
@@ -4277,20 +4275,20 @@ body::before{
       <div id="truthPrompt" class="truth-prompt"></div>
     </div>
     <div class="truth-v72-actions">
-      <button id="truthSkip" class="secondary">ZU KRASS / ANDERE</button>
-      <button id="truthDone" class="primary">ERLEDIGT – WEITER</button>
+      <button id="truthSkip" class="secondary">Zu krass – andere Karte</button>
+      <button id="truthDone" class="primary">Erledigt – weiter</button>
     </div>
   </div>
 </section>
 
 <section id="truthEnd" class="screen">
-  <div class="top"><span style="width:43px"></span><div class="page-title">ENDE</div><span style="width:43px"></span></div>
+  <div class="top"><span style="width:43px"></span><div class="page-title">Ende</div><span style="width:43px"></span></div>
   <div class="content result-center">
     <div class="result-emoji">🎭</div>
     <h2>Ihr habt euch getraut.</h2>
     <div class="big-result-number" id="truthFinalRounds">0</div>
     <p>Fragen und Aufgaben wurden gespielt.</p><div id="truthFinalBreakdown" class="truth-final-breakdown"></div>
-    <div class="two"><button class="secondary" data-open="home">ZUR STARTSEITE</button><button id="restartTruth" class="primary">NOCHMAL SPIELEN</button></div>
+    <div class="two"><button class="secondary" data-open="home">Zur Startseite</button><button id="restartTruth" class="primary">Nochmal spielen</button></div>
   </div>
 </section>
 
@@ -4304,17 +4302,17 @@ body::before{
     <button class="row" data-open-categories-new="who"><div class="row-icon">🏷️</div><div class="row-copy"><div class="row-title">Kategorien</div><div class="row-sub">Mehrfachauswahl möglich</div></div><div id="whoCategoryValue" class="row-value">3 ausgewählt</div><div class="chev">›</div></button>
     <div class="row"><div class="row-icon">🃏</div><div class="row-copy"><div class="row-title">Runden pro Spieler</div><div class="row-sub">Wie viele Personen oder Charaktere jede Person bekommt</div></div><div class="number-choice-group"><button class="choice-num" data-who-rounds="3">3</button><button class="choice-num selected-mint" data-who-rounds="5">5</button><button class="choice-num" data-who-rounds="10">10</button></div></div>
   </div></div>
-  <div class="startbar"><button id="startWho" class="primary">STARTEN</button></div>
+  <div class="startbar"><button id="startWho" class="primary">Starten</button></div>
 </section>
 <section id="whoPlayers" class="screen">
-  <div class="top"><button class="back" data-open="whoSetup">‹</button><div class="page-title">SPIELER</div><span style="width:43px"></span></div>
+  <div class="top"><button class="back" data-open="whoSetup">‹</button><div class="page-title">Spieler</div><span style="width:43px"></span></div>
   <div class="player-page"><div class="player-summary"><strong>Aktive Spieler</strong><div id="whoBadge" class="badge">4/12</div></div><div id="whoPlayerList" class="player-list"></div><div class="add-player"><input id="newWhoPlayer" placeholder="Neuer Spieler" maxlength="18"><button id="addWhoPlayer">+</button></div></div>
 </section>
 
 <section id="whoPass" class="screen">
   <div class="top">
     <button class="back direct-game-exit pressable" data-exit-game="who">×</button>
-    <div class="page-title">WER BIN ICH?</div>
+    <div class="page-title">Wer bin ich?</div>
     <button class="icon-btn pressable" data-menu="who">•••</button>
   </div>
   <div class="content pass-screen">
@@ -4322,14 +4320,14 @@ body::before{
     <h2>Handy weitergeben</h2>
     <p>Gib das Handy an</p>
     <div id="whoPassName" class="pass-name"></div>
-    <button id="whoReveal" class="primary full-primary">BEREIT – KARTE ZEIGEN</button>
+    <button id="whoReveal" class="primary full-primary">Bereit – Karte zeigen</button>
   </div>
 </section>
 
 <section id="whoPlay" class="screen">
   <div class="top">
     <button class="back direct-game-exit pressable" data-exit-game="who">×</button>
-    <div class="page-title">WER BIN ICH?</div>
+    <div class="page-title">Wer bin ich?</div>
     <button class="icon-btn pressable" data-menu="who">•••</button>
   </div>
   <div class="content game-stage">
@@ -4340,26 +4338,26 @@ body::before{
       <div class="who-hint">Die anderen geben Hinweise.</div>
     </div>
     <div class="game-action-grid">
-      <button id="whoSkip" class="secondary game-secondary-action">ÜBERSPRINGEN</button>
-      <button id="whoCorrect" class="primary game-primary-action">ERRATEN</button>
+      <button id="whoSkip" class="secondary game-secondary-action">Überspringen</button>
+      <button id="whoCorrect" class="primary game-primary-action">Erraten</button>
     </div>
   </div>
 </section>
 
 <section id="whoEnd" class="screen">
-  <div class="top"><span style="width:43px"></span><div class="page-title">ERGEBNIS</div><span style="width:43px"></span></div>
+  <div class="top"><span style="width:43px"></span><div class="page-title">Ergebnis</div><span style="width:43px"></span></div>
   <div class="content result-center">
     <div class="result-emoji">🤔</div>
     <h2>Wer war wer?</h2>
     <div id="whoResults" class="result-list"></div>
-    <div class="two"><button class="secondary" data-open="home">ZUR STARTSEITE</button><button id="restartWho" class="primary">NOCHMAL SPIELEN</button></div>
+    <div class="two"><button class="secondary" data-open="home">Zur Startseite</button><button id="restartWho" class="primary">Nochmal spielen</button></div>
   </div>
 </section>
 
 <section id="stats" class="screen">
   <div class="top">
     <button class="back pressable" data-open="home">‹</button>
-    <div class="page-title">DEIN VYBE</div>
+    <div class="page-title">Dein Vybe</div>
     <span style="width:43px"></span>
   </div>
   <div class="content stats-scroll">
@@ -4382,13 +4380,13 @@ body::before{
 </section>
 
 <section id="settings" class="screen">
-  <div class="top"><button class="back" data-open="home">‹</button><div class="page-title">EINSTELLUNGEN</div><span style="width:43px"></span></div>
+  <div class="top"><button class="back" data-open="home">‹</button><div class="page-title">Einstellungen</div><span style="width:43px"></span></div>
   <div class="settings-scroll settings-page settings74-page">
     <div class="settings74-hero"><div class="settings74-logo">⚙️</div><div><div class="settings74-kicker">VYBE ANPASSEN</div><h2>Deine App, deine Regeln</h2><p>Darstellung, Gameplay und lokale Daten an einem Ort.</p></div></div>
 
     <div class="section-label">DARSTELLUNG</div>
     <div class="panel settings74-panel">
-      <div class="row"><div class="row-icon">🌙</div><div class="row-copy"><div class="row-title">Dark Mode</div><div class="row-sub">Zwischen dunklem und hellem Design wechseln</div></div><input id="settingDarkMode" class="switch" type="checkbox" checked></div>
+      <div class="row appearance-row"><div class="row-icon">🌙</div><div class="row-copy"><div class="row-title">Erscheinungsbild</div></div><div id="appearanceControl" class="segmented" role="radiogroup" aria-label="Erscheinungsbild"><button type="button" role="radio" data-appearance="dark">Dunkel</button><button type="button" role="radio" data-appearance="light">Hell</button><button type="button" role="radio" data-appearance="system">System</button></div></div>
       <div class="row"><div class="row-icon">✨</div><div class="row-copy"><div class="row-title">Animationen</div><div class="row-sub">Übergänge und Kartenbewegungen aktivieren</div></div><input id="settingAnimations" class="switch" type="checkbox" checked></div>
       <div class="row"><div class="row-icon">🔠</div><div class="row-copy"><div class="row-title">Größere Schrift</div><div class="row-sub">Texte und Bedienelemente besser lesbar machen</div></div><input id="settingLargeText" class="switch" type="checkbox"></div>
       <div class="row"><div class="row-icon">◐</div><div class="row-copy"><div class="row-title">Hoher Kontrast</div><div class="row-sub">Konturen und wichtige Texte stärker hervorheben</div></div><input id="settingHighContrast" class="switch" type="checkbox"></div>
@@ -4418,15 +4416,16 @@ body::before{
     </div>
 
     <div class="section-label">ÜBER VYBE</div>
-    <div class="panel settings74-panel"><div class="row"><div class="row-icon">ℹ️</div><div class="row-copy"><div class="row-title">Version</div><div class="row-sub">VYBE 7.5.9</div></div><div class="settings74-version-dot"></div></div></div>
+    <div class="panel settings74-panel"><div class="row"><div class="row-icon">ℹ️</div><div class="row-copy"><div class="row-title">Version</div><div class="row-sub">VYBE 8.0</div></div><div class="settings74-version-dot"></div></div></div>
     <div class="made-by">Made by <span id="denizEasterEggTrigger">Deniz</span></div>
   </div>
 </section>
 
 <section id="releaseNotes" class="screen">
-  <div class="top"><button class="back" data-open="settings">‹</button><div class="page-title">WAS IST NEU?</div><span style="width:43px"></span></div>
+  <div class="top"><button class="back" data-open="settings">‹</button><div class="page-title">Was ist neu?</div><span style="width:43px"></span></div>
   <div class="settings-scroll settings74-detail-page">
-    <div class="settings74-release-hero"><span>🚀</span><div><div class="settings74-kicker">VERSION 7.5.9</div><h2>Was sich in VYBE verbessert hat</h2></div></div>
+    <div class="settings74-release-hero"><span>🚀</span><div><div class="settings74-kicker">VERSION 8.0</div><h2>Was sich in VYBE verbessert hat</h2></div></div>
+    <div class="settings74-note-card"><strong>✨ Neues Design</strong><p>VYBE sieht frischer aus, reagiert direkter und folgt auf Wunsch dem hellen oder dunklen Modus deines Geräts.</p></div>
     <div class="settings74-note-card"><strong>📚 Mehr Inhalte</strong><p>Neue Fächer, Fragen, Kategorien, Personen, Begriffe und Fußball-Fragetypen aus 7.1.</p></div>
     <div class="settings74-note-card"><strong>🎯 Überarbeitete Spiele</strong><p>Neuer Wahrheit-oder-Pflicht-Ablauf, größerer Tabu-Timer und Abbruchstatistiken aus 7.2.</p></div>
     <div class="settings74-note-card"><strong>🎟️ Neuer Team-Ausloser</strong><p>Kontrollierte Loskarten statt des alten Glücksrads – Karte für Karte aus Version 7.3.</p></div>
@@ -4435,7 +4434,7 @@ body::before{
 </section>
 
 <section id="dataInfo" class="screen">
-  <div class="top"><button class="back" data-open="settings">‹</button><div class="page-title">APP-DATEN</div><span style="width:43px"></span></div>
+  <div class="top"><button class="back" data-open="settings">‹</button><div class="page-title">App-Daten</div><span style="width:43px"></span></div>
   <div class="settings-scroll settings74-detail-page">
     <div class="settings74-release-hero"><span>🔐</span><div><div class="settings74-kicker">LOKAL GESPEICHERT</div><h2>Deine Daten bleiben auf dem Gerät</h2></div></div>
     <div class="settings74-note-card"><strong>Was wird gespeichert?</strong><p>Einstellungen, Favoriten, Statistiken, gewählte Optionen und der Verlauf bereits gespielter Inhalte.</p></div>
@@ -4463,11 +4462,11 @@ body::before{
       </div>
     </div>
   </div>
-  <div class="startbar"><button id="startImpostor" class="primary">STARTEN</button></div>
+  <div class="startbar"><button id="startImpostor" class="primary">Starten</button></div>
 </section>
 
 <section id="impPlayers" class="screen">
-  <div class="top"><button class="back" data-open="impSetup">‹</button><div class="page-title">SPIELER</div><span style="width:43px"></span></div>
+  <div class="top"><button class="back" data-open="impSetup">‹</button><div class="page-title">Spieler</div><span style="width:43px"></span></div>
   <div class="player-page">
     <div class="player-summary"><strong>Aktive Spieler</strong><div id="impBadge" class="badge">4/20</div></div>
     <div id="impPlayerList" class="player-list"></div>
@@ -4476,7 +4475,7 @@ body::before{
 </section>
 
 <section id="impCount" class="screen">
-  <div class="top"><button class="back" data-open="impSetup">‹</button><div class="page-title">IMPOSTOR</div><span style="width:43px"></span></div>
+  <div class="top"><button class="back" data-open="impSetup">‹</button><div class="page-title">Impostor</div><span style="width:43px"></span></div>
   <div class="section-label">ANZAHL AUSWÄHLEN</div>
   <div id="impCountChoices" class="choice-list"></div>
   <div class="panel" style="margin-top:12px">
@@ -4501,11 +4500,11 @@ body::before{
       </div>
     </div>
   </div>
-  <div class="startbar"><button id="startWould" class="primary">STARTEN</button></div>
+  <div class="startbar"><button id="startWould" class="primary">Starten</button></div>
 </section>
 
 <section id="wouldPlayers" class="screen">
-  <div class="top"><button class="back" data-open="wouldSetup">‹</button><div class="page-title">SPIELER</div><span style="width:43px"></span></div>
+  <div class="top"><button class="back" data-open="wouldSetup">‹</button><div class="page-title">Spieler</div><span style="width:43px"></span></div>
   <div class="player-page">
     <div class="player-summary"><strong>Aktive Spieler</strong><div id="wouldBadge" class="badge">4/12</div></div>
     <div id="wouldPlayerList" class="player-list"></div>
@@ -4514,25 +4513,25 @@ body::before{
 </section>
 
 <section id="categories" class="screen">
-  <div class="top"><button id="closeCategories" class="back">‹</button><div class="page-title">KATEGORIEN</div><span style="width:43px"></span></div>
+  <div class="top"><button id="closeCategories" class="back">‹</button><div class="page-title">Kategorien</div><span style="width:43px"></span></div>
   <div class="category-page">
     <div style="display:flex;justify-content:flex-end;padding:7px 0 11px">
       <button id="toggleAllCategories" class="chip on">Alle abwählen</button>
     </div>
     <div id="categoryList" class="category-list"></div>
-    <div class="startbar"><button id="applyCategories" class="primary">AUSWAHL ÜBERNEHMEN</button></div>
+    <div class="startbar"><button id="applyCategories" class="primary">Auswahl übernehmen</button></div>
   </div>
 </section>
 
 <section id="impPass" class="screen">
-  <div class="top"><button class="back direct-game-exit" data-exit-game="imp" aria-label="Spiel verlassen">×</button><div class="page-title">IMPOSTOR</div><button class="icon-btn" data-menu="imp">•••</button></div>
+  <div class="top"><button class="back direct-game-exit" data-exit-game="imp" aria-label="Spiel verlassen">×</button><div class="page-title">Impostor</div><button class="icon-btn" data-menu="imp">•••</button></div>
   <div class="progress"><i id="impPassProgress"></i></div>
   <div class="pass"><div class="pass-icon">📱</div><p>Gib das Handy weiter an</p><div id="impPassName" class="pass-name"></div><p>Nur diese Person darf jetzt hinschauen.</p></div>
-  <button id="showImpCard" class="primary">ICH BIN BEREIT</button>
+  <button id="showImpCard" class="primary">Ich bin bereit</button>
 </section>
 
 <section id="impReveal" class="screen">
-  <div class="top"><button class="back direct-game-exit" data-exit-game="imp" aria-label="Spiel verlassen">×</button><div class="page-title">DEINE KARTE</div><button class="icon-btn" data-menu="imp">•••</button></div>
+  <div class="top"><button class="back direct-game-exit" data-exit-game="imp" aria-label="Spiel verlassen">×</button><div class="page-title">Deine Karte</div><button class="icon-btn" data-menu="imp">•••</button></div>
   <div class="progress"><i id="impRevealProgress"></i></div>
   <div id="impFlipArea" class="flip-area">
     <div id="impFlip" class="flip">
@@ -4540,17 +4539,17 @@ body::before{
       <div id="impBackface" class="face backface"><div id="impCategoryBadge" class="card-meta-badge imp-category-badge hidden"></div><div id="impRoleIcon" class="reveal-icon"></div><div id="impRoleLabel" class="role"></div><div id="impRoleWord" class="word"></div><div id="impRoleHint" class="hint hidden"></div></div>
     </div>
   </div>
-  <button id="impNextBtn" class="secondary" style="visibility:hidden">VERDECKEN & WEITERGEBEN</button>
+  <button id="impNextBtn" class="secondary" style="visibility:hidden">Verdecken & weitergeben</button>
 </section>
 
 <section id="impDiscussion" class="screen">
-  <div class="top"><button class="back direct-game-exit" data-exit-game="imp" aria-label="Spiel verlassen">×</button><div class="page-title">DISKUSSION</div><button class="icon-btn" data-menu="imp">•••</button></div>
+  <div class="top"><button class="back direct-game-exit" data-exit-game="imp" aria-label="Spiel verlassen">×</button><div class="page-title">Diskussion</div><button class="icon-btn" data-menu="imp">•••</button></div>
   <div class="pass"><div class="pass-icon" style="background:linear-gradient(145deg,#6f4318,#ff9c2c)">💬</div><h1 style="margin:20px 0 4px;font-size:37px">Zeit zu bluffen.</h1><p>Beschreibt den Begriff, ohne ihn direkt zu nennen.</p></div>
-  <div class="two"><button class="secondary" data-open="impSetup">EINSTELLUNGEN</button><button id="showImpResult" class="primary">AUFLÖSEN</button></div>
+  <div class="two"><button class="secondary" data-open="impSetup">Einstellungen</button><button id="showImpResult" class="primary">Auflösen</button></div>
 </section>
 
 <section id="impResult" class="screen">
-  <div class="top"><button class="back" data-open="home">‹</button><div class="page-title">AUFLÖSUNG</div><span style="width:43px"></span></div>
+  <div class="top"><button class="back" data-open="home">‹</button><div class="page-title">Auflösung</div><span style="width:43px"></span></div>
   <div class="content">
     <div style="padding:14px 0 2px;color:var(--pink);font-size:12px;font-weight:950;letter-spacing:1.1px">IMPOSTOR</div>
     <h1 style="margin:0 0 10px;font-size:36px">Erwischt. 🕵️</h1>
@@ -4560,14 +4559,14 @@ body::before{
       <div id="impFinalImpostor" class="word" style="font-size:37px;color:var(--pink)"></div>
     </div>
   </div>
-  <div class="two"><button class="secondary" data-open="home">ZUR STARTSEITE</button><button id="restartImpostor" class="primary">NEUE RUNDE</button></div>
+  <div class="two"><button class="secondary" data-open="home">Zur Startseite</button><button id="restartImpostor" class="primary">Neue Runde</button></div>
 </section>
 
 
 <section id="wouldCard" class="screen">
   <div class="top">
     <button class="back direct-game-exit" data-exit-game="would" aria-label="Spiel verlassen">×</button>
-    <div class="page-title">WER WÜRDE EHER?</div>
+    <div class="page-title">Wer würde eher?</div>
     <button class="icon-btn" data-menu="would">•••</button>
   </div>
   <div class="progress"><i id="wouldRoundProgress" style="background:linear-gradient(90deg,var(--pink),var(--orange))"></i></div>
@@ -4590,12 +4589,12 @@ body::before{
 
   <div class="would-bottom">
     <div id="wouldCounter" class="ball-counter"></div>
-    <button id="wouldNextRoundBtn" class="primary" disabled style="opacity:.45">PERSON AUSWÄHLEN</button>
+    <button id="wouldNextRoundBtn" class="primary" disabled style="opacity:.45">Person auswählen</button>
   </div>
 </section>
 
 <section id="wouldEnd" class="screen">
-  <div class="top"><button class="back" data-open="home">‹</button><div class="page-title">RUNDE BEENDET</div><span style="width:43px"></span></div>
+  <div class="top"><button class="back" data-open="home">‹</button><div class="page-title">Runde beendet</div><span style="width:43px"></span></div>
   <div class="pass">
     <div class="pass-icon orange">🤣</div>
     <h1 style="margin:20px 0 4px;font-size:37px">Das war eindeutig.</h1>
@@ -4607,8 +4606,8 @@ body::before{
     <div id="wouldSummary" class="would75-results"></div>
   </div>
   <div class="two">
-    <button class="secondary" data-open="home">ZUR STARTSEITE</button>
-    <button id="restartWould" class="primary">NEUE RUNDE</button>
+    <button class="secondary" data-open="home">Zur Startseite</button>
+    <button id="restartWould" class="primary">Neue Runde</button>
   </div>
 </section>
 
@@ -4641,13 +4640,13 @@ body::before{
       </div>
     </div>
   </div>
-  <div class="startbar"><button id="startKnowledge" class="primary knowledge-primary">RUNDE STARTEN</button></div>
+  <div class="startbar"><button id="startKnowledge" class="primary knowledge-primary">Runde starten</button></div>
 </section>
 
 <section id="knowledgeCard" class="screen">
   <div class="top">
     <button class="back direct-game-exit" data-exit-game="knowledge" aria-label="Spiel verlassen">×</button>
-    <div class="page-title">ALLGEMEINWISSEN</div>
+    <div class="page-title">Allgemeinwissen</div>
     <button class="icon-btn" data-menu="knowledge">•••</button>
   </div>
   <div class="progress"><i id="knowledgeProgress" class="knowledge-progress"></i></div>
@@ -4686,13 +4685,13 @@ body::before{
   </div>
   <div id="knowledgeSwipeHint" class="quiz-auto-note" hidden>Oder wische nach links / rechts</div>
   <div class="quiz-navigation">
-    <button id="knowledgePrevious" class="secondary quiz-nav-btn" type="button">‹ VORHERIGE</button>
-    <button id="knowledgeNext" class="primary knowledge-primary quiz-nav-btn" type="button">NÄCHSTE ›</button>
+    <button id="knowledgePrevious" class="secondary quiz-nav-btn" type="button">‹ Vorherige</button>
+    <button id="knowledgeNext" class="primary knowledge-primary quiz-nav-btn" type="button">Nächste ›</button>
   </div>
 </section>
 
 <section id="knowledgeEnd" class="screen">
-  <div class="top"><button class="back" data-open="home">‹</button><div class="page-title">DEIN ERGEBNIS</div><span style="width:43px"></span></div>
+  <div class="top"><button class="back" data-open="home">‹</button><div class="page-title">Dein Ergebnis</div><span style="width:43px"></span></div>
   <div class="quiz-result-wrap">
     <div id="knowledgeResultEmoji" class="quiz-result-emoji">🧠</div>
     <h1 id="knowledgeResultTitle" class="quiz-result-title">Starkes Wissen.</h1>
@@ -4709,7 +4708,7 @@ body::before{
       <div class="result-head"><span>Schwierigkeiten</span><span id="knowledgeEndLevels"></span></div>
     </div>
   </div>
-  <div class="two"><button class="secondary" data-open="home">ZUR STARTSEITE</button><button id="restartKnowledge" class="primary knowledge-primary">NEUE RUNDE</button></div>
+  <div class="two"><button class="secondary" data-open="home">Zur Startseite</button><button id="restartKnowledge" class="primary knowledge-primary">Neue Runde</button></div>
 </section>
 
 <section id="ballSetup" class="screen">
@@ -4749,13 +4748,13 @@ body::before{
       </div>
     </div>
   </div>
-  <div class="startbar"><button id="startBall" class="primary" style="background:linear-gradient(90deg,var(--mint),var(--blue))">RUNDE STARTEN</button></div>
+  <div class="startbar"><button id="startBall" class="primary" style="background:linear-gradient(90deg,var(--mint),var(--blue))">Runde starten</button></div>
 </section>
 
 <section id="ballCard" class="screen">
   <div class="top">
     <button class="back direct-game-exit" data-exit-game="ball" aria-label="Spiel verlassen">×</button>
-    <div class="page-title">BALL KNOWLEDGE</div>
+    <div class="page-title">Ball Knowledge</div>
     <button class="icon-btn" data-menu="ball">•••</button>
   </div>
   <div class="progress"><i id="ballProgress" style="background:linear-gradient(90deg,var(--mint),var(--blue))"></i></div>
@@ -4795,13 +4794,13 @@ body::before{
   </div>
   <div id="ballSwipeHint" class="quiz-auto-note" hidden>Oder wische nach links / rechts</div>
   <div class="quiz-navigation">
-    <button id="ballPrevious" class="secondary quiz-nav-btn" type="button">‹ VORHERIGE</button>
-    <button id="ballNext" class="primary quiz-nav-btn" type="button">NÄCHSTE ›</button>
+    <button id="ballPrevious" class="secondary quiz-nav-btn" type="button">‹ Vorherige</button>
+    <button id="ballNext" class="primary quiz-nav-btn" type="button">Nächste ›</button>
   </div>
 </section>
 
 <section id="ballEnd" class="screen">
-  <div class="top"><button class="back" data-open="home">‹</button><div class="page-title">DEIN ERGEBNIS</div><span style="width:43px"></span></div>
+  <div class="top"><button class="back" data-open="home">‹</button><div class="page-title">Dein Ergebnis</div><span style="width:43px"></span></div>
   <div class="quiz-result-wrap">
     <div id="ballResultEmoji" class="quiz-result-emoji">🏆</div>
     <h1 id="ballResultTitle" class="quiz-result-title">Starker Auftritt.</h1>
@@ -4818,7 +4817,7 @@ body::before{
       <div class="result-head"><span>Schwierigkeiten</span><span id="ballEndLevels"></span></div>
     </div>
   </div>
-  <div class="two"><button class="secondary" data-open="home">ZUR STARTSEITE</button><button id="restartBall" class="primary">NEUE RUNDE</button></div>
+  <div class="two"><button class="secondary" data-open="home">Zur Startseite</button><button id="restartBall" class="primary">Neue Runde</button></div>
 </section>
 
 <div id="gameMenu" class="menu">
@@ -4991,16 +4990,14 @@ document.addEventListener("visibilitychange",()=>{
   if(document.hidden)updateSessionMinutes();
   else sessionStartedAt=Date.now();
 });
-document.addEventListener("click",event=>{
-  const pressed=event.target.closest(".pressable,.game-card,.primary,.choice-card,.ball-option");
-  if(pressed&&appSettings.animations)premiumTap(pressed);
-});
+document.addEventListener("touchstart",()=>{},{passive:true});
 
 const SETTINGS_KEY="vybe_app_settings_v1";
 const GAME_STATE_KEY="vybe_game_state_v1";
 
 const defaultAppSettings={
   darkMode:true,
+  appearance:"dark",
   animations:true,
   vibration:true,
   timerSounds:false,
@@ -5021,6 +5018,7 @@ function loadAppSettings(){
       appSettings={...defaultAppSettings,...saved};
       if(typeof saved.timerSounds!=="boolean"&&typeof saved.sounds==="boolean")appSettings.timerSounds=saved.sounds;
       delete appSettings.sounds;
+      if(!["dark","light","system"].includes(saved.appearance))appSettings.appearance=appSettings.darkMode?"dark":"light";
     }
   }catch(error){
     appSettings={...defaultAppSettings};
@@ -5053,14 +5051,22 @@ function playTimerSignal(kind="tick"){
   }catch(error){}
 }
 
+const systemLightQuery=window.matchMedia("(prefers-color-scheme: light)");
 function applyAppSettings(){
+  appSettings.darkMode=appSettings.appearance==="system"?!systemLightQuery.matches:appSettings.appearance==="dark";
   document.body.classList.toggle("light-theme",!appSettings.darkMode);
+  document.getElementById("themeColorMeta")?.setAttribute("content",appSettings.darkMode?"#120d1a":"#f6f3f8");
+  document.querySelectorAll("[data-appearance]").forEach(button=>{
+    const active=button.dataset.appearance===appSettings.appearance;
+    button.classList.toggle("active",active);
+    button.setAttribute("aria-checked",String(active));
+  });
   document.body.classList.toggle("reduce-motion",!appSettings.animations);
 
   document.body.classList.toggle("large-text",Boolean(appSettings.largeText));
   document.body.classList.toggle("high-contrast",Boolean(appSettings.highContrast));
   const controls={
-    settingDarkMode:"darkMode",settingAnimations:"animations",settingVibration:"vibration",
+    settingAnimations:"animations",settingVibration:"vibration",
     settingTimerSounds:"timerSounds",settingAutoShuffle:"autoShuffle",settingRemember:"remember",
     settingLargeText:"largeText",settingHighContrast:"highContrast",
     settingSpicyContent:"spicyContent",settingWakeLock:"wakeLock"
@@ -5127,8 +5133,17 @@ function restoreRememberedGameState(){
 }
 
 function bindSettings(){
+  document.getElementById("appearanceControl")?.addEventListener("click",event=>{
+    const button=event.target.closest("[data-appearance]");
+    if(!button||button.dataset.appearance===appSettings.appearance)return;
+    appSettings.appearance=button.dataset.appearance;
+    applyAppSettings();
+    saveAppSettings();
+    triggerHaptic("light");
+  });
+  systemLightQuery.addEventListener?.("change",()=>{if(appSettings.appearance==="system")applyAppSettings()});
   const bindings={
-    settingDarkMode:["darkMode","Design geändert"],settingAnimations:["animations","Animationen geändert"],
+    settingAnimations:["animations","Animationen geändert"],
     settingVibration:["vibration","Haptik-Einstellung geändert"],settingTimerSounds:["timerSounds","Timer-Töne geändert"],
     settingAutoShuffle:["autoShuffle","Mischen geändert"],settingRemember:["remember","Speichern geändert"],
     settingLargeText:["largeText","Schriftgröße geändert"],settingHighContrast:["highContrast","Kontrast geändert"],
@@ -5501,7 +5516,13 @@ function buzz(pattern=12){
     try{navigator.vibrate&&navigator.vibrate(pattern)}catch(error){}
   }
 }
+let navigatingBack=false;
+document.addEventListener("click",event=>{
+  navigatingBack=Boolean(event.target.closest(".back:not(.direct-game-exit)"));
+},true);
 function go(id){
+  document.documentElement.dataset.nav=navigatingBack?"back":"forward";
+  navigatingBack=false;
   saveRememberedGameState();
   updateSessionMinutes();
   renderGlobalStats();
@@ -5964,7 +5985,7 @@ function showWouldQuestion(){
   const next=document.getElementById("wouldNextRoundBtn");
   next.disabled=true;
   next.style.opacity=".45";
-  next.textContent="PERSON AUSWÄHLEN";
+  next.textContent="Person auswählen";
   go("wouldCard");
 }
 
@@ -6178,7 +6199,7 @@ function showBallCard(){
   document.getElementById("ballCounter").textContent=`Frage ${ballIndex+1} von ${ballDeck.length}`;
   document.getElementById("ballProgress").style.width=`${(ballIndex+1)/ballDeck.length*100}%`;
   document.getElementById("ballPrevious").disabled=ballIndex===0;
-  document.getElementById("ballNext").textContent=ballIndex===ballDeck.length-1?"ERGEBNIS":"NÄCHSTE ›";
+  document.getElementById("ballNext").textContent=ballIndex===ballDeck.length-1?"Ergebnis":"Nächste ›";
   document.getElementById("ballNext").disabled=!ballAnswers[ballIndex];
   updateBallLiveScore();
   renderBallRating();
@@ -6335,7 +6356,7 @@ function showKnowledgeCard(){
   document.getElementById("knowledgeCounter").textContent=`Frage ${knowledgeIndex+1} von ${knowledgeDeck.length}`;
   document.getElementById("knowledgeProgress").style.width=`${(knowledgeIndex+1)/knowledgeDeck.length*100}%`;
   document.getElementById("knowledgePrevious").disabled=knowledgeIndex===0;
-  document.getElementById("knowledgeNext").textContent=knowledgeIndex===knowledgeDeck.length-1?"ERGEBNIS":"NÄCHSTE ›";
+  document.getElementById("knowledgeNext").textContent=knowledgeIndex===knowledgeDeck.length-1?"Ergebnis":"Nächste ›";
   document.getElementById("knowledgeNext").disabled=!knowledgeAnswers[knowledgeIndex];
   updateKnowledgeLiveScore();
   renderKnowledgeRating();
@@ -6743,7 +6764,7 @@ function finishTabooRound(){
   const total=tabooRoundScore+tabooRoundSkipped;
   const quote=total?Math.round(tabooRoundScore/total*100):0;
   document.getElementById("tabooRoundComment").textContent=quote>=80?"Richtig starke Runde!":quote>=55?"Solide erklärt!":"Die nächsten Begriffe werden besser.";
-  document.getElementById("tabooNextRound").textContent=tabooCompletedRounds>=tabooPlayers.length?"ERGEBNIS ANZEIGEN":"NÄCHSTER SPIELER";
+  document.getElementById("tabooNextRound").textContent=tabooCompletedRounds>=tabooPlayers.length?"Ergebnis anzeigen":"Nächster Spieler";
   triggerHaptic("heavy");
   go("tabooRoundEnd");
 }
@@ -7270,7 +7291,7 @@ function wwVisualTransition(){
 }
 function wwSetPhase({emoji="🌙",kicker="VORLESEN",title,text,button="WEITER",action}){
   wwVisualTransition();
-  document.getElementById("wwPhaseHeader").textContent=`NACHT ${wwNight}`;
+  document.getElementById("wwPhaseHeader").textContent=`Nacht ${wwNight}`;
   document.getElementById("wwPhaseEmoji").textContent=emoji;
   document.getElementById("wwPhaseKicker").textContent=kicker;
   document.getElementById("wwPhaseTitle").textContent=title;
@@ -7378,7 +7399,7 @@ function wwOpenSelection(mode){
     hunter:{emoji:"🏹",title:"Wen nimmt der Jäger mit?",text:"Der letzte Schuss trifft genau eine lebende Person.",max:1,button:"SCHUSS BESTÄTIGEN"}
   };
   const config=configs[mode];
-  document.getElementById("wwSelectHeader").textContent=mode==="vote"?"ABSTIMMUNG":"AUSWAHL";
+  document.getElementById("wwSelectHeader").textContent=mode==="vote"?"Abstimmung":"Auswahl";
   document.getElementById("wwSelectEmoji").textContent=config.emoji;
   document.getElementById("wwSelectTitle").textContent=config.title;
   document.getElementById("wwSelectText").textContent=config.text;
@@ -7460,7 +7481,7 @@ function wwShowWitch(){
 
   const heal=document.createElement("button");
   heal.className="ww-witch-action ww-witch-heal";
-  heal.textContent="💚 HEILTRANK BENUTZEN";
+  heal.textContent="💚 Heiltrank benutzen";
   heal.disabled=!wwWitchHeal||wwWolfTarget===null;
   heal.onclick=()=>{
     wwWitchHeal=false;
@@ -7470,13 +7491,13 @@ function wwShowWitch(){
 
   const poison=document.createElement("button");
   poison.className="ww-witch-action ww-witch-poison";
-  poison.textContent="☠️ GIFTTRANK BENUTZEN";
+  poison.textContent="☠️ Gifttrank benutzen";
   poison.disabled=!wwWitchPoison;
   poison.onclick=()=>wwOpenSelection("poison");
 
   const skip=document.createElement("button");
   skip.className="ww-witch-action ww-witch-skip";
-  skip.textContent="KEINEN TRANK BENUTZEN";
+  skip.textContent="Keinen Trank benutzen";
   skip.onclick=wwNextNightStep;
 
   root.append(heal,poison,skip);
@@ -7538,7 +7559,7 @@ function wwShowMorning(){
   const text=deaths.length
     ?`„Das Dorf erwacht. In dieser Nacht sind ${deaths.map(i=>wwPlayers[i]).join(" und ")} gestorben.“`
     :"„Das Dorf erwacht. In dieser Nacht ist niemand gestorben.“";
-  document.getElementById("wwMorningHeader").textContent=`MORGEN ${wwNight}`;
+  document.getElementById("wwMorningHeader").textContent=`Morgen ${wwNight}`;
   document.getElementById("wwMorningText").textContent=text;
   wwRenderAlive("wwAliveSummary",true);
   go("wwMorning");
@@ -7556,7 +7577,7 @@ function wwRenderAlive(id,includeDead=false){
 }
 function wwStartDay(){
   wwVisualTransition();
-  document.getElementById("wwDayHeader").textContent=`TAG ${wwNight}`;
+  document.getElementById("wwDayHeader").textContent=`Tag ${wwNight}`;
   wwRenderAlive("wwDayAlive");
   go("wwDay");
 }
@@ -7787,7 +7808,7 @@ function prepareNextTeamCard(){
   document.getElementById("teamRevealTeam").textContent=`TEAM ${item.teamIndex+1}`;
   button.disabled=false;
   document.getElementById("teamRevealCard").disabled=false;
-  button.textContent=teamRevealIndex===0?"ERSTE KARTE ZIEHEN":"NÄCHSTE KARTE ZIEHEN";
+  button.textContent=teamRevealIndex===0?"Erste Karte ziehen":"Nächste Karte ziehen";
   resetRevealCard();
 }
 
@@ -7802,7 +7823,7 @@ function autoAssignLastTeamMember(){
   teamCardLocked=true;
   button.disabled=true;
   card.disabled=true;
-  button.textContent="LETZTE PERSON WIRD ZUGEORDNET …";
+  button.textContent="Letzte Person wird zugeordnet …";
 
   card.classList.remove("is-flipped","is-moving","is-shuffling","near-stop");
   document.getElementById("teamCandidateName").textContent=item.name;
@@ -7830,7 +7851,7 @@ function autoAssignLastTeamMember(){
   document.getElementById("teamDrawProgressBar").style.width="100%";
   document.getElementById("teamCurrentLabel").textContent="AUSLOSUNG BEENDET";
   document.getElementById("teamCurrentName").textContent=`${item.name} wurde automatisch Team ${item.teamIndex+1} zugeordnet`;
-  button.textContent="AUSLOSUNG FERTIG";
+  button.textContent="Auslosung fertig";
   triggerHaptic("success");
 
   setTimeout(finishTeamDraw,900);
@@ -7861,7 +7882,7 @@ function revealTeamCard(){
 
   button.disabled=true;
   card.disabled=true;
-  button.textContent="AUSLOSUNG LÄUFT …";
+  button.textContent="Auslosung läuft …";
   document.querySelectorAll(".team73-live-card").forEach(teamCard=>{
     teamCard.classList.toggle("active",Number(teamCard.dataset.teamIndex)===item.teamIndex);
   });
@@ -7948,7 +7969,7 @@ function revealTeamCard(){
       if(teamRevealIndex>=teamRevealOrder.length){
         button.disabled=true;
         card.disabled=true;
-        button.textContent="AUSLOSUNG FERTIG";
+        button.textContent="Auslosung fertig";
         document.getElementById("teamCurrentLabel").textContent="AUSLOSUNG BEENDET";
         document.getElementById("teamCurrentName").textContent="Alle Teams stehen fest";
         setTimeout(finishTeamDraw,1000);
@@ -7962,7 +7983,7 @@ function revealTeamCard(){
         document.getElementById("teamCurrentName").textContent=`Als Nächstes: Team ${next.teamIndex+1}`;
         button.disabled=false;
         card.disabled=false;
-        button.textContent="NÄCHSTE KARTE ZIEHEN";
+        button.textContent="Nächste Karte ziehen";
       }
     },1350);
   };
@@ -8329,6 +8350,78 @@ if ("serviceWorker" in navigator) {
 })();
 </script>
 
+
+<div id="exitSheetBackdrop" class="favorite-sheet-backdrop" aria-hidden="true">
+  <div id="exitSheet" class="favorite-sheet" role="alertdialog" aria-modal="true" aria-labelledby="exitSheetTitle">
+    <div class="favorite-sheet-handle"></div>
+    <div id="exitSheetTitle" class="exit-sheet-title">Spiel verlassen?</div>
+    <p class="exit-sheet-text">Die laufende Runde wird beendet.</p>
+    <button id="exitSheetConfirm" class="favorite-sheet-action remove pressable" type="button">Spiel verlassen</button>
+    <button id="exitSheetCancel" class="favorite-sheet-cancel pressable" type="button">Weiterspielen</button>
+  </div>
+</div>
+
+<script>
+/* VYBE 8.0 – Bestätigung vor dem Verlassen und ziehbare Sheets */
+(function(){
+  const backdrop=document.getElementById("exitSheetBackdrop");
+  let pendingExit=null;
+  function closeExitSheet(){
+    backdrop.classList.remove("show");
+    backdrop.setAttribute("aria-hidden","true");
+    pendingExit=null;
+  }
+  document.addEventListener("click",event=>{
+    const exit=event.target.closest("[data-exit-game]");
+    if(!exit||exit===pendingExit)return;
+    event.stopImmediatePropagation();
+    pendingExit=exit;
+    backdrop.classList.add("show");
+    backdrop.setAttribute("aria-hidden","false");
+    triggerHaptic("light");
+  },true);
+  document.getElementById("exitSheetConfirm").addEventListener("click",()=>{
+    const exit=pendingExit;
+    backdrop.classList.remove("show");
+    backdrop.setAttribute("aria-hidden","true");
+    exit?.click();
+    pendingExit=null;
+  });
+  document.getElementById("exitSheetCancel").addEventListener("click",closeExitSheet);
+  backdrop.addEventListener("click",event=>{if(event.target===backdrop)closeExitSheet()});
+
+  function bindSheetDrag(sheet,close){
+    const handle=sheet.querySelector(".favorite-sheet-handle");
+    let pointerId=null,startY=0,lastY=0,lastTime=0,velocity=0;
+    handle.addEventListener("pointerdown",event=>{
+      pointerId=event.pointerId;
+      handle.setPointerCapture(pointerId);
+      startY=lastY=event.clientY;lastTime=event.timeStamp;velocity=0;
+      sheet.style.transition="none";
+    });
+    handle.addEventListener("pointermove",event=>{
+      if(event.pointerId!==pointerId)return;
+      const elapsed=Math.max(1,event.timeStamp-lastTime);
+      velocity=(event.clientY-lastY)/elapsed;
+      lastY=event.clientY;lastTime=event.timeStamp;
+      const offset=event.clientY-startY;
+      sheet.style.transform=`translate3d(0,${offset>0?offset:offset*.18}px,0)`;
+    });
+    const release=event=>{
+      if(event.pointerId!==pointerId)return;
+      pointerId=null;
+      const projected=(event.clientY-startY)+velocity*180;
+      sheet.style.transition="";
+      sheet.style.transform="";
+      if(projected>sheet.offsetHeight*.4)close();
+    };
+    handle.addEventListener("pointerup",release);
+    handle.addEventListener("pointercancel",release);
+  }
+  bindSheetDrag(document.getElementById("exitSheet"),closeExitSheet);
+  bindSheetDrag(document.getElementById("favoriteSheet"),()=>closeFavoriteSheet());
+})();
+</script>
 
 <div id="denizEasterEgg" class="deniz-meme-overlay" aria-hidden="true">
   <div id="denizMemeCard" class="deniz-meme-card">

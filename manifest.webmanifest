@@ -1,6 +1,6 @@
 {
   "id": "./",
-  "name": "VYBE 6.7 – Party Games",
+  "name": "VYBE – Party Games",
   "short_name": "VYBE",
   "description": "Offline Partyspiele für Freunde – direkt auf dem Handy.",
   "lang": "de-DE",
@@ -14,8 +14,8 @@
     "minimal-ui"
   ],
   "orientation": "portrait-primary",
-  "background_color": "#17131f",
-  "theme_color": "#17131f",
+  "background_color": "#120d1a",
+  "theme_color": "#120d1a",
   "categories": [
     "games",
     "entertainment"
