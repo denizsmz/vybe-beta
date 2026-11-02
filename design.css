@@ -1,5 +1,5 @@
 /* ==========================================================
-   VYBE 10.1 – Designsystem
+   VYBE 10.2 – Designsystem
    Idee: leuchtende Farbwelten wie iPhone-Wallpaper, darauf echtes Glas.
    Alle Ansichten liegen in einer Farbwelt und teilen dieselben Glasflächen.
    setzt die Farbwelt --c1 bis --c3.
@@ -157,7 +157,7 @@ html[data-nav="back"] .screen.active{animation-name:enter-back}
   white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
 }
 .back,.icon-btn{
-  position:relative;flex:none;width:44px;height:44px;display:grid;place-items:center;
+  position:relative;flex:none;width:44px;height:44px;display:block;padding:0;
   border-radius:50%;font-size:17px;font-weight:600;color:var(--text);
   background:var(--glass);box-shadow:inset 0 0 0 .5px var(--glass-edge);
   -webkit-backdrop-filter:blur(20px) saturate(170%);backdrop-filter:blur(20px) saturate(170%);
@@ -166,7 +166,7 @@ html[data-nav="back"] .screen.active{animation-name:enter-back}
 .back:active,.icon-btn:active{transform:scale(.88)}
 .back,[data-menu],#openFavorites,.home-settings,.home-stats{font-size:0}
 .back::before,[data-menu]::before,#openFavorites::before,.home-settings::before,.home-stats::before{
-  content:"";position:absolute;inset:0;margin:auto;width:20px;height:20px;background:currentColor;
+  content:"";position:absolute;left:calc(50% - 10px);top:calc(50% - 10px);width:20px;height:20px;background:currentColor;
   -webkit-mask:var(--i) center/contain no-repeat;mask:var(--i) center/contain no-repeat;
 }
 .back{--i:var(--i-back)}
@@ -199,15 +199,11 @@ html[data-nav="back"] .screen.active{animation-name:enter-back}
   -webkit-user-select:none;user-select:none;-webkit-touch-callout:none;
 }
 .game-pager .game-art{
-  position:relative;width:min(50vw,190px);aspect-ratio:1;border-radius:27%;margin-bottom:34px;display:grid;place-items:center;
+  position:relative;width:min(50vw,190px);aspect-ratio:1;border-radius:27%;margin-bottom:34px;display:grid;place-items:center;font-size:min(25vw,96px);line-height:1;
   background:linear-gradient(145deg,rgba(255,255,255,.42),rgba(255,255,255,.12));
   box-shadow:inset 0 1.5px 0 rgba(255,255,255,.75),inset 0 0 0 .5px rgba(255,255,255,.5),0 24px 50px rgba(0,0,0,.2);
   -webkit-backdrop-filter:blur(24px) saturate(180%);backdrop-filter:blur(24px) saturate(180%);
   transition:transform .3s var(--spring);
-}
-.game-pager .game-art::before{
-  content:"";width:54%;height:54%;background:#fff;filter:drop-shadow(0 6px 12px rgba(0,0,0,.18));
-  -webkit-mask:var(--p-g) center/contain no-repeat;mask:var(--p-g) center/contain no-repeat;
 }
 .game-pager .game-card:active .game-art,.game-pager .game-card.long-pressing .game-art{transform:scale(.94)}
 .game-pager .game-name{font-family:var(--display);font-size:clamp(38px,11.4vw,48px);font-weight:800;letter-spacing:-.032em;line-height:1.03;text-wrap:balance;text-shadow:0 2px 14px rgba(0,0,0,.14)}
@@ -217,33 +213,15 @@ html[data-nav="back"] .screen.active{animation-name:enter-back}
   background:#fff;color:#111114;font-size:18px;font-weight:650;letter-spacing:-.012em;box-shadow:0 14px 30px rgba(0,0,0,.2);
 }
 .game-card.is-favorite .game-tag::after{content:" ♥"}
-.game-card.imp,.dock-item.imp{--p-g:var(--g-imp)}
-.game-card.would,.dock-item.would{--p-g:var(--g-would)}
-.game-card.ball,.dock-item.ball{--p-g:var(--g-ball)}
-.game-card.taboo,.dock-item.taboo{--p-g:var(--g-taboo)}
-.game-card.truth,.dock-item.truth{--p-g:var(--g-truth)}
-.game-card.who,.dock-item.who{--p-g:var(--g-who)}
-.game-card.knowledge,.dock-item.knowledge{--p-g:var(--g-knowledge)}
-.game-card.teamer,.dock-item.teamer{--p-g:var(--g-teamer)}
-.game-card.werewolf,.dock-item.werewolf{--p-g:var(--g-werewolf)}
-
-/* Dock */
-.dock{
-  flex:none;display:flex;gap:2px;margin:6px 10px max(10px,var(--safe-b));padding:6px;border-radius:30px;
-  background:var(--glass);box-shadow:var(--lg);
-  -webkit-backdrop-filter:blur(30px) saturate(190%);backdrop-filter:blur(30px) saturate(190%);
-}
-.dock-item{
-  position:relative;flex:1 1 0;min-width:0;aspect-ratio:1;max-height:48px;display:grid;place-items:center;border-radius:50%;
-  transition:background .22s var(--ease),transform .14s var(--ease);
-}
-.dock-item::before{
-  content:"";width:54%;height:54%;background:#fff;opacity:.82;
-  -webkit-mask:var(--p-g) center/contain no-repeat;mask:var(--p-g) center/contain no-repeat;
-}
-.dock-item:active{transform:scale(.86)}
-.dock-item.active{background:#fff}
-.dock-item.active::before{background:#111114;opacity:1}
+.game-card.imp{--p-g:var(--g-imp)}
+.game-card.would{--p-g:var(--g-would)}
+.game-card.ball{--p-g:var(--g-ball)}
+.game-card.taboo{--p-g:var(--g-taboo)}
+.game-card.truth{--p-g:var(--g-truth)}
+.game-card.who{--p-g:var(--g-who)}
+.game-card.knowledge{--p-g:var(--g-knowledge)}
+.game-card.teamer{--p-g:var(--g-teamer)}
+.game-card.werewolf{--p-g:var(--g-werewolf)}
 
 /* Favoriten-Liste */
 .favorites-grid .game-card{
@@ -818,7 +796,6 @@ body.reduce-motion *,body.reduce-motion *::before,body.reduce-motion *::after{an
 .game-action-grid{padding-top:0}
 .game-action-grid .secondary{padding:0 10px;font-size:16px}
 .danger-soft{color:var(--text)!important}
-.game-hero .game-icon{width:88px;height:88px;top:10px;right:0}
 .team73-hero-icon{width:84px;height:84px;top:8px;right:0}
 .play-card>.card-meta-badge{left:50%;right:auto;width:max-content;max-width:calc(100% - 36px);transform:translateX(-50%)}
 
@@ -859,7 +836,6 @@ body.reduce-motion *,body.reduce-motion *::before,body.reduce-motion *::after{an
 }
 .primary{background:#fff!important;color:#111114!important;box-shadow:0 12px 26px rgba(0,0,0,.18)}
 .secondary{box-shadow:var(--lg)}
-.game-hero .game-icon,.team73-hero-icon{background:#fff}
 .game-hero h1{text-shadow:0 2px 14px rgba(0,0,0,.12)}
 
 /* ---------- Neutrale Bildschirme: wie iOS-Einstellungen ---------- */
@@ -881,22 +857,35 @@ body.reduce-motion *,body.reduce-motion *::before,body.reduce-motion *::after{an
 .knowledge-subject{min-width:0;overflow-wrap:anywhere}
 
 
-/* ---------- 10.1: Dock mit Glaslinse ---------- */
-.dock{position:relative;touch-action:none;margin-bottom:var(--pad-b);user-select:none;-webkit-user-select:none}
-.dock-item{z-index:1;pointer-events:none}
-.dock-item.active{background:none}
-.dock-item::before{transition:background .18s var(--ease),transform .3s var(--spring)}
+/* ---------- Spielleiste: dunkles Glas wie Apple Music ---------- */
+.dock{
+  position:relative;flex:none;height:72px;margin:6px 12px max(6px,var(--safe-b));overflow:hidden;border-radius:36px;
+  background:rgba(18,18,22,.56);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.2),inset 0 0 0 .5px rgba(255,255,255,.14),0 14px 34px rgba(0,0,0,.26);
+  -webkit-backdrop-filter:blur(30px) saturate(190%);backdrop-filter:blur(30px) saturate(190%);
+  touch-action:none;user-select:none;-webkit-user-select:none;
+}
+.dock-track{position:relative;display:flex;gap:0;width:max-content;height:100%;padding:0 4px;will-change:transform}
+.dock-item{
+  position:relative;z-index:1;flex:none;width:82px;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;
+  pointer-events:none;color:rgba(255,255,255,.92);
+}
+.dock-emoji{font-size:27px;line-height:1.12;transition:transform var(--spring-t) var(--spring)}
+.dock-label{font-size:11.5px;font-weight:600;letter-spacing:-.01em;white-space:nowrap;transition:color .2s var(--ease)}
+.dock-item.active .dock-label{color:color-mix(in srgb,var(--b1) 55%,#fff)}
+.dock-item.active .dock-emoji{transform:scale(1.08)}
 .dock-lens{
-  position:absolute;z-index:0;left:0;top:6px;bottom:6px;width:calc((100% - 12px - 16px) / 9);border-radius:99px;
-  background:#fff;box-shadow:0 6px 16px rgba(0,0,0,.16);will-change:transform;
-  transition:background .2s var(--ease),box-shadow .2s var(--ease);
+  position:absolute;z-index:0;left:0;top:4px;bottom:4px;width:82px;border-radius:32px;
+  background:rgba(255,255,255,.14);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.26),inset 0 0 0 .5px rgba(255,255,255,.14);
+  will-change:transform;transition:background .2s var(--ease),box-shadow .2s var(--ease);
 }
 .dock.dragging .dock-lens{
-  background:linear-gradient(145deg,rgba(255,255,255,.5),rgba(255,255,255,.12));
-  box-shadow:inset 0 1.5px 0 rgba(255,255,255,.85),inset 0 -1px 0 rgba(255,255,255,.3),inset 0 0 0 .5px rgba(255,255,255,.55),0 12px 26px rgba(0,0,0,.22);
-  -webkit-backdrop-filter:blur(3px) saturate(190%) brightness(1.12);backdrop-filter:blur(3px) saturate(190%) brightness(1.12);
+  background:linear-gradient(145deg,rgba(255,255,255,.34),rgba(255,255,255,.1));
+  box-shadow:inset 0 1.5px 0 rgba(255,255,255,.75),inset 0 -1px 0 rgba(255,255,255,.24),inset 0 0 0 .5px rgba(255,255,255,.46),0 10px 24px rgba(0,0,0,.28);
+  -webkit-backdrop-filter:blur(2px) saturate(190%) brightness(1.18);backdrop-filter:blur(2px) saturate(190%) brightness(1.18);
 }
-.dock.dragging .dock-item.active::before{background:#fff;transform:scale(1.22)}
+.dock.dragging .dock-item.active .dock-emoji{transform:scale(1.2)}
 
 .game-pager.free{scroll-snap-type:none}
 .game-pager .game-card.current .game-art{animation:art-in .5s var(--spring) both}
@@ -936,3 +925,21 @@ button:active,.category-card:active,.ball-option:active{transition-duration:.1s,
 @media (prefers-reduced-motion:reduce){
   .panel,.face,.play-card,.ball-option,.category-card,.game-pager .game-card.current .game-art{animation:none}
 }
+
+.game-hero .game-icon{
+  position:absolute;right:0;top:12px;width:84px;height:84px;display:grid;place-items:center;border-radius:24px;font-size:46px;line-height:1;
+  -webkit-mask:none;mask:none;
+  background:linear-gradient(145deg,rgba(255,255,255,.42),rgba(255,255,255,.12));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.7),inset 0 0 0 .5px rgba(255,255,255,.45),0 14px 30px rgba(0,0,0,.16);
+}
+.team73-hero-icon{background:#fff}
+
+/* Hintergrund läuft über die ganze Displayhöhe */
+html{background-size:100% var(--full-h,100%)}
+.team73-hero-icon{
+  right:0;top:8px;width:84px;height:84px;display:grid;place-items:center;border-radius:24px;font-size:46px;line-height:1;
+  -webkit-mask:none;mask:none;
+  background:linear-gradient(145deg,rgba(255,255,255,.42),rgba(255,255,255,.12));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.7),inset 0 0 0 .5px rgba(255,255,255,.45),0 14px 30px rgba(0,0,0,.16);
+}
+.favorites-grid .game-art{width:auto;height:auto;font-size:30px;line-height:1;background:none;-webkit-mask:none;mask:none}

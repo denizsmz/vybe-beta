@@ -20,3 +20,11 @@ VYBE 10.1
 - Einheitliche Bewegung, Haptik auf iPhones über den System-Schalter.
 - Symbole oben mittig, Abstand unten an die tatsächlich verfügbare Höhe angepasst.
 - Service-Worker-Cache: vybe-pwa-v44
+
+VYBE 10.2
+- Spielleiste groß in dunklem Glas wie Apple Music, mit Emoji und Namen je Spiel.
+- Leiste rollt beim Ziehen mit, Linse folgt dem Finger.
+- Emojis zurück: passend je Spiel auf Startseite und Einstieg.
+- Symbole oben ohne Text-Reste, exakt mittig.
+- Installierte App fordert die volle Gerätehöhe an, Hintergrund läuft durchgehend.
+- Service-Worker-Cache: vybe-pwa-v45

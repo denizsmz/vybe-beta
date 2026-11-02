@@ -7,9 +7,14 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="format-detection" content="telephone=no">
 <meta name="mobile-web-app-capable" content="yes">
+<script>
+if(window.navigator.standalone===true||window.matchMedia("(display-mode: standalone)").matches){
+  document.querySelector('meta[name="viewport"]').setAttribute("content","width=device-width,height=device-height,initial-scale=1,viewport-fit=cover");
+}
+</script>
 <meta id="themeColorMeta" name="theme-color" content="#0b0a0e">
 <meta name="color-scheme" content="dark light">
-<title>VYBE 10.1</title>
+<title>VYBE 10.2</title>
 <link rel="stylesheet" href="./design.css">
 
   <meta name="apple-mobile-web-app-title" content="VYBE">
@@ -40,82 +45,84 @@
     <div class="wordmark">VYBE</div>
     <div class="home-actions">
       <button class="icon-btn home-stats pressable" type="button" data-open="stats" aria-label="Statistiken"><span hidden id="homeGamesPlayed">0</span><span hidden id="homeRoundsPlayed">0</span></button>
-      <button id="openFavorites" class="icon-btn pressable" type="button" data-open="favorites" aria-label="Favoriten">♡</button>
-      <button class="icon-btn home-settings pressable" type="button" data-open="settings" aria-label="Einstellungen">⚙</button>
+      <button id="openFavorites" class="icon-btn pressable" type="button" data-open="favorites" aria-label="Favoriten"></button>
+      <button class="icon-btn home-settings pressable" type="button" data-open="settings" aria-label="Einstellungen"></button>
     </div>
   </div>
   <div id="gamePager" class="game-pager">
       <button class="game-card imp pressable" type="button" data-game-id="impostor" data-open="impSetup" data-room="imp">
-        <span class="game-art"></span>
+        <span class="game-art">🕵️</span>
         <span class="game-name">Impostor</span>
         <span class="game-tag">Einer blufft. Findet ihn.</span>
         <span class="game-play">Spielen</span>
       </button>
       <button class="game-card would pressable" type="button" data-game-id="would" data-open="wouldSetup" data-room="would">
-        <span class="game-art"></span>
+        <span class="game-art">👉</span>
         <span class="game-name">Wer würde eher?</span>
         <span class="game-tag">Zeigt aufeinander.</span>
         <span class="game-play">Spielen</span>
       </button>
       <button class="game-card ball pressable" type="button" data-game-id="ball" data-open="ballSetup" data-room="ball">
-        <span class="game-art"></span>
+        <span class="game-art">⚽️</span>
         <span class="game-name">Ball Knowledge</span>
         <span class="game-tag">Wie tief geht dein Fußballwissen?</span>
         <span class="game-play">Spielen</span>
       </button>
       <button class="game-card taboo pressable" type="button" data-game-id="taboo" data-open="tabooSetup" data-room="taboo">
-        <span class="game-art"></span>
+        <span class="game-art">🤐</span>
         <span class="game-name">Tabu</span>
         <span class="game-tag">Erklären, ohne es zu sagen.</span>
         <span class="game-play">Spielen</span>
       </button>
       <button class="game-card truth pressable" type="button" data-game-id="truth" data-open="truthSetup" data-room="truth">
-        <span class="game-art"></span>
+        <span class="game-art">😈</span>
         <span class="game-name">Wahrheit oder Pflicht</span>
         <span class="game-tag">Wie mutig seid ihr?</span>
         <span class="game-play">Spielen</span>
       </button>
       <button class="game-card who pressable" type="button" data-game-id="who" data-open="whoSetup" data-room="who">
-        <span class="game-art"></span>
+        <span class="game-art">🤔</span>
         <span class="game-name">Wer bin ich?</span>
         <span class="game-tag">Errate, wer du bist.</span>
         <span class="game-play">Spielen</span>
       </button>
       <button class="game-card knowledge pressable" type="button" data-game-id="knowledge" data-open="knowledgeSetup" data-room="knowledge">
-        <span class="game-art"></span>
+        <span class="game-art">🧠</span>
         <span class="game-name">Allgemeinwissen</span>
         <span class="game-tag">Das große Quiz.</span>
         <span class="game-play">Spielen</span>
       </button>
       <button class="game-card teamer pressable" type="button" data-game-id="teamer" data-open="teamSetup" data-room="teamer">
-        <span class="game-art"></span>
+        <span class="game-art">🎲</span>
         <span class="game-name">Team-Ausloser</span>
         <span class="game-tag">Karte für Karte zum Team.</span>
         <span class="game-play">Spielen</span>
       </button>
       <button class="game-card werewolf pressable" type="button" data-game-id="werewolf" data-open="wwSetup" data-room="werewolf">
-        <span class="game-art"></span>
+        <span class="game-art">🐺</span>
         <span class="game-name">Werwolf</span>
         <span class="game-tag">Das Dorf schläft ein.</span>
         <span class="game-play">Spielen</span>
       </button>
   </div>
   <nav id="gameDock" class="dock" aria-label="Spiele">
-    <button class="dock-item imp" type="button" data-slide="0" aria-label="Impostor"></button>
-    <button class="dock-item would" type="button" data-slide="1" aria-label="Wer würde eher?"></button>
-    <button class="dock-item ball" type="button" data-slide="2" aria-label="Ball Knowledge"></button>
-    <button class="dock-item taboo" type="button" data-slide="3" aria-label="Tabu"></button>
-    <button class="dock-item truth" type="button" data-slide="4" aria-label="Wahrheit oder Pflicht"></button>
-    <button class="dock-item who" type="button" data-slide="5" aria-label="Wer bin ich?"></button>
-    <button class="dock-item knowledge" type="button" data-slide="6" aria-label="Allgemeinwissen"></button>
-    <button class="dock-item teamer" type="button" data-slide="7" aria-label="Team-Ausloser"></button>
-    <button class="dock-item werewolf" type="button" data-slide="8" aria-label="Werwolf"></button>
+    <div class="dock-track">
+      <button class="dock-item" type="button" data-slide="0" aria-label="Impostor"><span class="dock-emoji">🕵️</span><span class="dock-label">Impostor</span></button>
+      <button class="dock-item" type="button" data-slide="1" aria-label="Wer würde"><span class="dock-emoji">👉</span><span class="dock-label">Wer würde</span></button>
+      <button class="dock-item" type="button" data-slide="2" aria-label="Ball"><span class="dock-emoji">⚽️</span><span class="dock-label">Ball</span></button>
+      <button class="dock-item" type="button" data-slide="3" aria-label="Tabu"><span class="dock-emoji">🤐</span><span class="dock-label">Tabu</span></button>
+      <button class="dock-item" type="button" data-slide="4" aria-label="Wahrheit"><span class="dock-emoji">😈</span><span class="dock-label">Wahrheit</span></button>
+      <button class="dock-item" type="button" data-slide="5" aria-label="Wer bin ich"><span class="dock-emoji">🤔</span><span class="dock-label">Wer bin ich</span></button>
+      <button class="dock-item" type="button" data-slide="6" aria-label="Wissen"><span class="dock-emoji">🧠</span><span class="dock-label">Wissen</span></button>
+      <button class="dock-item" type="button" data-slide="7" aria-label="Teams"><span class="dock-emoji">🎲</span><span class="dock-label">Teams</span></button>
+      <button class="dock-item" type="button" data-slide="8" aria-label="Werwolf"><span class="dock-emoji">🐺</span><span class="dock-label">Werwolf</span></button>
+    </div>
   </nav>
 </section>
 
 <section id="favorites" class="screen">
   <div class="top">
-    <button class="back pressable" data-open="home" aria-label="Zurück">‹</button>
+    <button class="back pressable" data-open="home" aria-label="Zurück"></button>
     <div class="page-title">Favoriten</div>
     <span style="width:43px"></span>
   </div>
@@ -156,8 +163,8 @@
 <!-- ======================= TABU ======================= -->
 
 <section id="tabooSetup" class="screen">
-  <div class="top"><button class="back" data-open="home">‹</button><div></div><button class="icon-btn" type="button">?</button></div>
-  <div class="game-hero"><div class="game-icon">🚫</div><h1 class="purple">Tabu</h1></div>
+  <div class="top"><button class="back" data-open="home" aria-label="Zurück"></button><div></div><button class="icon-btn" type="button">?</button></div>
+  <div class="game-hero"><div class="game-icon">🤐</div><h1 class="purple">Tabu</h1></div>
   <div class="settings-scroll"><div class="panel">
     <button class="row" data-open="tabooPlayers"><div class="row-icon">👥</div><div class="row-copy"><div class="row-title">Spieler</div><div class="row-sub">Namen und Spielerzahl</div></div><div id="tabooPlayerValue" class="row-value">4</div><div class="chev">›</div></button>
     <button class="row" data-open-categories-new="taboo"><div class="row-icon">🏷️</div><div class="row-copy"><div class="row-title">Kategorien</div><div class="row-sub">Mehrfachauswahl möglich</div></div><div id="tabooCategoryValue" class="row-value">3 ausgewählt</div><div class="chev">›</div></button>
@@ -167,13 +174,13 @@
   <div class="startbar"><button id="startTaboo" class="primary">Starten</button></div>
 </section>
 <section id="tabooPlayers" class="screen">
-  <div class="top"><button class="back" data-open="tabooSetup">‹</button><div class="page-title">Spieler</div><span style="width:43px"></span></div>
+  <div class="top"><button class="back" data-open="tabooSetup" aria-label="Zurück"></button><div class="page-title">Spieler</div><span style="width:43px"></span></div>
   <div class="player-page"><div class="player-summary"><strong>Aktive Spieler</strong><div id="tabooBadge" class="badge">4/12</div></div><div id="tabooPlayerList" class="player-list"></div><div class="add-player"><input id="newTabooPlayer" placeholder="Neuer Spieler" maxlength="18"><button id="addTabooPlayer">+</button></div></div>
 </section>
 
 
 <section id="newCategories" class="screen">
-  <div class="top"><button id="closeNewCategories" class="back">‹</button><div class="page-title">Kategorien</div><span style="width:43px"></span></div>
+  <div class="top"><button id="closeNewCategories" class="back" aria-label="Zurück"></button><div class="page-title">Kategorien</div><span style="width:43px"></span></div>
   <div class="category-page">
     <div style="display:flex;justify-content:flex-end;padding:7px 0 11px"><button id="toggleAllNewCategories" class="chip on">Alle abwählen</button></div>
     <div id="newCategoryList" class="category-list"></div>
@@ -182,11 +189,11 @@
 </section>
 
 <section id="tabooPass" class="screen">
-  <div class="top"><button class="back direct-game-exit pressable" data-exit-game="taboo">×</button><div class="page-title">Tabu</div><button class="icon-btn pressable" data-menu="taboo">•••</button></div>
+  <div class="top"><button class="back direct-game-exit pressable" data-exit-game="taboo" aria-label="Spiel verlassen"></button><div class="page-title">Tabu</div><button class="icon-btn pressable" data-menu="taboo" aria-label="Menü"></button></div>
   <div class="content pass-screen"><div class="pass-emoji">🚫</div><h2>Nächste Runde</h2><p>Gib das Handy an</p><div id="tabooPassName" class="pass-name"></div><button id="tabooBeginRound" class="primary full-primary">Runde starten</button></div>
 </section>
 <section id="tabooRoundEnd" class="screen">
-  <div class="top"><button class="back direct-game-exit pressable" data-exit-game="taboo">×</button><div class="page-title">Runde beendet</div><span style="width:43px"></span></div>
+  <div class="top"><button class="back direct-game-exit pressable" data-exit-game="taboo" aria-label="Spiel verlassen"></button><div class="page-title">Runde beendet</div><span style="width:43px"></span></div>
   <div class="content result-center">
     <div class="result-emoji">⏱️</div>
     <h2 id="tabooRoundPlayer">Runde beendet</h2>
@@ -200,9 +207,9 @@
 </section>
 <section id="tabooPlay" class="screen">
   <div class="top">
-    <button class="back direct-game-exit pressable" data-exit-game="taboo">×</button>
+    <button class="back direct-game-exit pressable" data-exit-game="taboo" aria-label="Spiel verlassen"></button>
     <div class="page-title">Tabu</div>
-    <button class="icon-btn pressable" data-menu="taboo">•••</button>
+    <button class="icon-btn pressable" data-menu="taboo" aria-label="Menü"></button>
   </div>
   <div class="content game-stage">
     <div class="game-progress-row unified-progress-row">
@@ -247,7 +254,7 @@
 
 <!-- ======================= WERWOLF ======================= -->
 <section id="wwSetup" class="screen">
-  <div class="top"><button class="back" data-open="home">‹</button><div></div><button class="icon-btn" type="button">?</button></div>
+  <div class="top"><button class="back" data-open="home" aria-label="Zurück"></button><div></div><button class="icon-btn" type="button">?</button></div>
   <div class="game-hero"><div class="game-icon">🐺</div><h1 class="ww-title">Werwolf</h1></div>
   <div class="settings-scroll">
     <div class="panel">
@@ -276,7 +283,7 @@
 </section>
 
 <section id="wwPlayers" class="screen">
-  <div class="top"><button class="back" data-open="wwSetup">‹</button><div class="page-title">Spieler & Erzähler</div><span style="width:43px"></span></div>
+  <div class="top"><button class="back" data-open="wwSetup" aria-label="Zurück"></button><div class="page-title">Spieler & Erzähler</div><span style="width:43px"></span></div>
   <div class="player-page">
     <div class="player-summary"><strong>Mindestens 6 Namen</strong><div id="wwPlayerBadge" class="badge">8/18</div></div>
     <div id="wwPlayerList" class="player-list ww-player-list"></div>
@@ -286,7 +293,7 @@
 </section>
 
 <section id="wwRoles" class="screen">
-  <div class="top"><button class="back" data-open="wwSetup">‹</button><div class="page-title">Rollen</div><span style="width:43px"></span></div>
+  <div class="top"><button class="back" data-open="wwSetup" aria-label="Zurück"></button><div class="page-title">Rollen</div><span style="width:43px"></span></div>
   <div class="settings-scroll">
     <div class="section-label">WERWÖLFE</div>
     <div class="panel">
@@ -312,7 +319,7 @@
 </section>
 
 <section id="wwPass" class="screen">
-  <div class="top"><button class="back direct-game-exit" data-exit-game="werewolf">×</button><div class="page-title">Rollenverteilung</div><span style="width:43px"></span></div>
+  <div class="top"><button class="back direct-game-exit" data-exit-game="werewolf" aria-label="Spiel verlassen"></button><div class="page-title">Rollenverteilung</div><span style="width:43px"></span></div>
   <div class="content pass-screen">
     <div class="pass-emoji">🤫</div>
     <h2>Handy weitergeben</h2>
@@ -323,7 +330,7 @@
 </section>
 
 <section id="wwReveal" class="screen">
-  <div class="top"><button class="back direct-game-exit" data-exit-game="werewolf">×</button><div class="page-title">Deine Rolle</div><span style="width:43px"></span></div>
+  <div class="top"><button class="back direct-game-exit" data-exit-game="werewolf" aria-label="Spiel verlassen"></button><div class="page-title">Deine Rolle</div><span style="width:43px"></span></div>
   <div class="content ww-reveal-content">
     <div id="wwRevealEmoji" class="ww-role-emoji">🐺</div>
     <div id="wwRevealName" class="ww-role-name">WERWOLF</div>
@@ -334,7 +341,7 @@
 </section>
 
 <section id="wwNarratorReady" class="screen">
-  <div class="top"><button class="back direct-game-exit" data-exit-game="werewolf">×</button><div class="page-title">Erzähler</div><span style="width:43px"></span></div>
+  <div class="top"><button class="back direct-game-exit" data-exit-game="werewolf" aria-label="Spiel verlassen"></button><div class="page-title">Erzähler</div><span style="width:43px"></span></div>
   <div class="content ww-narrator-ready">
     <div class="ww-role-emoji">📖</div>
     <h2 id="wwNarratorName">Erzähler</h2>
@@ -345,7 +352,7 @@
 </section>
 
 <section id="wwPhase" class="screen">
-  <div class="top"><button class="back direct-game-exit" data-exit-game="werewolf">×</button><div id="wwPhaseHeader" class="page-title">Nacht 1</div><button class="icon-btn" data-menu="werewolf">•••</button></div>
+  <div class="top"><button class="back direct-game-exit" data-exit-game="werewolf" aria-label="Spiel verlassen"></button><div id="wwPhaseHeader" class="page-title">Nacht 1</div><button class="icon-btn" data-menu="werewolf" aria-label="Menü"></button></div>
   <div class="content ww-phase-content">
     <div id="wwPhaseEmoji" class="ww-phase-emoji">🌙</div>
     <div id="wwPhaseKicker" class="ww-phase-kicker">VORLESEN</div>
@@ -356,7 +363,7 @@
 </section>
 
 <section id="wwSelect" class="screen">
-  <div class="top"><button class="back direct-game-exit" data-exit-game="werewolf">×</button><div id="wwSelectHeader" class="page-title">Auswahl</div><span style="width:43px"></span></div>
+  <div class="top"><button class="back direct-game-exit" data-exit-game="werewolf" aria-label="Spiel verlassen"></button><div id="wwSelectHeader" class="page-title">Auswahl</div><span style="width:43px"></span></div>
   <div class="content ww-select-content">
     <div id="wwSelectEmoji" class="ww-phase-emoji">🐺</div>
     <h2 id="wwSelectTitle">Wen wählen die Werwölfe?</h2>
@@ -367,7 +374,7 @@
 </section>
 
 <section id="wwSeerResult" class="screen">
-  <div class="top"><button class="back direct-game-exit" data-exit-game="werewolf">×</button><div class="page-title">Seherin</div><span style="width:43px"></span></div>
+  <div class="top"><button class="back direct-game-exit" data-exit-game="werewolf" aria-label="Spiel verlassen"></button><div class="page-title">Seherin</div><span style="width:43px"></span></div>
   <div class="content ww-reveal-content">
     <div class="ww-role-emoji">🔮</div>
     <p id="wwSeerPlayer" class="ww-inspected-player"></p>
@@ -378,7 +385,7 @@
 </section>
 
 <section id="wwWitch" class="screen">
-  <div class="top"><button class="back direct-game-exit" data-exit-game="werewolf">×</button><div class="page-title">Hexe</div><span style="width:43px"></span></div>
+  <div class="top"><button class="back direct-game-exit" data-exit-game="werewolf" aria-label="Spiel verlassen"></button><div class="page-title">Hexe</div><span style="width:43px"></span></div>
   <div class="content ww-phase-content">
     <div class="ww-phase-emoji">🧪</div>
     <h2>Die Hexe erwacht</h2>
@@ -388,7 +395,7 @@
 </section>
 
 <section id="wwMorning" class="screen">
-  <div class="top"><button class="back direct-game-exit" data-exit-game="werewolf">×</button><div id="wwMorningHeader" class="page-title">Morgen</div><button class="icon-btn" data-menu="werewolf">•••</button></div>
+  <div class="top"><button class="back direct-game-exit" data-exit-game="werewolf" aria-label="Spiel verlassen"></button><div id="wwMorningHeader" class="page-title">Morgen</div><button class="icon-btn" data-menu="werewolf" aria-label="Menü"></button></div>
   <div class="content ww-phase-content">
     <div class="ww-phase-emoji">☀️</div>
     <div class="ww-phase-kicker">VORLESEN</div>
@@ -400,7 +407,7 @@
 </section>
 
 <section id="wwDay" class="screen">
-  <div class="top"><button class="back direct-game-exit" data-exit-game="werewolf">×</button><div id="wwDayHeader" class="page-title">Tag 1</div><button class="icon-btn" data-menu="werewolf">•••</button></div>
+  <div class="top"><button class="back direct-game-exit" data-exit-game="werewolf" aria-label="Spiel verlassen"></button><div id="wwDayHeader" class="page-title">Tag 1</div><button class="icon-btn" data-menu="werewolf" aria-label="Menü"></button></div>
   <div class="content ww-phase-content">
     <div class="ww-phase-emoji">🏘️</div>
     <div class="ww-phase-kicker">VORLESEN</div>
@@ -412,7 +419,7 @@
 </section>
 
 <section id="wwHunter" class="screen">
-  <div class="top"><button class="back direct-game-exit" data-exit-game="werewolf">×</button><div class="page-title">Jäger</div><span style="width:43px"></span></div>
+  <div class="top"><button class="back direct-game-exit" data-exit-game="werewolf" aria-label="Spiel verlassen"></button><div class="page-title">Jäger</div><span style="width:43px"></span></div>
   <div class="content ww-phase-content">
     <div class="ww-phase-emoji">🏹</div>
     <h2>Der Jäger feuert seinen letzten Schuss</h2>
@@ -435,13 +442,13 @@
 <!-- ======================= TEAM-AUSLOSER ======================= -->
 <section id="teamSetup" class="screen team73-screen">
   <div class="top">
-    <button class="back" data-open="home">‹</button>
+    <button class="back" data-open="home" aria-label="Zurück"></button>
     <div></div>
     <button class="icon-btn" type="button">?</button>
   </div>
 
   <div class="team73-hero">
-    <div class="team73-hero-icon">🎟️</div>
+    <div class="team73-hero-icon">🎲</div>
     <div>
       <div class="team73-kicker">ZUFÄLLIGE TEAMS</div>
       <h1>Team-<br>Ausloser</h1>
@@ -486,7 +493,7 @@
 
 <section id="teamDraw" class="screen team73-screen">
   <div class="top">
-    <button class="back" data-open="teamSetup">‹</button>
+    <button class="back" data-open="teamSetup" aria-label="Zurück"></button>
     <div class="page-title">Auslosung</div>
     <span style="width:43px"></span>
   </div>
@@ -535,7 +542,7 @@
 
 <section id="teamResult" class="screen team73-screen">
   <div class="top">
-    <button class="back" data-open="teamSetup">‹</button>
+    <button class="back" data-open="teamSetup" aria-label="Zurück"></button>
     <div class="page-title">Ergebnis</div>
     <span style="width:43px"></span>
   </div>
@@ -560,8 +567,8 @@
 <!-- ================= WAHRHEIT ODER PFLICHT ================= -->
 
 <section id="truthSetup" class="screen">
-  <div class="top"><button class="back" data-open="home">‹</button><div></div><button class="icon-btn" type="button">?</button></div>
-  <div class="game-hero"><div class="game-icon">🎭</div><h1 class="pink">Wahrheit<br>oder Pflicht</h1></div>
+  <div class="top"><button class="back" data-open="home" aria-label="Zurück"></button><div></div><button class="icon-btn" type="button">?</button></div>
+  <div class="game-hero"><div class="game-icon">😈</div><h1 class="pink">Wahrheit<br>oder Pflicht</h1></div>
   <div class="settings-scroll"><div class="panel">
     <button class="row" data-open="truthPlayers"><div class="row-icon">👥</div><div class="row-copy"><div class="row-title">Spieler</div><div class="row-sub">Namen und Spielerzahl</div></div><div id="truthPlayerValue" class="row-value">4</div><div class="chev">›</div></button>
     <button class="row" data-open-categories-new="truth"><div class="row-icon">🏷️</div><div class="row-copy"><div class="row-title">Kategorien</div><div class="row-sub">Locker bis Ü18</div></div><div id="truthCategoryValue" class="row-value">2 ausgewählt</div><div class="chev">›</div></button>
@@ -571,15 +578,15 @@
   <div class="startbar"><button id="startTruth" class="primary">Starten</button></div>
 </section>
 <section id="truthPlayers" class="screen">
-  <div class="top"><button class="back" data-open="truthSetup">‹</button><div class="page-title">Spieler</div><span style="width:43px"></span></div>
+  <div class="top"><button class="back" data-open="truthSetup" aria-label="Zurück"></button><div class="page-title">Spieler</div><span style="width:43px"></span></div>
   <div class="player-page"><div class="player-summary"><strong>Aktive Spieler</strong><div id="truthBadge" class="badge">4/12</div></div><div id="truthPlayerList" class="player-list"></div><div class="add-player"><input id="newTruthPlayer" placeholder="Neuer Spieler" maxlength="18"><button id="addTruthPlayer">+</button></div></div>
 </section>
 
 <section id="truthChoice" class="screen truth-v72-screen">
   <div class="top">
-    <button class="back direct-game-exit pressable" data-exit-game="truth">×</button>
+    <button class="back direct-game-exit pressable" data-exit-game="truth" aria-label="Spiel verlassen"></button>
     <div class="page-title">Du bist dran</div>
-    <button class="icon-btn pressable" data-menu="truth">•••</button>
+    <button class="icon-btn pressable" data-menu="truth" aria-label="Menü"></button>
   </div>
   <div class="content truth-choice-content">
     <div id="truthChoiceRound" class="truth-v72-kicker">Runde 1</div>
@@ -602,9 +609,9 @@
 
 <section id="truthPlay" class="screen truth-v72-screen">
   <div class="top">
-    <button class="back direct-game-exit pressable" data-exit-game="truth">×</button>
+    <button class="back direct-game-exit pressable" data-exit-game="truth" aria-label="Spiel verlassen"></button>
     <div class="page-title">Wahrheit oder Pflicht</div>
-    <button class="icon-btn pressable" data-menu="truth">•••</button>
+    <button class="icon-btn pressable" data-menu="truth" aria-label="Menü"></button>
   </div>
   <div class="content truth-v72-play">
     <div class="truth-v72-topline">
@@ -640,7 +647,7 @@
 <!-- ======================= WER BIN ICH ======================= -->
 
 <section id="whoSetup" class="screen">
-  <div class="top"><button class="back" data-open="home">‹</button><div></div><button class="icon-btn" type="button">?</button></div>
+  <div class="top"><button class="back" data-open="home" aria-label="Zurück"></button><div></div><button class="icon-btn" type="button">?</button></div>
   <div class="game-hero"><div class="game-icon">🤔</div><h1 class="mint">Wer bin<br>ich?</h1></div>
   <div class="settings-scroll"><div class="panel">
     <button class="row" data-open="whoPlayers"><div class="row-icon">👥</div><div class="row-copy"><div class="row-title">Spieler</div><div class="row-sub">Namen und Spielerzahl</div></div><div id="whoPlayerValue" class="row-value">4</div><div class="chev">›</div></button>
@@ -650,15 +657,15 @@
   <div class="startbar"><button id="startWho" class="primary">Starten</button></div>
 </section>
 <section id="whoPlayers" class="screen">
-  <div class="top"><button class="back" data-open="whoSetup">‹</button><div class="page-title">Spieler</div><span style="width:43px"></span></div>
+  <div class="top"><button class="back" data-open="whoSetup" aria-label="Zurück"></button><div class="page-title">Spieler</div><span style="width:43px"></span></div>
   <div class="player-page"><div class="player-summary"><strong>Aktive Spieler</strong><div id="whoBadge" class="badge">4/12</div></div><div id="whoPlayerList" class="player-list"></div><div class="add-player"><input id="newWhoPlayer" placeholder="Neuer Spieler" maxlength="18"><button id="addWhoPlayer">+</button></div></div>
 </section>
 
 <section id="whoPass" class="screen">
   <div class="top">
-    <button class="back direct-game-exit pressable" data-exit-game="who">×</button>
+    <button class="back direct-game-exit pressable" data-exit-game="who" aria-label="Spiel verlassen"></button>
     <div class="page-title">Wer bin ich?</div>
-    <button class="icon-btn pressable" data-menu="who">•••</button>
+    <button class="icon-btn pressable" data-menu="who" aria-label="Menü"></button>
   </div>
   <div class="content pass-screen">
     <div class="pass-emoji">📱</div>
@@ -671,9 +678,9 @@
 
 <section id="whoPlay" class="screen">
   <div class="top">
-    <button class="back direct-game-exit pressable" data-exit-game="who">×</button>
+    <button class="back direct-game-exit pressable" data-exit-game="who" aria-label="Spiel verlassen"></button>
     <div class="page-title">Wer bin ich?</div>
-    <button class="icon-btn pressable" data-menu="who">•••</button>
+    <button class="icon-btn pressable" data-menu="who" aria-label="Menü"></button>
   </div>
   <div class="content game-stage">
     <div class="game-progress-row unified-progress-row"><span id="whoRoundLabel">1 / 5</span><span id="whoScoreLabel">0 richtig</span></div>
@@ -701,7 +708,7 @@
 
 <section id="stats" class="screen">
   <div class="top">
-    <button class="back pressable" data-open="home">‹</button>
+    <button class="back pressable" data-open="home" aria-label="Zurück"></button>
     <div class="page-title">Dein Vybe</div>
     <span style="width:43px"></span>
   </div>
@@ -725,7 +732,7 @@
 </section>
 
 <section id="settings" class="screen">
-  <div class="top"><button class="back" data-open="home">‹</button><div class="page-title">Einstellungen</div><span style="width:43px"></span></div>
+  <div class="top"><button class="back" data-open="home" aria-label="Zurück"></button><div class="page-title">Einstellungen</div><span style="width:43px"></span></div>
   <div class="settings-scroll settings-page settings74-page">
     <div class="settings74-hero"><div class="settings74-logo">⚙️</div><div><div class="settings74-kicker">VYBE ANPASSEN</div><h2>Deine App, deine Regeln</h2><p>Darstellung, Gameplay und lokale Daten an einem Ort.</p></div></div>
 
@@ -761,15 +768,15 @@
     </div>
 
     <div class="section-label">ÜBER VYBE</div>
-    <div class="panel settings74-panel"><div class="row"><div class="row-icon">ℹ️</div><div class="row-copy"><div class="row-title">Version</div><div class="row-sub">VYBE 10.1</div></div><div class="settings74-version-dot"></div></div></div>
+    <div class="panel settings74-panel"><div class="row"><div class="row-icon">ℹ️</div><div class="row-copy"><div class="row-title">Version</div><div class="row-sub">VYBE 10.2</div></div><div class="settings74-version-dot"></div></div></div>
     <div class="made-by">Made by <span id="denizEasterEggTrigger">Deniz</span></div>
   </div>
 </section>
 
 <section id="releaseNotes" class="screen">
-  <div class="top"><button class="back" data-open="settings">‹</button><div class="page-title">Was ist neu?</div><span style="width:43px"></span></div>
+  <div class="top"><button class="back" data-open="settings" aria-label="Zurück"></button><div class="page-title">Was ist neu?</div><span style="width:43px"></span></div>
   <div class="settings-scroll settings74-detail-page">
-    <div class="settings74-release-hero"><span>🚀</span><div><div class="settings74-kicker">VERSION 10.1</div><h2>Was sich in VYBE verbessert hat</h2></div></div>
+    <div class="settings74-release-hero"><span>🚀</span><div><div class="settings74-kicker">VERSION 10.2</div><h2>Was sich in VYBE verbessert hat</h2></div></div>
     <div class="settings74-note-card"><strong>✨ Komplett neue App</strong><p>Wische durch die Spiele, wähle im Dock und tauche in die Farbe jedes Spiels ein.</p></div>
     <div class="settings74-note-card"><strong>📚 Mehr Inhalte</strong><p>Neue Fächer, Fragen, Kategorien, Personen, Begriffe und Fußball-Fragetypen aus 7.1.</p></div>
     <div class="settings74-note-card"><strong>🎯 Überarbeitete Spiele</strong><p>Neuer Wahrheit-oder-Pflicht-Ablauf, größerer Tabu-Timer und Abbruchstatistiken aus 7.2.</p></div>
@@ -779,7 +786,7 @@
 </section>
 
 <section id="dataInfo" class="screen">
-  <div class="top"><button class="back" data-open="settings">‹</button><div class="page-title">App-Daten</div><span style="width:43px"></span></div>
+  <div class="top"><button class="back" data-open="settings" aria-label="Zurück"></button><div class="page-title">App-Daten</div><span style="width:43px"></span></div>
   <div class="settings-scroll settings74-detail-page">
     <div class="settings74-release-hero"><span>🔐</span><div><div class="settings74-kicker">LOKAL GESPEICHERT</div><h2>Deine Daten bleiben auf dem Gerät</h2></div></div>
     <div class="settings74-note-card"><strong>Was wird gespeichert?</strong><p>Einstellungen, Favoriten, Statistiken, gewählte Optionen und der Verlauf bereits gespielter Inhalte.</p></div>
@@ -789,7 +796,7 @@
 </section>
 
 <section id="impSetup" class="screen">
-  <div class="top"><button class="back" data-open="home">‹</button><div></div><button class="icon-btn" type="button">?</button></div>
+  <div class="top"><button class="back" data-open="home" aria-label="Zurück"></button><div></div><button class="icon-btn" type="button">?</button></div>
   <div class="game-hero"><div class="game-icon">🕵️</div><h1 class="pink">Impostor</h1></div>
   <div class="settings-scroll">
     <div class="panel">
@@ -811,7 +818,7 @@
 </section>
 
 <section id="impPlayers" class="screen">
-  <div class="top"><button class="back" data-open="impSetup">‹</button><div class="page-title">Spieler</div><span style="width:43px"></span></div>
+  <div class="top"><button class="back" data-open="impSetup" aria-label="Zurück"></button><div class="page-title">Spieler</div><span style="width:43px"></span></div>
   <div class="player-page">
     <div class="player-summary"><strong>Aktive Spieler</strong><div id="impBadge" class="badge">4/20</div></div>
     <div id="impPlayerList" class="player-list"></div>
@@ -820,7 +827,7 @@
 </section>
 
 <section id="impCount" class="screen">
-  <div class="top"><button class="back" data-open="impSetup">‹</button><div class="page-title">Impostor</div><span style="width:43px"></span></div>
+  <div class="top"><button class="back" data-open="impSetup" aria-label="Zurück"></button><div class="page-title">Impostor</div><span style="width:43px"></span></div>
   <div class="section-label">ANZAHL AUSWÄHLEN</div>
   <div id="impCountChoices" class="choice-list"></div>
   <div class="panel" style="margin-top:12px">
@@ -829,7 +836,7 @@
 </section>
 
 <section id="wouldSetup" class="screen">
-  <div class="top"><button class="back" data-open="home">‹</button><div></div><button class="icon-btn" type="button">?</button></div>
+  <div class="top"><button class="back" data-open="home" aria-label="Zurück"></button><div></div><button class="icon-btn" type="button">?</button></div>
   <div class="game-hero"><div class="game-icon">👉</div><h1 class="orange">Wer würde<br>eher?</h1></div>
   <div class="settings-scroll">
     <div class="panel">
@@ -849,7 +856,7 @@
 </section>
 
 <section id="wouldPlayers" class="screen">
-  <div class="top"><button class="back" data-open="wouldSetup">‹</button><div class="page-title">Spieler</div><span style="width:43px"></span></div>
+  <div class="top"><button class="back" data-open="wouldSetup" aria-label="Zurück"></button><div class="page-title">Spieler</div><span style="width:43px"></span></div>
   <div class="player-page">
     <div class="player-summary"><strong>Aktive Spieler</strong><div id="wouldBadge" class="badge">4/12</div></div>
     <div id="wouldPlayerList" class="player-list"></div>
@@ -858,7 +865,7 @@
 </section>
 
 <section id="categories" class="screen">
-  <div class="top"><button id="closeCategories" class="back">‹</button><div class="page-title">Kategorien</div><span style="width:43px"></span></div>
+  <div class="top"><button id="closeCategories" class="back" aria-label="Zurück"></button><div class="page-title">Kategorien</div><span style="width:43px"></span></div>
   <div class="category-page">
     <div style="display:flex;justify-content:flex-end;padding:7px 0 11px">
       <button id="toggleAllCategories" class="chip on">Alle abwählen</button>
@@ -869,14 +876,14 @@
 </section>
 
 <section id="impPass" class="screen">
-  <div class="top"><button class="back direct-game-exit" data-exit-game="imp" aria-label="Spiel verlassen">×</button><div class="page-title">Impostor</div><button class="icon-btn" data-menu="imp">•••</button></div>
+  <div class="top"><button class="back direct-game-exit" data-exit-game="imp" aria-label="Spiel verlassen"></button><div class="page-title">Impostor</div><button class="icon-btn" data-menu="imp" aria-label="Menü"></button></div>
   <div class="progress"><i id="impPassProgress"></i></div>
   <div class="pass"><div class="pass-icon">📱</div><p>Gib das Handy weiter an</p><div id="impPassName" class="pass-name"></div><p>Nur diese Person darf jetzt hinschauen.</p></div>
   <button id="showImpCard" class="primary">Ich bin bereit</button>
 </section>
 
 <section id="impReveal" class="screen">
-  <div class="top"><button class="back direct-game-exit" data-exit-game="imp" aria-label="Spiel verlassen">×</button><div class="page-title">Deine Karte</div><button class="icon-btn" data-menu="imp">•••</button></div>
+  <div class="top"><button class="back direct-game-exit" data-exit-game="imp" aria-label="Spiel verlassen"></button><div class="page-title">Deine Karte</div><button class="icon-btn" data-menu="imp" aria-label="Menü"></button></div>
   <div class="progress"><i id="impRevealProgress"></i></div>
   <div id="impFlipArea" class="flip-area">
     <div id="impFlip" class="flip">
@@ -888,13 +895,13 @@
 </section>
 
 <section id="impDiscussion" class="screen">
-  <div class="top"><button class="back direct-game-exit" data-exit-game="imp" aria-label="Spiel verlassen">×</button><div class="page-title">Diskussion</div><button class="icon-btn" data-menu="imp">•••</button></div>
+  <div class="top"><button class="back direct-game-exit" data-exit-game="imp" aria-label="Spiel verlassen"></button><div class="page-title">Diskussion</div><button class="icon-btn" data-menu="imp" aria-label="Menü"></button></div>
   <div class="pass"><div class="pass-icon" style="background:linear-gradient(145deg,#6f4318,#ff9c2c)">💬</div><h1 style="margin:20px 0 4px;font-size:37px">Zeit zu bluffen.</h1><p>Beschreibt den Begriff, ohne ihn direkt zu nennen.</p></div>
   <div class="two"><button class="secondary" data-open="impSetup">Einstellungen</button><button id="showImpResult" class="primary">Auflösen</button></div>
 </section>
 
 <section id="impResult" class="screen">
-  <div class="top"><button class="back" data-open="home">‹</button><div class="page-title">Auflösung</div><span style="width:43px"></span></div>
+  <div class="top"><button class="back" data-open="home" aria-label="Zurück"></button><div class="page-title">Auflösung</div><span style="width:43px"></span></div>
   <div class="content">
     <div style="padding:14px 0 2px;color:var(--pink);font-size:12px;font-weight:950;letter-spacing:1.1px">IMPOSTOR</div>
     <h1 style="margin:0 0 10px;font-size:36px">Erwischt. 🕵️</h1>
@@ -910,9 +917,9 @@
 
 <section id="wouldCard" class="screen">
   <div class="top">
-    <button class="back direct-game-exit" data-exit-game="would" aria-label="Spiel verlassen">×</button>
+    <button class="back direct-game-exit" data-exit-game="would" aria-label="Spiel verlassen"></button>
     <div class="page-title">Wer würde eher?</div>
-    <button class="icon-btn" data-menu="would">•••</button>
+    <button class="icon-btn" data-menu="would" aria-label="Menü"></button>
   </div>
   <div class="progress"><i id="wouldRoundProgress" style="background:linear-gradient(90deg,var(--pink),var(--orange))"></i></div>
 
@@ -939,7 +946,7 @@
 </section>
 
 <section id="wouldEnd" class="screen">
-  <div class="top"><button class="back" data-open="home">‹</button><div class="page-title">Runde beendet</div><span style="width:43px"></span></div>
+  <div class="top"><button class="back" data-open="home" aria-label="Zurück"></button><div class="page-title">Runde beendet</div><span style="width:43px"></span></div>
   <div class="pass">
     <div class="pass-icon orange">🤣</div>
     <h1 style="margin:20px 0 4px;font-size:37px">Das war eindeutig.</h1>
@@ -959,7 +966,7 @@
 
 
 <section id="knowledgeSetup" class="screen">
-  <div class="top"><button class="back" data-open="home">‹</button><div></div><button class="icon-btn" type="button">?</button></div>
+  <div class="top"><button class="back" data-open="home" aria-label="Zurück"></button><div></div><button class="icon-btn" type="button">?</button></div>
   <div class="game-hero"><div class="game-icon">🧠</div><h1 class="knowledge-gradient-title">Allgemein-<br>wissen</h1></div>
   <div class="settings-scroll">
     <div class="section-label">SCHWIERIGKEIT</div>
@@ -990,9 +997,9 @@
 
 <section id="knowledgeCard" class="screen">
   <div class="top">
-    <button class="back direct-game-exit" data-exit-game="knowledge" aria-label="Spiel verlassen">×</button>
+    <button class="back direct-game-exit" data-exit-game="knowledge" aria-label="Spiel verlassen"></button>
     <div class="page-title">Allgemeinwissen</div>
-    <button class="icon-btn" data-menu="knowledge">•••</button>
+    <button class="icon-btn" data-menu="knowledge" aria-label="Menü"></button>
   </div>
   <div class="progress"><i id="knowledgeProgress" class="knowledge-progress"></i></div>
   <div class="ball-card-area" id="knowledgeFlipArea">
@@ -1036,7 +1043,7 @@
 </section>
 
 <section id="knowledgeEnd" class="screen">
-  <div class="top"><button class="back" data-open="home">‹</button><div class="page-title">Dein Ergebnis</div><span style="width:43px"></span></div>
+  <div class="top"><button class="back" data-open="home" aria-label="Zurück"></button><div class="page-title">Dein Ergebnis</div><span style="width:43px"></span></div>
   <div class="quiz-result-wrap">
     <div id="knowledgeResultEmoji" class="quiz-result-emoji">🧠</div>
     <h1 id="knowledgeResultTitle" class="quiz-result-title">Starkes Wissen.</h1>
@@ -1057,7 +1064,7 @@
 </section>
 
 <section id="ballSetup" class="screen">
-  <div class="top"><button class="back" data-open="home">‹</button><div></div><button class="icon-btn" type="button">?</button></div>
+  <div class="top"><button class="back" data-open="home" aria-label="Zurück"></button><div></div><button class="icon-btn" type="button">?</button></div>
   <div class="game-hero"><div class="game-icon">⚽️</div><h1 style="background:linear-gradient(90deg,var(--mint),#8df0be);-webkit-background-clip:text;color:transparent">Ball<br>Knowledge</h1></div>
   <div class="settings-scroll">
     <div class="section-label">SCHWIERIGKEIT</div>
@@ -1098,9 +1105,9 @@
 
 <section id="ballCard" class="screen">
   <div class="top">
-    <button class="back direct-game-exit" data-exit-game="ball" aria-label="Spiel verlassen">×</button>
+    <button class="back direct-game-exit" data-exit-game="ball" aria-label="Spiel verlassen"></button>
     <div class="page-title">Ball Knowledge</div>
-    <button class="icon-btn" data-menu="ball">•••</button>
+    <button class="icon-btn" data-menu="ball" aria-label="Menü"></button>
   </div>
   <div class="progress"><i id="ballProgress" style="background:linear-gradient(90deg,var(--mint),var(--blue))"></i></div>
   <div class="ball-card-area" id="ballFlipArea">
@@ -1145,7 +1152,7 @@
 </section>
 
 <section id="ballEnd" class="screen">
-  <div class="top"><button class="back" data-open="home">‹</button><div class="page-title">Dein Ergebnis</div><span style="width:43px"></span></div>
+  <div class="top"><button class="back" data-open="home" aria-label="Zurück"></button><div class="page-title">Dein Ergebnis</div><span style="width:43px"></span></div>
   <div class="quiz-result-wrap">
     <div id="ballResultEmoji" class="quiz-result-emoji">🏆</div>
     <h1 id="ballResultTitle" class="quiz-result-title">Starker Auftritt.</h1>
@@ -4491,8 +4498,8 @@ const favoriteGames={
   impostor:{name:"Impostor",emoji:"🕵️",screen:"impSetup",className:"imp"},
   would:{name:"Wer würde eher?",emoji:"👉",screen:"wouldSetup",className:"would"},
   ball:{name:"Ball Knowledge",emoji:"⚽️",screen:"ballSetup",className:"ball"},
-  taboo:{name:"Tabu",emoji:"🚫",screen:"tabooSetup",className:"taboo"},
-  truth:{name:"Wahrheit oder Pflicht",emoji:"🎭",screen:"truthSetup",className:"truth"},
+  taboo:{name:"Tabu",emoji:"🤐",screen:"tabooSetup",className:"taboo"},
+  truth:{name:"Wahrheit oder Pflicht",emoji:"😈",screen:"truthSetup",className:"truth"},
   who:{name:"Wer bin ich?",emoji:"🤔",screen:"whoSetup",className:"who"},
   knowledge:{name:"Allgemeinwissen",emoji:"🧠",screen:"knowledgeSetup",className:"knowledge"},
   teamer:{name:"Team-Ausloser",emoji:"🎲",screen:"teamSetup",className:"teamer"},
@@ -4518,7 +4525,6 @@ function updateFavoriteIndicators(){
   });
   const header=document.getElementById("openFavorites");
   if(header){
-    header.textContent=favoriteIds.length?"♥":"♡";
     header.classList.toggle("has-favorites",favoriteIds.length>0);
     header.setAttribute("aria-label",favoriteIds.length?`Favoriten, ${favoriteIds.length} gespeichert`:"Favoriten");
   }
@@ -4717,6 +4723,7 @@ if ("serviceWorker" in navigator) {
     const screenLong=Math.max(screen.width,screen.height),screenShort=Math.min(screen.width,screen.height);
     const fullHeight=window.innerWidth>window.innerHeight?screenShort:screenLong;
     root.style.setProperty("--viewport-gap",(isIOS&&isStandalone?Math.max(0,fullHeight-window.innerHeight):0)+"px");
+    root.style.setProperty("--full-h",Math.max(fullHeight,window.innerHeight)+"px");
     root.style.setProperty("--viewport-width", width+"px");
     root.style.setProperty("--viewport-height", height+"px");
 
@@ -4760,40 +4767,39 @@ if ("serviceWorker" in navigator) {
 </div>
 
 <script>
-/* VYBE 10.1 – Startseite: Glaslinse im Dock folgt Finger und Wischen */
+/* VYBE 10.2 – Spielleiste: Glaslinse folgt Finger und Wischen, die Leiste rollt mit */
 (function(){
   const pager=document.getElementById("gamePager");
   const dock=document.getElementById("gameDock");
-  const items=[...dock.querySelectorAll(".dock-item")];
+  const track=dock.querySelector(".dock-track");
+  const items=[...track.querySelectorAll(".dock-item")];
   const cards=[...pager.children];
   const lens=document.createElement("span");
   lens.className="dock-lens";
-  dock.prepend(lens);
+  track.prepend(lens);
 
   const reduced=window.matchMedia("(prefers-reduced-motion: reduce)");
   const stiffness=320,damping=29;
-  let x=0,velocity=0,target=0,scale=1,scaleTarget=1,frame=0,last=0;
-  let dragging=false,pointerId=null,current=-1,grabIndex=-1;
+  let x=0,velocity=0,target=0,scale=1,scaleTarget=1;
+  let shift=0,shiftTarget=0,frame=0,last=0;
+  let dragging=false,pointerId=null,fingerX=0,current=-1,grabIndex=-1;
 
   const slotX=index=>items[index].offsetLeft;
-  const step=()=>items.length>1?slotX(1)-slotX(0):1;
+  const step=()=>slotX(1)-slotX(0);
   const clampIndex=value=>Math.max(0,Math.min(items.length-1,value));
-  function paint(){lens.style.transform=`translate3d(${x}px,0,0) scale(${scale})`}
-  function animate(now){
-    const dt=Math.min(.032,(now-last)/1000||.016);
-    last=now;
-    const force=stiffness*(target-x)-damping*velocity;
-    velocity+=force*dt;
-    x+=velocity*dt;
-    scale+=(scaleTarget-scale)*Math.min(1,dt*18);
-    paint();
-    const settled=Math.abs(target-x)<.3&&Math.abs(velocity)<6&&Math.abs(scaleTarget-scale)<.004;
-    if(settled){x=target;velocity=0;scale=scaleTarget;paint();frame=0;return}
-    frame=requestAnimationFrame(animate);
+  const minShift=()=>Math.min(0,dock.clientWidth-track.scrollWidth);
+  const clampShift=value=>Math.max(minShift(),Math.min(0,value));
+  const centerOn=position=>clampShift(dock.clientWidth/2-position-items[0].offsetWidth/2);
+  function paint(){
+    lens.style.transform=`translate3d(${x}px,0,0) scale(${scale})`;
+    track.style.transform=`translate3d(${shift}px,0,0)`;
   }
-  function run(){
-    if(reduced.matches){x=target;scale=1;paint();return}
-    if(!frame){last=performance.now();frame=requestAnimationFrame(animate)}
+  function fingerTarget(){
+    const raw=fingerX-dock.getBoundingClientRect().left-shift-items[0].offsetWidth/2;
+    const min=slotX(0),max=slotX(items.length-1);
+    if(raw<min)return min-Math.sqrt(min-raw)*2;
+    if(raw>max)return max+Math.sqrt(raw-max)*2;
+    return raw;
   }
   function select(index){
     if(index===current)return;
@@ -4806,41 +4812,61 @@ if ("serviceWorker" in navigator) {
     pager.scrollTo({left:pager.clientWidth*index,behavior:"auto"});
     select(index);
   }
-  function fingerTarget(event){
-    const box=dock.getBoundingClientRect();
-    const raw=event.clientX-box.left-items[0].offsetWidth/2;
-    const min=slotX(0),max=slotX(items.length-1);
-    if(raw<min)return min-Math.sqrt(min-raw)*2;
-    if(raw>max)return max+Math.sqrt(raw-max)*2;
-    return raw;
+  function followFinger(){
+    target=fingerTarget();
+    const index=clampIndex(Math.round((target-slotX(0))/step()));
+    if(index!==current){jump(index);triggerHaptic("light")}
+  }
+  function animate(now){
+    const dt=Math.min(.032,(now-last)/1000||.016);
+    last=now;
+    if(dragging){
+      const box=dock.getBoundingClientRect(),edge=52;
+      if(fingerX<box.left+edge)shiftTarget=clampShift(shiftTarget+300*dt);
+      if(fingerX>box.right-edge)shiftTarget=clampShift(shiftTarget-300*dt);
+      followFinger();
+    }
+    velocity+=(stiffness*(target-x)-damping*velocity)*dt;
+    x+=velocity*dt;
+    scale+=(scaleTarget-scale)*Math.min(1,dt*18);
+    shift+=(shiftTarget-shift)*Math.min(1,dt*12);
+    paint();
+    const settled=!dragging&&Math.abs(target-x)<.3&&Math.abs(velocity)<6&&Math.abs(scaleTarget-scale)<.004&&Math.abs(shiftTarget-shift)<.3;
+    if(settled){x=target;velocity=0;scale=scaleTarget;shift=shiftTarget;paint();frame=0;return}
+    frame=requestAnimationFrame(animate);
+  }
+  function run(){
+    if(reduced.matches){x=target;scale=1;shift=shiftTarget;paint();return}
+    if(!frame){last=performance.now();frame=requestAnimationFrame(animate)}
   }
   dock.addEventListener("pointerdown",event=>{
     pointerId=event.pointerId;
     dock.setPointerCapture(pointerId);
     dragging=true;
     grabIndex=current;
+    fingerX=event.clientX;
     dock.classList.add("dragging");
     pager.classList.add("free");
-    target=fingerTarget(event);
-    scaleTarget=1.24;
+    scaleTarget=1.1;
+    followFinger();
     triggerHaptic("light");
     run();
   });
   dock.addEventListener("pointermove",event=>{
     if(!dragging||event.pointerId!==pointerId)return;
-    target=fingerTarget(event);
-    const index=clampIndex(Math.round((target-slotX(0))/step()));
-    if(index!==current){jump(index);triggerHaptic("light")}
+    fingerX=event.clientX;
     run();
   });
   function release(event){
     if(!dragging||event.pointerId!==pointerId)return;
     dragging=false;
     pointerId=null;
-    const index=clampIndex(Math.round((target-slotX(0))/step()));
+    fingerX=event.clientX;
+    const index=clampIndex(Math.round((fingerTarget()-slotX(0))/step()));
     jump(index);
     if(index!==grabIndex)triggerHaptic("medium");
     target=slotX(index);
+    shiftTarget=centerOn(target);
     scaleTarget=1;
     dock.classList.remove("dragging");
     pager.classList.remove("free");
@@ -4854,10 +4880,11 @@ if ("serviceWorker" in navigator) {
     const progress=pager.scrollLeft/Math.max(1,pager.clientWidth);
     const index=clampIndex(Math.round(progress));
     target=slotX(0)+progress*step();
-    if(!frame){x=target;paint()}
+    shiftTarget=centerOn(target);
+    if(!frame){x=target;shift=shiftTarget;paint()}
     if(index!==current){select(index);triggerHaptic("light")}
   },{passive:true});
-  window.addEventListener("resize",()=>{target=x=slotX(Math.max(0,current));paint()},{passive:true});
+  window.addEventListener("resize",()=>{target=x=slotX(Math.max(0,current));shiftTarget=shift=centerOn(target);paint()},{passive:true});
   select(0);
   target=x=slotX(0);
   paint();
