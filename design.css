@@ -1,5 +1,5 @@
 /* ==========================================================
-   VYBE 10.3 – Designsystem
+   VYBE 10.4 – Designsystem
    Idee: leuchtende Farbwelten wie iPhone-Wallpaper, darauf echtes Glas.
    Alle Ansichten liegen in einer Farbwelt und teilen dieselben Glasflächen.
    setzt die Farbwelt --c1 bis --c3.
@@ -980,3 +980,22 @@ html.gravity .segmented{display:contents}
 html.gravity .segmented::before{display:none}
 html.gravity .segmented button{background:rgba(255,255,255,.2);padding:0 12px;color:#fff}
 html.gravity .panel:has(.appearance-row) .appearance-row{max-width:none}
+
+/* Easter-Egg-Hinweis */
+.egg-popup{
+  position:fixed;z-index:9000;left:50%;top:50%;display:flex;flex-direction:column;align-items:center;gap:10px;
+  width:min(76vw,290px);padding:26px 22px;border-radius:32px;text-align:center;color:#fff;
+  font-family:var(--display);font-size:22px;letter-spacing:-.02em;line-height:1.14;
+  background:var(--glass);box-shadow:var(--lg);
+  -webkit-backdrop-filter:blur(34px) saturate(180%);backdrop-filter:blur(34px) saturate(180%);
+  opacity:0;transform:translate3d(-50%,-50%,0) scale(.72);pointer-events:none;
+  transition:opacity .22s var(--ease),transform var(--spring-t) var(--spring);
+}
+.egg-popup.show{opacity:1;transform:translate3d(-50%,-50%,0) scale(1)}
+.egg-emoji{font-size:54px;line-height:1}
+
+.who-instruction{margin:6px 0 0;font-size:18px;line-height:1.32;color:var(--muted)}
+html.gravity :is(.section-label,.settings-page p,.progress,.team73-progress-track,.quiz-auto-note,.game-hero .game-icon){visibility:hidden}
+html.gravity .row{max-width:168px}
+html.gravity .appearance-row{width:max-content;max-width:calc(100vw - 16px)}
+html.gravity .appearance-row .row-copy{display:none}

@@ -36,3 +36,10 @@ VYBE 10.3
 - Easter Egg neu: fünfmal auf Deniz tippen dreht die App, alles fällt nach unten und
   lässt sich werfen. Fünfmal erneut tippen stellt alles wieder her.
 - Service-Worker-Cache: vybe-pwa-v46
+
+VYBE 10.4
+- Easter Egg neu: Pop-up, danach plumpst alles aufrecht und ohne Drehen nach unten.
+- Schwerkraft-Modus endet beim Schließen der App automatisch.
+- Alle Spiele inhaltlich geprüft und korrigiert, siehe Abschlussbericht.
+- Wer bin ich: klare Anweisung, das Handy an die Stirn zu halten.
+- Service-Worker-Cache: vybe-pwa-v47
