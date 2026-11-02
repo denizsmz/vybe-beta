@@ -1,5 +1,5 @@
 /* ==========================================================
-   VYBE 10.4 – Designsystem
+   VYBE 2.1 – Designsystem
    Idee: leuchtende Farbwelten wie iPhone-Wallpaper, darauf echtes Glas.
    Alle Ansichten liegen in einer Farbwelt und teilen dieselben Glasflächen.
    setzt die Farbwelt --c1 bis --c3.
@@ -295,12 +295,6 @@ button.row:active{background:var(--fill)}
 .switch:checked{background:#34c759}
 .switch:checked::before{transform:translate3d(20px,0,0)}
 .switch:disabled{opacity:.5}
-
-/* Drei-Wege-Auswahl */
-.appearance-row{flex-wrap:wrap}
-.appearance-row .row-copy{flex-basis:100%}
-.segmented{display:grid;grid-template-columns:repeat(3,1fr);flex:1 0 100%;gap:2px;padding:3px;border-radius:13px;background:var(--fill)}
-.segmented button{min-height:38px;border-radius:10px;font-size:14.5px;font-weight:550;color:var(--muted);transition:background .2s var(--ease),color .2s}
 
 /* Zahlenwahl */
 .number-choice-group,.knowledge-count-options{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:6px;flex:none;max-width:60%}
@@ -760,9 +754,6 @@ input::placeholder{color:var(--faint)}
 }
 
 /* ---------- Einstellungen und Barrierefreiheit ---------- */
-body.large-text .app{zoom:1.1}
-body.high-contrast{--muted:rgba(255,255,255,.82);--faint:rgba(255,255,255,.62);--hair:rgba(255,255,255,.3)}
-body.reduce-motion *,body.reduce-motion *::before,body.reduce-motion *::after{animation:none!important;transition:none!important}
 @media (prefers-reduced-motion:reduce){
   .screen.active,html[data-nav="back"] .screen.active,.menu.open{animation-name:fade!important;animation-duration:.18s!important}
   .flip,.would-flip,.ball-flip,.team73-reveal-card{transition-duration:.01s}
@@ -841,7 +832,6 @@ body.reduce-motion *,body.reduce-motion *::before,body.reduce-motion *::after{an
 :is(#settings,#favorites,#stats,#releaseNotes,#dataInfo) .section-label{margin:26px 16px 7px;font-size:13px;font-weight:400;color:var(--muted);text-transform:uppercase}
 .settings-page::before{content:"Einstellungen";display:block;margin:2px 0 6px 4px;font-family:var(--display);font-size:34px;font-weight:700;letter-spacing:-.025em}
 #settings .page-title{opacity:0}
-.appearance-row .row-copy{flex-basis:auto}
 .knowledge-subject-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
 .knowledge-subject{min-width:0;overflow-wrap:anywhere}
 
@@ -903,14 +893,6 @@ button:active,.category-card:active,.ball-option:active{transition-duration:.1s,
 .panel,.face,.play-card,.ball-option,.category-card{animation:fade-up .46s var(--spring) both}
 .flip-area .face,.ball-face,.would-face{animation:none}
 
-/* Auswahl-Schieber: gleitet wie im System */
-.segmented{position:relative}
-.segmented::before{
-  content:"";position:absolute;left:3px;top:3px;bottom:3px;width:calc((100% - 6px) / 3);border-radius:10px;background:#fff;
-  box-shadow:0 3px 10px rgba(0,0,0,.16);transform:translate3d(calc(var(--seg,0) * 100%),0,0);transition:transform var(--spring-t) var(--spring);
-}
-.segmented button{position:relative;z-index:1;background:none;color:#fff;transition:color .2s var(--ease)}
-.segmented button.active{color:#111114;font-weight:650}
 .switch{transition:background .22s var(--ease)}
 @media (prefers-reduced-motion:reduce){
   .panel,.face,.play-card,.ball-option,.category-card,.game-pager .game-card.current .game-art{animation:none}
@@ -935,19 +917,6 @@ html{background-size:100% var(--full-h,100%)}
 .favorites-grid .game-art{width:auto;height:auto;font-size:30px;line-height:1;background:none;-webkit-mask:none;mask:none}
 
 
-/* ---------- Dunkel: schwarzer Raum mit Farblicht von oben, wie Apple Music ---------- */
-html:not(.theme-light){
-  --deep:#08070c;--surface:rgba(255,255,255,.1);--fill:rgba(255,255,255,.12);--fill-2:rgba(255,255,255,.2);
-  --glass:rgba(58,58,66,.56);--glass-edge:rgba(255,255,255,.2);--hair:rgba(255,255,255,.15);
-  background-color:#08070c;
-  background-image:
-    radial-gradient(130% 50% at 50% -8%,color-mix(in srgb,var(--b1) 74%,transparent),transparent 74%),
-    radial-gradient(90% 34% at 100% 30%,color-mix(in srgb,var(--b2) 38%,transparent),transparent 72%);
-}
-html:not(.theme-light) :is(.game-pager .game-art,.game-hero .game-icon,.team73-hero-icon,.backface,.backface.imp,.ball-back,.would-back,.who-play-card,.truth-v72-card,.team73-card-front,.team73-card-back){
-  background:linear-gradient(150deg,color-mix(in srgb,var(--b1) 62%,transparent),color-mix(in srgb,var(--b2) 30%,transparent));
-}
-html:not(.theme-light) .switch{background:rgba(120,120,128,.36)}
 .switch:not(:checked){background:rgba(255,255,255,.28)}
 .switch:checked{background:#34c759}
 .switch::before{background:#fff}
@@ -975,11 +944,6 @@ html.gravity .row-title{font-size:14px;font-weight:600;white-space:nowrap;overfl
 html.gravity .settings-page::before{display:none}
 html.gravity #settings .page-title{opacity:1}
 html.gravity .section-label,html.gravity .made-by{width:max-content;padding:8px 12px;margin:4px;color:#fff;font-size:13px}
-html.gravity .appearance-row{flex-wrap:nowrap}
-html.gravity .segmented{display:contents}
-html.gravity .segmented::before{display:none}
-html.gravity .segmented button{background:rgba(255,255,255,.2);padding:0 12px;color:#fff}
-html.gravity .panel:has(.appearance-row) .appearance-row{max-width:none}
 
 /* Easter-Egg-Hinweis */
 .egg-popup{
@@ -997,5 +961,5 @@ html.gravity .panel:has(.appearance-row) .appearance-row{max-width:none}
 .who-instruction{margin:6px 0 0;font-size:18px;line-height:1.32;color:var(--muted)}
 html.gravity :is(.section-label,.settings-page p,.progress,.team73-progress-track,.quiz-auto-note,.game-hero .game-icon){visibility:hidden}
 html.gravity .row{max-width:168px}
-html.gravity .appearance-row{width:max-content;max-width:calc(100vw - 16px)}
-html.gravity .appearance-row .row-copy{display:none}
+html.gravity #settings .row-icon{display:none}
+html.gravity .row{max-width:188px}

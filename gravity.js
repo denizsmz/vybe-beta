@@ -4,7 +4,7 @@
    wieder her. Der Modus wird nicht gespeichert: Neustart bedeutet Normalzustand. */
 (function(){
   const SELECTOR="h1,h2,button,.row,.page-title,.wordmark,.made-by,.pass-name,.flip-area,.would-card-area,.ball-card-area,.play-card,.stat-tile,.category-card,.ball-option,.player-row,.result-row,.settings74-note-card,.quiz-percent-ring,.team73-stage,.team73-live-card,.player-summary,.quiz-live-score,.ball-counter,.game-card.current>*";
-  const MAX_BODIES=34,GRAVITY=2400,BOUNCE=.16,DRAG_THRESHOLD=8,POPUP_TIME=1500,SLOTS=3;
+  const MAX_BODIES=34,GRAVITY=2400,BOUNCE=.48,DRAG_THRESHOLD=8,POPUP_TIME=1500,SLOTS=2;
 
   const app=document.querySelector(".app");
   const root=document.documentElement;
@@ -90,8 +90,9 @@
     triggerHaptic("light");
   }
   function land(body,speed){
-    if(speed>260){
-      body.squash=Math.min(.16,speed/9000);
+    if(speed>180){
+      body.squash=Math.min(.24,speed/6000);
+      body.vx+=(Math.random()-.5)*Math.min(320,speed*.22);
       thud(speed);
     }
   }
@@ -104,6 +105,7 @@
       for(let j=i+1;j<bodies.length;j++){
         const upper=bodies[j];
         if(upper===held||upper.delay>0)continue;
+        if(upper.targetX!==null&&Math.abs(upper.x-upper.targetX)>6)continue;
         const overlapX=Math.min(lower.x+lower.w,upper.x+upper.w)-Math.max(lower.x,upper.x);
         const overlapY=Math.min(lower.y+lower.h,upper.y+upper.h)-Math.max(lower.y,upper.y);
         if(overlapX<=0||overlapY<=0)continue;
@@ -112,10 +114,12 @@
           if(upper.vy>0){
             land(upper,upper.vy);
             upper.targetX=null;
-            upper.vy=upper.vy*-BOUNCE;
-            if(Math.abs(upper.vy)<50)upper.vy=0;
+            const hit=upper.vy;
+            upper.vy=hit*-BOUNCE;
+            if(Math.abs(upper.vy)<70)upper.vy=0;
+            if(hit>420&&lower!==held){lower.vy-=hit*.14;lower.squash=Math.min(.14,hit/9000)}
           }
-          upper.vx*=.72;
+          upper.vx*=.86;
         }else{
           const push=overlapX/2,direction=upper.x+upper.w/2<lower.x+lower.w/2?-1:1;
           upper.x+=direction*push;
@@ -133,6 +137,7 @@
       body.vy+=GRAVITY*dt;
       if(body.targetX!==null)body.x+=(body.targetX-body.x)*Math.min(1,dt*7);
       body.vx*=.998;
+      if(Math.abs(body.vx)<6)body.vx=0;
       body.x+=body.vx*dt;
       body.y+=body.vy*dt;
       if(body.x<0){body.x=0;body.vx=Math.abs(body.vx)*.3}
@@ -141,12 +146,12 @@
         body.y=size.height-body.h;
         if(body.vy>0)land(body,body.vy);
         body.targetX=null;
-        body.vy=body.vy>120?-body.vy*BOUNCE:0;
-        body.vx*=.8;
+        body.vy=body.vy>150?-body.vy*BOUNCE:0;
+        body.vx*=.82;
       }
     });
     for(let i=0;i<4;i++)separate();
-    bodies.forEach(body=>{body.squash*=.86});
+    bodies.forEach(body=>{body.squash*=.88});
   }
   function paint(){
     bodies.forEach(body=>{

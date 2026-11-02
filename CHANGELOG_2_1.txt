@@ -43,3 +43,9 @@ VYBE 10.4
 - Alle Spiele inhaltlich geprüft und korrigiert, siehe Abschlussbericht.
 - Wer bin ich: klare Anweisung, das Handy an die Stirn zu halten.
 - Service-Worker-Cache: vybe-pwa-v47
+
+VYBE 2.1 (neue Versionsnummer)
+- Nur noch ein Erscheinungsbild, Einstellungen aufgeräumt.
+- Versionsnummer in den Einstellungen sichtbar.
+- Easter Egg: Teile bouncen lustig und stoßen sich an.
+- Service-Worker-Cache: vybe-pwa-v48
