@@ -9,7 +9,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta id="themeColorMeta" name="theme-color" content="#0b0a0e">
 <meta name="color-scheme" content="dark light">
-<title>VYBE 10</title>
+<title>VYBE 10.1</title>
 <link rel="stylesheet" href="./design.css">
 
   <meta name="apple-mobile-web-app-title" content="VYBE">
@@ -761,7 +761,7 @@
     </div>
 
     <div class="section-label">ÜBER VYBE</div>
-    <div class="panel settings74-panel"><div class="row"><div class="row-icon">ℹ️</div><div class="row-copy"><div class="row-title">Version</div><div class="row-sub">VYBE 10</div></div><div class="settings74-version-dot"></div></div></div>
+    <div class="panel settings74-panel"><div class="row"><div class="row-icon">ℹ️</div><div class="row-copy"><div class="row-title">Version</div><div class="row-sub">VYBE 10.1</div></div><div class="settings74-version-dot"></div></div></div>
     <div class="made-by">Made by <span id="denizEasterEggTrigger">Deniz</span></div>
   </div>
 </section>
@@ -769,7 +769,7 @@
 <section id="releaseNotes" class="screen">
   <div class="top"><button class="back" data-open="settings">‹</button><div class="page-title">Was ist neu?</div><span style="width:43px"></span></div>
   <div class="settings-scroll settings74-detail-page">
-    <div class="settings74-release-hero"><span>🚀</span><div><div class="settings74-kicker">VERSION 10</div><h2>Was sich in VYBE verbessert hat</h2></div></div>
+    <div class="settings74-release-hero"><span>🚀</span><div><div class="settings74-kicker">VERSION 10.1</div><h2>Was sich in VYBE verbessert hat</h2></div></div>
     <div class="settings74-note-card"><strong>✨ Komplett neue App</strong><p>Wische durch die Spiele, wähle im Dock und tauche in die Farbe jedes Spiels ein.</p></div>
     <div class="settings74-note-card"><strong>📚 Mehr Inhalte</strong><p>Neue Fächer, Fragen, Kategorien, Personen, Begriffe und Fußball-Fragetypen aus 7.1.</p></div>
     <div class="settings74-note-card"><strong>🎯 Überarbeitete Spiele</strong><p>Neuer Wahrheit-oder-Pflicht-Ablauf, größerer Tabu-Timer und Abbruchstatistiken aus 7.2.</p></div>
@@ -1336,6 +1336,9 @@ document.addEventListener("visibilitychange",()=>{
   else sessionStartedAt=Date.now();
 });
 document.addEventListener("touchstart",()=>{},{passive:true});
+document.addEventListener("click",event=>{
+  if(event.isTrusted&&event.target.closest("button,.switch,.flip-area,.would-card-area,.ball-card-area"))triggerHaptic("light");
+},true);
 
 const SETTINGS_KEY="vybe_app_settings_v1";
 const GAME_STATE_KEY="vybe_game_state_v1";
@@ -1363,6 +1366,7 @@ function loadAppSettings(){
       appSettings={...defaultAppSettings,...saved};
       if(typeof saved.timerSounds!=="boolean"&&typeof saved.sounds==="boolean")appSettings.timerSounds=saved.sounds;
       delete appSettings.sounds;
+      if(!saved.hapticsEnabledV2){appSettings.vibration=true;appSettings.hapticsEnabledV2=true}
       if(!["dark","light","system"].includes(saved.appearance))appSettings.appearance=appSettings.darkMode?"dark":"light";
     }
   }catch(error){
@@ -1401,7 +1405,9 @@ function applyAppSettings(){
   appSettings.darkMode=appSettings.appearance==="system"?!systemLightQuery.matches:appSettings.appearance==="dark";
   document.body.classList.toggle("light-theme",!appSettings.darkMode);
   document.documentElement.classList.toggle("theme-light",!appSettings.darkMode);
-  document.getElementById("themeColorMeta")?.setAttribute("content",appSettings.darkMode?"#000000":"#f2f2f7");
+  const appearanceIndex=["dark","light","system"].indexOf(appSettings.appearance);
+  document.getElementById("appearanceControl")?.style.setProperty("--seg",String(Math.max(0,appearanceIndex)));
+  if(typeof setRoom==="function"&&document.querySelector(".screen.active"))setRoom(document.querySelector(".screen.active").id);
   document.querySelectorAll("[data-appearance]").forEach(button=>{
     const active=button.dataset.appearance===appSettings.appearance;
     button.classList.toggle("active",active);
@@ -1534,7 +1540,8 @@ function updateHapticSupportText(){
   const nativeSupport=Boolean(window.webkit?.messageHandlers?.haptics||window.Capacitor?.Plugins?.Haptics),webSupport=Boolean(navigator.vibrate),apple=/iPhone|iPad|iPod/i.test(navigator.userAgent);
   if(nativeSupport){text.textContent="Native Haptik ist verfügbar";toggle.disabled=false}
   else if(webSupport&&!apple){text.textContent="Web-Vibration ist verfügbar";toggle.disabled=false}
-  else{text.textContent="In iPhone-Web-Apps derzeit nicht verfügbar";toggle.disabled=true;appSettings.vibration=false;toggle.checked=false;saveAppSettings()}
+  else if(apple){text.textContent="Feine Rückmeldung beim Tippen";toggle.disabled=false}
+  else{text.textContent="Auf diesem Gerät nicht verfügbar";toggle.disabled=true;appSettings.vibration=false;toggle.checked=false;saveAppSettings()}
 }
 function applySpicyContentSetting(){
   if(!appSettings.spicyContent){
@@ -1857,10 +1864,8 @@ function bindQuizSwipe({areaId,flipId,isRevealed,onRate}){
 
 let menuGame="imp",resumeScreen="home";
 
-function buzz(pattern=12){
-  if(appSettings.vibration){
-    try{navigator.vibrate&&navigator.vibrate(pattern)}catch(error){}
-  }
+function buzz(){
+  triggerHaptic("light");
 }
 let navigatingBack=false;
 document.addEventListener("click",event=>{
@@ -1877,13 +1882,17 @@ function roomFor(id){
   const key=Object.keys(roomPrefixes).find(prefix=>id.startsWith(prefix));
   return key?roomPrefixes[key]:null;
 }
+const roomTop={imp:"#ff2d78",would:"#ffb300",ball:"#34d865",taboo:"#c95cf5",truth:"#ff9f0a",who:"#4fd8f5",knowledge:"#40c4fa",teamer:"#ffb800",werewolf:"#8f7bff"};
+function deepen(hex){
+  const value=parseInt(hex.slice(1),16),part=shift=>Math.round((value>>shift&255)*.78);
+  return "#"+[16,8,0].map(shift=>part(shift).toString(16).padStart(2,"0")).join("");
+}
 function setRoom(id){
   if(id==="categories"||id==="newCategories")return;
-  const root=document.documentElement;
-  const room=id==="home"?pagerRoom():roomFor(id);
-  if(room)root.dataset.room=room;
-  else delete root.dataset.room;
-  requestAnimationFrame(()=>document.getElementById("themeColorMeta")?.setAttribute("content",getComputedStyle(root).getPropertyValue("--deep").trim()||"#0b0a0e"));
+  const root=document.documentElement,room=roomFor(id)||pagerRoom()||"imp";
+  root.dataset.room=room;
+  const top=roomTop[room];
+  document.getElementById("themeColorMeta")?.setAttribute("content",root.classList.contains("theme-light")?top:deepen(top));
 }
 function go(id){
   document.documentElement.dataset.nav=navigatingBack?"back":"forward";
@@ -3343,8 +3352,23 @@ document.addEventListener("click",event=>{
 });
 
 
+let hapticSwitchLabel=null;
+function iosHapticTick(){
+  if(!hapticSwitchLabel){
+    hapticSwitchLabel=document.createElement("label");
+    hapticSwitchLabel.setAttribute("aria-hidden","true");
+    hapticSwitchLabel.style.cssText="position:fixed;left:-99px;top:0;width:1px;height:1px;opacity:0;pointer-events:none";
+    hapticSwitchLabel.innerHTML='<input type="checkbox" switch tabindex="-1">';
+    document.body.append(hapticSwitchLabel);
+  }
+  hapticSwitchLabel.click();
+}
+let lastHapticAt=0;
 function triggerHaptic(style="light"){
   if(!appSettings?.vibration)return;
+  const now=Date.now();
+  if(now-lastHapticAt<28)return;
+  lastHapticAt=now;
   try{
     if(window.webkit?.messageHandlers?.haptics){
       window.webkit.messageHandlers.haptics.postMessage({style});return;
@@ -3353,6 +3377,11 @@ function triggerHaptic(style="light"){
       const h=window.Capacitor.Plugins.Haptics;
       if(style==="success"&&h.notification)h.notification({type:"SUCCESS"});
       else if(h.impact)h.impact({style:style==="heavy"?"HEAVY":style==="medium"?"MEDIUM":"LIGHT"});
+      return;
+    }
+    if(!navigator.vibrate&&/iPad|iPhone|iPod/.test(navigator.userAgent)){
+      iosHapticTick();
+      if(style==="success"||style==="heavy")setTimeout(iosHapticTick,90);
       return;
     }
     if(navigator.vibrate){
@@ -4686,8 +4715,8 @@ if ("serviceWorker" in navigator) {
 
     root.style.setProperty("--app-height", height+"px");
     const screenLong=Math.max(screen.width,screen.height),screenShort=Math.min(screen.width,screen.height);
-    const fullHeight=isIOS&&isStandalone?(window.innerWidth>window.innerHeight?screenShort:screenLong):0;
-    root.style.setProperty("--app-h",Math.max(fullHeight,window.innerHeight)+"px");
+    const fullHeight=window.innerWidth>window.innerHeight?screenShort:screenLong;
+    root.style.setProperty("--viewport-gap",(isIOS&&isStandalone?Math.max(0,fullHeight-window.innerHeight):0)+"px");
     root.style.setProperty("--viewport-width", width+"px");
     root.style.setProperty("--viewport-height", height+"px");
 
@@ -4731,28 +4760,107 @@ if ("serviceWorker" in navigator) {
 </div>
 
 <script>
-/* VYBE 10 – Startseite: Wischen und Dock halten Farbe und Auswahl synchron */
+/* VYBE 10.1 – Startseite: Glaslinse im Dock folgt Finger und Wischen */
 (function(){
   const pager=document.getElementById("gamePager");
   const dock=document.getElementById("gameDock");
-  const items=[...dock.children];
-  let current=-1,frame=0;
-  function sync(){
-    frame=0;
-    const index=Math.round(pager.scrollLeft/Math.max(1,pager.clientWidth));
+  const items=[...dock.querySelectorAll(".dock-item")];
+  const cards=[...pager.children];
+  const lens=document.createElement("span");
+  lens.className="dock-lens";
+  dock.prepend(lens);
+
+  const reduced=window.matchMedia("(prefers-reduced-motion: reduce)");
+  const stiffness=320,damping=29;
+  let x=0,velocity=0,target=0,scale=1,scaleTarget=1,frame=0,last=0;
+  let dragging=false,pointerId=null,current=-1,grabIndex=-1;
+
+  const slotX=index=>items[index].offsetLeft;
+  const step=()=>items.length>1?slotX(1)-slotX(0):1;
+  const clampIndex=value=>Math.max(0,Math.min(items.length-1,value));
+  function paint(){lens.style.transform=`translate3d(${x}px,0,0) scale(${scale})`}
+  function animate(now){
+    const dt=Math.min(.032,(now-last)/1000||.016);
+    last=now;
+    const force=stiffness*(target-x)-damping*velocity;
+    velocity+=force*dt;
+    x+=velocity*dt;
+    scale+=(scaleTarget-scale)*Math.min(1,dt*18);
+    paint();
+    const settled=Math.abs(target-x)<.3&&Math.abs(velocity)<6&&Math.abs(scaleTarget-scale)<.004;
+    if(settled){x=target;velocity=0;scale=scaleTarget;paint();frame=0;return}
+    frame=requestAnimationFrame(animate);
+  }
+  function run(){
+    if(reduced.matches){x=target;scale=1;paint();return}
+    if(!frame){last=performance.now();frame=requestAnimationFrame(animate)}
+  }
+  function select(index){
     if(index===current)return;
     current=index;
     items.forEach((item,i)=>item.classList.toggle("active",i===index));
+    cards.forEach((card,i)=>card.classList.toggle("current",i===index));
     if(document.getElementById("home").classList.contains("active"))setRoom("home");
   }
-  pager.addEventListener("scroll",()=>{if(!frame)frame=requestAnimationFrame(sync)},{passive:true});
-  dock.addEventListener("click",event=>{
-    const item=event.target.closest("[data-slide]");
-    if(!item)return;
+  function jump(index){
+    pager.scrollTo({left:pager.clientWidth*index,behavior:"auto"});
+    select(index);
+  }
+  function fingerTarget(event){
+    const box=dock.getBoundingClientRect();
+    const raw=event.clientX-box.left-items[0].offsetWidth/2;
+    const min=slotX(0),max=slotX(items.length-1);
+    if(raw<min)return min-Math.sqrt(min-raw)*2;
+    if(raw>max)return max+Math.sqrt(raw-max)*2;
+    return raw;
+  }
+  dock.addEventListener("pointerdown",event=>{
+    pointerId=event.pointerId;
+    dock.setPointerCapture(pointerId);
+    dragging=true;
+    grabIndex=current;
+    dock.classList.add("dragging");
+    pager.classList.add("free");
+    target=fingerTarget(event);
+    scaleTarget=1.24;
     triggerHaptic("light");
-    pager.scrollTo({left:pager.clientWidth*Number(item.dataset.slide),behavior:"smooth"});
+    run();
   });
-  sync();
+  dock.addEventListener("pointermove",event=>{
+    if(!dragging||event.pointerId!==pointerId)return;
+    target=fingerTarget(event);
+    const index=clampIndex(Math.round((target-slotX(0))/step()));
+    if(index!==current){jump(index);triggerHaptic("light")}
+    run();
+  });
+  function release(event){
+    if(!dragging||event.pointerId!==pointerId)return;
+    dragging=false;
+    pointerId=null;
+    const index=clampIndex(Math.round((target-slotX(0))/step()));
+    jump(index);
+    if(index!==grabIndex)triggerHaptic("medium");
+    target=slotX(index);
+    scaleTarget=1;
+    dock.classList.remove("dragging");
+    pager.classList.remove("free");
+    run();
+  }
+  dock.addEventListener("pointerup",release);
+  dock.addEventListener("pointercancel",release);
+  dock.addEventListener("click",event=>event.stopPropagation());
+  pager.addEventListener("scroll",()=>{
+    if(dragging)return;
+    const progress=pager.scrollLeft/Math.max(1,pager.clientWidth);
+    const index=clampIndex(Math.round(progress));
+    target=slotX(0)+progress*step();
+    if(!frame){x=target;paint()}
+    if(index!==current){select(index);triggerHaptic("light")}
+  },{passive:true});
+  window.addEventListener("resize",()=>{target=x=slotX(Math.max(0,current));paint()},{passive:true});
+  select(0);
+  target=x=slotX(0);
+  paint();
   setRoom("home");
 })();
 </script>

@@ -13,3 +13,10 @@ BEHOBEN
 UNVERÄNDERT
 - Spielregeln, Inhalte, Spielstände und Speicherschlüssel.
 - Service-Worker-Cache: vybe-pwa-v43
+
+VYBE 10.1
+- Dock mit Glaslinse: gedrückt halten und wischen, das Spiel wechselt live.
+- Alle Karten und Einstellungen in Liquid Glass innerhalb der Farbwelt.
+- Einheitliche Bewegung, Haptik auf iPhones über den System-Schalter.
+- Symbole oben mittig, Abstand unten an die tatsächlich verfügbare Höhe angepasst.
+- Service-Worker-Cache: vybe-pwa-v44
