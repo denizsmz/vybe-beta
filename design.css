@@ -830,3 +830,5 @@ body.reduce-motion *,body.reduce-motion *::before,body.reduce-motion *::after{an
 .quiz-result-wrap,.result-center{justify-content:safe center;margin-left:0;margin-right:0;padding-left:0;padding-right:0}
 .result-center>.two{width:100%;margin-top:auto;padding-top:14px;flex:none}
 .would75-summary-head>*{display:block}
+.pass{justify-content:safe center;overflow-y:auto;scrollbar-width:none}
+.pass>*{flex:none}
