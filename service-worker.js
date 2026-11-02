@@ -1,9 +1,9 @@
-const CACHE_VERSION = "vybe-pwa-v48";
+const CACHE_VERSION = "vybe-pwa-v49";
 const APP_SHELL = [
   "./",
   "./index.html",
-  "./design.css",
-  "./gravity.js",
+  "./design.css?v=2.1.1",
+  "./gravity.js?v=2.1.1",
   "./manifest.webmanifest",
   "./icons/icon-180.png",
   "./icons/icon-192.png",
@@ -15,7 +15,7 @@ const APP_SHELL = [
 self.addEventListener("install", (event) => {
   event.waitUntil(
     caches.open(CACHE_VERSION).then((cache) =>
-      Promise.allSettled(APP_SHELL.map((url) => cache.add(url)))
+      Promise.allSettled(APP_SHELL.map((url) => cache.add(new Request(url, { cache: "reload" }))))
     )
   );
   self.skipWaiting();
@@ -42,6 +42,19 @@ self.addEventListener("fetch", (event) => {
           return response;
         })
         .catch(() => caches.match("./index.html"))
+    );
+    return;
+  }
+
+  if (/\.(css|js)(\?|$)/.test(event.request.url)) {
+    event.respondWith(
+      fetch(event.request.url, { cache: "no-cache" })
+        .then((response) => {
+          const copy = response.clone();
+          caches.open(CACHE_VERSION).then((cache) => cache.put(event.request, copy));
+          return response;
+        })
+        .catch(() => caches.match(event.request))
     );
     return;
   }
