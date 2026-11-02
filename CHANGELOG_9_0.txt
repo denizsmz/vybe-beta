@@ -1,0 +1,23 @@
+VYBE 9 – Komplett neues Design
+
+DESIGN-IDEE
+Vybe ist ein Raum, dessen Licht sich ändert. Die Startseite ist ein ruhiger, fast
+schwarzer Raum. Jedes Spiel füllt den ganzen Bildschirm mit seiner eigenen Farbe.
+
+NEU
+- Altes CSS vollständig entfernt, design.css von Grund auf neu geschrieben.
+- Neue Startseite mit dunklen Spiel-Postern und eigenen Symbolen statt Emojis.
+- Jedes Spiel hat Farbe, Symbol und Akzent; aufgedeckte Karten sind kräftige Farbflächen.
+- Große Typografie, ruhige Listen ohne Icon-Kästen, Kapsel-Buttons am Daumen.
+- Liquid Glass nur auf Tasten, Menü, Sheets und Hinweisen.
+- Heller Modus für Start und Einstellungen; Spiele bleiben immer in ihrer Farbe.
+
+BEHOBEN
+- Inhalt wurde am iPhone unten hart abgeschnitten.
+- Unscharfer Streifen oben, schiefe Lichtstreifen auf den Karten.
+- Kaum sichtbare Auswahl beim Erscheinungsbild.
+- Funktionsloses Fragezeichen auf den Setup-Seiten ausgeblendet.
+
+UNVERÄNDERT
+- Spielregeln, Inhalte, Spielstände und Speicherschlüssel.
+- Service-Worker-Cache: vybe-pwa-v42
