@@ -12,21 +12,35 @@ if(window.navigator.standalone===true||window.matchMedia("(display-mode: standal
   document.querySelector('meta[name="viewport"]').setAttribute("content","width=device-width,height=device-height,initial-scale=1,viewport-fit=cover");
 }
 </script>
-<meta id="themeColorMeta" name="theme-color" content="#0b0a0e">
+<meta id="themeColorMeta" name="theme-color" content="#ff2d78">
 <meta name="color-scheme" content="only light">
 <meta name="darkreader-lock">
 <title>VYBE 2.1</title>
-<link rel="stylesheet" href="./design.css?v=2.1.1">
+<style>html{background:#5a1fd1}</style>
+<link rel="stylesheet" href="./design.css?v=2.1.2">
 
   <meta name="apple-mobile-web-app-title" content="VYBE">
   <meta name="application-name" content="VYBE">
   <meta name="description" content="Offline Partyspiele für Freunde – direkt auf dem Handy.">
   <link rel="manifest" href="./manifest.webmanifest">
   <link rel="apple-touch-icon" href="./icons/icon-180.png">
+<link rel="apple-touch-startup-image" media="(device-width: 440px) and (device-height: 956px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="./icons/splash/launch-1320x2868.jpg">
+<link rel="apple-touch-startup-image" media="(device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="./icons/splash/launch-1206x2622.jpg">
+<link rel="apple-touch-startup-image" media="(device-width: 393px) and (device-height: 852px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="./icons/splash/launch-1179x2556.jpg">
+<link rel="apple-touch-startup-image" media="(device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="./icons/splash/launch-1290x2796.jpg">
+<link rel="apple-touch-startup-image" media="(device-width: 420px) and (device-height: 912px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="./icons/splash/launch-1260x2736.jpg">
+<link rel="apple-touch-startup-image" media="(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="./icons/splash/launch-1170x2532.jpg">
+<link rel="apple-touch-startup-image" media="(device-width: 428px) and (device-height: 926px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="./icons/splash/launch-1284x2778.jpg">
+<link rel="apple-touch-startup-image" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="./icons/splash/launch-1125x2436.jpg">
+<link rel="apple-touch-startup-image" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="./icons/splash/launch-1242x2688.jpg">
+<link rel="apple-touch-startup-image" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="./icons/splash/launch-828x1792.jpg">
+<link rel="apple-touch-startup-image" media="(device-width: 360px) and (device-height: 780px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="./icons/splash/launch-1080x2340.jpg">
+<link rel="apple-touch-startup-image" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="./icons/splash/launch-750x1334.jpg">
+<link rel="apple-touch-startup-image" media="(device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="./icons/splash/launch-1242x2208.jpg">
+<link rel="apple-touch-startup-image" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="./icons/splash/launch-640x1136.jpg">
   <link rel="icon" type="image/png" sizes="192x192" href="./icons/icon-192.png">
   <link rel="icon" type="image/png" sizes="512x512" href="./icons/icon-512.png">
 
-<!-- VYBE 7.4 build: expanded verified quiz databases + Bundesliga category -->
 </head>
 <body>
 <div class="app">
@@ -4671,6 +4685,10 @@ if ("serviceWorker" in navigator) {
   }
 
   updateViewportProfile();
+  if(isStandalone){
+    document.addEventListener("gesturestart",event=>event.preventDefault(),{passive:false});
+    document.addEventListener("dblclick",event=>event.preventDefault(),{passive:false});
+  }
   window.addEventListener("resize",scheduleUpdate,{passive:true});
   window.addEventListener("orientationchange",scheduleUpdate,{passive:true});
   window.visualViewport?.addEventListener("resize",scheduleUpdate,{passive:true});
@@ -4895,6 +4913,6 @@ if ("serviceWorker" in navigator) {
 })();
 </script>
 
-<script src="./gravity.js?v=2.1.1"></script>
+<script src="./gravity.js?v=2.1.2"></script>
 </body>
 </html>

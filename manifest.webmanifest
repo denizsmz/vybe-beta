@@ -5,17 +5,12 @@
   "description": "Offline Partyspiele für Freunde – direkt auf dem Handy.",
   "lang": "de-DE",
   "dir": "ltr",
-  "start_url": "./",
+  "start_url": "./?source=homescreen",
   "scope": "./",
   "display": "standalone",
-  "display_override": [
-    "window-controls-overlay",
-    "standalone",
-    "minimal-ui"
-  ],
-  "orientation": "portrait-primary",
-  "background_color": "#000000",
-  "theme_color": "#000000",
+  "orientation": "portrait",
+  "background_color": "#5a1fd1",
+  "theme_color": "#ff2d78",
   "categories": [
     "games",
     "entertainment"

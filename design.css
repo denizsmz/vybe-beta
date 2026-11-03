@@ -963,3 +963,8 @@ html.gravity :is(.section-label,.settings-page p,.progress,.team73-progress-trac
 html.gravity .row{max-width:168px}
 html.gravity #settings .row-icon{display:none}
 html.gravity .row{max-width:188px}
+
+/* ---------- Installierte App: verhält sich wie eine App aus dem App Store ---------- */
+body{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+input,textarea,[contenteditable]{-webkit-user-select:text;user-select:text;-webkit-touch-callout:default}
+img{-webkit-user-drag:none}
