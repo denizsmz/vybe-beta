@@ -49,3 +49,11 @@ VYBE 2.1 (neue Versionsnummer)
 - Versionsnummer in den Einstellungen sichtbar.
 - Easter Egg: Teile bouncen lustig und stoßen sich an.
 - Service-Worker-Cache: vybe-pwa-v48
+
+VYBE 2.1.1
+- Helles Design fest gesetzt, veraltete Dateien werden nicht mehr geladen.
+
+VYBE 2.2
+- Startbilder für alle iPhone-Größen, bereinigtes App-Manifest.
+- Installierte App: kein Markieren von Text, kein Zoomen.
+- Service-Worker-Cache: vybe-pwa-v51
